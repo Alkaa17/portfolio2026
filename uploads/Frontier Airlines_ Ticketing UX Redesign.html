@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frontier Airlines: Ticketing UX Redesign | Alka Mahapatra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Capriola&family=Pacifico&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6; --surface:#FFFFFF; --sunk:#F1EFEA; --ink:#272827; --muted:#3B4D51;
+  --dusk:#444F74; --rose:#834C4B; --granite:#556755; --camel:#C4A063; --mauve:#937BA1;
+  --ash:#B7C7BE; --line:#CEC8BD; --rose-soft:#F3E6E5; --granite-soft:#E4ECE4; --dusk-soft:#E6E8F0; --camel-soft:#F6EEDD;
+  --shadow:0 1px 2px rgba(39,40,39,.06),0 8px 24px rgba(68,79,116,.08);
+  --head:'Capriola',ui-rounded,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body:'Roboto','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --script:'Pacifico','Brush Script MT',cursive;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#232425; --surface:#2D2F30; --sunk:#1C1D1E; --ink:#FAF9F6; --muted:#C9D1CC;
+    --dusk:#9AA6D1; --rose:#D39A97; --granite:#9DBB9D; --camel:#D9B97F; --mauve:#BBA5C8;
+    --ash:#5C6B63; --line:#46494A; --rose-soft:#3B2C2C; --granite-soft:#2B352B; --dusk-soft:#2E3240; --camel-soft:#3A3326;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#232425; --surface:#2D2F30; --sunk:#1C1D1E; --ink:#FAF9F6; --muted:#C9D1CC;
+  --dusk:#9AA6D1; --rose:#D39A97; --granite:#9DBB9D; --camel:#D9B97F; --mauve:#BBA5C8;
+  --ash:#5C6B63; --line:#46494A; --rose-soft:#3B2C2C; --granite-soft:#2B352B; --dusk-soft:#2E3240; --camel-soft:#3A3326;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth; scroll-padding-top:calc(env(safe-area-inset-top,0px) + 24px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--dusk)}
+:focus-visible{outline:3px solid var(--camel);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;line-height:1.25;margin:0}
+p{margin:0 0 1em}
+.layout{display:grid;grid-template-columns:268px minmax(0,1fr);min-height:100%}
+
+/* ---------- Left rail: the route ---------- */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;height:100dvh;align-self:start;
+  border-right:1px solid var(--line);padding:28px 22px 24px 26px;display:flex;flex-direction:column;background:var(--bg)}
+.wordmark{font-family:var(--script);font-size:22px;color:var(--rose);text-decoration:none;line-height:1.2}
+.rail-title{font-size:13px;color:var(--muted);margin:6px 0 22px}
+.rail-title b{display:block;font-family:var(--head);font-weight:400;font-size:16px;color:var(--ink)}
+.route{position:relative;flex:1;overflow-y:auto;padding-left:26px;margin-left:-4px}
+.route::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;border-left:2px dashed var(--line)}
+.route-progress{position:absolute;left:9px;top:10px;width:2px;background:var(--camel);height:0;transition:height .25s ease}
+.plane{position:absolute;left:0;top:2px;width:20px;height:20px;color:var(--camel);transition:top .3s ease;pointer-events:none}
+.route ol{list-style:none;margin:0;padding:0;position:relative}
+.route li{position:relative}
+.route a{display:block;padding:6px 8px;margin:1px 0;color:var(--muted);text-decoration:none;font-size:14.5px;border-radius:8px;transition:color .2s, background .2s}
+.route a::before{content:"";position:absolute;left:-21px;top:13px;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:border-color .2s, background .2s}
+.route a:hover{color:var(--ink);background:var(--sunk)}
+.route a.active{color:var(--ink);font-weight:500}
+.route a.active::before,.route a.passed::before{border-color:var(--camel);background:var(--camel)}
+.route .group{font-family:var(--head);font-size:12.5px;color:var(--rose);margin:14px 0 2px 8px}
+.route .group:first-child{margin-top:0}
+.rail-foot{font-size:13px;padding-top:16px;border-top:1px solid var(--line);margin-top:12px;display:flex;justify-content:space-between;gap:8px}
+.rail-foot a{text-decoration:none}
+.theme-btn{background:none;border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:2px 10px;font:inherit;font-size:12px;cursor:pointer}
+
+/* ---------- Main ---------- */
+main{padding:56px clamp(20px,5vw,72px) 80px;max-width:1040px}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.kicker{font-family:var(--script);color:var(--rose);font-size:19px;margin-bottom:6px;display:block}
+h2{font-size:clamp(24px,3vw,30px);margin-bottom:14px;color:var(--ink)}
+h3{font-size:19px;margin-bottom:8px}
+.lede{font-size:17.5px;max-width:66ch;color:var(--ink)}
+.prose{max-width:66ch}
+.muted{color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+ul.clean{padding-left:1.1em;margin:0 0 1em}
+ul.clean li{margin-bottom:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.btn{font:500 14px var(--body);border-radius:999px;padding:9px 16px;cursor:pointer;border:1.5px solid var(--dusk);background:var(--dusk);color:#fff;transition:transform .15s, background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--dusk)}
+[data-theme="dark"] .btn:not(.ghost),.dark-auto .btn:not(.ghost){color:#1C1D1E}
+
+/* ---------- Hero / boarding pass ---------- */
+.hero h1{font-size:clamp(32px,5vw,50px);letter-spacing:-.01em;max-width:16ch;margin:6px 0 18px}
+.pass{display:grid;grid-template-columns:minmax(0,1fr) 210px;margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.pass-main{padding:24px 26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+.pass-route{grid-column:1/-1;display:flex;align-items:center;gap:14px;font-family:var(--head);font-size:26px}
+.pass-route .dash{flex:1;border-top:2px dashed var(--line);position:relative;height:0}
+.pass-route .dash svg{position:absolute;left:50%;top:-11px;width:22px;height:22px;color:var(--camel);transform:translateX(-50%)}
+.pass-route small{display:block;font-family:var(--body);font-size:12px;color:var(--muted)}
+.field small{display:block;font-size:12px;color:var(--muted)}
+.field span{font-weight:500}
+.pass-stub{border-left:2px dashed var(--line);padding:24px 22px;background:var(--camel-soft);position:relative;display:flex;flex-direction:column;gap:14px}
+.pass-stub::before,.pass-stub::after{content:"";position:absolute;left:-11px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.pass-stub::before{top:-11px}.pass-stub::after{bottom:-11px}
+.stat b{font-family:var(--head);font-weight:400;font-size:28px;color:var(--granite);display:block;line-height:1.1}
+.stat small{font-size:13px;color:var(--muted)}
+
+/* ---------- Outcome infographic ---------- */
+.outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px}
+.meter{height:12px;border-radius:12px;background:var(--sunk);overflow:hidden;margin:6px 0 4px}
+.meter i{display:block;height:100%;width:0;border-radius:12px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.meter .orig{background:var(--rose)} .meter .new{background:var(--granite)}
+.meter-label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.big{font-family:var(--head);font-size:30px;line-height:1.1;margin:4px 0 10px}
+.seats{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+.seat{width:30px;height:34px;color:var(--line);transition:color .4s ease, transform .4s ease}
+.seat.on-new{color:var(--granite)} .seat.on-old{color:var(--rose)}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* ---------- Dark pattern viewer ---------- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}
+.tab{font:500 14px var(--body);border:1.5px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
+.viewer{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px;align-items:center}
+.browser{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;position:relative;min-height:250px}
+.browser-bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--sunk);font-size:12px;color:var(--muted)}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.browser-bar span{margin-left:8px}
+.screen{padding:18px;position:relative}
+.panel[hidden]{display:none}
+.fare-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fare{border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;background:var(--surface);transition:all .25s}
+.fare small{display:block;font-size:12px;color:var(--muted)}
+.fare b{font-family:var(--head);font-weight:400;font-size:22px;display:block}
+.fare .sum{font-size:12px;color:var(--rose);min-height:18px;opacity:0;transition:opacity .4s}
+.show-math .fare .sum{opacity:1}
+.scrollbox{height:178px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;font-size:13px}
+.scrollbox table{width:100%;border-collapse:collapse}
+.scrollbox th,.scrollbox td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+.scrollbox .opt{padding:12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.popup{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);opacity:0;background:var(--surface);border:1.5px solid var(--rose);border-radius:12px;padding:16px 18px;width:min(250px,86%);box-shadow:0 18px 40px rgba(0,0,0,.18);text-align:center;transition:all .25s;pointer-events:none;z-index:3}
+.popup.show{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.popup b{font-family:var(--head);font-weight:400;color:var(--rose);font-size:18px;display:block;margin-bottom:4px}
+.popup .row{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.mini-btn{font:500 12.5px var(--body);border-radius:8px;padding:6px 10px;border:1px solid var(--line);background:var(--sunk);color:var(--ink);cursor:pointer}
+.mini-btn.loud{background:var(--rose);border-color:var(--rose);color:#fff}
+.counter-pill{display:inline-block;font-size:12px;background:var(--rose-soft);color:var(--rose);border-radius:20px;padding:2px 10px;margin-left:8px}
+.optin{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);margin-top:14px;padding:10px;border-radius:8px;transition:background .3s, box-shadow .3s}
+.optin.flag{background:var(--rose-soft);box-shadow:0 0 0 2px var(--rose)}
+.optin input{accent-color:var(--dusk);margin-top:2px}
+.pattern-copy h3{color:var(--rose)}
+
+/* ---------- Journey & psych ---------- */
+.chart-wrap{margin-top:24px}
+.journey svg{width:100%;height:auto;overflow:visible}
+.journey .curve{fill:none;stroke:var(--dusk);stroke-width:3;stroke-linecap:round}
+.journey .area-neg{fill:var(--rose-soft)} .journey .area-pos{fill:var(--granite-soft)}
+.journey .zero{stroke:var(--line);stroke-dasharray:4 5}
+.journey .pt{cursor:pointer}
+.journey .pt circle.dot{fill:var(--surface);stroke:var(--dusk);stroke-width:2.5;transition:r .2s}
+.journey .pt.key circle.dot{stroke:var(--camel);stroke-width:3.5}
+.journey .pt:hover circle.dot,.journey .pt.sel circle.dot{r:10}
+.journey .pt text{font:13px var(--body);fill:var(--muted)}
+.journey .pt text.tag{font-family:var(--head);fill:var(--rose);font-size:14px}
+.journey .axis{font:12px var(--body);fill:var(--muted)}
+.detail{display:flex;gap:14px;align-items:flex-start;margin-top:14px;padding:16px 18px;border-radius:12px;background:var(--sunk);min-height:76px}
+.detail .badge{font-family:var(--head);font-size:13px;color:#fff;background:var(--dusk);border-radius:20px;padding:3px 12px;white-space:nowrap}
+.detail .badge.peak{background:var(--granite)} .detail .badge.pit{background:var(--rose)} .detail .badge.end{background:var(--camel);color:#272827}
+
+.psych{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;position:relative;margin-top:26px;height:300px}
+.psych::before{content:"";position:absolute;left:0;right:0;top:70px;border-top:2px solid var(--line)}
+.pcol{position:relative;cursor:pointer;border-radius:8px;outline-offset:2px;background:none;border:0;padding:0;font:inherit;color:inherit}
+.pbar{position:absolute;left:18%;right:18%;border-radius:8px;transition:height .9s cubic-bezier(.2,.7,.2,1), top .9s cubic-bezier(.2,.7,.2,1)}
+.pbar.pos{background:var(--granite)} .pbar.neg{background:var(--rose)}
+.pcol:hover .pbar,.pcol.sel .pbar{filter:brightness(1.12)}
+.pval{position:absolute;left:0;right:0;text-align:center;font-family:var(--head);font-size:15px;opacity:0;transition:opacity .4s .6s}
+.in .pval{opacity:1}
+.plabel{position:absolute;left:-4px;right:-4px;bottom:0;text-align:center;font-size:12.5px;line-height:1.3;color:var(--muted)}
+.pdrop{position:absolute;left:50%;transform:translateX(-50%);top:4px;font-size:11px;color:var(--rose);background:var(--rose-soft);border-radius:20px;padding:1px 8px;white-space:nowrap}
+
+/* ---------- Persona ---------- */
+.persona{display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.avatar{width:100%;aspect-ratio:1;border-radius:16px;background:var(--dusk-soft);display:grid;place-items:center}
+.avatar svg{width:70%}
+.quote{font-family:var(--head);font-size:20px;color:var(--dusk);margin:0 0 14px}
+.facts{font-size:14px;color:var(--muted);margin-top:12px}
+.facts div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0}
+.needs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
+.need-list{list-style:none;padding:0;margin:0}
+.need{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--surface);cursor:pointer;transition:border-color .2s, background .2s, transform .2s}
+.need b{font-weight:500;display:block}
+.need span{font-size:14px;color:var(--muted)}
+.need .link{display:block;font-size:12.5px;color:var(--dusk);margin-top:6px;max-height:0;overflow:hidden;transition:max-height .3s}
+.need:hover,.need:focus-visible,.need.lit{transform:translateX(3px)}
+.goals .need:hover,.goals .need.lit,.goals .need:focus-visible{border-color:var(--granite);background:var(--granite-soft)}
+.frust .need:hover,.frust .need.lit,.frust .need:focus-visible{border-color:var(--rose);background:var(--rose-soft)}
+.need:hover .link,.need.lit .link,.need:focus-visible .link{max-height:40px}
+.need-title{font-family:var(--head);font-size:16px;margin-bottom:10px}
+.goals .need-title{color:var(--granite)} .frust .need-title{color:var(--rose)}
+
+/* ---------- Solution features ---------- */
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:30px;align-items:center;padding:30px 0}
+.feature + .feature{border-top:1px dashed var(--line)}
+.feature.flip .feat-copy{order:2}
+.fnum{display:inline-block;font-family:var(--head);font-size:13px;color:var(--camel);border:1.5px solid var(--camel);border-radius:20px;padding:1px 10px;margin-bottom:8px}
+.feature.flash .browser{box-shadow:0 0 0 3px var(--camel),var(--shadow)}
+.switch{display:inline-flex;background:var(--sunk);border-radius:999px;padding:3px;margin-bottom:12px;border:1px solid var(--line)}
+.switch button{font:500 13px var(--body);border:0;background:none;color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .2s}
+.switch button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.bags{display:flex;justify-content:center;gap:6px;margin-top:8px;height:0;opacity:0;overflow:hidden;transition:all .35s}
+.after .bags{height:22px;opacity:1}
+.bag{width:18px;height:18px}
+.bag.yes{color:var(--granite)} .bag.no{color:var(--line)}
+.fare .total-tag{font-size:11px;color:var(--granite)}
+.f1 .fare.basic{border-top:4px solid var(--ash)} .f1 .fare.econ{border-top:4px solid var(--dusk)} .f1 .fare.biz{border-top:4px solid var(--camel)}
+.compare{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px}
+.compare th,.compare td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--line)}
+.compare th:first-child,.compare td:first-child{text-align:left;color:var(--muted)}
+.compare thead th{font-family:var(--head);font-weight:400}
+.compare .col{cursor:pointer;transition:background .2s}
+.compare .yes{color:var(--granite);font-weight:700} .compare .no{color:var(--line)}
+.compare tfoot td{font-family:var(--head);font-size:17px;border-bottom:0}
+.compare .picked{background:var(--dusk-soft)}
+.compare thead .picked{box-shadow:inset 0 3px 0 var(--dusk)}
+.summary-modal{position:absolute;inset:0;background:rgba(39,40,39,.35);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.summary-modal.show{opacity:1;pointer-events:auto}
+.summary-card{background:var(--surface);border-radius:12px;padding:16px 18px;width:min(270px,88%);box-shadow:0 18px 40px rgba(0,0,0,.2);font-size:13px;transform:translateY(10px);transition:transform .25s}
+.summary-modal.show .summary-card{transform:none}
+.summary-card h4{font-size:16px;margin-bottom:8px}
+.summary-card .ln{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--line)}
+.summary-card .upg{margin:10px 0;padding:8px 10px;border-radius:8px;background:var(--camel-soft);font-size:12.5px}
+.summary-card .upg a{font-weight:500}
+
+/* ---------- Testing ---------- */
+.task{border-left:3px solid var(--dusk);padding:4px 0 4px 16px;margin-bottom:16px}
+.task b{font-family:var(--head);font-weight:400;color:var(--dusk)}
+.learn{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.learn li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.learn .tag{font-size:11.5px;border-radius:20px;padding:1px 9px;white-space:nowrap;margin-top:3px}
+.tag.good{background:var(--granite-soft);color:var(--granite)} .tag.bad{background:var(--rose-soft);color:var(--rose)} .tag.mix{background:var(--camel-soft);color:#8a6a2c}
+[data-theme="dark"] .tag.mix{color:var(--camel)}
+.iter{counter-reset:it;display:grid;gap:18px;margin-top:20px}
+.iter-item{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.iter-item .n{width:36px;height:36px;border-radius:50%;background:var(--dusk);color:#fff;display:grid;place-items:center;font-family:var(--head)}
+.iter-item h4{font-family:var(--body);font-weight:500;font-size:13px;color:var(--muted);margin-bottom:4px}
+.heard{color:var(--rose)} .changed{color:var(--granite)}
+
+/* ---------- Final + before/after ---------- */
+.checks{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.checks li{display:flex;gap:10px;padding:14px;border-radius:12px;background:var(--granite-soft)}
+.checks svg{flex:none;width:20px;height:20px;color:var(--granite);margin-top:2px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
+.shots figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.shots figcaption{font-size:13px;color:var(--muted);padding:8px 12px}
+.ba-wrap{overflow-x:auto;margin-top:22px}
+.ba{width:100%;min-width:560px;border-collapse:separate;border-spacing:0 8px}
+.ba th{text-align:left;font-family:var(--head);font-weight:400;font-size:15px;padding:0 14px}
+.ba td{padding:14px;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top;transition:background .2s}
+.ba td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;font-weight:500;width:22%}
+.ba td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
+.ba td.o{color:var(--rose)} .ba td.r{color:var(--granite)}
+.ba tr:hover td{background:var(--sunk)}
+.ba .o::before{content:"✕ ";font-weight:700}
+.ba .r::before{content:"✓ ";font-weight:700}
+.takeaways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.takeaways .card{border-top:4px solid var(--camel)}
+.contact{margin-top:40px;padding:28px;border-radius:18px;background:var(--dusk);color:#FAF9F6}
+.contact h3{font-size:24px}
+.contact a{color:#FAF9F6}
+[data-theme="dark"] .contact{background:var(--dusk-soft)}
+
+/* ---------- Mobile ---------- */
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .rail{min-width:0} .route{min-width:0;flex:1}
+  .rail{height:auto;z-index:20;border-right:0;border-bottom:1px solid var(--line);padding:10px 16px;flex-direction:row;align-items:center;gap:12px}
+  .rail-title,.rail-foot,.plane,.route-progress,.route::before{display:none}
+  .wordmark{font-size:17px;white-space:nowrap}
+  .route{padding:0;margin:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+  .route ol{display:flex;gap:4px}
+  .route .group{display:none}
+  .route a{white-space:nowrap;font-size:13.5px;padding:6px 10px}
+  .route a::before{display:none}
+  .route a.active{background:var(--dusk-soft);color:var(--dusk)}
+  html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+  main{padding-top:28px}
+  .pass{grid-template-columns:1fr}
+  .pass-stub{border-left:0;border-top:2px dashed var(--line);flex-direction:row;flex-wrap:wrap;justify-content:space-between}
+  .pass-stub::before,.pass-stub::after{display:none}
+  .outcomes,.viewer,.feature,.persona,.needs,.grid2,.checks,.shots,.takeaways{grid-template-columns:1fr}
+  .feature.flip .feat-copy{order:0}
+  .persona .avatar{max-width:160px}
+  .iter-item{grid-template-columns:36px minmax(0,1fr)}
+  .iter-item > div:last-child{grid-column:2}
+  .psych{gap:6px}
+  .plabel{font-size:11px}
+}
+@media (max-width:520px){
+  .pass-main{grid-template-columns:1fr}
+  .fare-row{gap:6px}.fare{padding:10px 6px}.fare b{font-size:18px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol>
+  <symbol id="i-seat" viewBox="0 0 30 34"><path fill="currentColor" d="M7 2h12a3 3 0 0 1 3 3v15H9a4 4 0 0 1-4-4V4a2 2 0 0 1 2-2zm-3 20h21a3 3 0 0 1 3 3v2H7a3 3 0 0 1-3-3zM8 29h3v5H8zm12 0h3v5h-3z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path fill="currentColor" d="M9 2h6v4h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-1v1h-2v-1H9v1H7v-1H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3zm2 2v2h2V4z"/></symbol>
+</svg>
+
+<div class="layout">
+  <!-- ================= LEFT NAV ================= -->
+  <aside class="rail" aria-label="Case study sections">
+    <a class="wordmark" href="https://www.alkamahapatra.com">alka mahapatra</a>
+    <div class="rail-title"><b>Frontier Airlines</b>Ticketing UX redesign</div>
+    <nav class="route" id="route">
+      <span class="route-progress" id="routeProgress"></span>
+      <svg class="plane" id="plane" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-plane"/></svg>
+      <ol>
+        <li class="group">Context</li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+        <li><a href="#problem">The problem</a></li>
+        <li class="group">Research</li>
+        <li><a href="#journey">Journey map</a></li>
+        <li><a href="#psych">Psych journey</a></li>
+        <li><a href="#persona">Persona</a></li>
+        <li class="group">Design</li>
+        <li><a href="#solution">Solution</a></li>
+        <li class="group">Validation</li>
+        <li><a href="#testing">A/B testing</a></li>
+        <li><a href="#iterations">Changes made</a></li>
+        <li><a href="#final">Final design</a></li>
+        <li><a href="#before-after">Before &amp; after</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ol>
+    </nav>
+    <div class="rail-foot">
+      <a href="https://www.alkamahapatra.com">All projects</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">Theme</button>
+    </div>
+  </aside>
+
+  <main id="main">
+    <!-- ================= OVERVIEW ================= -->
+    <section id="overview" class="hero">
+      <span class="kicker">booking without the tricks</span>
+      <h1>Frontier Airlines ticketing UX redesign</h1>
+      <p class="lede">In collaboration with Sarosh Manzar, I redesigned Frontier Airlines' ticket booking flow to reduce manipulative patterns and build user trust. The existing system caused decision fatigue, hidden fees, and intrusive upsell pop-ups. We applied humane design principles to prioritize clarity, reduce friction, and empower informed decision-making.</p>
+
+      <div class="pass" role="group" aria-label="Project details">
+        <div class="pass-main">
+          <div class="pass-route">
+            <div>Before<small>Dark patterns</small></div>
+            <div class="dash"><svg><use href="#i-plane" transform="rotate(90 12 12)"/></svg></div>
+            <div style="text-align:right">After<small>Ethical flow</small></div>
+          </div>
+          <div class="field"><small>Year</small><span>Jan '25 to Apr '25</span></div>
+          <div class="field"><small>Role</small><span>UX Researcher &amp; Designer</span></div>
+          <div class="field"><small>Tools</small><span>Figma, UserTesting</span></div>
+          <div class="field"><small>Collaborator</small><span>Sarosh Manzar</span></div>
+          <div class="field" style="grid-column:1/-1"><small>Deliverables</small><span>Journey map, psych mapping, ethical UX redesign, A/B testing, final prototype</span></div>
+        </div>
+        <div class="pass-stub">
+          <div class="stat"><b data-count="2" data-suffix="×">2×</b><small>faster task completion</small></div>
+          <div class="stat"><b data-count="65" data-prefix="+" data-suffix="%">+65%</b><small>reported user trust</small></div>
+          <div class="stat"><b>5 of 6</b><small>users preferred the redesign</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OUTCOMES ================= -->
+    <section id="outcomes">
+      <span class="kicker">tl;dr</span>
+      <h2>Clarity and trust, without losing the business goals</h2>
+      <p class="prose">The redesigned booking flow improved clarity, trust, and usability without sacrificing essential business goals, by restructuring pricing visibility and reducing manipulative interruptions. The result is a transparent, user-respecting interface that simplifies decisions and builds long-term loyalty.</p>
+
+      <div class="outcomes reveal" id="outcomeViz">
+        <div class="card">
+          <h3>Task completion time</h3>
+          <div class="big">2× faster</div>
+          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter"><i class="orig" data-w="100"></i></div>
+          <div class="meter-label"><span>Redesign</span><span>half the time</span></div>
+          <div class="meter"><i class="new" data-w="50"></i></div>
+        </div>
+        <div class="card">
+          <h3>Reported user trust</h3>
+          <div class="big">+65%</div>
+          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter"><i class="orig" data-w="60"></i></div>
+          <div class="meter-label"><span>Redesign</span><span>+65%</span></div>
+          <div class="meter"><i class="new" data-w="99"></i></div>
+        </div>
+        <div class="card">
+          <h3>A/B preference</h3>
+          <div class="big">5 of 6 users</div>
+          <div class="seats" id="seats" aria-label="5 of 6 participants preferred the redesign">
+            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
+            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
+          </div>
+          <div class="legend"><span><i style="background:var(--granite)"></i>Redesign</span><span><i style="background:var(--rose)"></i>Original</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROBLEM ================= -->
+    <section id="problem">
+      <span class="kicker">the problem</span>
+      <h2>A flow that misleads users at key moments</h2>
+      <p class="prose">The existing Frontier website uses a sequence of manipulative design choices. The experience becomes increasingly frustrating after a user selects their flights: the interface complicates simple tasks, erodes trust, and increases drop-off risk. Try each pattern below.</p>
+
+      <div class="tabs" role="tablist" aria-label="Dark patterns">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="dp1" id="t1">Price differences</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="dp2" id="t2">Disappearing chart</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="dp3" id="t3">Upsell pop-ups</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="dp4" id="t4">Pre-selected opt-ins</button>
+      </div>
+
+      <div class="viewer">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>flyfrontier.com (recreated)</span></div>
+          <div class="screen">
+            <div class="panel" id="dp1" role="tabpanel" aria-labelledby="t1">
+              <div class="fare-row" id="mathRow">
+                <div class="fare"><small>Basic</small><b>$49</b><span class="sum">total $49</span></div>
+                <div class="fare"><small>Economy</small><b>+$38</b><span class="sum">total $87</span></div>
+                <div class="fare"><small>Premium</small><b>+$97</b><span class="sum">total $146</span></div>
+              </div>
+              <p class="note" style="margin:14px 0 10px">Which bundle actually costs what?</p>
+              <button class="mini-btn" id="mathBtn" type="button">Do the mental math for me</button>
+            </div>
+            <div class="panel" id="dp2" role="tabpanel" aria-labelledby="t2" hidden>
+              <div class="scrollbox" tabindex="0" aria-label="Scrollable bundle options">
+                <table>
+                  <tr><th></th><th>Basic</th><th>Economy</th><th>Premium</th></tr>
+                  <tr><td>Carry-on</td><td>✕</td><td>✓</td><td>✓</td></tr>
+                  <tr><td>Checked bag</td><td>✕</td><td>✕</td><td>✓</td></tr>
+                  <tr><td>Seat choice</td><td>✕</td><td>✓</td><td>✓</td></tr>
+                </table>
+                <div class="opt"><span>Basic</span><span>$49</span></div>
+                <div class="opt"><span>Economy bundle</span><span>+$38</span></div>
+                <div class="opt"><span>Premium bundle</span><span>+$97</span></div>
+                <div class="opt"><span>Add a carry-on?</span><span>+$45</span></div>
+                <div class="opt"><span>Add a checked bag?</span><span>+$55</span></div>
+              </div>
+              <p class="note" style="margin-top:10px">Scroll the box. By the time you choose, the chart you need is gone.</p>
+            </div>
+            <div class="panel" id="dp3" role="tabpanel" aria-labelledby="t3" hidden>
+              <p style="margin:0 0 6px"><b>Seats selected</b> <span class="counter-pill" id="popCount">0 interruptions</span></p>
+              <p class="note">Try to move on to payment.</p>
+              <button class="btn" id="contBtn" type="button">Continue</button>
+              <div class="popup" id="upsell" role="dialog" aria-label="Upsell pop-up">
+                <b id="upsellTitle">Wait! Upgrade?</b>
+                <span class="note" id="upsellBody">Add a bundle and save*</span>
+                <div class="row"><button class="mini-btn loud" type="button" data-close>Yes, upgrade</button><button class="mini-btn" type="button" data-close>No thanks</button></div>
+              </div>
+            </div>
+            <div class="panel" id="dp4" role="tabpanel" aria-labelledby="t4" hidden>
+              <div class="fare" style="text-align:left"><small>Total</small><b>$146</b></div>
+              <button class="btn" type="button" style="margin-top:14px;width:100%">Pay now</button>
+              <label class="optin" id="optin"><input type="checkbox" checked> <span>Yes, send me trip updates and offers by SMS. Message and data rates may apply.</span></label>
+              <button class="mini-btn" id="flagBtn" type="button" style="margin-top:10px">Spot the default</button>
+            </div>
+          </div>
+        </div>
+        <div class="pattern-copy" aria-live="polite">
+          <h3 id="pcTitle">Only price differences, not totals</h3>
+          <p id="pcBody" class="muted">Bundles are listed as "+$" differences, so users have to calculate the real price themselves before they can compare.</p>
+          <p class="note">Prices in these recreations are illustrative.</p>
+        </div>
+      </div>
+      <p class="prose" style="margin-top:26px">These issues were addressed by centering the redesign around transparency, simplicity, and ethical interaction design.</p>
+    </section>
+
+    <!-- ================= JOURNEY ================= -->
+    <section id="journey">
+      <span class="kicker">analysis</span>
+      <h2>Journey map and peak-end analysis</h2>
+      <p class="prose">To prioritize improvements, we analyzed the current flow. Using journey mapping and peak-end analysis, we identified the high and low moments of the experience. Select a moment on the curve.</p>
+      <div class="chart-wrap journey reveal" id="journeyViz">
+        <svg viewBox="0 0 760 290" role="img" aria-label="Emotional journey curve: high at search, falling to a low at baggage, ending low at checkout">
+          <text class="axis" x="0" y="44">Delight</text>
+          <text class="axis" x="0" y="262">Frustration</text>
+          <line class="zero" x1="70" x2="750" y1="120" y2="120"/>
+          <path class="area-pos" id="areaPos"/>
+          <path class="area-neg" id="areaNeg"/>
+          <path class="curve" id="curve"/>
+          <g id="pts"></g>
+        </svg>
+        <div class="detail" id="jDetail"><span class="badge peak">Peak</span><span>Initial search via Google Flights shows promising low fares.</span></div>
+      </div>
+      <p class="prose" style="margin-top:20px">The user journey revealed a downward emotional trajectory beginning immediately after flight selection. This insight shaped the design priorities: persistent pricing visibility, fewer interruptions, and no hidden choices.</p>
+    </section>
+
+    <!-- ================= PSYCH ================= -->
+    <section id="psych">
+      <span class="kicker">psych journey</span>
+      <h2>Scoring the emotional cost of each step</h2>
+      <p class="prose">To quantify emotional pain points, we mapped the psych journey step by step and scored each step on its psychological impact. Emotional highs were short-lived and quickly replaced by cognitive overload, dark patterns, and decision fatigue.</p>
+      <div class="psych reveal" id="psychViz" role="list"></div>
+      <div class="detail" id="pDetail" aria-live="polite"><span class="badge">Step</span><span>Select a bar to see what drove the score.</span></div>
+      <ul class="clean prose" style="margin-top:20px">
+        <li>The journey starts at +20 after seeing low fares, but falls to −50 due to confusing baggage flows and deceptive upsell pop-ups.</li>
+        <li>Key drop-off moments occurred during bundle selection, baggage selection, and the upsell stage.</li>
+        <li>Trust-breaking elements outweighed positive ones, especially in the middle and end of the flow.</li>
+      </ul>
+      <p class="prose">This scoring framework gave us a structured way to identify which interface elements most harmed the experience.</p>
+    </section>
+
+    <!-- ================= PERSONA ================= -->
+    <section id="persona">
+      <span class="kicker">persona</span>
+      <h2>Designing for David</h2>
+      <p class="prose">To guide our solution, we developed a user persona grounded in behavioral insights. Hover or tab through his goals and frustrations to see which feature answers each one.</p>
+      <div class="card" style="margin-top:20px">
+        <div class="persona">
+          <div>
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="18" fill="var(--dusk)"/><path d="M18 92c2-20 16-30 32-30s30 10 32 30z" fill="var(--dusk)"/></svg>
+            </div>
+            <div class="facts">
+              <div><span>Age</span><span>38</span></div>
+              <div><span>Occupation</span><span>Operations Manager</span></div>
+              <div><span>Location</span><span>Chicago</span></div>
+            </div>
+          </div>
+          <div>
+            <h3>David McGlone</h3>
+            <p class="quote">"Is it too much to ask for a simple and honest booking experience?"</p>
+            <p class="muted" style="font-size:15px">David is an organized Operations Manager based in Chicago. He values efficiency and a straightforward approach, including in travel. He flies a few times a year, mostly to visit family and friends and occasionally for short business trips. He's budget-minded and looks for good deals, but dislikes feeling nickel-and-dimed or tricked by hidden fees and manipulative tactics. He prefers clear information and a smooth, predictable experience that doesn't waste his time.</p>
+          </div>
+        </div>
+        <div class="needs">
+          <div class="goals">
+            <div class="need-title">Goals</div>
+            <ul class="need-list">
+              <li class="need" tabindex="0" data-f="f1"><b>Clear total cost</b><span>Easily see the complete price of flights and bundles upfront.</span><span class="link">Answered by key feature 1: transparent pricing</span></li>
+              <li class="need" tabindex="0" data-f="f3"><b>Efficient booking</b><span>Quickly navigate without unnecessary steps or distractions.</span><span class="link">Answered by key feature 3: no pop-ups</span></li>
+              <li class="need" tabindex="0" data-f="f2"><b>Informed choices</b><span>Understand options without losing key comparison points.</span><span class="link">Answered by key feature 2: side-by-side comparison</span></li>
+            </ul>
+          </div>
+          <div class="frust">
+            <div class="need-title">Frustrations</div>
+            <ul class="need-list">
+              <li class="need" tabindex="0" data-f="f1"><b>Hidden charges</b><span>Unexpected fees added late in the booking process.</span><span class="link">Answered by key feature 1: transparent pricing</span></li>
+              <li class="need" tabindex="0" data-f="f3"><b>Pushy upsells</b><span>Constant and irrelevant prompts to purchase upgrades.</span><span class="link">Answered by key feature 3: no pop-ups</span></li>
+              <li class="need" tabindex="0" data-f="f2"><b>Confusing pricing</b><span>Hard to understand the actual cost of bundles and options.</span><span class="link">Answered by key feature 2: side-by-side comparison</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="prose" style="margin-top:20px">With this understanding, we moved into designing a solution that directly addressed David's key frustrations.</p>
+    </section>
+
+    <!-- ================= SOLUTION ================= -->
+    <section id="solution">
+      <span class="kicker">solution</span>
+      <h2>Three features, each answering a frustration</h2>
+
+      <div class="feature" id="f1">
+        <div class="feat-copy">
+          <span class="fnum">Key feature 1</span>
+          <h3>Transparent pricing with baggage information</h3>
+          <p class="muted">The original design misled users with "+[difference]" pricing. The redesign shows the total price for each fare (Basic, Economy, Business) upfront and prominently, so no one has to add base fares and extra charges in their head.</p>
+          <p class="muted">Baggage allowance now sits directly in the main search results instead of sub-menus, giving a complete and honest overview of the true cost and inclusions of each fare.</p>
+        </div>
+        <div>
+          <div class="switch" role="group" aria-label="Compare versions">
+            <button type="button" aria-pressed="false" data-v="before">Original</button>
+            <button type="button" aria-pressed="true" data-v="after">Redesign</button>
+          </div>
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>Select your fare</span></div>
+            <div class="screen f1 after" id="f1Screen">
+              <div class="fare-row">
+                <div class="fare basic"><small>Basic</small><b data-b="$49" data-a="$49">$49</b><span class="total-tag">total</span>
+                  <div class="bags" aria-label="Personal item only"><svg class="bag yes"><use href="#i-bag"/></svg><svg class="bag no"><use href="#i-bag"/></svg><svg class="bag no"><use href="#i-bag"/></svg></div></div>
+                <div class="fare econ"><small>Economy</small><b data-b="+$38" data-a="$87">$87</b><span class="total-tag">total</span>
+                  <div class="bags" aria-label="Personal item and carry-on"><svg class="bag yes"><use href="#i-bag"/></svg><svg class="bag yes"><use href="#i-bag"/></svg><svg class="bag no"><use href="#i-bag"/></svg></div></div>
+                <div class="fare biz"><small>Business</small><b data-b="+$97" data-a="$146">$146</b><span class="total-tag">total</span>
+                  <div class="bags" aria-label="All bags included"><svg class="bag yes"><use href="#i-bag"/></svg><svg class="bag yes"><use href="#i-bag"/></svg><svg class="bag yes"><use href="#i-bag"/></svg></div></div>
+              </div>
+              <p class="note" style="margin:12px 0 0" id="f1Note">Totals and bag allowance (personal item, carry-on, checked) visible at a glance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature flip" id="f2">
+        <div class="feat-copy">
+          <span class="fnum">Key feature 2</span>
+          <h3>Simplified side-by-side comparison</h3>
+          <p class="muted">In the original, bundle information was scattered and needed scrolling, scanning, and mental effort. The redesign places features and total price for each bundle in a direct, adjacent layout, so users see the differences without losing context.</p>
+          <p class="muted">Seeing benefits and costs together gives users confidence and control over their selection, instead of feeling overwhelmed or misled.</p>
+        </div>
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>Compare bundles (select one)</span></div>
+          <div class="screen">
+            <table class="compare" id="cmp">
+              <thead><tr><th></th><th class="col" data-c="1" tabindex="0">Basic</th><th class="col picked" data-c="2" tabindex="0">Economy</th><th class="col" data-c="3" tabindex="0">Business</th></tr></thead>
+              <tbody>
+                <tr><td>Personal item</td><td class="col yes" data-c="1">✓</td><td class="col yes picked" data-c="2">✓</td><td class="col yes" data-c="3">✓</td></tr>
+                <tr><td>Carry-on bag</td><td class="col no" data-c="1">✕</td><td class="col yes picked" data-c="2">✓</td><td class="col yes" data-c="3">✓</td></tr>
+                <tr><td>Checked bag</td><td class="col no" data-c="1">✕</td><td class="col no picked" data-c="2">✕</td><td class="col yes" data-c="3">✓</td></tr>
+                <tr><td>Seat selection</td><td class="col no" data-c="1">✕</td><td class="col yes picked" data-c="2">✓</td><td class="col yes" data-c="3">✓</td></tr>
+                <tr><td>Flexible changes</td><td class="col no" data-c="1">✕</td><td class="col no picked" data-c="2">✕</td><td class="col yes" data-c="3">✓</td></tr>
+              </tbody>
+              <tfoot><tr><td>Total</td><td class="col" data-c="1">$49</td><td class="col picked" data-c="2">$87</td><td class="col" data-c="3">$146</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature" id="f3">
+        <div class="feat-copy">
+          <span class="fnum">Key feature 3</span>
+          <h3>No pop-ups: a summary pop-up instead</h3>
+          <p class="muted">Instead of frequent, disruptive upsell pop-ups, the redesign offers a subtle upgrade inside a contextual flight summary. It appears at a natural point, when users review their chosen flight before payment, rather than at every step.</p>
+          <p class="muted">Because users are already reviewing their booking, the upgrade feels like a helpful option rather than a sales tactic.</p>
+        </div>
+        <div class="browser" style="min-height:260px">
+          <div class="browser-bar"><i></i><i></i><i></i><span>Your trip</span></div>
+          <div class="screen">
+            <p style="margin:0"><b>NYC to Chicago</b></p>
+            <p class="note">Economy bundle, 1 adult</p>
+            <button class="btn" id="sumBtn" type="button">Continue to payment</button>
+            <p class="note" style="margin-top:12px">One calm checkpoint, zero interruptions.</p>
+          </div>
+          <div class="summary-modal" id="sumModal" role="dialog" aria-label="Flight summary">
+            <div class="summary-card">
+              <h4>Flight summary</h4>
+              <div class="ln"><span>Route</span><span>NYC to ORD</span></div>
+              <div class="ln"><span>Fare</span><span>Economy bundle</span></div>
+              <div class="ln"><span>Bags</span><span>Personal + carry-on</span></div>
+              <div class="ln"><span><b>Total</b></span><span><b>$87</b></span></div>
+              <div class="upg">Want a checked bag and flexible changes? <a href="#f3" id="upgLink">See Business bundle</a></div>
+              <div style="display:flex;gap:8px;justify-content:flex-end"><button class="mini-btn" type="button" id="sumBack">Edit flight</button><button class="mini-btn" type="button" id="sumOk" style="background:var(--dusk);color:#fff;border-color:var(--dusk)">Confirm and pay</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTING ================= -->
+    <section id="testing">
+      <span class="kicker">testing &amp; iteration</span>
+      <h2>A/B testing with six travelers</h2>
+      <div class="grid2" style="margin-top:20px">
+        <div>
+          <h3>Goals</h3>
+          <ul class="clean muted">
+            <li><b style="color:var(--ink);font-weight:500">Test credibility of the new design.</b> Does it improve perceived trustworthiness compared to the live site?</li>
+            <li><b style="color:var(--ink);font-weight:500">Understand perception of Frontier.</b> How do users judge the brand's reliability through the current site versus the new design?</li>
+            <li><b style="color:var(--ink);font-weight:500">Enhance user experience.</b> Find areas to improve by gauging satisfaction with the new design.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Methods</h3>
+          <p class="muted">Usability testing with six participants from North America, ages 29 to 70, booking a Frontier flight on desktop. Tasks assessed how users interacted with pricing and bundle benefits, and which upsell pop-up felt clearer and more trustworthy.</p>
+          <div class="task"><b>Task 1</b><br>Book the cheapest available flight on this page that includes a carry-on bag.</div>
+          <div class="task"><b>Task 2</b><br>Compare the original and redesigned upsell pop-ups side by side, and share first impressions and how much each one feels trustworthy.</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:30px">Learnings</h3>
+      <ul class="learn" style="margin-top:12px">
+        <li><span class="tag good">Worked</span><span>Overall, users found the booking process straightforward and appreciated the clutter-free layout.</span></li>
+        <li><span class="tag bad">Gap</span><span>Some struggled with the lack of filters for baggage-inclusive fares and a visually unengaging design.</span></li>
+        <li><span class="tag mix">Mixed</span><span>The live site looked visually better but suffered from intrusive ads and upsells.</span></li>
+        <li><span class="tag good">Worked</span><span>Users preferred the redesigned upsell pop-up for its clearer details on premium benefits, though a few liked the original's appealing seat images.</span></li>
+        <li><span class="tag mix">Surprise</span><span>Trust was not a concern for everyone; some assumed Frontier was reputable by default.</span></li>
+        <li><span class="tag bad">Gap</span><span>Baggage filters, upfront bundle dropdowns, and a stronger upsell design could significantly improve the experience.</span></li>
+      </ul>
+    </section>
+
+    <!-- ================= ITERATIONS ================= -->
+    <section id="iterations">
+      <span class="kicker">changes made</span>
+      <h2>From findings to fixes</h2>
+      <div class="iter">
+        <div class="iter-item">
+          <span class="n">1</span>
+          <div><h4 class="heard">What we heard</h4><p>Users couldn't easily find baggage allowance without going into sub-menus.</p></div>
+          <div><h4 class="changed">What we changed</h4><p>Added baggage information to the main search results.</p></div>
+        </div>
+        <div class="iter-item">
+          <span class="n">2</span>
+          <div><h4 class="heard">What we heard</h4><p>The design felt too "minimal" to trust, and some participants couldn't tell the pricing boxes were clickable.</p></div>
+          <div><h4 class="changed">What we changed</h4><p>Raised fidelity and visual polish with color-coded ticket options to increase perceived professionalism, and added shadows and hover colors so pricing boxes read as clickable.</p></div>
+        </div>
+        <div class="iter-item">
+          <span class="n">3</span>
+          <div><h4 class="heard">What we heard</h4><p>Users couldn't confirm their choices before moving on, in case they picked a flight by mistake.</p></div>
+          <div><h4 class="changed">What we changed</h4><p>Added a flight summary pop-up as feedback before the next step, with a subtle call to action to upgrade their tier.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL ================= -->
+    <section id="final">
+      <span class="kicker">final design</span>
+      <h2>Simplicity, transparency, and user autonomy</h2>
+      <ul class="checks" style="margin-top:20px">
+        <li><svg><use href="#i-check"/></svg><span>All-in total pricing, clear from the start</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Bundle comparison stays visible throughout selection</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Upsells integrated subtly within summary screens, not pop-ups</span></li>
+        <li><svg><use href="#i-check"/></svg><span>Color-coded bundle cards with hover states for clarity and scannability</span></li>
+      </ul>
+      <p class="prose" style="margin-top:20px">The overall booking flow was reduced in complexity while preserving essential steps, supporting informed decisions without forced choices or artificial urgency.</p>
+      <div class="shots" id="shots">
+        <figure><img class="remote" loading="lazy" alt="Final fare selection screen with totals and color-coded bundles" src="https://static.wixstatic.com/media/10fad5_0d8e5457015340d187f05d5f81eaa8fd~mv2.png"><figcaption>Final fare selection</figcaption></figure>
+        <figure><img class="remote" loading="lazy" alt="Final flight summary pop-up with subtle upgrade option" src="https://static.wixstatic.com/media/10fad5_9f37b1573a034b6d8626f5e0fb81c712~mv2.png"><figcaption>Flight summary with subtle upgrade</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ================= BEFORE / AFTER ================= -->
+    <section id="before-after">
+      <span class="kicker">before &amp; after</span>
+      <h2>The shift in experience</h2>
+      <p class="prose">The redesign removed friction from decision points while supporting user needs and aligning with business intent over the long term.</p>
+      <div class="shots" id="baShots">
+        <figure><img class="remote" loading="lazy" alt="Original Frontier booking screen" src="https://static.wixstatic.com/media/10fad5_3469b3a6183b41879b5f73721b28100a~mv2.png"><figcaption>Original</figcaption></figure>
+        <figure><img class="remote" loading="lazy" alt="Redesigned booking screen" src="https://static.wixstatic.com/media/10fad5_7b6524e75b154ca5a590c399b0f068e2~mv2.png"><figcaption>Redesign</figcaption></figure>
+      </div>
+      <div class="ba-wrap">
+        <table class="ba">
+          <thead><tr><th>Category</th><th style="color:var(--rose)">Original design</th><th style="color:var(--granite)">Redesign</th></tr></thead>
+          <tbody>
+            <tr><td>Emotional impact</td><td class="o">Confusion, fatigue, mistrust</td><td class="r">Clarity, control, and confidence</td></tr>
+            <tr><td>Upsells</td><td class="o">Multiple disruptive pop-ups</td><td class="r">Integrated suggestions within summary screens</td></tr>
+            <tr><td>Comparison</td><td class="o">Comparison table disappears on scroll</td><td class="r">Persistent comparison stays in view</td></tr>
+            <tr><td>Pricing</td><td class="o">Partial info that forces mental math</td><td class="r">Full totals shown upfront</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= CONCLUSION ================= -->
+    <section id="conclusion">
+      <span class="kicker">conclusion</span>
+      <h2>Ethical design improves both trust and usability</h2>
+      <div class="takeaways">
+        <div class="card"><h3>Trust</h3><p class="muted" style="margin:0">Removing dark patterns increased user trust by 65%.</p></div>
+        <div class="card"><h3>Upsells</h3><p class="muted" style="margin:0">Subtle upsells performed better than disruptive pop-ups.</p></div>
+        <div class="card"><h3>Speed</h3><p class="muted" style="margin:0">Transparent pricing and a simplified flow led to faster task completion.</p></div>
+        <div class="card"><h3>Control</h3><p class="muted" style="margin:0">User feedback confirmed a preference for clarity and control.</p></div>
+      </div>
+      <div class="contact">
+        <h3>Let's connect to build something thoughtful.</h3>
+        <p style="opacity:.9">Open to full-time UX Research, Product Design, and Accessibility roles anywhere in the USA.</p>
+        <p style="margin:0"><a href="mailto:alkamahapatra99@gmail.com">alkamahapatra99@gmail.com</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/alka-mahapatra/">LinkedIn</a> &nbsp;|&nbsp; <a href="https://www.alkamahapatra.com/_files/ugd/10fad5_3fa4a0418043402083f0126441b9125c.pdf">Resume</a></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+
+  /* theme toggle */
+  const root=document.documentElement;
+  try{const t=localStorage.getItem('fr-theme'); if(t) root.dataset.theme=t;}catch(e){}
+  $('#themeBtn').addEventListener('click',()=>{
+    const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark?'light':'dark';
+    try{localStorage.setItem('fr-theme',root.dataset.theme)}catch(e){}
+  });
+
+  /* remote screenshots: hide if blocked */
+  $$('img.remote').forEach(img=>{
+    const kill=()=>{const f=img.closest('figure'); f&&f.remove(); $$('.shots').forEach(s=>{if(!s.children.length) s.remove();});};
+    img.addEventListener('error',kill);
+    if(img.complete && img.naturalWidth===0) kill();
+  });
+
+  /* ---------- nav scroll-spy + plane ---------- */
+  const links=$$('.route a'), sections=links.map(a=>$(a.getAttribute('href')));
+  const plane=$('#plane'), prog=$('#routeProgress'), route=$('#route');
+  function spy(){
+    const y=window.scrollY + window.innerHeight*0.3;
+    let idx=0;
+    sections.forEach((s,i)=>{ if(s.offsetTop<=y) idx=i; });
+    links.forEach((a,i)=>{a.classList.toggle('active',i===idx);a.classList.toggle('passed',i<idx);
+      if(i===idx) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');});
+    // interpolate plane between active and next link
+    const s=sections[idx], next=sections[idx+1];
+    const frac = next ? Math.min(1,Math.max(0,(y-s.offsetTop)/(next.offsetTop-s.offsetTop))) : 0;
+    const a=links[idx], b=links[idx+1]||a;
+    const at=a.parentElement.offsetTop, bt=b.parentElement.offsetTop; const top = at + (bt-at)*frac + 4 + $(".route ol").offsetTop;
+    plane.style.top = top+'px';
+    prog.style.height = Math.max(0, top-6)+'px';
+    // keep active chip visible on mobile
+    if(window.innerWidth<=900){ const r=a.getBoundingClientRect(), rr=route.getBoundingClientRect();
+      if(r.left<rr.left||r.right>rr.right) route.scrollTo({left:a.offsetLeft-20,behavior:reduce?'auto':'smooth'}); }
+  }
+  let tick=false; window.addEventListener('scroll',()=>{ if(!tick){requestAnimationFrame(()=>{spy();tick=false}); tick=true;} },{passive:true});
+  window.addEventListener('resize',spy); spy();
+
+  /* ---------- reveal triggers ---------- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); (e.target._on||(()=>{}))(); io.unobserve(e.target);} }),{threshold:.3});
+
+  /* counters in boarding pass */
+  $$('[data-count]').forEach(el=>{
+    const n=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+    if(reduce) return;
+    el.textContent=pre+'0'+suf; const t0=performance.now();
+    (function step(t){const p=Math.min(1,(t-t0)/1100), v=Math.round(n*(1-Math.pow(1-p,3)));
+      el.textContent=pre+v+suf; if(p<1) requestAnimationFrame(step);})(t0);
+  });
+
+  /* outcomes */
+  const ov=$('#outcomeViz');
+  ov._on=()=>{ $$('.meter i',ov).forEach(i=>i.style.width=i.dataset.w+'%');
+    $$('.seat',ov).forEach((s,i)=>setTimeout(()=>s.classList.add(i<5?'on-new':'on-old'), reduce?0:200+i*160)); };
+  io.observe(ov);
+
+  /* ---------- dark pattern tabs ---------- */
+  const copy={
+    t1:['Only price differences, not totals','Bundles are listed as "+$" differences, so users have to calculate the real price themselves before they can compare.'],
+    t2:['A comparison chart that disappears','The chart explaining what each bundle includes scrolls out of view right when users need it to decide.'],
+    t3:['Frequent upsell pop-ups','Repeated pop-ups interrupt the flow and pressure decision-making at every step.'],
+    t4:['Automatically pre-selected options','Choices like the SMS opt-in are checked by default on the final screen, which undermines trust at the very end.']
+  };
+  const tabs=$$('.tab');
+  function selTab(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).hidden=!on;});
+    $('#pcTitle').textContent=copy[t.id][0]; $('#pcBody').textContent=copy[t.id][1];}
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>selTab(t));
+    t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=tabs[(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length];n.focus();selTab(n);}});});
+  selTab(tabs[0]);
+  $('#mathBtn').addEventListener('click',e=>{const r=$('#mathRow').parentElement;r.classList.toggle('show-math');e.target.textContent=r.classList.contains('show-math')?'Hide the math':'Do the mental math for me';});
+  let pops=0; const up=$('#upsell'), msgs=[['Wait! Upgrade?','Add a bundle and save*'],['Need a bag?','Prices go up at the airport!'],['Last chance!','Seats with extra legroom are selling fast'],['Are you sure?','Travelers like you chose Premium']];
+  $('#contBtn').addEventListener('click',()=>{const m=msgs[pops%msgs.length];$('#upsellTitle').textContent=m[0];$('#upsellBody').textContent=m[1];
+    pops++;$('#popCount').textContent=pops+(pops===1?' interruption':' interruptions');up.classList.add('show');$('[data-close]',up).focus();});
+  $$('[data-close]',up).forEach(b=>b.addEventListener('click',()=>{up.classList.remove('show');$('#contBtn').focus();}));
+  $('#flagBtn').addEventListener('click',()=>$('#optin').classList.toggle('flag'));
+
+  /* ---------- journey curve ---------- */
+  const J=[
+    {s:'Search fares',v:20,tag:'Peak',k:'peak',d:'Initial search via Google Flights shows promising low fares.'},
+    {s:'Select flight',v:4,d:'Prices appear as differences rather than totals; the first hint of mental math.'},
+    {s:'Choose bundle',v:-24,d:'The comparison chart disappears, making bundles hard to evaluate.'},
+    {s:'Add baggage',v:-50,tag:'Pit',k:'pit',d:'Pricing confusion, unclear options, and relentless upsells increase friction.'},
+    {s:'Upsells',v:-40,d:'Pop-ups interrupt repeatedly and pressure decisions.'},
+    {s:'Checkout',v:-34,tag:'End',k:'end',d:'The final screen includes a pre-selected SMS opt-in that undermines trust.'}
+  ];
+  const X0=110,X1=700,Z=120,SC=2.6, pts=J.map((p,i)=>({...p,x:X0+i*(X1-X0)/(J.length-1),y:Z-p.v*SC}));
+  function smooth(P){let d=`M${P[0].x},${P[0].y}`;for(let i=0;i<P.length-1;i++){const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2;
+    d+=` C${p1.x+(p2.x-p0.x)/6},${p1.y+(p2.y-p0.y)/6} ${p2.x-(p3.x-p1.x)/6},${p2.y-(p3.y-p1.y)/6} ${p2.x},${p2.y}`;}return d;}
+  const cd=smooth(pts), curve=$('#curve'); curve.setAttribute('d',cd);
+  const close=` L${pts[pts.length-1].x},${Z} L${pts[0].x},${Z} Z`;
+  $('#areaNeg').setAttribute('d',cd+close); $('#areaPos').setAttribute('d',cd+close);
+  // clip pos/neg areas
+  const svg=curve.ownerSVGElement, ns='http://www.w3.org/2000/svg';
+  const defs=document.createElementNS(ns,'defs');
+  defs.innerHTML=`<clipPath id="cpPos"><rect x="0" y="0" width="760" height="${Z}"/></clipPath><clipPath id="cpNeg"><rect x="0" y="${Z}" width="760" height="300"/></clipPath>`;
+  svg.prepend(defs); $('#areaPos').setAttribute('clip-path','url(#cpPos)'); $('#areaNeg').setAttribute('clip-path','url(#cpNeg)');
+  const g=$('#pts'), jd=$('#jDetail');
+  pts.forEach((p,i)=>{const el=document.createElementNS(ns,'g');el.setAttribute('class','pt'+(p.tag?' key':''));el.setAttribute('tabindex','0');el.setAttribute('role','button');
+    el.setAttribute('aria-label',p.s+(p.tag?' ('+p.tag+')':''));
+    el.innerHTML=`<circle cx="${p.x}" cy="${p.y}" r="18" fill="transparent"/><circle class="dot" cx="${p.x}" cy="${p.y}" r="7"/>`+
+      (p.tag?(p.k==='pit'?`<text class="tag" x="${p.x+16}" y="${p.y+5}" text-anchor="start">${p.tag}</text>`:`<text class="tag" x="${p.x}" y="${p.y+(p.v>=0?-18:28)}" text-anchor="middle">${p.tag}</text>`):'')+
+      `<text x="${p.x}" y="284" text-anchor="middle">${p.s}</text>`;
+    const pick=()=>{$$('.pt',g).forEach(x=>x.classList.remove('sel'));el.classList.add('sel');
+      jd.innerHTML=`<span class="badge ${p.k||''}">${p.tag||p.s}</span><span>${p.d}</span>`;};
+    el.addEventListener('click',pick);el.addEventListener('mouseenter',pick);
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}});
+    g.appendChild(el); if(i===0) el.classList.add('sel');});
+  const jv=$('#journeyViz');
+  if(!reduce){const L=curve.getTotalLength();curve.style.strokeDasharray=L;curve.style.strokeDashoffset=L;
+    $$('.pt,.area-pos,.area-neg',jv).forEach(x=>{x.style.opacity=0;x.style.transition='opacity .5s';});
+    jv._on=()=>{curve.style.transition='stroke-dashoffset 1.6s ease';curve.style.strokeDashoffset=0;
+      $$('.area-pos,.area-neg',jv).forEach(x=>setTimeout(()=>x.style.opacity=1,900));
+      $$('.pt',jv).forEach((x,i)=>setTimeout(()=>x.style.opacity=1,250+i*230));};
+    io.observe(jv);}
+
+  /* ---------- psych bars ----------
+     Start (+20) and low point (-50) are from the case study.
+     Replace the other scores with the values from your psych map. */
+  const P=[
+    {s:'See low fares',v:20,d:'Low fares on Google Flights set a hopeful start.'},
+    {s:'Fare results',v:5,d:'Prices shown as "+$" differences, not totals.'},
+    {s:'Bundle selection',v:-25,drop:1,d:'The comparison chart disappears; key drop-off moment.'},
+    {s:'Baggage selection',v:-50,drop:1,d:'Confusing baggage flows buried in sub-menus; the lowest point.'},
+    {s:'Upsell stage',v:-40,drop:1,d:'Deceptive upsell pop-ups pressure decisions; key drop-off moment.'},
+    {s:'Checkout',v:-35,d:'A pre-selected SMS opt-in breaks trust at the very end.'}
+  ];
+  const pv=$('#psychViz'), ZP=70, K=3, pd=$('#pDetail');
+  P.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='pcol';b.setAttribute('role','listitem');
+    b.setAttribute('aria-label',`${p.s}: score ${p.v>0?'+':''}${p.v}`);
+    const h=Math.abs(p.v)*K, pos=p.v>=0;
+    b.innerHTML=`<span class="pbar ${pos?'pos':'neg'}" style="top:${pos?ZP:ZP}px;height:0"></span>`+
+      `<span class="pval" style="top:${pos?ZP-h-24:ZP+h+4}px;color:var(${pos?'--granite':'--rose'})">${pos?'+':''}${p.v}</span>`+
+      (p.drop?`<span class="pdrop">drop-off</span>`:'')+`<span class="plabel">${p.s}</span>`;
+    b._h=h;b._pos=pos;
+    b.addEventListener('click',()=>{$$('.pcol',pv).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+      pd.innerHTML=`<span class="badge ${pos?'peak':'pit'}">${pos?'+':''}${p.v}</span><span><b>${p.s}.</b> ${p.d}</span>`;});
+    pv.appendChild(b);});
+  pv._on=()=>$$('.pcol',pv).forEach((b,i)=>{const bar=$('.pbar',b);setTimeout(()=>{bar.style.height=b._h+'px';bar.style.top=(b._pos?ZP-b._h:ZP)+'px';},reduce?0:i*120);});
+  io.observe(pv);
+
+  /* ---------- persona -> features ---------- */
+  $$('.need').forEach(n=>{
+    const lite=on=>$$(`.need[data-f="${n.dataset.f}"]`).forEach(x=>x.classList.toggle('lit',on));
+    n.addEventListener('mouseenter',()=>lite(true)); n.addEventListener('mouseleave',()=>lite(false));
+    n.addEventListener('focus',()=>lite(true)); n.addEventListener('blur',()=>lite(false));
+    const go=()=>{const f=$('#'+n.dataset.f);f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});f.classList.add('flash');setTimeout(()=>f.classList.remove('flash'),1600);};
+    n.addEventListener('click',go); n.addEventListener('keydown',e=>{if(e.key==='Enter'){go();}});
+  });
+
+  /* ---------- feature 1 toggle ---------- */
+  const f1=$('#f1Screen');
+  $$('#f1 .switch button').forEach(btn=>btn.addEventListener('click',()=>{
+    const after=btn.dataset.v==='after';
+    $$('#f1 .switch button').forEach(b=>b.setAttribute('aria-pressed',b===btn));
+    f1.classList.toggle('after',after);
+    $$('.fare b',f1).forEach(b=>b.textContent=after?b.dataset.a:b.dataset.b);
+    $$('.total-tag',f1).forEach(t=>t.style.visibility=after?'visible':'hidden');
+    $('#f1Note').textContent=after?'Totals and bag allowance (personal item, carry-on, checked) visible at a glance.':'Only differences shown. Bag rules are hidden in sub-menus.';
+  }));
+
+  /* ---------- feature 2 compare ---------- */
+  const cmp=$('#cmp');
+  $$('.col',cmp).forEach(c=>{const pick=()=>$$('.col',cmp).forEach(x=>x.classList.toggle('picked',x.dataset.c===c.dataset.c));
+    c.addEventListener('click',pick); c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}});});
+
+  /* ---------- feature 3 summary ---------- */
+  const sm=$('#sumModal');
+  $('#sumBtn').addEventListener('click',()=>{sm.classList.add('show');$('#sumOk').focus();});
+  ['#sumBack','#sumOk'].forEach(s=>$(s).addEventListener('click',()=>{sm.classList.remove('show');$('#sumBtn').focus();}));
+  $('#upgLink').addEventListener('click',e=>{e.preventDefault();sm.classList.remove('show');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){sm.classList.remove('show');up.classList.remove('show');}});
+})();
+</script>
+</body>
+</html>

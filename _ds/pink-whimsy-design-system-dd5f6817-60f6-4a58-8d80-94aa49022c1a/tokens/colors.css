@@ -1,0 +1,19 @@
+:root{
+/* Pinks — core */
+--pink-50:#FFF4F7;--pink-100:#FFE3EA;--pink-200:#FCC6D3;--pink-300:#FCA5B5;--pink-400:#E36888;--pink-500:#FA4A7B;--pink-600:#D6085D;--pink-700:#B03355;--pink-800:#7E2240;
+/* Candy accents — from moodboard */
+--lemon:#F4AF30;--maize:#FFF184;--butter:#F2DBBF;--tangerine:#F08C21;--orange-pop:#FD6804;
+--matcha:#B4B534;--lime:#BFB74C;--olivine:#84B98B;--mint:#95CBBD;
+--sky:#72C1E2;--sea:#6698CC;--lilac:#D9B8D6;
+/* Neutrals — warm */
+--cream:#FFFCF5;--vanilla:#F5E9CF;--fawn:#F9B87E;--plush:#E9D6C0;
+--ink-900:#3B1D2A;--ink-700:#5E3847;--ink-500:#8A6572;--ink-300:#C4AEB6;--white:#FFFFFF;
+/* Semantic */
+--brand:var(--pink-500);--brand-deep:var(--pink-700);--brand-hot:var(--pink-600);
+--bg-page:var(--cream);--bg-soft:var(--pink-50);--bg-blush:var(--pink-100);--bg-candy:var(--pink-300);
+--surface-card:var(--white);--surface-raised:var(--white);--surface-sunk:var(--vanilla);
+--text-1:var(--ink-900);--text-2:var(--ink-700);--text-3:var(--ink-500);--text-on-brand:var(--white);--text-accent:var(--pink-700);
+--border-1:var(--pink-200);--border-strong:var(--ink-900);--border-ink:var(--pink-700);
+--focus-ring:var(--sky);
+--success:var(--olivine);--warning:var(--lemon);--danger:var(--pink-600);--info:var(--sea);
+}

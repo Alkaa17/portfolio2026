@@ -1,0 +1,8 @@
+:root{
+--pattern-checker:repeating-conic-gradient(var(--pink-100) 0 25%,var(--cream) 0 50%) 0 0/64px 64px;/* @kind other */
+--pattern-checker-candy:repeating-conic-gradient(var(--pink-300) 0 25%,var(--pink-200) 0 50%) 0 0/80px 80px;/* @kind other */
+--pattern-checker-sky:repeating-conic-gradient(#D6ECF4 0 25%,var(--cream) 0 50%) 0 0/64px 64px;/* @kind other */
+--pattern-gingham:linear-gradient(90deg,rgba(250,74,123,.18) 50%,transparent 0) 0 0/24px 24px,linear-gradient(rgba(250,74,123,.18) 50%,transparent 0) 0 0/24px 24px;/* @kind other */
+--pattern-dots:radial-gradient(var(--pink-200) 2px,transparent 2.5px) 0 0/18px 18px;/* @kind other */
+--scallop-bottom:radial-gradient(circle at 20px 0,transparent 19px,currentColor 20px) 0 0/40px 20px repeat-x;/* @kind other */
+}

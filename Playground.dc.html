@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="view-transition" content="same-origin">
+<style>html,body{background:#FFFCF5;color-scheme:light}@view-transition{navigation:auto}</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/fonts.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/colors.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/typography.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/spacing.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/effects.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/patterns.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/styles.css"></link>
+<script src="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/_ds_bundle.js"></script>
+<script src="./wand.js"></script>
+<script src="./transition.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}html,body{overflow-x:clip;max-width:100%}
+body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased;cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
+a,button,[role=button]{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+a{color:var(--pink-700)}
+a:hover{color:var(--pink-600)}
+*:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+nav img{height:86px !important}
+nav > div > a{font-size:20px !important;padding:12px 21px !important}
+nav > div > button{height:47px !important;padding:0 21px !important;font-size:17px !important}
+p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
+h1,h2,h3,h4{text-wrap-style:balance}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--cream);color:var(--ink-900);font-size:16px;line-height:1.55">
+<div style="position:sticky;top:0;z-index:50">
+  <x-import component-from-global-scope="site-header" from="./site-chrome.js" active="playground" hint-size="100%,78px"></x-import>
+</div>
+<main style="max-width:1200px;margin:0 auto;padding:56px clamp(20px,4vw,32px) 120px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+  <div role="navigation" aria-label="Playground sections" style="flex:{{ navFlex }};position:sticky;top:{{ navTop }};z-index:20;display:flex;justify-content:center">
+    <div style="display:flex;flex-direction:{{ navDir }};align-items:flex-start;gap:2px;padding:6px;background:var(--pink-50);border-radius:28px">
+      <sc-for list="{{ sections }}" as="n" hint-placeholder-count="3">
+        <a href="#{{ n.id }}" onClick="{{ n.go }}" aria-current="{{ n.current }}" aria-label="{{ n.label }}" style="width:64px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:0;text-decoration:none;padding:10px 6px;border-radius:20px;background:{{ n.bg }};transition:background var(--dur-base) ease" style-hover="background:var(--pink-100)">
+          <span style="width:28px;height:28px;display:grid;place-items:center;color:{{ n.fg }};transition:color var(--dur-fast)">
+            <sc-if value="{{ n.isBooks }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></sc-if>
+            <sc-if value="{{ n.isPaint }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg></sc-if>
+            <sc-if value="{{ n.isPhoto }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg></sc-if>
+          </span>
+          <span aria-hidden="true" style="display:block;max-height:{{ n.capH }};opacity:{{ n.labelOp }};overflow:hidden;text-align:center;padding-top:{{ n.capPad }};font:600 10px/1.3 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pink-700);transition:max-height .3s var(--ease-soft),opacity .25s ease">{{ n.label }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+  <div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:112px">
+    <section id="books" aria-labelledby="shelf-h" style="display:flex;flex-direction:column;gap:32px;scroll-margin-top:150px">
+      <div id="shelf-h">
+        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Books" title="books that" script="shaped me" align="center" hint-size="100%,80px"></x-import>
+      </div>
+      <x-import component-from-global-scope="am-bookshelf" from="./bookshelf.js" hint-size="100%,560px"></x-import>
+    </section>
+    <section id="photos" aria-labelledby="photo-h" style="display:flex;flex-direction:column;gap:40px;scroll-margin-top:150px">
+      <div id="photo-h">
+        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Photography" title="through my" script="lens" align="center" hint-size="100%,80px"></x-import>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat({{ photoCols }},minmax(0,1fr));gap:36px 28px">
+        <sc-for list="{{ photos }}" as="p" hint-placeholder-count="6">
+          <figure style="position:relative;margin:0;padding:12px 12px 40px;background:var(--white);border-radius:6px;box-shadow:var(--shadow-sticker);transform:rotate({{ p.tilt }});transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:rotate(0deg) scale(1.03)">
+            <div style="position:absolute;left:50%;top:-14px;transform:translateX(-50%) rotate({{ p.tapeTilt }});z-index:2;width:72px;height:24px;background:{{ p.tape }};opacity:.85;border-radius:3px"></div>
+            <div style="aspect-ratio:1/1"><image-slot id="{{ p.id }}" shape="rect" placeholder="Photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
+          </figure>
+        </sc-for>
+      </div>
+    </section>
+    <section id="paintings" aria-labelledby="paint-h" style="display:flex;flex-direction:column;gap:40px;scroll-margin-top:150px">
+      <div id="paint-h">
+        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Art and Craft" title="things I have" script="made" align="center" hint-size="100%,80px"></x-import>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat({{ artCols }},minmax(0,1fr));grid-auto-flow:dense;gap:32px;align-items:start">
+        <sc-for list="{{ paintings }}" as="p" hint-placeholder-count="10">
+          <figure style="position:relative;grid-column:span {{ p.span }};margin:0;padding:14px;background:var(--white);border:2px solid var(--ink-900);border-radius:24px;box-shadow:4px 4px 0 var(--ink-900);transform:rotate({{ p.tilt }});transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:rotate(0deg) translateY(-6px)">
+            <div style="aspect-ratio:{{ p.ratio }}"><image-slot id="{{ p.id }}" shape="rounded" radius="14" placeholder="Painting or craft" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
+            <figcaption style="position:absolute;inset:14px;border-radius:14px;background:{{ p.tone }};display:flex;align-items:flex-end;padding:clamp(16px,2.4vw,28px);opacity:0;transition:opacity var(--dur-base) var(--ease-soft)" style-hover="opacity:1">
+              <span style="font:500 clamp(18px,1.8vw,24px)/1.3 var(--font-display);color:var(--ink-900);text-wrap:pretty">{{ p.caption }}</span>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</main>
+<x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
+<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:12px">
+  <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
+  <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
+    <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </sc-if>
+    <sc-if value="{{ soundOff }}" hint-placeholder-val="{{ false }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </sc-if>
+  </button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SECTIONS = [
+  { id: 'books', label: 'books', dot: 'var(--pink-300)' },
+  { id: 'photos', label: 'photos', dot: 'var(--sky)' },
+  { id: 'paintings', label: 'art & craft', dot: 'var(--maize)' }
+];
+const TILTS = ['-1.5deg', '1deg', '-0.5deg', '1.5deg', '-1deg', '0.5deg'];
+const ART = [[1, 'L'], [2, 'P'], [3, 'P'], [9, 'P'], [10, 'P'], [11, 'L'], [4, 'L'], [6, 'L'], [7, 'L'], [8, 'L']];
+const ART_CAPTIONS = {
+  1: 'Knitted Mermaid Tail & Pencil Roll Up Case',
+  2: 'Paper Mache Octopus Jar',
+  3: 'Cat Embroidery',
+  9: 'Acrylic painting on canvas',
+  10: 'Play dough Ganesha',
+  11: 'Tie-n-Dye Swatch',
+  4: 'Dinosaur Diwali Rangoli',
+  6: 'Dinosaur Wood Carving',
+  7: 'Soft Pastel Still Life',
+  8: 'Soft Pastel Still Life'
+};
+const ART_TONES = ['var(--maize)', 'var(--pink-100)', 'var(--vanilla)'];
+const ART_TILTS = ['-1deg', '1.5deg', '-1.5deg', '1.2deg', '-0.8deg', '0.6deg', '1deg', '0.8deg', '0.6deg', '-0.8deg'];
+const TAPES = ['var(--pink-300)', 'var(--maize)', 'var(--sky)', 'var(--mint)', 'var(--lemon)', 'var(--tangerine)'];
+class Component extends DCLogic {
+  state = { vw: 1200, soundOn: true, tip: false, active: 'books' };
+  wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.t = setTimeout(go, 50)); go(); }
+  componentDidMount() {
+    this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
+    document.addEventListener('keydown', this.onEsc);
+    this.setState({ soundOn: localStorage.getItem('am-wand-sound') !== 'off' });
+    this.wand(w => { w.init(); w.set({ style: 'shimmer' }); });
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => {
+      let cur = 'books';
+      SECTIONS.forEach(x => { const el = document.getElementById(x.id); if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) cur = x.id; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = SECTIONS[SECTIONS.length - 1].id;
+      if (cur !== this.state.active) this.setState({ active: cur });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onEsc); clearTimeout(this.t); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll); }
+  renderVals() {
+    const s = this.state, mobile = s.vw < 768, side = s.vw >= 900;
+    return {
+      openLinkedIn: () => window.open('https://www.linkedin.com/in/alka-mahapatra', '_blank', 'noopener'),
+      copyEmail: () => {
+        const txt = 'alkamahapatra99@gmail.com';
+        const done = () => { this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); };
+        const fb = () => { const t = document.createElement('textarea'); t.value = txt; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done(); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fb); else fb();
+      },
+      copyText: this.state.copied ? 'copied ✦' : 'copy', copyBg: this.state.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: this.state.copied ? 'var(--white)' : 'var(--pink-700)',
+      soundOn: s.soundOn, soundOff: !s.soundOn,
+      soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
+      toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
+      soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
+      tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
+      tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px',
+      fullW: { width: '100%' },
+      sections: SECTIONS.map(x => { const on = x.id === s.active; return { ...x, current: on ? 'true' : undefined,
+        bg: on ? 'var(--pink-100)' : 'transparent', fg: on ? 'var(--pink-700)' : 'var(--pink-400)',
+        capH: on ? '36px' : '0px', capPad: on ? '4px' : '0px', labelOp: on ? 1 : 0,
+        isBooks: x.id === 'books', isPaint: x.id === 'paintings', isPhoto: x.id === 'photos',
+        go: (e) => { e.preventDefault(); const el = document.getElementById(x.id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (side ? 140 : 190), behavior: 'smooth' }); } }; }),
+      navFlex: side ? '0 0 80px' : '1 1 100%', navTop: side ? '150px' : '112px', navDir: side ? 'column' : 'row',
+      itemW: side ? '52px' : 'auto', itemPos: side ? 'absolute' : 'relative',
+      photoCols: s.vw >= 700 ? 3 : s.vw >= 440 ? 2 : 1,
+      artCols: s.vw >= 1100 ? 4 : s.vw >= 560 ? 2 : 1,
+      paintings: ART.map(([n, k], i) => { const cols = s.vw >= 1100 ? 4 : s.vw >= 560 ? 2 : 1, land = k === 'L';
+        return { id: 'painting-' + n, tilt: ART_TILTS[i], caption: ART_CAPTIONS[n] || '', tone: ART_TONES[i % ART_TONES.length], span: land && cols > 1 ? 2 : 1,
+          ratio: land ? (cols === 2 ? '16/9' : cols === 1 ? '4/3' : '3/2') : '3/4' }; }),
+      photos: [0,1,2,3,4,5].map(i => ({ id: 'photo-' + (i + 1), tilt: TILTS[(i + 2) % 6], tapeTilt: i % 2 ? '4deg' : '-3deg', tape: TAPES[i] })),
+      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }]
+        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }, { key: 'playground', label: 'playground' }],
+      navStyle: mobile ? { padding: '14px 16px' } : undefined,
+      ctaLabel: mobile ? null : "let's chat ✦",
+      onCta: () => this.setState({ chatOpen: true }),
+      chatOpen: !!this.state.chatOpen, closeChat: () => this.setState({ chatOpen: false }),
+      onNavigate: (k) => {
+        if (k === 'home') (window.AMGo ? window.AMGo('Portfolio v4.dc.html') : (window.location.href = 'Portfolio v4.dc.html'));
+        else if (k === 'work') (window.AMGo ? window.AMGo('Portfolio v4.dc.html#work') : (window.location.href = 'Portfolio v4.dc.html#work'));
+        else if (k === 'resume') (window.AMGo ? window.AMGo('Resume v3.dc.html') : (window.location.href = 'Resume v3.dc.html'));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

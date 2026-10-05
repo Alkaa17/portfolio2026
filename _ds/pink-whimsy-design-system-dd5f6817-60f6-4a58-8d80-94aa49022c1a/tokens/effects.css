@@ -1,0 +1,11 @@
+:root{
+--shadow-sticker:0 0 0 6px #fff,0 6px 0 6px var(--lilac);
+--shadow-soft:0 8px 24px -8px rgba(176,51,85,.25);
+--shadow-pop:4px 4px 0 var(--ink-900);
+--shadow-pop-pink:4px 4px 0 var(--pink-700);
+--shadow-float:0 18px 40px -16px rgba(59,29,42,.35);
+--drop-sticker:drop-shadow(0 4px 0 rgba(180,140,190,.55)) drop-shadow(0 10px 14px rgba(176,51,85,.18));/* @kind other */
+--ease-bouncy:cubic-bezier(.34,1.56,.64,1);/* @kind other */--ease-soft:cubic-bezier(.22,.61,.36,1);/* @kind other */
+--dur-fast:140ms;/* @kind other */--dur-base:220ms;/* @kind other */--dur-slow:420ms;/* @kind other */
+--tilt-l:rotate(-3deg);/* @kind other */--tilt-r:rotate(2.5deg);/* @kind other */
+}

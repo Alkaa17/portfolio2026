@@ -1,0 +1,7 @@
+/* Google Fonts (OFL), latin subset, self-hosted. Pacifico substitutes the logo script — see readme. Fredoka + Figtree are variable (400–700). */
+@font-face{font-family:"Pacifico";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/Pacifico-400.woff2") format("woff2");}
+@font-face{font-family:"Fredoka";font-style:normal;font-weight:400 700;font-display:swap;src:url("../fonts/Fredoka-400.woff2") format("woff2");}
+@font-face{font-family:"Figtree";font-style:normal;font-weight:400 700;font-display:swap;src:url("../fonts/Figtree-400.woff2") format("woff2");}
+@font-face{font-family:"Figtree";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/Figtree-400i.woff2") format("woff2");}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/DMMono-400.woff2") format("woff2");}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/DMMono-500.woff2") format("woff2");}
