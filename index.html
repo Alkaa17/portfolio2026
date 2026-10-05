@@ -344,12 +344,12 @@ const PROJECTS = {
   ]
 };
 const RESEARCH = [
-  { org: 'Frontier Airlines · UX redesign', year: '2025', href: 'Frontier Case Study.html', frontier: true, title: 'Booking without the tricks: redesigning Frontier’s ticketing flow', desc: 'Stripping hidden fees, pushy upsells and pre-checked boxes out of the booking flow to rebuild trust.' },
-  { org: 'Poe by Quora · UX research', year: '2025', href: 'Poe Case Study.html', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Every AI in one app: does Poe make it feel simple?', desc: 'A mixed-method UX evaluation of Quora’s AI chatbot aggregator, the app that brings ChatGPT, Claude, DeepSeek and more into one place.' }
+  { org: 'Frontier Airlines · UX redesign', year: '2025', href: 'frontier.html', frontier: true, title: 'Booking without the tricks: redesigning Frontier’s ticketing flow', desc: 'Stripping hidden fees, pushy upsells and pre-checked boxes out of the booking flow to rebuild trust.' },
+  { org: 'Poe by Quora · UX research', year: '2025', href: 'poe.html', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Every AI in one app: does Poe make it feel simple?', desc: 'A mixed-method UX evaluation of Quora’s AI chatbot aggregator, the app that brings ChatGPT, Claude, DeepSeek and more into one place.' }
 ];
 const WORK = [
-  { org: 'The Ayurveda Experience · Product & growth design', year: '2022–24', href: 'Ayurveda Case Study.html', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Designing for growth across the customer journey', desc: 'Emails, long-form landing pages, buy box, checkout, order tracking and the mobile app, designed and tested for the women at the heart of the brand.' },
-  { org: 'NCCI · Website redesign', year: '2023', href: 'NCCI Case Study.html', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'From archive to mission: redesigning the Network for Conserving Central India', desc: 'A Weebly-to-Wix migration that rebuilt the IA, visual system and homepage, turning a decade of conservation records into a clear, mission-driven website.' },
+  { org: 'The Ayurveda Experience · Product & growth design', year: '2022–24', href: 'ayurveda.html', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Designing for growth across the customer journey', desc: 'Emails, long-form landing pages, buy box, checkout, order tracking and the mobile app, designed and tested for the women at the heart of the brand.' },
+  { org: 'NCCI · Website redesign', year: '2023', href: 'ncci.html', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'From archive to mission: redesigning the Network for Conserving Central India', desc: 'A Weebly-to-Wix migration that rebuilt the IA, visual system and homepage, turning a decade of conservation records into a clear, mission-driven website.' },
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
@@ -515,8 +515,8 @@ class Component extends DCLogic {
       onNavigate: (k) => {
         if (k === 'home') window.scrollTo({ top: 0, behavior: this.reduced ? 'auto' : 'smooth' });
         else if (k === 'work') this.scrollToId('work');
-        else if (k === 'resume') (window.AMGo ? window.AMGo('Resume v3.dc.html') : (window.location.href = 'Resume v3.dc.html'));
-        else if (k === 'playground') (window.AMGo ? window.AMGo('Playground.dc.html') : (window.location.href = 'Playground.dc.html'));
+        else if (k === 'resume') (window.AMGo ? window.AMGo('resume.html') : (window.location.href = 'resume.html'));
+        else if (k === 'playground') (window.AMGo ? window.AMGo('playground.html') : (window.location.href = 'playground.html'));
       },
       soundOn: s.soundOn, soundOff: !s.soundOn, soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
       soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',

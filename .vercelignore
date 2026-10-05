@@ -1,0 +1,5 @@
+# Source material not used by the site
+uploads/
+screenshots/
+screenshot-*.png
+.thumbnail

@@ -188,9 +188,9 @@ class Component extends DCLogic {
       onCta: () => this.setState({ chatOpen: true }),
       chatOpen: !!this.state.chatOpen, closeChat: () => this.setState({ chatOpen: false }),
       onNavigate: (k) => {
-        if (k === 'home') (window.AMGo ? window.AMGo('Portfolio v4.dc.html') : (window.location.href = 'Portfolio v4.dc.html'));
-        else if (k === 'work') (window.AMGo ? window.AMGo('Portfolio v4.dc.html#work') : (window.location.href = 'Portfolio v4.dc.html#work'));
-        else if (k === 'resume') (window.AMGo ? window.AMGo('Resume v3.dc.html') : (window.location.href = 'Resume v3.dc.html'));
+        if (k === 'home') (window.AMGo ? window.AMGo('index.html') : (window.location.href = 'index.html'));
+        else if (k === 'work') (window.AMGo ? window.AMGo('index.html#work') : (window.location.href = 'index.html#work'));
+        else if (k === 'resume') (window.AMGo ? window.AMGo('resume.html') : (window.location.href = 'resume.html'));
       }
     };
   }
