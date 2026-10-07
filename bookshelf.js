@@ -44,7 +44,10 @@
   @keyframes grow{to{transform:scaleY(1);opacity:1}}
   @keyframes bloom{0%{transform:scale(.05);opacity:0}65%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
   @keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
-  .quote-slot{position:relative;min-height:200px;margin-top:44px}
+  .quote-slot{position:relative;display:grid;grid-template-rows:0fr;margin-top:0;padding-top:0;overflow:hidden;transition:grid-template-rows .45s cubic-bezier(.22,.61,.36,1),margin-top .45s cubic-bezier(.22,.61,.36,1),padding-top .45s}
+  .quote-clip{min-height:0;overflow:hidden;padding:12px 6px 8px 0;margin:-12px -6px -8px 0}
+  .shelf-section.is-open .quote-clip{overflow:visible}
+  .shelf-section.is-open .quote-slot{grid-template-rows:1fr;margin-top:44px;overflow:visible}
   .quote-card{position:relative;margin:0;background:var(--white,#fff);border:2px solid var(--ink-900,#3B1D2A);border-radius:24px;box-shadow:4px 4px 0 var(--ink-900,#3B1D2A);
     padding:32px 56px 26px 36px;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.34,1.56,.64,1)}
   .quote-card.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
@@ -61,7 +64,7 @@
     font:400 22px/1 var(--font-display,sans-serif);border-radius:50%;display:grid;place-items:center;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
   .quote-close:hover{transform:rotate(-8deg) scale(1.08)}
   .quote-close:focus-visible{outline:3px solid var(--sky,#72C1E2);outline-offset:3px}
-  @media (max-width:640px){.quote-card{padding:28px 52px 24px 22px}.quote-slot{min-height:230px;margin-top:32px}}
+  @media (max-width:640px){.quote-card{padding:28px 52px 24px 22px}}
   @media (prefers-reduced-motion:reduce){
     .book,.quote-card,.quote-card::before,.shelf-hint{transition:none}
     .book:hover{transform:rotateY(-9deg)}
@@ -104,12 +107,12 @@
         </svg>
       </div>
     </div><div class="plank"></div></div></div>
-    <div class="quote-slot">
+    <div class="quote-slot"><div class="quote-clip">
       <figure class="quote-card" aria-live="polite">
         <button class="quote-close" type="button" aria-label="Close quote">×</button>
         <blockquote class="quote-text"></blockquote>
         <figcaption class="quote-meta"><span class="quote-dot"></span><span class="quote-author"></span><span class="quote-sep">/</span><span class="quote-title"></span></figcaption>
-      </figure>
+      </figure></div>
     </div>
   </section>`;
 
@@ -162,7 +165,7 @@
       };
       const close = () => {
         rail.querySelectorAll('.book').forEach((b) => b.setAttribute('aria-expanded', 'false'));
-        card.classList.remove('is-visible'); openIndex = null;
+        card.classList.remove('is-visible'); section.classList.remove('is-open'); openIndex = null;
       };
       $('.quote-close').addEventListener('click', () => { const back = openIndex; close(); if (back !== null) root.getElementById('book-' + back).focus(); });
       this._onKey = (e) => { if (e.key === 'Escape' && openIndex !== null) { const back = openIndex; close(); root.getElementById('book-' + back).focus(); } };

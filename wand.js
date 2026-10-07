@@ -80,7 +80,7 @@
     star(e.clientX, e.clientY, 8 + rnd(9), rnd(24) - 12, 14 + rnd(24), 650 + rnd(350));
   }
   function onDown(e) {
-    if (cfg.sound) play();
+    if (cfg.sound && !matchMedia('(max-width: 767px)').matches) play();
     if (reduced) return;
     for (let i = 0; i < 7; i++) {
       const ang = (i / 7) * Math.PI * 2 + Math.random() * 0.5, r = 26 + rnd(22);

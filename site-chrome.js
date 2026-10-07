@@ -1,8 +1,8 @@
 /* Global site chrome: <site-header active="work|resume|playground"> and <site-footer>. Single source for every page. */
 (function () {
   if (customElements.get('site-header')) return;
-  var HOME = 'index.html';
-  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'résumé', href: 'resume.html' }, { key: 'playground', label: 'playground', href: 'playground.html' }];
+  var HOME = 'Portfolio v4.dc.html';
+  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'résumé', href: 'Resume v3.dc.html' }, { key: 'playground', label: 'playground', href: 'Playground.dc.html' }];
   var EMAIL = 'alkamahapatra99@gmail.com';
   var CAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ17eQf9wzg3K0u9CMDXwZlbNp9Bmsvc-OJ-10tZGEf5sOO54zEkWEoEdCYMKohAlRRW5dqphsPh?gv=true';
   var EASE = 'cubic-bezier(.34,1.56,.64,1)';
@@ -12,9 +12,9 @@
     '.sc-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 32px;background:var(--cream,#FFFCF5);border-bottom:2px solid var(--pink-100,#FFE3EA);transition:padding 320ms cubic-bezier(.22,.61,.36,1)}' +
     '.sc-logo img{transition:height 320ms cubic-bezier(.22,.61,.36,1)}.sc-link,.sc-cta{transition:padding 320ms cubic-bezier(.22,.61,.36,1),height 320ms cubic-bezier(.22,.61,.36,1),background 140ms,transform 220ms ' + EASE + '}' +
     'site-header.sc-compact .sc-nav{padding:8px 32px}site-header.sc-compact .sc-logo img{height:30px}site-header.sc-compact .sc-link{padding:7px 14px}site-header.sc-compact .sc-cta{height:32px}' +
-    'site-header.sc-mobile.sc-compact .sc-nav{padding:8px 16px}site-header.sc-mobile.sc-compact .sc-logo img{height:28px !important}' +
+    'site-header.sc-mobile.sc-compact .sc-nav{padding:8px 16px}site-header.sc-mobile.sc-compact .sc-logo img{height:46px !important}' +
     '.sc-mobile .sc-nav{padding:12px 16px;position:relative}' +
-    'site-header.sc-mobile .sc-logo img{height:34px !important;width:auto !important}' +
+    'site-header.sc-mobile .sc-logo img{height:56px !important;max-width:calc(100vw - 96px);object-fit:contain;width:auto !important}' +
     '.sc-burger{display:none;width:44px;height:44px;border-radius:999px;border:2px solid var(--pink-200,#FCC6D3);background:#fff;color:var(--pink-700,#B03355);align-items:center;justify-content:center;cursor:pointer;flex:none;transition:background 140ms,border-color 140ms}' +
     '.sc-burger svg{width:20px;height:20px}.sc-burger .x{display:none}' +
     '.sc-mobile .sc-burger{display:inline-flex}' +
@@ -50,12 +50,12 @@
     '.sc-mail .sc-addr{overflow-wrap:anywhere;text-align:left}' +
     '.sc-copy{flex:none;padding:4px 10px;border-radius:999px;background:var(--pink-100,#FFE3EA);color:var(--pink-700,#B03355);font:500 11px/1 var(--font-mono,monospace);letter-spacing:.1em;text-transform:uppercase;transition:background 140ms}' +
     '.sc-copy.on{background:var(--brand,#FA4A7B);color:#fff}' +
-    '@media (max-width:767px){.sc-li{font-size:14px;padding:8px 14px}.sc-li svg{width:15px;height:15px}.sc-mail{font-size:13.5px;padding:8px 12px;gap:8px}.sc-mail .sc-addr{overflow-wrap:normal;word-break:keep-all}.sc-copy{font-size:10px;padding:4px 8px}.sc-tag{font-size:15px}}' +
+    '@media (max-width:767px){.sc-li{font-size:14px;height:38px;padding:0 20px;gap:6px}.sc-li svg{width:15px;height:15px}.sc-mail{font-size:13.5px;padding:8px 12px;gap:8px}.sc-mail .sc-addr{overflow-wrap:normal;word-break:keep-all}.sc-copy{font-size:10px;padding:4px 8px}.sc-tag{font-size:15px}}' +
     '.sc-tag{margin:0;font:600 18px/1.4 var(--font-display,sans-serif)}.sc-tag span{color:var(--maize,#FFF184)}';
   document.head.appendChild(css);
 
   var mq = matchMedia('(max-width: 767px)');
-  var isHome = function () { return /(^|\/)(index\.html)?$/.test(location.pathname); };
+  var isHome = function () { return /Portfolio%20v4\.dc\.html$|Portfolio v4\.dc\.html$/.test(decodeURI(location.pathname)) || /Portfolio%20v4/.test(location.pathname); };
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var go = function (url) { if (window.AMGo) window.AMGo(url); else location.href = url; };
 

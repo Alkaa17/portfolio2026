@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="view-transition" content="same-origin">
+<style>html,body{background:#FFFCF5;color-scheme:light}@view-transition{navigation:auto}</style>
+<meta name="ext-resource-dependency" content="./assets/ds/cat-graduate-sm.png" data-resource-id="r0">
+<meta name="ext-resource-dependency" content="./assets/ds/cat-detective-sm.png" data-resource-id="r1">
+<meta name="ext-resource-dependency" content="./assets/ds/cat-artist-sm.png" data-resource-id="r2">
+<meta name="ext-resource-dependency" content="./assets/ds/cat-coffee-sm.png" data-resource-id="r3">
+<meta name="ext-resource-dependency" content="./assets/covers/thryve-pitch2win.png" data-resource-id="r4">
+<meta name="ext-resource-dependency" content="./assets/poe-cover.webp" data-resource-id="r5">
+<meta name="ext-resource-dependency" content="./assets/project3-cover.mp4" data-resource-id="r6">
+<meta name="ext-resource-dependency" content="./assets/frontier-plane.png" data-resource-id="r7">
+<meta name="ext-resource-dependency" content="./assets/alka-walk-1.png" data-resource-id="r8">
+<meta name="ext-resource-dependency" content="./assets/ayurveda/tae-cover.mp4" data-resource-id="r_tae">
+<meta name="ext-resource-dependency" content="./assets/alka-walk-2.png" data-resource-id="r9">
+<meta name="ext-resource-dependency" content="./assets/icons/milkis.png" data-resource-id="r10">
+<meta name="ext-resource-dependency" content="./assets/icons/figma.png" data-resource-id="r11">
+<meta name="ext-resource-dependency" content="./assets/icons/chatgpt.png" data-resource-id="r12">
+<meta name="ext-resource-dependency" content="./assets/icons/shopify.png" data-resource-id="r13">
+<meta name="ext-resource-dependency" content="./assets/icons/claude.png" data-resource-id="r14">
+<meta name="ext-resource-dependency" content="./assets/icons/twix.png" data-resource-id="r15">
+<meta name="ext-resource-dependency" content="./assets/icons/pigcasso.png" data-resource-id="r16">
+<meta name="ext-resource-dependency" content="./assets/icons/illustrator.png" data-resource-id="r17">
+<meta name="ext-resource-dependency" content="./assets/icons/photoshop.png" data-resource-id="r18">
+<meta name="ext-resource-dependency" content="./assets/icons/toast.png" data-resource-id="r19">
+<meta name="ext-resource-dependency" content="./assets/icons/accessibility.png" data-resource-id="r20">
+<meta name="ext-resource-dependency" content="./assets/icons/michigan.png" data-resource-id="r21">
+<meta name="ext-resource-dependency" content="./assets/ds/logo-script.png" data-resource-id="r22">
+<meta name="ext-resource-dependency" content="./assets/ds/wand-sm.png" data-resource-id="r23">
+<meta name="ext-resource-dependency" content=".image-slots.state.json" data-resource-id="r24">
+<script>window.__res=function(p){var m=document.querySelector('meta[name="ext-resource-dependency"][content="'+p+'"]');var r=window.__resources;return (m&&r&&r[m.getAttribute('data-resource-id')])||p;};</script>
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#FFE3EA"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFE3EA"/><text x="50" y="64" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="44" fill="#FA4A7B">am</text><path d="M78 26l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FA4A7B"/></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/fonts.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/colors.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/typography.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/spacing.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/effects.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/patterns.css"></link>
+<link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/styles.css"></link>
+<script src="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<script src="./wand.js"></script>
+<script src="./transition.js"></script>
+<style>
+html{scroll-behavior:smooth}html,body{overflow-x:clip;max-width:100%}
+body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased;cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
+a,button,[role=button],[role=tab]{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+a{color:var(--pink-700)}
+a:hover{color:var(--pink-600)}
+*:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+@keyframes bob{0%,100%{transform:translateY(-3px)}50%{transform:translateY(5px)}}
+nav img{height:86px !important}
+nav > div > a{font-size:20px !important;padding:12px 21px !important}
+nav > div > button{height:47px !important;padding:0 21px !important;font-size:17px !important}
+@media (prefers-reduced-motion: reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}html{scroll-behavior:auto}}
+p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
+h1,h2,h3,h4{text-wrap-style:balance}
+#work-tabs button{font-size:17px !important}
+@keyframes frontierFly{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.55,0,.75,.4)}46%{transform:translateX(150%) translateY(-3%);opacity:1}46.01%{transform:translateX(-150%) translateY(3%);opacity:0;animation-timing-function:cubic-bezier(.2,.6,.35,1)}50%{opacity:1}100%{transform:translateX(0) translateY(0);opacity:1}}
+.frontier-plane{will-change:transform}
+.rcard:hover .frontier-plane,.rcard:focus-visible .frontier-plane{animation:frontierFly 3.2s linear 1 both}
+@media (max-width:767px){.frontier-plane.fp-inview{animation:frontierFly 3.2s linear 1 both}}
+@media (prefers-reduced-motion:reduce){.rcard .frontier-plane{animation:none !important}}
+@keyframes alkaWalk{0%{opacity:0}50%{opacity:1}}
+@keyframes alkaWalkA{0%{opacity:1}50%{opacity:0}}
+@keyframes iconSet{0%{opacity:0;transform:scale(.3)}8%{opacity:1;transform:scale(.9)}26%{opacity:1;transform:scale(1.08)}33.33%,100%{opacity:0;transform:scale(1.14)}}
+@media (prefers-reduced-motion: reduce){.am-iconset img{animation:none !important;opacity:0}.am-iconset[data-set="0"] img{opacity:1}}
+@media (prefers-reduced-motion: reduce){img.am-walk-2{animation:none !important;opacity:0}img.am-walk-1{animation:none !important;opacity:1}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="min-height:100vh;background:var(--cream);color:var(--ink-900);font-size:16px;line-height:1.55">
+<a href="#main" style="position:absolute;left:-9999px;top:8px;z-index:100;background:var(--white);color:var(--pink-700);border:2px solid var(--pink-700);padding:8px 16px;border-radius:999px" style-focus="left:16px">Skip to main content</a>
+
+<div style="position:sticky;top:0;z-index:50">
+  <x-import component-from-global-scope="site-header" from="./site-chrome.js" active="{{ navActive }}" hint-size="100%,78px"></x-import>
+</div>
+
+<main id="main">
+
+<section id="top" data-hat="home" ref="{{ heroRef }}" aria-labelledby="hero-h" style="position:relative">
+  <div style="position:relative;height:{{ heroH }};min-height:560px;overflow:hidden;background:var(--cream)">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:var(--pattern-checker);opacity:.5"></div>
+    <div style="position:relative;height:100%;display:flex;align-items:center;padding:{{ heroPadT }} clamp(20px,5vw,56px) 36px;box-sizing:border-box">
+      <div style="max-width:1120px;margin:0 auto;width:100%;display:flex;flex-wrap:{{ heroWrap }};align-items:center;justify-content:center;column-gap:56px;row-gap:28px">
+        <div style="flex:0 1 auto;width:max-content;max-width:min(640px,100%);min-width:0;display:flex;flex-direction:column;gap:18px;position:relative;isolation:isolate">
+          <div aria-hidden="true" style="position:absolute;inset:-22% -12%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.76) 0%,rgba(255,255,255,.68) 55%,rgba(255,255,255,0) 100%)"></div>
+          <h1 id="hero-h" style="margin:0;font:600 clamp(27px,3.4vw,48px)/1.15 var(--font-display);letter-spacing:-0.01em"><span style="display:block">AI-native product designer</span><span style="display:block">balancing business goals,</span><span style="display:block">user needs &amp; <span style="font:400 1.1em/1 var(--font-script);color:var(--brand)">visual craft.</span></span></h1>
+          <p style="margin:0;font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:var(--ink-700);max-width:30em;text-wrap:pretty">I bring research, visual design and rapid prototyping together to create experiences that drive revenue, reduce friction and ensure accessibility.</p>
+        </div>
+        <div style="flex:0 1 auto;display:flex;justify-content:center;padding:8px 24px">
+          <div style="position:relative;width:{{ figW }};aspect-ratio:1080/1350"><div aria-hidden="true" style="position:absolute;left:48%;top:42%;width:145%;aspect-ratio:5/4;transform:translate(-50%,-50%) rotate(12deg);background:var(--maize);opacity:.9;clip-path:polygon(50.0% 0.0%,53.8% 39.7%,75.7% 19.4%,59.5% 44.5%,96.3% 41.8%,60.8% 51.9%,81.2% 68.0%,57.1% 58.4%,67.1% 97.0%,50.0% 61.0%,35.6% 89.5%,42.9% 58.4%,10.2% 73.0%,39.2% 51.9%,12.6% 43.4%,40.5% 44.5%,21.7% 16.3%,46.2% 39.7%)"></div>{{ iconSets }}{{ walker }}<svg aria-hidden="true" viewBox="48 77 36 36" fill="none" style="position:absolute;left:55%;top:11%;width:8%;height:auto;transform:rotate(-14deg);z-index:2;filter:drop-shadow(0 2px 3px rgba(59,29,42,.18))"><circle cx="66" cy="86" r="9" fill="#FF5C9A"></circle><circle cx="57" cy="93" r="8.5" fill="#FF5C9A"></circle><circle cx="75" cy="93" r="8.5" fill="#FF5C9A"></circle><circle cx="60" cy="103" r="8" fill="#F2357F"></circle><circle cx="72" cy="103" r="8" fill="#F2357F"></circle><circle cx="66" cy="96" r="6" fill="#FFF4D6"></circle></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" data-hat="work" aria-labelledby="work-h" style="position:relative;background:var(--cream);padding:96px clamp(20px,4vw,48px)">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:var(--cream)"></div>
+  <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
+    <div id="work-h">
+      <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Case studies" title="take a peek at" script="my projects" hint-size="100%,80px"></x-import>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:clamp(56px,6vw,88px)">
+      <sc-for list="{{ leadProjects }}" as="p" hint-placeholder-count="1">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:28px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+          <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+          <div style="position:relative;aspect-ratio:{{ p.ratio }};border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:transform var(--dur-base) var(--ease-bouncy),box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+            <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
+              {{ p.media }}
+            </sc-if>
+            <sc-if value="{{ p.noVideo }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="{{ p.slot }}" shape="rect" placeholder="Project cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
+            </sc-if>
+            <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;left:20px;top:20px;padding:10px 16px;border-radius:999px;background:var(--cream);border:2px solid var(--ink-900);font:500 12px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--ink-900);pointer-events:none">{{ p.badge }}</span>
+            </sc-if>
+          </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px;max-width:820px">
+            <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ p.org }}</span><span aria-hidden="true" style="color:var(--ink-500)">·</span><span style="color:var(--ink-500)">{{ p.year }}</span></p>
+            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:balance">{{ p.title }}</h3>
+            <p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ p.desc }}</p>
+          </div>
+        </a>
+      </sc-for>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
+        <sc-for list="{{ research }}" as="r" hint-placeholder-count="2">
+          <a href="{{ r.href }}" class="rcard" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+            <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+            <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+              <sc-if value="{{ r.hasCover }}" hint-placeholder-val="{{ false }}">
+                <div role="img" aria-label="{{ r.coverAlt }}" ref="{{ r.coverRef }}" style="width:100%;height:100%;background:#000 center / contain no-repeat"></div>
+              </sc-if>
+              <sc-if value="{{ r.isFrontier }}" hint-placeholder-val="{{ false }}">
+                <div role="img" aria-label="Frontier Airlines plane and logo" style="position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9%;padding:0 6%;overflow:hidden">
+                  <div style="width:92%;aspect-ratio:{{ r.planeRatio }};position:relative">{{ r.planeEl }}</div>
+                  <img src="./assets/frontier-logo.png" alt="" style="width:68%;height:auto;display:block"></img>
+                </div>
+              </sc-if>
+              <sc-if value="{{ r.noCover }}" hint-placeholder-val="{{ true }}">
+                <image-slot id="{{ r.slot }}" shape="rect" placeholder="Research cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
+              </sc-if>
+            </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
+              <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ r.org }}</span><span aria-hidden="true" style="color:var(--ink-500)">·</span><span style="color:var(--ink-500)">{{ r.year }}</span></p>
+              <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:balance">{{ r.title }}</h3>
+              <p style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ r.desc }}</p>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:28px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+          <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+          <div style="position:relative;border-radius:28px;overflow:hidden;background:#FFF2F6;box-shadow:0 0 0 2px var(--pink-200);transition:transform var(--dur-base) var(--ease-bouncy),box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+            <div style="display:flex;align-items:center;gap:22px;padding:16px 24px;border-bottom:2px solid var(--pink-200)"><span aria-hidden="true" style="display:flex;gap:8px"><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i></span><span style="font:400 16px/1.2 var(--font-body);color:var(--ink-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.url }}</span></div>
+            <div style="position:relative;aspect-ratio:{{ p.ratio }};overflow:hidden;background:var(--pink-50)">
+            <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
+              {{ p.media }}
+            </sc-if>
+            <sc-if value="{{ p.noVideo }}" hint-placeholder-val="{{ true }}">
+              <image-slot id="{{ p.slot }}" shape="rect" placeholder="Project cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
+            </sc-if>
+            <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
+              <span style="position:absolute;left:20px;top:20px;padding:10px 16px;border-radius:999px;background:var(--cream);border:2px solid var(--ink-900);font:500 12px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--ink-900);pointer-events:none">{{ p.badge }}</span>
+            </sc-if>
+            </div>
+          </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px;max-width:820px">
+            <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ p.org }}</span><span aria-hidden="true" style="color:var(--ink-500)">·</span><span style="color:var(--ink-500)">{{ p.year }}</span></p>
+            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:balance">{{ p.title }}</h3>
+            <p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ p.desc }}</p>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="prize" data-hat="prize" aria-labelledby="prize-h" style="position:relative;background:#FFF390;padding:clamp(88px,9vw,128px) clamp(20px,4vw,48px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:#FFF390"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(56px,7vw,96px)">
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:32px">
+      <div id="prize-h">
+        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Thryve · Pitch2Win 2025" title="and this one was" script="award-worthy" hint-size="100%,110px"></x-import>
+      </div>
+      <p style="margin:0;font-size:19px;line-height:1.6;max-width:30em;color:var(--ink-700);text-wrap:pretty">I led a team of five, taking Thryve, a health-management app, from research and strategy to UX design and the final investor pitch.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:24px;max-width:30em;padding-top:28px;border-top:2px solid rgba(59,29,42,.15)">
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">1st <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">of 17</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Overall winner</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">5 <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">people</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Team I led</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">Ross <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">× CEN</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Michigan hosts</div>
+          </div>
+      </div>
+    </div>
+    <div style="flex:1 1 380px;min-width:0;max-width:540px;margin:0 auto;position:relative;padding:28px 18px 18px 28px">
+      <figure onClick="{{ openDeck }}" style="cursor:pointer;position:relative;margin:0;background:var(--white);border:2px solid var(--ink-900);border-radius:32px;box-shadow:6px 6px 0 var(--ink-900);padding:14px 14px 18px;transform:rotate(-1deg);transition:transform 320ms var(--ease-bouncy)" style-hover="transform:rotate(0deg) translateY(-4px)">
+        <div style="position:relative;aspect-ratio:2576/1452;border-radius:22px;overflow:hidden;background:var(--pink-50)">
+          <img src="./assets/covers/thryve-pitch2win.png" alt="Thryve app prototype screens from the Pitch2Win pitch" style="width:100%;height:100%;object-fit:contain;display:block">
+        </div>
+        <figcaption style="display:flex;align-items:center;justify-content:center;padding:14px 6px 0;text-align:center">
+          <button type="button" style="appearance:none;background:none;border:0;padding:6px 4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font:600 17px/1.2 var(--font-display);color:var(--ink-900);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:var(--pink-300);transition:color 220ms var(--ease-bouncy)" style-hover="color:var(--wand,#D6085D);text-decoration-color:currentColor">walk through the health management solution <span aria-hidden="true">↗</span></button>
+        </figcaption>
+      </figure>
+      <img src="./assets/award-rosette.png" alt="Pink first-place rosette" width="180" height="180" style="position:absolute;left:-18px;top:-26px;z-index:4;width:clamp(92px,10vw,132px);height:auto;transform:rotate(-10deg);filter:drop-shadow(0 8px 14px rgba(176,51,85,.25));transition:transform 220ms cubic-bezier(.34,1.56,.64,1)" style-hover="transform:rotate(4deg) scale(1.06)">
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" data-hat="testimonials" aria-labelledby="t-h" aria-roledescription="carousel" onKeyDown="{{ onTestimonialKey }}" onMouseEnter="{{ pauseTesti }}" onMouseLeave="{{ resumeTestiLater }}" onFocus="{{ pauseTesti }}" style="position:relative;background:var(--pink-100);padding:104px 0 120px">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:var(--pink-100)"></div>
+  <div style="display:flex;flex-direction:column;gap:40px">
+    <div id="t-h" style="padding:0 24px">
+      <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Kind words" title="notes from people I" script="work with" align="center" hint-size="100%,80px"></x-import>
+    </div>
+    <div style="position:relative">
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ prevTesti }}" aria-label="Previous testimonial" style="position:absolute;top:{{ sideArrowTop }};left:{{ sideArrowEdge }};z-index:40;width:44px;height:44px;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);box-shadow:0 4px 12px rgba(176,51,85,.14);font:500 22px/1 var(--font-display);display:grid;place-items:center;padding:0 0 3px;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-active="transform:scale(.94);border-color:var(--pink-300)" style-focus-visible="outline:2px solid var(--pink-300);outline-offset:2px">‹</button>
+      <button type="button" onClick="{{ nextTesti }}" aria-label="Next testimonial" style="position:absolute;top:{{ sideArrowTop }};right:{{ sideArrowEdge }};z-index:40;width:44px;height:44px;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);box-shadow:0 4px 12px rgba(176,51,85,.14);font:500 22px/1 var(--font-display);display:grid;place-items:center;padding:0 0 3px;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-active="transform:scale(.94);border-color:var(--pink-300)" style-focus-visible="outline:2px solid var(--pink-300);outline-offset:2px">›</button>
+    </sc-if>
+    <div aria-live="polite" onTouchStart="{{ testiTouchStart }}" onTouchEnd="{{ testiTouchEnd }}" style="position:relative;height:{{ deckH }};overflow:hidden;touch-action:pan-y">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <figure aria-hidden="{{ t.hidden }}" onClick="{{ t.go }}" style="position:absolute;left:50%;top:20px;width:{{ cardW }};height:{{ cardH }};margin:0 0 0 {{ cardML }};box-sizing:border-box;background:{{ t.bg }};border:2px solid {{ t.bd }};border-radius:36px;box-shadow:{{ t.shadow }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:18px;overflow:hidden;z-index:{{ t.z }};opacity:{{ t.opacity }};pointer-events:{{ t.pe }};transform:translateX({{ t.x }}) scale({{ t.scale }}) rotate({{ t.rot }});transition:transform .6s var(--ease-soft),opacity .4s ease,background .3s ease">
+          <div style="display:flex;align-items:center;gap:14px;opacity:{{ t.contentOp }};transition:opacity .3s ease">
+            <div style="flex:none;width:60px;height:60px;position:relative">
+              <image-slot id="{{ t.slot }}" shape="circle" placeholder="{{ t.initials }}" style="position:absolute;inset:0;width:100%;height:100%;background:var(--pink-200);border-radius:50%"></image-slot>
+            </div>
+            <figcaption style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font:600 19px/1.2 var(--font-display)">{{ t.name }}</span>
+              <span style="font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)">{{ t.role }}</span>
+            </figcaption>
+          </div>
+          <blockquote style="margin:0;font-size:{{ quoteFs }};line-height:1.55;color:var(--ink-700);text-wrap:pretty;opacity:{{ t.contentOp }};transition:opacity .3s ease"><span aria-hidden="true" style="display:block;font:400 44px/0.6 var(--font-script);color:var(--brand);margin:10px 0 6px">“</span><sc-for list="{{ t.parts }}" as="q" hint-placeholder-count="1"><span style="background:{{ q.bg }};color:{{ q.color }};font-weight:{{ q.fw }};padding:{{ q.pad }};border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone">{{ q.text }}</span></sc-for></blockquote>
+        </figure>
+      </sc-for>
+    </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:-36px">
+      <button type="button" onClick="{{ prevTesti }}" aria-label="Previous testimonial" style="display:{{ bottomArrowDisp }};width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">‹</button>
+      <sc-if value="{{ showDots }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:2px">
+        <sc-for list="{{ testimonials }}" as="t">
+          <button onClick="{{ t.go }}" aria-label="{{ t.dotLabel }}" aria-current="{{ t.current }}" style="height:44px;min-width:20px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;padding:0 3px">
+            <span style="display:block;width:{{ t.dotW }};height:8px;border-radius:999px;background:{{ t.dotColor }};transition:width .3s var(--ease-bouncy),background .3s ease"></span>
+          </button>
+        </sc-for>
+      </div>
+      </sc-if>
+      <sc-if value="{{ hideDots }}" hint-placeholder-val="{{ false }}">
+        <span aria-live="polite" style="min-width:64px;text-align:center;font:500 13px/1 var(--font-mono);letter-spacing:.08em;color:var(--pink-700)">{{ testiCount }}</span>
+      </sc-if>
+      <button type="button" onClick="{{ nextTesti }}" aria-label="Next testimonial" style="display:{{ bottomArrowDisp }};width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">›</button>
+    </div>
+  </div>
+</section>
+
+</main>
+<x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
+
+<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
+  <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
+  <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
+    <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </sc-if>
+    <sc-if value="{{ soundOff }}" hint-placeholder-val="{{ false }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </sc-if>
+  </button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;wandSoundStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fairy&quot;,&quot;chime&quot;,&quot;harp&quot;,&quot;shimmer&quot;],&quot;default&quot;:&quot;shimmer&quot;,&quot;tsType&quot;:&quot;'fairy'|'chime'|'harp'|'shimmer'&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;wandSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;starTrail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const STORIES = [
+  { src: __res('./assets/ds/cat-graduate-sm.png'), label: 'the graduate', alt: 'Cat mascot in a graduation cap holding a diploma',
+    pre: 'Hi, I\'m', script: 'Alka.', sub: '4+ years turning hard questions into products people understand the first time.' },
+  { src: __res('./assets/ds/cat-detective-sm.png'), label: 'the researcher', alt: 'Cat mascot in a detective hat holding a magnifying glass',
+    pre: 'I ask hard questions before moving', script: 'pixels.', sub: 'Interviews, usability tests, diary studies — evidence before opinions.' },
+  { src: __res('./assets/ds/cat-artist-sm.png'), label: 'the designer', alt: 'Cat mascot in a beret holding a paintbrush',
+    pre: 'Research first, design second,', script: 'polish last.', sub: 'Flows, prototypes and visual craft, with accessibility built in from the first sketch.' },
+  { src: __res('./assets/ds/cat-coffee-sm.png'), label: 'the collaborator', alt: 'Cat mascot holding a coffee cup',
+    pre: 'Powered by coffee and', script: 'curiosity.', sub: 'Ready when you are — scroll on for the work.' }
+];
+// Tape positions around the sticker, one per story
+const ROLE_POS = [
+  { left: '-14%', top: '4%', tilt: -6 },
+  { right: '-16%', top: '18%', tilt: 4 },
+  { left: '-18%', bottom: '20%', tilt: 3 },
+  { right: '-12%', bottom: '4%', tilt: -4 }
+];
+// **double asterisks** mark highlighted words
+const TESTIMONIALS = [
+  { name: 'Figo Naude', role: 'UX Manager · Haptiq', quote: 'I had the pleasure of working with Alka as she grew from an intern into a full-time UX Researcher & Designer and was always impressed by her **attitude, versatility and willingness to take on new challenges**. Alka supported our team across UX research, UX/UI design and graphic design, always stepping in wherever support was needed. She is **thoughtful, dependable** and brings both a **strong research mindset and design eye** to her work.' },
+  { name: 'Pamela Ong', role: 'Senior UX Researcher · Haptiq', quote: 'From day one, it was clear Alka brought **far more to the table than the ‘intern’ title suggested**. I could always count on her to **deliver high-quality work** and follow through. What stood out equally was her openness to learning and feedback. Her **versatility across research, accessibility, UX/UI, and graphic design** makes her a valuable addition to any team.' },
+  { name: 'Sanskriti Bhatnagar', role: 'Product Designer · Transformative Ventures', quote: '…I had the pleasure of collaborating with Alka for over a year, and she’s an **outstanding UX designer**. **Reliability, resourcefulness, and intelligence** define her work ethic. Alka seamlessly **blends empathy with expertise**, delivering exceptional designs. A **true team player**, she prioritizes opinions, concerns, and feedback to optimize user experiences at their best…' },
+  { name: 'Shivangi Maheswari', role: 'Manager · Creative Platform', quote: 'Alka **quickly grew from UI/UX Designer to UX Manager**, taking ownership of critical launches and **leading designers** through demanding campaigns. She combines **strategic thinking, creativity, and execution** exceptionally well.' },
+  { name: 'Ally Noriega', role: 'Graphic Designer III · Haptiq', quote: 'Aside from being a talented designer, Alka is an **incredible teammate and person**. During stressful moments, she was often **one of the first to reach out** with support, advice, and encouragement. She is **dependable, compassionate**, and someone you can truly lean on. Working alongside her has been an absolute pleasure, and I’m grateful to have had the opportunity to collaborate with her.' },
+  { name: 'Millad Ayoubi', role: 'Senior UX Designer · Haptiq', quote: 'Alka is an **amazing designer** whom I have also been fortunate to have worked with. A true **jack of all trades in the UX/UI process** from research to prototyping.' },
+  { name: 'Zhiyi Liu', role: 'UX Designer · Haptiq', quote: 'Had the pleasure of working with Alka during her internship — she’s a **thoughtful and talented designer** and was always **great to work with**!' },
+  { name: 'Smita Som', role: 'Assistant Professor · NIFT Delhi', quote: '…Alka’s **strong visual communication skills** and ability to **build narratives** and creatively communicate stories caught my eye. Her inspirations, ideas and stories come from an **authentic core**, and she adds an **artistic quirk** to create new and engaging designs…' },
+  { name: 'Ankita Mehrotra', role: 'Manager · Blackberrys', quote: '…At Blackberrys, she carried out the **monumental project of rebranding across all product categories** to create a unique in store identity. It was an extensive project where she was **solely responsible from ideation to execution**…' },
+  { name: 'Prachi Dhaka', role: 'Senior Visual Designer · Reliance Brands · undergrad classmate', quote: 'Having known Alka since 2017, I’ve seen her grow into a **highly adaptable and thoughtful designer**. Her ability to **understand a product end-to-end**, approach challenges creatively and **simply figure things out** has always stood out to me. She brings **fresh thinking** to everything she works on and would be a fantastic addition to any team.' },
+  { name: 'Sayanya Saha', role: 'Asst. Manager · IDBI Bank · NIFT Delhi classmate', quote: 'Her **passion for user-centric design** has always been visible in every project she worked on. Seamlessly **blending her innate creativity with burgeoning technical prowess**, Alka’s tireless efforts have always **raised the bar for our team** with a constant stream of fresh and innovative ideas. It’s hardly surprising that she has forged an incredible career in the UI/UX field.' }
+];
+const toParts = (q) => q.split('**').filter(Boolean).map((text, i, arr) => {
+  const hl = q.startsWith('**') ? i % 2 === 0 : i % 2 === 1;
+  return hl ? { text, bg: 'var(--maize)', color: 'var(--ink-900)', fw: 600, pad: '0 3px' } : { text, bg: 'transparent', color: 'inherit', fw: 'inherit', pad: '0' };
+});
+const TABS = [
+  { key: 'design', label: 'UX/UI Design', color: 'var(--pink-300)' },
+  { key: 'thinking', label: 'UX Research', color: 'var(--maize)' },
+  { key: 'ai', label: 'AI Workflow', color: 'var(--sky)' },
+  { key: 'visual', label: 'Visual Design', color: 'var(--matcha)' }
+];
+const TAG_TONES = ['pink', 'sky', 'lemon', 'mint', 'tangerine'];
+const PROJECTS = {
+  design: [
+    { featured: true, gif: __res('./assets/covers/thryve-pitch2win.png'), tags: ['1st place · Pitch2Win 2025', 'UX/UI Design'], title: 'Pitch2Win: from sketches to a stage-ready prototype', desc: 'Designing and testing the prototype the judges saw on stage.' },
+    { tags: ['UX/UI', 'Haptiq'], title: 'Product flows shipped with the Haptiq team', desc: 'End-to-end UX and UI work, from research readout to handoff.' },
+    { tags: ['WCAG 2.1 AA', 'Accessibility'], title: 'Making navigation work for assistive tech', desc: 'An accessibility audit and redesign for keyboard and screen-reader users.' },
+    { tags: ['UX/UI'], title: '[UX/UI project title]', desc: '[One line: the problem and what you designed.]' },
+    { tags: ['UX/UI'], title: '[UX/UI project title]', desc: '[One line: the problem and what you designed.]' }
+  ],
+  thinking: [
+    { featured: true, tags: ['1st place · Pitch2Win 2025', 'UX Research'], title: 'Pitch2Win: the research behind a first-place pitch', desc: 'How discovery interviews and fast synthesis shaped an award-winning concept.' },
+    { tags: ['Diary study', 'Onboarding'], title: 'What new users really do in their first month', desc: 'A diary study that reframed onboarding around real behaviour.' }
+  ],
+  ai: [
+    { tags: ['AI workflow'], title: '[AI workflow project title]', desc: '[One line: what the workflow does and what it changed.]' }
+  ],
+  visual: [
+    { tags: ['Retail identity', 'Blackberrys'], title: 'Rebranding Blackberrys stores across every category', desc: 'A unique in-store identity, owned from ideation to execution.' },
+    { tags: ['Graphic design', 'Print'], title: 'Prints, digital artworks and illustration', desc: 'Visual storytelling with an artistic quirk.' },
+    { tags: ['Visual design'], title: '[Visual design project title]', desc: '[One line: what you made and for whom.]' }
+  ]
+};
+const RESEARCH = [
+  { org: 'Frontier Airlines · UX redesign', year: '2025', href: 'Frontier Case Study.html', frontier: true, title: 'Booking without the tricks: redesigning Frontier’s ticketing flow', desc: 'Stripping hidden fees, pushy upsells and pre-checked boxes out of the booking flow to rebuild trust.' },
+  { org: 'Poe by Quora · UX research', year: '2025', href: 'Poe Case Study.html', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Every AI in one app: does Poe make it feel simple?', desc: 'A mixed-method UX evaluation of Quora’s AI chatbot aggregator, the app that brings ChatGPT, Claude, DeepSeek and more into one place.' }
+];
+const WORK = [
+  { org: 'The Ayurveda Experience · Product & growth design', year: '2022–24', href: 'Ayurveda Case Study.html', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Designing for growth across the customer journey', desc: 'Emails, long-form landing pages, buy box, checkout, order tracking and the mobile app, designed and tested for the women at the heart of the brand.' },
+  { org: 'NCCI · Website redesign', year: '2023', href: 'NCCI Case Study.html', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'From archive to mission: redesigning the Network for Conserving Central India', desc: 'A Weebly-to-Wix migration that rebuilt the IA, visual system and homepage, turning a decade of conservation records into a clear, mission-driven website.' },
+];
+const NAV_H = 120;
+const EMAIL = 'alkamahapatra99@gmail.com';
+// Deck geometry by distance from the active card: x offset (× card width), scale, tilt
+const DECK = { x: [0, 0.64, 1.1, 1.5], s: [1, 0.84, 0.7, 0.6], r: [0, 2.5, 4.5, 6] };
+const DECK_M = { x: [0, 0.07, 0.13, 0.18], s: [1, 0.92, 0.85, 0.8], r: [0, 2, 4, 5] };
+
+class Component extends DCLogic {
+  state = { section: 'home', story: 0, testiIdx: 0, tab: 'design', shownTab: 'design', fading: false, vw: 1200, soundOn: true };
+  rootRef = React.createRef();
+  heroRef = React.createRef();
+  timers = {};
+
+  planeEl() {
+    if (!this._plane) this._plane = React.createElement('img', {
+      src: __res('./assets/frontier-plane.png'), alt: '', 'aria-hidden': 'true', className: 'frontier-plane',
+      style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', display: 'block' },
+      ref: (el) => {
+        if (!el || el.__fpObs) return; el.__fpObs = true;
+        new IntersectionObserver(([e]) => { el.classList.toggle('fp-inview', e.isIntersecting); }, { threshold: 0.6 }).observe(el.parentElement.parentElement);
+      }
+    });
+    return this._plane;
+  }
+  componentDidMount() {
+    this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
+    document.addEventListener('keydown', this.onEsc);
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.setState({ soundOn: (this.props.wandSound ?? true) && localStorage.getItem('am-wand-sound') !== 'off' });
+    this.wand(w => { w.init(); w.set({ sound: this.state.soundOn, style: this.props.wandSoundStyle ?? 'shimmer', trail: this.props.starTrail ?? true }); });
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => { this.raf = null; this.updateScroll(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.updateScroll();
+    const root = this.rootRef.current || document;
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) this.setState({ section: e.target.dataset.hat }); });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    root.querySelectorAll('[data-hat]').forEach(s => this.io.observe(s));
+    if (!this.reduced && (this.props.autoplay ?? true)) this.startTesti();
+    if (location.hash === '#work') this.landOnWork();
+  }
+  // Arriving from another page: keep snapping to #work while layout settles (images/fonts shift it)
+  landOnWork() {
+    history.scrollRestoration = 'manual';
+    let tries = 0, lastTop = null, stable = 0, userMoved = false;
+    const stop = () => { userMoved = true; };
+    ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, stop, { once: true, passive: true }));
+    const tick = () => {
+      if (userMoved || tries++ > 60) return;
+      const el = document.getElementById('work');
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - NAV_H + 2;
+        window.scrollTo({ top, behavior: 'instant' });
+        stable = lastTop !== null && Math.abs(top - lastTop) < 1 ? stable + 1 : 0;
+        lastTop = top;
+        if (stable >= 4 && document.readyState === 'complete') return;
+      }
+      this.timers.land = setTimeout(tick, 100);
+    };
+    tick();
+  }
+  wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.timers.wand = setTimeout(go, 50)); go(); }
+  componentDidUpdate(prev) {
+    if (prev.wandSoundStyle !== this.props.wandSoundStyle) this.wand(w => { w.set({ style: this.props.wandSoundStyle ?? 'shimmer' }); w.play(); });
+    if (prev.starTrail !== this.props.starTrail) this.wand(w => w.set({ trail: this.props.starTrail ?? true }));
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onEsc);
+    Object.values(this.timers).forEach(t => { clearInterval(t); clearTimeout(t); });
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    this.io && this.io.disconnect();
+  }
+  // Scroll progress through the 400vh hero picks the cat story
+  updateScroll() {
+    return;
+    const el = this.heroRef.current; if (!el) return;
+    const r = el.getBoundingClientRect();
+    const total = r.height - (window.innerHeight - NAV_H);
+    const p = total > 0 ? Math.min(Math.max((NAV_H - r.top) / total, 0), 0.999) : 0;
+    const idx = Math.floor(p * STORIES.length);
+    if (idx !== this.state.story) this.setState({ story: idx });
+  }
+  goStory(i) {
+    return this.setState({ story: i });
+    const el = this.heroRef.current; if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - NAV_H;
+    const total = el.offsetHeight - (window.innerHeight - NAV_H);
+    window.scrollTo({ top: top + total * (i + 0.5) / STORIES.length, behavior: this.reduced ? 'auto' : 'smooth' });
+  }
+  scrollToId(id) {
+    const el = document.getElementById(id); if (!el) return;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - NAV_H + 2, behavior: this.reduced ? 'auto' : 'smooth' });
+  }
+  startTesti() {
+    clearInterval(this.timers.testi);
+    this.timers.testi = setInterval(() => this.setState(s => ({ testiIdx: (s.testiIdx + 1) % TESTIMONIALS.length })), 5500);
+  }
+  pauseTesti() { clearInterval(this.timers.testi); clearTimeout(this.timers.testiResume); }
+  resumeTestiLater() {
+    if (this.reduced || !(this.props.autoplay ?? true)) return;
+    clearTimeout(this.timers.testiResume);
+    this.timers.testiResume = setTimeout(() => this.startTesti(), 8000);
+  }
+  goTesti(i) { this.pauseTesti(); this.setState({ testiIdx: (i + TESTIMONIALS.length) % TESTIMONIALS.length }); this.resumeTestiLater(); }
+  selectTab(id) {
+    if (id === this.state.tab) return;
+    this.setState({ tab: id, fading: true });
+    clearTimeout(this.timers.tab);
+    this.timers.tab = setTimeout(() => this.setState({ shownTab: id, fading: false }), 200);
+  }
+
+  scrollCoverRef(src) {
+    this._coverRefs = this._coverRefs || {};
+    return this._coverRefs[src] || (this._coverRefs[src] = (el) => {
+      if (!el || el.__scrollCover) return; el.__scrollCover = true;
+      let blob = null, url = null;
+      const show = () => { if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(blob); el.style.backgroundImage = 'url(' + url + ')'; };
+      fetch(src).then(r => r.blob()).then(b => { blob = b; }).catch(() => { el.style.backgroundImage = 'url(' + src + ')'; });
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { const go = () => blob ? show() : setTimeout(go, 80); go(); }
+        else { el.style.backgroundImage = 'none'; }
+      }, { threshold: 0.5 }).observe(el);
+    });
+  }
+  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', tags: [], hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif), media: p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'auto', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif, slot: p.slot || `cover-work-${i}`,
+        tagList: (p.tags || []).map((t, j) => ({ label: t, tone: TAG_TONES[(i + j) % TAG_TONES.length] })) })); }
+  renderVals() {
+    if (!this.walkerEl) {
+      const img = (src, extra) => React.createElement('img', { src, className: extra && extra.animation.startsWith('alkaWalk ') ? 'am-walk-2' : 'am-walk-1', alt: extra && extra.animation.startsWith('alkaWalk ') ? '' : 'Illustrated Alka walking with a coffee', 'aria-hidden': extra && extra.animation.startsWith('alkaWalk ') ? 'true' : undefined, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', ...(extra || {}) } });
+      this.walkerEl = React.createElement(React.Fragment, null,
+        img(__res('./assets/alka-walk-1.png'), { animation: 'alkaWalkA 1s steps(1,end) infinite' }),
+        img(__res('./assets/alka-walk-2.png'), { animation: 'alkaWalk 1s steps(1,end) infinite' }));
+    }
+    if (!this.iconsEl) {
+      const SETS = [
+        [['milkis', 4, 10, 11, -9], ['figma', 74, 20, 22, 7], ['chatgpt', 6, 58, 12, -6], ['shopify', 78, 60, 16, 6], ['pill:5 years of\nexperience', -1, 36, 0, -3], ['pill:Led design\nteams', 101, 36, 0, 3]],
+        [['claude', 4, 14, 13, -8], ['twix', 70, 16, 26, 8], ['pigcasso', -6, 46, 28, -5], ['illustrator', 80, 60, 13, 6], ['pill:$350K+\nimpact', -1, 26, 0, -3], ['pill:15M+ users\nserved', 101, 36, 0, 3]],
+        [['photoshop', 4, 16, 14, -7], ['toast', 76, 14, 19, 6], ['accessibility', 6, 58, 12, -6], ['michigan', 64, 54, 42, 8], ['pill:4 GPA', -1, 38, 0, -3], ['pill:13+ companies\n& clients', 101, 30, 0, 3]]
+      ];
+      const HOLD = 3, DUR = SETS.length * HOLD;
+      this.iconsEl = React.createElement(React.Fragment, null, SETS.map((set, si) =>
+        React.createElement('div', { key: si, className: 'am-iconset', 'data-set': si, 'aria-hidden': 'true', style: { position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none' } },
+          set.map(([n, x0, y, w0, r, ext], ii) => { if (n.startsWith('pill:')) return React.createElement('span', { key: n, style: x0 === -1 ? { position: 'absolute', right: '84%', top: y + '%', transform: 'rotate(' + r + 'deg)' } : x0 === 101 ? { position: 'absolute', left: '80%', top: y + '%', transform: 'rotate(' + r + 'deg)' } : x0 < 50 ? { position: 'absolute', left: (x0 + 5) + '%', top: y + '%', transform: 'rotate(' + r + 'deg)' } : { position: 'absolute', right: (100 - x0 - 12) + '%', top: y + '%', transform: 'rotate(' + r + 'deg)' } },
+            React.createElement('span', { style: { display: 'block', width: 'max-content', whiteSpace: 'pre-line', boxSizing: 'border-box', textAlign: 'center', padding: '5px 10px', borderRadius: 14, background: 'rgba(255,255,255,.62)', border: '1px solid rgba(59,29,42,.1)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', boxShadow: '0 4px 14px rgba(59,29,42,.08)', color: 'var(--ink-900)', font: '500 11px/1.2 var(--font-display)', opacity: 0, animation: 'iconSet ' + DUR + 's ease-out infinite', animationDelay: (si * HOLD) + 's' } }, n.slice(5))); const w = +(w0 * 0.7).toFixed(1), x = x0 < 50 ? x0 + 5 : x0 + 7; return React.createElement('span', { key: n, style: { position: 'absolute', left: x + '%', top: y + '%', width: w + '%', transform: 'rotate(' + r + 'deg)' } },
+            React.createElement('img', { src: __res('./assets/icons/' + n + '.' + (ext || 'png')), alt: '', style: { display: 'block', width: '100%', height: 'auto', opacity: 0, filter: 'drop-shadow(0 6px 10px rgba(59,29,42,.18))', animation: 'iconSet ' + DUR + 's ease-out infinite', animationDelay: (si * HOLD) + 's' } })); }))));
+    }
+    const s = this.state;
+    const mobile = s.vw < 768;
+    const n = TESTIMONIALS.length;
+    const cardW = mobile ? Math.min(s.vw - 64, 420) : Math.min(560, s.vw - 96);
+    const cardH = mobile ? 540 : 470;
+    const G = mobile ? DECK_M : DECK;
+    const activeTab = TABS.find(t => t.key === s.tab);
+    return {
+      walker: this.walkerEl,
+      iconSets: this.iconsEl,
+      openLinkedIn: () => window.open('https://www.linkedin.com/in/alka-mahapatra', '_blank', 'noopener'),
+      copyEmail: () => {
+        const txt = 'alkamahapatra99@gmail.com';
+        const done = () => { this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); };
+        const fb = () => { const t = document.createElement('textarea'); t.value = txt; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done(); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fb); else fb();
+      },
+      copyText: this.state.copied ? 'copied ✦' : 'copy', copyBg: this.state.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: this.state.copied ? 'var(--white)' : 'var(--pink-700)',
+      fullW: { width: '100%' }, rootRef: this.rootRef, heroRef: this.heroRef,
+      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }]
+        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }, { key: 'playground', label: 'playground' }],
+      navActive: s.section === 'work' ? 'work' : null,
+      navStyle: mobile ? { padding: '14px 16px' } : undefined,
+      ctaLabel: mobile ? null : "let's chat ✦",
+      onCta: () => this.setState({ chatOpen: true }),
+      chatOpen: !!this.state.chatOpen, closeChat: () => this.setState({ chatOpen: false }),
+      onNavigate: (k) => {
+        if (k === 'home') window.scrollTo({ top: 0, behavior: this.reduced ? 'auto' : 'smooth' });
+        else if (k === 'work') this.scrollToId('work');
+        else if (k === 'resume') (window.AMGo ? window.AMGo('Resume v3.dc.html') : (window.location.href = 'Resume v3.dc.html'));
+        else if (k === 'playground') (window.AMGo ? window.AMGo('Playground.dc.html') : (window.location.href = 'Playground.dc.html'));
+      },
+      soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex', soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
+      soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
+      tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
+      tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px',
+
+      toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
+      chevron: React.createElement('span', { 'aria-hidden': true, style: { display: 'block', animation: 'bob 1.6s ease-in-out infinite' } },
+        React.createElement('span', { style: { display: 'block', width: 12, height: 12, borderRight: '2.5px solid var(--pink-700)', borderBottom: '2.5px solid var(--pink-700)', transform: 'rotate(45deg)' } })),
+      storyCounter: `scroll ✦ 0${s.story + 1} / 0${STORIES.length}`,
+      heroWrap: mobile ? 'wrap' : 'nowrap', heroH: mobile ? 'auto' : 'calc(100vh - 120px)', heroPadT: mobile ? '40px' : '4px', figW: mobile ? 'min(74vw,300px)' : 'clamp(200px,24vw,360px)', showDots: !mobile, hideDots: mobile, testiCount: (s.testiIdx + 1) + ' / ' + TESTIMONIALS.length,
+      catSize: mobile ? 'min(240px,32vh,56vw)' : 'min(420px,62vh,34vw)',
+      stories: STORIES.map((st, i) => { const on = i === s.story; return { ...st, opacity: on ? 1 : 0, hidden: on ? undefined : 'true',
+        shift: on ? '0px' : (i < s.story ? '-18px' : '18px') }; }),
+      catImages: STORIES.map((st, i) => { const on = i === s.story; return { src: st.src, alt: on ? st.alt : '', hidden: on ? undefined : 'true',
+        opacity: on ? 1 : 0, scale: on ? 1 : 0.86, rot: on ? '0deg' : (i < s.story ? '-8deg' : '8deg') }; }),
+      ...Object.fromEntries(STORIES.map((st, i) => { const on = i === s.story; return ['cat' + i, { alt: on ? st.alt : '', hidden: on ? undefined : 'true',
+        opacity: on ? 1 : 0, scale: on ? 1 : 0.86, rot: on ? '0deg' : (i < s.story ? '-8deg' : '8deg') }]; })),
+      roles: STORIES.map((st, i) => { const on = i === s.story, pos = ROLE_POS[i]; return {
+        label: st.label, aria: `Show ${st.label}`, current: on ? 'step' : undefined, go: () => this.goStory(i),
+        left: pos.left || 'auto', right: pos.right || 'auto', top: pos.top || 'auto', bottom: pos.bottom || 'auto',
+        tilt: pos.tilt, tone: on ? 'pink' : 'cream', opacity: on ? 1 : 0.6, scale: on ? 1.12 : 0.9 }; }),
+      tabItems: TABS.map(t => ({ key: t.key, label: t.label })), tab: s.tab, selectTab: (k) => this.selectTab(k),
+      activeTabLabel: activeTab.label, panelBg: activeTab.color,
+      gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
+      leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile),
+      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
+      goWork: () => this.scrollToId('work'),
+      openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
+      deckH: (cardH + 60) + 'px', cardW: cardW + 'px', cardH: cardH + 'px', cardML: (-cardW / 2) + 'px',
+      cardPad: mobile ? '24px 32px' : '36px', quoteFs: mobile ? '15px' : '17px',
+      testimonials: TESTIMONIALS.map((t, i) => {
+        let rel = i - s.testiIdx;
+        if (rel > n / 2) rel -= n; if (rel < -n / 2) rel += n;
+        const a = Math.min(Math.abs(rel), 3), sg = Math.sign(rel), on = rel === 0;
+        return { ...t, parts: toParts(t.quote), hidden: on ? undefined : 'true', z: 20 - Math.abs(rel),
+          x: (sg * G.x[a] * cardW) + 'px', scale: G.s[a], rot: (sg * G.r[a]) + 'deg',
+          opacity: Math.abs(rel) >= 3 ? 0 : 1, pe: Math.abs(rel) >= 3 ? 'none' : 'auto',
+          bg: on ? 'var(--white)' : 'var(--pink-50)', bd: on ? 'var(--ink-900)' : 'var(--pink-200)', shadow: on ? 'var(--shadow-pop)' : 'none',
+          contentOp: on ? 1 : (mobile ? 0 : 0.45),
+          initials: t.name.split(' ').map(w => w[0]).join(''), slot: 'avatar-' + t.name.split(' ')[0].toLowerCase(),
+          current: on ? 'true' : undefined, dotW: on ? '28px' : '8px', dotColor: on ? 'var(--pink-700)' : 'var(--pink-300)',
+          dotLabel: `Testimonial ${i + 1}: ${t.name}`, go: () => this.goTesti(i) };
+      }),
+      prevTesti: () => this.goTesti(s.testiIdx - 1), nextTesti: () => this.goTesti(s.testiIdx + 1),
+      isMobile: mobile, bottomArrowDisp: mobile ? 'none' : 'grid', sideArrowTop: (20 + cardH / 2 - 22) + 'px', sideArrowEdge: `calc(50% - ${cardW / 2 + 22}px)`,
+      testiTouchStart: (e) => { const p = e.touches[0]; this.tx = p.clientX; this.ty = p.clientY; },
+      testiTouchEnd: (e) => { if (this.tx == null) return; const p = e.changedTouches[0], dx = p.clientX - this.tx, dy = p.clientY - this.ty; this.tx = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) this.goTesti(s.testiIdx + (dx < 0 ? 1 : -1)); },
+      pauseTesti: () => this.pauseTesti(), resumeTestiLater: () => this.resumeTestiLater(),
+      onTestimonialKey: (e) => { if (e.key === 'ArrowLeft') this.goTesti(s.testiIdx - 1); if (e.key === 'ArrowRight') this.goTesti(s.testiIdx + 1); }
+    };
+  }
+}
+</script>
+</body>
+</html>
