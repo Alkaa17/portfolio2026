@@ -1098,18 +1098,19 @@ main h3{font-size:19px;line-height:1.2}
 .orig .aud-img img{display:block;width:100%;height:auto;aspect-ratio:2.1/1;object-fit:cover;object-position:center 30%}
 .orig #audience .wrap{padding-left:0 !important;padding-right:0 !important;max-width:none !important}
 .orig #audience{padding-left:0;padding-right:0}
-.orig .redesign{margin-top:clamp(48px,7vw,88px);display:grid;gap:clamp(32px,4vw,48px)}
-.orig .rd-item{display:grid;grid-template-columns:1fr;gap:18px}
+.orig .redesign{margin-top:clamp(48px,7vw,88px);display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(32px,4vw,48px)}
+.orig .rd-item{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.orig .push{grid-template-columns:minmax(0,1fr)}
 .orig .rd-txt{max-width:68ch}
 .orig .rd-txt strong{display:block;font-size:18px;margin-bottom:6px}
 .orig .rd-txt p{margin:0;color:var(--ink-soft);line-height:1.55}
-.orig .rd-pair{display:grid;grid-template-columns:repeat(2,minmax(140px,240px));gap:clamp(14px,3vw,40px)}
+.orig .rd-pair{display:grid;grid-template-columns:repeat(2,minmax(0,240px));gap:clamp(14px,3vw,40px)}
 .orig .rd-pair figure{margin:0;display:grid;gap:10px;justify-items:start}
 .orig .rd-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#fff;color:var(--ink-soft)}
 .orig .rd-tag.after{background:var(--rose);color:#fff}
 .orig .rd-shot{width:100%;border-radius:22px;overflow:hidden;border:7px solid #3B1D2A;background:#fff}
 .orig .rd-shot img{display:block;width:100%;height:auto}
-@media (max-width:820px){.orig .rd-item{grid-template-columns:1fr}}
+@media (max-width:820px){.orig .rd-item{grid-template-columns:minmax(0,1fr)}}
 .orig .push{margin-top:clamp(40px,6vw,72px);display:grid;gap:clamp(24px,3vw,36px)}
 .orig .push-head{max-width:68ch}
 .orig .push-k{margin:0 0 8px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
@@ -1280,7 +1281,8 @@ main h3{font-size:19px;line-height:1.2}
 .orig .impact .lesson p{font-size:clamp(18px,1.6vw,22px) !important;line-height:1.5 !important;font-weight:500 !important;max-width:62ch !important;color:var(--ink-soft)}
 </style>
 <style id="ba-shots">
-.orig .tracking-q{grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) !important}
+.orig .tracking-q{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)) !important}
+@media (max-width:600px){.orig .tracking-q blockquote,.orig .anatomy .callout h3{white-space:normal !important}}
 .orig .tracking-q blockquote{font-size:clamp(26px,3vw,40px) !important;line-height:1.1 !important;white-space:nowrap}
 .orig .anatomy .callout h3{font-size:clamp(20px,1.9vw,26px) !important;line-height:1.2 !important;white-space:nowrap}
 .orig .tracking-q blockquote{background:none !important;border:0 !important;box-shadow:none !important;padding:0 !important;margin:8px 0 0 !important;border-radius:0 !important}
@@ -2170,5 +2172,7 @@ main h3{font-size:19px;line-height:1.2}
 })();
 </script>
 <script>document.querySelectorAll('.mphone-screen,.dbrowser-screen').forEach(el=>el.addEventListener('scroll',()=>el.parentElement.classList.toggle('scrolled',el.scrollTop>10),{passive:true}));</script>
+<script src="./sound-toggle.js"></script>
+<script src="./nav-follow.js"></script>
 </body>
 </html>

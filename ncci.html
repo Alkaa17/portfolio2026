@@ -442,7 +442,8 @@ main h3{font-size:19px;line-height:1.2}
 @media (hover:none){.hp-pin .t{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hp-pin .n::before{animation:none;opacity:.25;transform:scale(1.5)}}
 .cs-step figcaption{order:-1}
-@media (min-width:1280px){.cs-step{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}.cs-step:nth-child(2){grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.cs-step,.cs-step:nth-child(2){grid-template-columns:minmax(0,1fr) !important;gap:18px !important}
+.cs-step .zoom,.cs-step:nth-child(2) .zoom{max-width:none !important;width:100%}
 .hp-page{min-height:100%}
 .hp-page img:not([src]),.hp-page img[src=""]{aspect-ratio:1400/4200}
 #outcomes .carousel{margin:36px 0 40px}
@@ -915,7 +916,7 @@ main h3{font-size:19px;line-height:1.2}
 
   /* ---- Before & after tabs ---- */
   const slides = [...document.querySelectorAll('#carousel .slide')], tabs = [...document.querySelectorAll('#baTabs [role=tab]')];
-  function go(i){ slides.forEach((s,j)=>s.hidden=j!==i); tabs.forEach((t,j)=>{ t.setAttribute('aria-selected', j===i); t.tabIndex = j===i?0:-1; }); }
+  function go(i){ slides.forEach((s,j)=>s.hidden=j!==i); const tr = document.querySelector('#carousel .car-track'); if (tr) tr.scrollTop = 0; if (slides[i]) [slides[i], ...slides[i].querySelectorAll('*')].forEach(el=>{ if (el.scrollHeight > el.clientHeight || el.scrollTop) el.scrollTop = 0; }); tabs.forEach((t,j)=>{ t.setAttribute('aria-selected', j===i); t.tabIndex = j===i?0:-1; }); }
   tabs.forEach((t,i)=>{ t.addEventListener('click',()=>go(i));
     t.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length; go(n); tabs[n].focus(); } }); });
   go(0);
@@ -925,6 +926,46 @@ main h3{font-size:19px;line-height:1.2}
   if('IntersectionObserver' in window){
     new IntersectionObserver((es,ob)=>{ es.forEach(e=>{ if(e.isIntersecting){ out.classList.add('seen'); ob.disconnect(); } }); },{threshold:.4}).observe(out);
   } else out.classList.add('seen');
+})();
+</script>
+<script src="./sound-toggle.js"></script>
+<script src="./nav-follow.js"></script>
+<script>
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const stack = document.querySelector('#story .ld-stack');
+  if (!stack || !('IntersectionObserver' in window)) return;
+  const css = document.createElement('style');
+  css.textContent = '.nb-layer{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}.nb-bird{position:absolute;left:0;top:0;will-change:transform}.nb-bird svg{display:block;overflow:visible}.nb-wing{transform-origin:50% 100%;transform-box:fill-box;animation:nbFlap var(--fl) ease-in-out infinite alternate}@keyframes nbFlap{from{transform:scaleY(1)}to{transform:scaleY(-.55)}}';
+  document.head.appendChild(css);
+  const BIRD = '<svg viewBox="0 0 40 16" fill="#1d1418"><path class="nb-wing" d="M20 12 C15 4 8 1 0 3 C7 4 13 8 18 13 Z"/><path class="nb-wing" d="M20 12 C25 4 32 1 40 3 C33 4 27 8 22 13 Z"/><ellipse cx="20" cy="12.5" rx="3.2" ry="2"/></svg>';
+  let played = false;
+  const fly = () => {
+    const r = stack.getBoundingClientRect(), vw = innerWidth;
+    const layer = document.createElement('div'); layer.className = 'nb-layer'; document.body.appendChild(layer);
+    const n = vw < 768 ? 6 : 9;
+    let done = 0;
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('div'); b.className = 'nb-bird'; b.innerHTML = BIRD;
+      const w = 14 + Math.random() * 18; b.style.width = w + 'px';
+      b.style.setProperty('--fl', (110 + Math.random() * 90) + 'ms');
+      layer.appendChild(b);
+      const x0 = r.left + r.width * (0.25 + Math.random() * 0.25), y0 = r.top + r.height * (0.12 + Math.random() * 0.25);
+      const x1 = vw + 80 + Math.random() * 200, y1 = -80 - Math.random() * 160;
+      const mx = x0 + (x1 - x0) * 0.45 + (Math.random() - 0.5) * 160, my = y0 + (y1 - y0) * 0.35 - 40 - Math.random() * 80;
+      const a = b.animate([
+        { transform: `translate(${x0}px,${y0}px) scale(.3)`, opacity: 0 },
+        { transform: `translate(${x0 + 20}px,${y0 - 30}px) scale(.8)`, opacity: 1, offset: .08 },
+        { transform: `translate(${mx}px,${my}px) scale(1)`, opacity: 1, offset: .5 },
+        { transform: `translate(${x1}px,${y1}px) scale(.7)`, opacity: .9 }
+      ], { duration: 3200 + Math.random() * 1600, delay: i * 140 + Math.random() * 220, easing: 'cubic-bezier(.35,.1,.45,1)', fill: 'both' });
+      a.onfinish = () => { b.remove(); if (++done === n) layer.remove(); };
+    }
+  };
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !played) { played = true; fly(); }
+    else if (!e.isIntersecting && e.boundingClientRect.top > 0) played = false;
+  }, { threshold: 0.35 }).observe(stack);
 })();
 </script>
 </body>

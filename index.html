@@ -10,7 +10,7 @@
 <meta name="ext-resource-dependency" content="./assets/ds/cat-detective-sm.png" data-resource-id="r1">
 <meta name="ext-resource-dependency" content="./assets/ds/cat-artist-sm.png" data-resource-id="r2">
 <meta name="ext-resource-dependency" content="./assets/ds/cat-coffee-sm.png" data-resource-id="r3">
-<meta name="ext-resource-dependency" content="./assets/covers/pitch2win-design.gif" data-resource-id="r4">
+<meta name="ext-resource-dependency" content="./assets/covers/thryve-pitch2win.png" data-resource-id="r4">
 <meta name="ext-resource-dependency" content="./assets/poe-cover.webp" data-resource-id="r5">
 <meta name="ext-resource-dependency" content="./assets/project3-cover.mp4" data-resource-id="r6">
 <meta name="ext-resource-dependency" content="./assets/frontier-plane.png" data-resource-id="r7">
@@ -68,6 +68,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
 @keyframes frontierFly{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.55,0,.75,.4)}46%{transform:translateX(150%) translateY(-3%);opacity:1}46.01%{transform:translateX(-150%) translateY(3%);opacity:0;animation-timing-function:cubic-bezier(.2,.6,.35,1)}50%{opacity:1}100%{transform:translateX(0) translateY(0);opacity:1}}
 .frontier-plane{will-change:transform}
 .rcard:hover .frontier-plane,.rcard:focus-visible .frontier-plane{animation:frontierFly 3.2s linear 1 both}
+@media (max-width:767px){.frontier-plane.fp-inview{animation:frontierFly 3.2s linear 1 both}}
 @media (prefers-reduced-motion:reduce){.rcard .frontier-plane{animation:none !important}}
 @keyframes alkaWalk{0%{opacity:0}50%{opacity:1}}
 @keyframes alkaWalkA{0%{opacity:1}50%{opacity:0}}
@@ -138,7 +139,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
             <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
               <sc-if value="{{ r.hasCover }}" hint-placeholder-val="{{ false }}">
-                <div role="img" aria-label="{{ r.coverAlt }}" style="width:100%;height:100%;background:#000 center / contain no-repeat;background-image:{{ r.coverBg }}"></div>
+                <div role="img" aria-label="{{ r.coverAlt }}" ref="{{ r.coverRef }}" style="width:100%;height:100%;background:#000 center / contain no-repeat"></div>
               </sc-if>
               <sc-if value="{{ r.isFrontier }}" hint-placeholder-val="{{ false }}">
                 <div role="img" aria-label="Frontier Airlines plane and logo" style="position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9%;padding:0 6%;overflow:hidden">
@@ -188,36 +189,39 @@ h1,h2,h3,h4{text-wrap-style:balance}
   </div>
 </section>
 
-<section id="prize" data-hat="prize" aria-labelledby="prize-h" style="position:relative;background:var(--maize);padding:112px clamp(20px,4vw,48px)">
-  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:var(--maize)"></div>
-  <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
-    <div style="position:absolute;left:4%;bottom:14%;font:400 44px/1 var(--font-display);color:var(--brand)">✦</div>
-    <div style="position:absolute;left:38%;top:10%;font:400 24px/1 var(--font-display);color:var(--tangerine)">✦</div>
-    <div style="position:absolute;right:22%;bottom:8%;font:400 30px/1 var(--font-display);color:var(--pink-400)">♡</div>
-  </div>
-  <div style="position:relative;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px">
-    <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start">
-      <img src="./assets/award-rosette.png" alt="Pink first-place rosette" width="180" height="180" style="width:clamp(84px,11.2vw,126px);height:auto;margin-bottom:4px;transform:rotate(-6deg);filter:drop-shadow(0 8px 14px rgba(176,51,85,.22));transition:transform 220ms cubic-bezier(.34,1.56,.64,1)" style-hover="transform:rotate(4deg) scale(1.05)">
+<section id="prize" data-hat="prize" aria-labelledby="prize-h" style="position:relative;background:#FFF390;padding:clamp(88px,9vw,128px) clamp(20px,4vw,48px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:#FFF390"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(56px,7vw,96px)">
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:32px">
       <div id="prize-h">
         <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Thryve · Pitch2Win 2025" title="and this one was" script="award-worthy" hint-size="100%,110px"></x-import>
       </div>
+      <p style="margin:0;font-size:19px;line-height:1.6;max-width:30em;color:var(--ink-700);text-wrap:pretty">I led a team of five, taking Thryve, a health-management app, from research and strategy to UX design and the final investor pitch.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:24px;max-width:30em;padding-top:28px;border-top:2px solid rgba(59,29,42,.15)">
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">1st <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">of 17</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Overall winner</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">5 <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">people</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Team I led</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <div style="font:600 34px/1 var(--font-display);color:var(--ink-900);letter-spacing:-0.01em">Ross <span style="font-weight:500;font-size:16px;color:var(--ink-700);letter-spacing:0">× CEN</span></div>
+            <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Michigan hosts</div>
+          </div>
+      </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:28px">
-      <p style="margin:0;font-size:19px;max-width:34em;text-wrap:pretty">I led a team of five, taking Thryve, a health-management app, from research and strategy to UX design and the final investor pitch.</p>
-      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:20px 32px">
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="font:600 30px/1 var(--font-display);color:var(--ink-900)">1st <span style="font-weight:500;font-size:20px;color:var(--ink-700)">of 17 teams</span></div>
-          <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Overall winner</div>
+    <div style="flex:1 1 380px;min-width:0;max-width:540px;margin:0 auto;position:relative;padding:28px 18px 18px 28px">
+      <figure onClick="{{ openDeck }}" style="cursor:pointer;position:relative;margin:0;background:var(--white);border:2px solid var(--ink-900);border-radius:32px;box-shadow:6px 6px 0 var(--ink-900);padding:14px 14px 18px;transform:rotate(-1deg);transition:transform 320ms var(--ease-bouncy)" style-hover="transform:rotate(0deg) translateY(-4px)">
+        <div style="position:relative;aspect-ratio:2576/1452;border-radius:22px;overflow:hidden;background:var(--pink-50)">
+          <img src="./assets/covers/thryve-pitch2win.png" alt="Thryve app prototype screens from the Pitch2Win pitch" style="width:100%;height:100%;object-fit:contain;display:block">
         </div>
-        <div aria-hidden="true" style="width:2px;align-self:stretch;background:var(--ink-900);opacity:.15;border-radius:2px"></div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="font:600 30px/1 var(--font-display);color:var(--ink-900)">Michigan Ross <span style="font-weight:500;font-size:20px;color:var(--ink-700)">× CEN</span></div>
-          <div style="font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pink-700)">Hosts</div>
-        </div>
-      </div>
-      <div>
-        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.Button" variant="raspberry" on-click="{{ openDeck }}" hint-size="200px,46px">see the pitch deck ✦</x-import>
-      </div>
+        <figcaption style="display:flex;align-items:center;justify-content:center;padding:14px 6px 0;text-align:center">
+          <button type="button" style="appearance:none;background:none;border:0;padding:6px 4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font:600 17px/1.2 var(--font-display);color:var(--ink-900);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:var(--pink-300);transition:color 220ms var(--ease-bouncy)" style-hover="color:var(--wand,#D6085D);text-decoration-color:currentColor">walk through the health management solution <span aria-hidden="true">↗</span></button>
+        </figcaption>
+      </figure>
+      <img src="./assets/award-rosette.png" alt="Pink first-place rosette" width="180" height="180" style="position:absolute;left:-18px;top:-26px;z-index:4;width:clamp(92px,10vw,132px);height:auto;transform:rotate(-10deg);filter:drop-shadow(0 8px 14px rgba(176,51,85,.25));transition:transform 220ms cubic-bezier(.34,1.56,.64,1)" style-hover="transform:rotate(4deg) scale(1.06)">
     </div>
   </div>
 </section>
@@ -228,7 +232,12 @@ h1,h2,h3,h4{text-wrap-style:balance}
     <div id="t-h" style="padding:0 24px">
       <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Kind words" title="notes from people I" script="work with" align="center" hint-size="100%,80px"></x-import>
     </div>
-    <div aria-live="polite" style="position:relative;height:{{ deckH }};overflow:hidden">
+    <div style="position:relative">
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ prevTesti }}" aria-label="Previous testimonial" style="position:absolute;top:{{ sideArrowTop }};left:{{ sideArrowEdge }};z-index:40;width:44px;height:44px;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);box-shadow:0 4px 12px rgba(176,51,85,.14);font:500 22px/1 var(--font-display);display:grid;place-items:center;padding:0 0 3px;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-active="transform:scale(.94);border-color:var(--pink-300)" style-focus-visible="outline:2px solid var(--pink-300);outline-offset:2px">‹</button>
+      <button type="button" onClick="{{ nextTesti }}" aria-label="Next testimonial" style="position:absolute;top:{{ sideArrowTop }};right:{{ sideArrowEdge }};z-index:40;width:44px;height:44px;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);box-shadow:0 4px 12px rgba(176,51,85,.14);font:500 22px/1 var(--font-display);display:grid;place-items:center;padding:0 0 3px;outline:none;-webkit-tap-highlight-color:transparent;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-active="transform:scale(.94);border-color:var(--pink-300)" style-focus-visible="outline:2px solid var(--pink-300);outline-offset:2px">›</button>
+    </sc-if>
+    <div aria-live="polite" onTouchStart="{{ testiTouchStart }}" onTouchEnd="{{ testiTouchEnd }}" style="position:relative;height:{{ deckH }};overflow:hidden;touch-action:pan-y">
       <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
         <figure aria-hidden="{{ t.hidden }}" onClick="{{ t.go }}" style="position:absolute;left:50%;top:20px;width:{{ cardW }};height:{{ cardH }};margin:0 0 0 {{ cardML }};box-sizing:border-box;background:{{ t.bg }};border:2px solid {{ t.bd }};border-radius:36px;box-shadow:{{ t.shadow }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:18px;overflow:hidden;z-index:{{ t.z }};opacity:{{ t.opacity }};pointer-events:{{ t.pe }};transform:translateX({{ t.x }}) scale({{ t.scale }}) rotate({{ t.rot }});transition:transform .6s var(--ease-soft),opacity .4s ease,background .3s ease">
           <div style="display:flex;align-items:center;gap:14px;opacity:{{ t.contentOp }};transition:opacity .3s ease">
@@ -244,8 +253,9 @@ h1,h2,h3,h4{text-wrap-style:balance}
         </figure>
       </sc-for>
     </div>
+    </div>
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:-36px">
-      <button type="button" onClick="{{ prevTesti }}" aria-label="Previous testimonial" style="width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);display:grid;place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">‹</button>
+      <button type="button" onClick="{{ prevTesti }}" aria-label="Previous testimonial" style="display:{{ bottomArrowDisp }};width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">‹</button>
       <sc-if value="{{ showDots }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;align-items:center;gap:2px">
         <sc-for list="{{ testimonials }}" as="t">
@@ -258,7 +268,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
       <sc-if value="{{ hideDots }}" hint-placeholder-val="{{ false }}">
         <span aria-live="polite" style="min-width:64px;text-align:center;font:500 13px/1 var(--font-mono);letter-spacing:.08em;color:var(--pink-700)">{{ testiCount }}</span>
       </sc-if>
-      <button type="button" onClick="{{ nextTesti }}" aria-label="Next testimonial" style="width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);display:grid;place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">›</button>
+      <button type="button" onClick="{{ nextTesti }}" aria-label="Next testimonial" style="display:{{ bottomArrowDisp }};width:44px;height:44px;flex:none;border-radius:999px;border:2px solid var(--pink-200);background:#fff;color:var(--pink-700);font:500 22px/1 var(--font-display);place-items:center;transition:transform 220ms var(--ease-bouncy),border-color 140ms" style-hover="transform:translateY(-2px);border-color:var(--pink-700)">›</button>
     </div>
   </div>
 </section>
@@ -266,7 +276,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
 </main>
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
 
-<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:12px">
+<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
   <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
   <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
     <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
@@ -324,7 +334,7 @@ const TABS = [
 const TAG_TONES = ['pink', 'sky', 'lemon', 'mint', 'tangerine'];
 const PROJECTS = {
   design: [
-    { featured: true, gif: __res('./assets/covers/pitch2win-design.gif'), tags: ['1st place · Pitch2Win 2025', 'UX/UI Design'], title: 'Pitch2Win: from sketches to a stage-ready prototype', desc: 'Designing and testing the prototype the judges saw on stage.' },
+    { featured: true, gif: __res('./assets/covers/thryve-pitch2win.png'), tags: ['1st place · Pitch2Win 2025', 'UX/UI Design'], title: 'Pitch2Win: from sketches to a stage-ready prototype', desc: 'Designing and testing the prototype the judges saw on stage.' },
     { tags: ['UX/UI', 'Haptiq'], title: 'Product flows shipped with the Haptiq team', desc: 'End-to-end UX and UI work, from research readout to handoff.' },
     { tags: ['WCAG 2.1 AA', 'Accessibility'], title: 'Making navigation work for assistive tech', desc: 'An accessibility audit and redesign for keyboard and screen-reader users.' },
     { tags: ['UX/UI'], title: '[UX/UI project title]', desc: '[One line: the problem and what you designed.]' },
@@ -366,7 +376,11 @@ class Component extends DCLogic {
   planeEl() {
     if (!this._plane) this._plane = React.createElement('img', {
       src: __res('./assets/frontier-plane.png'), alt: '', 'aria-hidden': 'true', className: 'frontier-plane',
-      style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', display: 'block' }
+      style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', display: 'block' },
+      ref: (el) => {
+        if (!el || el.__fpObs) return; el.__fpObs = true;
+        new IntersectionObserver(([e]) => { el.classList.toggle('fp-inview', e.isIntersecting); }, { threshold: 0.6 }).observe(el.parentElement.parentElement);
+      }
     });
     return this._plane;
   }
@@ -464,7 +478,20 @@ class Component extends DCLogic {
     this.timers.tab = setTimeout(() => this.setState({ shownTab: id, fading: false }), 200);
   }
 
-  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: mobile ? '1 / 1' : '16 / 9', href: p.href || '#', tags: [], hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif), media: p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); const a = v.closest('a'); if (a && !a.__hoverVid) { a.__hoverVid = true; a.addEventListener('mouseenter', () => { v.play().catch(() => {}); }); a.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; }); a.addEventListener('focus', () => { v.play().catch(() => {}); }); a.addEventListener('blur', () => { v.pause(); v.currentTime = 0; }); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'auto', style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif, slot: p.slot || `cover-work-${i}`,
+  scrollCoverRef(src) {
+    this._coverRefs = this._coverRefs || {};
+    return this._coverRefs[src] || (this._coverRefs[src] = (el) => {
+      if (!el || el.__scrollCover) return; el.__scrollCover = true;
+      let blob = null, url = null;
+      const show = () => { if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(blob); el.style.backgroundImage = 'url(' + url + ')'; };
+      fetch(src).then(r => r.blob()).then(b => { blob = b; }).catch(() => { el.style.backgroundImage = 'url(' + src + ')'; });
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { const go = () => blob ? show() : setTimeout(go, 80); go(); }
+        else { el.style.backgroundImage = 'none'; }
+      }, { threshold: 0.5 }).observe(el);
+    });
+  }
+  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', tags: [], hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif), media: p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'auto', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif, slot: p.slot || `cover-work-${i}`,
         tagList: (p.tags || []).map((t, j) => ({ label: t, tone: TAG_TONES[(i + j) % TAG_TONES.length] })) })); }
   renderVals() {
     if (!this.walkerEl) {
@@ -518,7 +545,7 @@ class Component extends DCLogic {
         else if (k === 'resume') (window.AMGo ? window.AMGo('resume.html') : (window.location.href = 'resume.html'));
         else if (k === 'playground') (window.AMGo ? window.AMGo('playground.html') : (window.location.href = 'playground.html'));
       },
-      soundOn: s.soundOn, soundOff: !s.soundOn, soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
+      soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex', soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
       soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
       tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
       tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px',
@@ -543,11 +570,11 @@ class Component extends DCLogic {
       activeTabLabel: activeTab.label, panelBg: activeTab.color,
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
       leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile),
-      research: RESEARCH.map((r, i) => ({ ...r, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
+      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
       goWork: () => this.scrollToId('work'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
       deckH: (cardH + 60) + 'px', cardW: cardW + 'px', cardH: cardH + 'px', cardML: (-cardW / 2) + 'px',
-      cardPad: mobile ? '24px' : '36px', quoteFs: mobile ? '15px' : '17px',
+      cardPad: mobile ? '24px 32px' : '36px', quoteFs: mobile ? '15px' : '17px',
       testimonials: TESTIMONIALS.map((t, i) => {
         let rel = i - s.testiIdx;
         if (rel > n / 2) rel -= n; if (rel < -n / 2) rel += n;
@@ -562,6 +589,9 @@ class Component extends DCLogic {
           dotLabel: `Testimonial ${i + 1}: ${t.name}`, go: () => this.goTesti(i) };
       }),
       prevTesti: () => this.goTesti(s.testiIdx - 1), nextTesti: () => this.goTesti(s.testiIdx + 1),
+      isMobile: mobile, bottomArrowDisp: mobile ? 'none' : 'grid', sideArrowTop: (20 + cardH / 2 - 22) + 'px', sideArrowEdge: `calc(50% - ${cardW / 2 + 22}px)`,
+      testiTouchStart: (e) => { const p = e.touches[0]; this.tx = p.clientX; this.ty = p.clientY; },
+      testiTouchEnd: (e) => { if (this.tx == null) return; const p = e.changedTouches[0], dx = p.clientX - this.tx, dy = p.clientY - this.ty; this.tx = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) this.goTesti(s.testiIdx + (dx < 0 ? 1 : -1)); },
       pauseTesti: () => this.pauseTesti(), resumeTestiLater: () => this.resumeTestiLater(),
       onTestimonialKey: (e) => { if (e.key === 'ArrowLeft') this.goTesti(s.testiIdx - 1); if (e.key === 'ArrowRight') this.goTesti(s.testiIdx + 1); }
     };

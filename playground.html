@@ -60,7 +60,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
       <div id="shelf-h">
         <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Books" title="books that" script="shaped me" align="center" hint-size="100%,80px"></x-import>
       </div>
-      <x-import component-from-global-scope="am-bookshelf" from="./bookshelf.js" hint-size="100%,560px"></x-import>
+      <x-import component-from-global-scope="am-bookshelf" from="./bookshelf.js" hint-size="100%,300px"></x-import>
     </section>
     <section id="photos" aria-labelledby="photo-h" style="display:flex;flex-direction:column;gap:40px;scroll-margin-top:150px">
       <div id="photo-h">
@@ -93,7 +93,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
   </div>
 </main>
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
-<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:12px">
+<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
   <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
   <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
     <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
@@ -161,7 +161,7 @@ class Component extends DCLogic {
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fb); else fb();
       },
       copyText: this.state.copied ? 'copied ✦' : 'copy', copyBg: this.state.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: this.state.copied ? 'var(--white)' : 'var(--pink-700)',
-      soundOn: s.soundOn, soundOff: !s.soundOn,
+      soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex',
       soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
       toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
       soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',

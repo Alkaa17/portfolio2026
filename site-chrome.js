@@ -1,8 +1,8 @@
 /* Global site chrome: <site-header active="work|resume|playground"> and <site-footer>. Single source for every page. */
 (function () {
   if (customElements.get('site-header')) return;
-  var HOME = 'Portfolio v4.dc.html';
-  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'résumé', href: 'Resume v3.dc.html' }, { key: 'playground', label: 'playground', href: 'Playground.dc.html' }];
+  var HOME = 'index.html';
+  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'résumé', href: 'resume.html' }, { key: 'playground', label: 'playground', href: 'playground.html' }];
   var EMAIL = 'alkamahapatra99@gmail.com';
   var CAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ17eQf9wzg3K0u9CMDXwZlbNp9Bmsvc-OJ-10tZGEf5sOO54zEkWEoEdCYMKohAlRRW5dqphsPh?gv=true';
   var EASE = 'cubic-bezier(.34,1.56,.64,1)';
@@ -55,7 +55,7 @@
   document.head.appendChild(css);
 
   var mq = matchMedia('(max-width: 767px)');
-  var isHome = function () { return /Portfolio%20v4\.dc\.html$|Portfolio v4\.dc\.html$/.test(decodeURI(location.pathname)) || /Portfolio%20v4/.test(location.pathname); };
+  var isHome = function () { return /(^|\/)(index\.html)?$/.test(location.pathname); };
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var go = function (url) { if (window.AMGo) window.AMGo(url); else location.href = url; };
 
