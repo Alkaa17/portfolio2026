@@ -36,6 +36,14 @@ sed -i '' "${sed_args[@]}" *.html *.js
 # Home-page check in the nav: match / and /index.html instead of the old filename.
 sed -i '' 's#var isHome = function () { return .*#var isHome = function () { return /(^|\\/)(index\\.html)?$/.test(location.pathname); };#' site-chrome.js
 
+# Favicon: add the link tag after the viewport meta if a page doesn't have it.
+for f in *.html; do
+  grep -q 'rel="icon"' "$f" || sed -i '' '/<meta name="viewport"/a\
+<link rel="icon" type="image/png" href="assets/favicon.png">\
+<link rel="apple-touch-icon" href="assets/favicon.png">
+' "$f"
+done
+
 leftover=$(grep -lE "Portfolio v4|Resume v3|Playground\.dc|Case Study\.html|Portfolio%20" *.html *.js || true)
 if [ -n "$leftover" ]; then
   echo "warning: old page names still referenced in:"
