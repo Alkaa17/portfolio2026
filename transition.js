@@ -1,4 +1,4 @@
-/* Fullscreen page-transition + loading curtain. window.AMGo(url) navigates with the curtain; same-origin <a href="*.html"> clicks are intercepted. */
+/* Fullscreen page-transition + loading curtain. window.AMGo(url) navigates with the curtain; same-origin page-link clicks (clean URLs or *.html) are intercepted. */
 (function () {
   if (window.AMGo) return;
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -83,7 +83,7 @@
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
     var u = new URL(a.getAttribute('href'), location.href);
-    if (u.origin !== location.origin || !/\.html$/i.test(u.pathname)) return;
+    if (u.origin !== location.origin || !/(\.html|\/[^.]*)$/i.test(u.pathname)) return;
     if (u.pathname === location.pathname) return;
     e.preventDefault();
     window.AMGo(u.href);

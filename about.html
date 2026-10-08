@@ -263,9 +263,9 @@ class Component extends DCLogic {
       onCta: () => this.setState({ chatOpen: true }),
       chatOpen: !!this.state.chatOpen, closeChat: () => this.setState({ chatOpen: false }),
       onNavigate: (k) => {
-        if (k === 'home') (window.AMGo ? window.AMGo('index.html') : (window.location.href = 'index.html'));
-        else if (k === 'work') (window.AMGo ? window.AMGo('index.html#work') : (window.location.href = 'index.html#work'));
-        else if (k === 'playground') (window.AMGo ? window.AMGo('playground.html') : (window.location.href = 'playground.html'));
+        if (k === 'home') (window.AMGo ? window.AMGo('/') : (window.location.href = '/'));
+        else if (k === 'work') (window.AMGo ? window.AMGo('/#projects') : (window.location.href = '/#projects'));
+        else if (k === 'playground') (window.AMGo ? window.AMGo('/playground') : (window.location.href = '/playground'));
       },
       downloadPdf: () => { const a = document.createElement('a'); a.href = './assets/Alka-Mahapatra-Resume.pdf'; a.download = 'Alka Mahapatra - Resume.pdf'; document.body.appendChild(a); a.click(); a.remove(); },
       flower: this.flowerEl || (this.flowerEl = React.createElement('span', { style: { position: 'relative', flex: 'none', alignSelf: 'center', display: 'block', width: 42, height: 42 } },

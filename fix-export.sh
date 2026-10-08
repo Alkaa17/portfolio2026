@@ -4,34 +4,46 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# exported name : file on disk : clean URL used in links (see vercel.json)
 PAGES=(
-  "Portfolio v4.dc.html:index.html"
-  "Resume v3.dc.html:about.html"
-  "Playground.dc.html:playground.html"
-  "Poe Case Study.html:poe.html"
-  "Frontier Case Study.html:frontier.html"
-  "Ayurveda Case Study.html:ayurveda.html"
-  "NCCI Case Study.html:ncci.html"
+  "Portfolio v4.dc.html:index.html:/"
+  "Resume v3.dc.html:about.html:/aboutme"
+  "Playground.dc.html:playground.html:/playground"
+  "Poe Case Study.html:poe.html:/poe"
+  "Frontier Case Study.html:frontier.html:/frontier"
+  "Ayurveda Case Study.html:ayurveda.html:/ayurveda"
+  "NCCI Case Study.html:ncci.html:/ncci"
 )
 
 for pair in "${PAGES[@]}"; do
   old="${pair%%:*}"
-  new="${pair##*:}"
+  rest="${pair#*:}"
+  new="${rest%%:*}"
   if [ -e "$old" ]; then
     mv -f "$old" "$new"
     echo "renamed: $old -> $new"
   fi
 done
 
-# Rewrite links to the old names in every page and script.
-sed_args=(-e "s/Portfolio v4\.dc\.html#work/index.html#work/g")
+# Rewrite links to the old names (and old .html names) to clean URLs in every page and script.
+sed_args=(-e "s|Portfolio v4\.dc\.html#work|/#projects|g" -e "s|'index\.html#work'|'/#projects'|g")
 for pair in "${PAGES[@]}"; do
   old="${pair%%:*}"
-  new="${pair##*:}"
+  rest="${pair#*:}"
+  file="${rest%%:*}"
+  url="${rest#*:}"
   old_re="${old//./\\.}"
-  sed_args+=(-e "s/'$old_re'/'$new'/g")
+  file_re="${file//./\\.}"
+  sed_args+=(-e "s|'$old_re'|'$url'|g" -e "s|'$file_re'|'$url'|g")
 done
 sed -i '' "${sed_args[@]}" *.html *.js
+
+# Home-page work section is addressed as /#projects.
+sed -i '' -e 's/<section id="work" /<section id="projects" /' \
+  -e "s/if (location.hash === '#work') this.landOnWork/if (location.hash === '#projects' || location.hash === '#work') this.landOnWork/" \
+  -e "s/getElementById('work')/getElementById('projects')/g" \
+  -e "s/scrollToId('work')/scrollToId('projects')/g" index.html
+sed -i '' -e "s/getElementById('work')/getElementById('projects')/g" -e "s|HOME + '#work'|HOME + '#projects'|" site-chrome.js
 
 # Home-page check in the nav: match / and /index.html instead of the old filename.
 sed -i '' 's#var isHome = function () { return .*#var isHome = function () { return /(^|\\/)(index\\.html)?$/.test(location.pathname); };#' site-chrome.js

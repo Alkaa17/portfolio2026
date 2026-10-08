@@ -107,7 +107,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
   </div>
 </section>
 
-<section id="work" data-hat="work" aria-labelledby="work-h" style="position:relative;background:var(--cream);padding:96px clamp(20px,4vw,48px)">
+<section id="projects" data-hat="work" aria-labelledby="work-h" style="position:relative;background:var(--cream);padding:96px clamp(20px,4vw,48px)">
   <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-20px;height:20px;background:var(--scallop-bottom);color:var(--cream)"></div>
   <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:56px">
     <div id="work-h">
@@ -357,12 +357,12 @@ const PROJECTS = {
   ]
 };
 const RESEARCH = [
-  { org: 'Frontier Airlines · UX redesign', year: '2025', href: 'frontier.html', frontier: true, title: 'Booking without the tricks: redesigning Frontier’s ticketing flow', desc: 'Stripping hidden fees, pushy upsells and pre-checked boxes out of the booking flow to rebuild trust.' },
-  { org: 'Poe by Quora · UX research', year: '2025', href: 'poe.html', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Every AI in one app: does Poe make it feel simple?', desc: 'A mixed-method UX evaluation of Quora’s AI chatbot aggregator, the app that brings ChatGPT, Claude, DeepSeek and more into one place.' }
+  { org: 'Frontier Airlines · UX redesign', year: '2025', href: '/frontier', frontier: true, title: 'Booking without the tricks: redesigning Frontier’s ticketing flow', desc: 'Stripping hidden fees, pushy upsells and pre-checked boxes out of the booking flow to rebuild trust.' },
+  { org: 'Poe by Quora · UX research', year: '2025', href: '/poe', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Every AI in one app: does Poe make it feel simple?', desc: 'A mixed-method UX evaluation of Quora’s AI chatbot aggregator, the app that brings ChatGPT, Claude, DeepSeek and more into one place.' }
 ];
 const WORK = [
-  { org: 'The Ayurveda Experience · Product & growth design', year: '2022–24', href: 'ayurveda.html', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Designing for growth across the customer journey', desc: 'Emails, long-form landing pages, buy box, checkout, order tracking and the mobile app, designed and tested for the women at the heart of the brand.' },
-  { org: 'NCCI · Website redesign', year: '2023', href: 'ncci.html', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'From archive to mission: redesigning the Network for Conserving Central India', desc: 'A Weebly-to-Wix migration that rebuilt the IA, visual system and homepage, turning a decade of conservation records into a clear, mission-driven website.' },
+  { org: 'The Ayurveda Experience · Product & growth design', year: '2022–24', href: '/ayurveda', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Designing for growth across the customer journey', desc: 'Emails, long-form landing pages, buy box, checkout, order tracking and the mobile app, designed and tested for the women at the heart of the brand.' },
+  { org: 'NCCI · Website redesign', year: '2023', href: '/ncci', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'From archive to mission: redesigning the Network for Conserving Central India', desc: 'A Weebly-to-Wix migration that rebuilt the IA, visual system and homepage, turning a decade of conservation records into a clear, mission-driven website.' },
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
@@ -408,9 +408,9 @@ class Component extends DCLogic {
     }, { rootMargin: '-45% 0px -45% 0px' });
     root.querySelectorAll('[data-hat]').forEach(s => this.io.observe(s));
     if (!this.reduced && (this.props.autoplay ?? true)) this.startTesti();
-    if (location.hash === '#work') this.landOnWork();
+    if (location.hash === '#projects' || location.hash === '#work') this.landOnWork();
   }
-  // Arriving from another page: keep snapping to #work while layout settles (images/fonts shift it)
+  // Arriving from another page: keep snapping to #projects while layout settles (images/fonts shift it)
   landOnWork() {
     history.scrollRestoration = 'manual';
     let tries = 0, lastTop = null, stable = 0, userMoved = false;
@@ -418,7 +418,7 @@ class Component extends DCLogic {
     ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, stop, { once: true, passive: true }));
     const tick = () => {
       if (userMoved || tries++ > 60) return;
-      const el = document.getElementById('work');
+      const el = document.getElementById('projects');
       if (el) {
         const top = el.getBoundingClientRect().top + window.scrollY - NAV_H + 2;
         window.scrollTo({ top, behavior: 'instant' });
@@ -544,9 +544,9 @@ class Component extends DCLogic {
       chatOpen: !!this.state.chatOpen, closeChat: () => this.setState({ chatOpen: false }),
       onNavigate: (k) => {
         if (k === 'home') window.scrollTo({ top: 0, behavior: this.reduced ? 'auto' : 'smooth' });
-        else if (k === 'work') this.scrollToId('work');
-        else if (k === 'resume') (window.AMGo ? window.AMGo('about.html') : (window.location.href = 'about.html'));
-        else if (k === 'playground') (window.AMGo ? window.AMGo('playground.html') : (window.location.href = 'playground.html'));
+        else if (k === 'work') this.scrollToId('projects');
+        else if (k === 'resume') (window.AMGo ? window.AMGo('/aboutme') : (window.location.href = '/aboutme'));
+        else if (k === 'playground') (window.AMGo ? window.AMGo('/playground') : (window.location.href = '/playground'));
       },
       soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex', soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
       soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
@@ -574,7 +574,7 @@ class Component extends DCLogic {
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
       leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile),
       research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
-      goWork: () => this.scrollToId('work'),
+      goWork: () => this.scrollToId('projects'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
       deckH: (cardH + 60) + 'px', cardW: cardW + 'px', cardH: cardH + 'px', cardML: (-cardW / 2) + 'px',
       cardPad: mobile ? '24px 32px' : '36px', quoteFs: mobile ? '15px' : '17px',

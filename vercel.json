@@ -1,6 +1,12 @@
 {
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/aboutme", "destination": "/about.html" }
+  ],
   "redirects": [
-    { "source": "/resume.html", "destination": "/about.html", "permanent": true },
-    { "source": "/resume", "destination": "/about.html", "permanent": true }
+    { "source": "/about", "destination": "/aboutme", "permanent": true },
+    { "source": "/about.html", "destination": "/aboutme", "permanent": true },
+    { "source": "/resume.html", "destination": "/aboutme", "permanent": true },
+    { "source": "/resume", "destination": "/aboutme", "permanent": true }
   ]
 }
