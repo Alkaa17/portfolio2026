@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/aboutme", "destination": "/about.html" }
+    { "source": "/aboutme", "destination": "/about" }
   ],
   "redirects": [
     { "source": "/about", "destination": "/aboutme", "permanent": true },
