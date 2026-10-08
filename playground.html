@@ -183,8 +183,8 @@ class Component extends DCLogic {
         return { id: 'painting-' + n, tilt: ART_TILTS[i], caption: ART_CAPTIONS[n] || '', tone: ART_TONES[i % ART_TONES.length], span: land && cols > 1 ? 2 : 1,
           ratio: land ? (cols === 2 ? '16/9' : cols === 1 ? '4/3' : '3/2') : '3/4' }; }),
       photos: [0,1,2,3,4,5].map(i => ({ id: 'photo-' + (i + 1), tilt: TILTS[(i + 2) % 6], tapeTilt: i % 2 ? '4deg' : '-3deg', tape: TAPES[i] })),
-      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }]
-        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }, { key: 'playground', label: 'playground' }],
+      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'about me' }]
+        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'about me' }, { key: 'playground', label: 'playground' }],
       navStyle: mobile ? { padding: '14px 16px' } : undefined,
       ctaLabel: mobile ? null : "let's chat ✦",
       onCta: () => this.setState({ chatOpen: true }),
@@ -192,7 +192,7 @@ class Component extends DCLogic {
       onNavigate: (k) => {
         if (k === 'home') (window.AMGo ? window.AMGo('index.html') : (window.location.href = 'index.html'));
         else if (k === 'work') (window.AMGo ? window.AMGo('index.html#work') : (window.location.href = 'index.html#work'));
-        else if (k === 'resume') (window.AMGo ? window.AMGo('resume.html') : (window.location.href = 'resume.html'));
+        else if (k === 'resume') (window.AMGo ? window.AMGo('about.html') : (window.location.href = 'about.html'));
       }
     };
   }

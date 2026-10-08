@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 
 PAGES=(
   "Portfolio v4.dc.html:index.html"
-  "Resume v3.dc.html:resume.html"
+  "Resume v3.dc.html:about.html"
   "Playground.dc.html:playground.html"
   "Poe Case Study.html:poe.html"
   "Frontier Case Study.html:frontier.html"

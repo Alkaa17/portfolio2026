@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/resume.html", "destination": "/about.html", "permanent": true },
+    { "source": "/resume", "destination": "/about.html", "permanent": true }
+  ]
+}

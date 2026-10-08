@@ -2,7 +2,7 @@
 (function () {
   if (customElements.get('site-header')) return;
   var HOME = 'index.html';
-  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'résumé', href: 'resume.html' }, { key: 'playground', label: 'playground', href: 'playground.html' }];
+  var LINKS = [{ key: 'work', label: 'work', href: HOME + '#work' }, { key: 'resume', label: 'about me', href: 'about.html' }, { key: 'playground', label: 'playground', href: 'playground.html' }];
   var EMAIL = 'alkamahapatra99@gmail.com';
   var CAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ17eQf9wzg3K0u9CMDXwZlbNp9Bmsvc-OJ-10tZGEf5sOO54zEkWEoEdCYMKohAlRRW5dqphsPh?gv=true';
   var EASE = 'cubic-bezier(.34,1.56,.64,1)';

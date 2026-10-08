@@ -255,8 +255,8 @@ class Component extends DCLogic {
       experience: this.cards(EXPERIENCE, 'exp'), education: this.cards(EDUCATION, 'edu'),
       toolGroups: TOOL_GROUPS, fullW: { width: '100%' },
       asidePos: s.vw < 860 ? 'static' : 'sticky',
-      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }]
-        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'résumé' }, { key: 'playground', label: 'playground' }],
+      navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'about me' }]
+        : [{ key: 'work', label: 'work' }, { key: 'resume', label: 'about me' }, { key: 'playground', label: 'playground' }],
       navStyle: mobile ? { padding: '14px 16px' } : undefined,
       ctaLabel: mobile ? null : "let's chat ✦",
       onCta: () => this.setState({ chatOpen: true }),
