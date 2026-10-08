@@ -132,12 +132,12 @@ const ART_TONES = ['var(--maize)', 'var(--pink-100)', 'var(--vanilla)'];
 const ART_TILTS = ['-1deg', '1.5deg', '-1.5deg', '1.2deg', '-0.8deg', '0.6deg', '1deg', '0.8deg', '0.6deg', '-0.8deg'];
 const TAPES = ['var(--pink-300)', 'var(--maize)', 'var(--sky)', 'var(--mint)', 'var(--lemon)', 'var(--tangerine)'];
 class Component extends DCLogic {
-  state = { vw: 1200, soundOn: true, tip: false, active: 'books' };
+  state = { vw: 1200, soundOn: false, tip: false, active: 'books' };
   wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.t = setTimeout(go, 50)); go(); }
   componentDidMount() {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
-    this.setState({ soundOn: localStorage.getItem('am-wand-sound') !== 'off' });
+    this.setState({ soundOn: localStorage.getItem('am-wand-sound') === 'on' });
     this.wand(w => { w.init(); w.set({ style: 'shimmer' }); });
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();

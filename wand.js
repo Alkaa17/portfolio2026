@@ -5,7 +5,7 @@
   const COLORS = ['#FA4A7B', '#F4AF30', '#FCA5B5', '#72C1E2', '#FFF184', '#D9B8D6'];
   // C-major pentatonic, C6 upward
   const P = [1046.5, 1174.7, 1318.5, 1568, 1760, 2093, 2349.3, 2637, 3136, 3520, 4186];
-  const cfg = { sound: localStorage.getItem('am-wand-sound') !== 'off', style: 'shimmer', trail: true };
+  const cfg = { sound: localStorage.getItem('am-wand-sound') === 'on', style: 'shimmer', trail: true };
   let ac, out, started = false, lastT = 0, lx = -99, ly = -99, live = 0;
 
   function audio() {

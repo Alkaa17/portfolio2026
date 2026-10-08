@@ -16,7 +16,7 @@
     const wrap = document.createElement('div'); wrap.className = 'am-snd';
     wrap.innerHTML = '<span class="am-snd-tip" role="tooltip"></span><button type="button"></button>';
     const tip = wrap.firstChild, btn = wrap.lastChild;
-    let on = localStorage.getItem('am-wand-sound') !== 'off';
+    let on = localStorage.getItem('am-wand-sound') === 'on';
     const paint = () => {
       btn.innerHTML = on ? ON : OFF;
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');

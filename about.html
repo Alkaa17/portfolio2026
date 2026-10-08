@@ -200,12 +200,12 @@ const TOOL_GROUPS = [
 ];
 
 class Component extends DCLogic {
-  state = { copied: false, vw: 1200, open: { 'edu-0': true, 'exp-0': true }, soundOn: true, tip: false };
+  state = { copied: false, vw: 1200, open: { 'edu-0': true, 'exp-0': true }, soundOn: false, tip: false };
   wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.t = setTimeout(go, 50)); go(); }
   componentDidMount() {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
-    this.setState({ soundOn: localStorage.getItem('am-wand-sound') !== 'off' });
+    this.setState({ soundOn: localStorage.getItem('am-wand-sound') === 'on' });
     this.wand(w => { w.init(); w.set({ style: this.props.wandSoundStyle ?? 'shimmer' }); });
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
