@@ -191,7 +191,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
               <image-slot id="{{ p.slot }}" shape="rect" placeholder="Project cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
             </sc-if>
             <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
-              <span style="position:absolute;left:20px;top:20px;padding:10px 16px;border-radius:999px;background:var(--cream);border:2px solid var(--ink-900);font:500 12px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--ink-900);pointer-events:none">{{ p.badge }}</span>
+              <span style="position:absolute;right:12px;top:12px;padding:6px 10px;border-radius:999px;background:var(--pink-100);font:500 10px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700);pointer-events:none">{{ p.badge }}</span>
             </sc-if>
           </div>
           </div>
@@ -219,6 +219,9 @@ h1,h2,h3,h4{text-wrap-style:balance}
               <sc-if value="{{ r.noCover }}" hint-placeholder-val="{{ true }}">
                 <image-slot id="{{ r.slot }}" shape="rect" placeholder="Research cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
               </sc-if>
+              <sc-if value="{{ r.hasBadge }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;right:12px;top:12px;padding:6px 10px;border-radius:999px;background:var(--pink-100);font:500 10px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700);pointer-events:none">{{ r.badge }}</span>
+              </sc-if>
             </div>
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
@@ -233,16 +236,13 @@ h1,h2,h3,h4{text-wrap-style:balance}
         <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:28px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
           <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
           <div style="position:relative;border-radius:28px;overflow:hidden;background:#FFF2F6;box-shadow:0 0 0 2px var(--pink-200);transition:transform var(--dur-base) var(--ease-bouncy),box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
-            <div style="display:flex;align-items:center;gap:22px;padding:16px 24px;border-bottom:2px solid var(--pink-200)"><span aria-hidden="true" style="display:flex;gap:8px"><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i></span><span style="font:400 16px/1.2 var(--font-body);color:var(--ink-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.url }}</span></div>
+            <div style="display:flex;align-items:center;gap:22px;padding:16px 24px;border-bottom:2px solid var(--pink-200)"><span aria-hidden="true" style="display:flex;gap:8px"><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i><i style="width:14px;height:14px;border-radius:50%;background:var(--pink-200)"></i></span><span style="font:400 16px/1.2 var(--font-body);color:var(--ink-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.url }}</span><span style="margin-left:auto;flex-shrink:0;padding:6px 10px;border-radius:999px;background:var(--pink-100);font:500 10px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700);pointer-events:none">{{ p.badge }}</span></div>
             <div style="position:relative;aspect-ratio:{{ p.ratio }};overflow:hidden;background:var(--pink-50)">
             <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
               {{ p.media }}
             </sc-if>
             <sc-if value="{{ p.noVideo }}" hint-placeholder-val="{{ true }}">
               <image-slot id="{{ p.slot }}" shape="rect" placeholder="Project cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
-            </sc-if>
-            <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
-              <span style="position:absolute;left:20px;top:20px;padding:10px 16px;border-radius:999px;background:var(--cream);border:2px solid var(--ink-900);font:500 12px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--ink-900);pointer-events:none">{{ p.badge }}</span>
             </sc-if>
             </div>
           </div>
@@ -423,12 +423,12 @@ const PROJECTS = {
   ]
 };
 const RESEARCH = [
-  { org: 'UX research · Interaction design', year: '2025', href: '/frontier', frontier: true, title: 'Making airline booking honest for travellers without losing upsell revenue', desc: 'As UX researcher and designer, I tested with 6 users and rebuilt the flow without hidden fees or pre-checked add-ons. Reported trust rose 65%.' },
-  { org: 'Mixed-method UX research', year: '2025', href: '/poe', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
+  { org: 'UX research · Interaction design', year: '2025', href: '/frontier', badge: 'Travel · Airline', frontier: true, title: 'Making airline booking honest for travellers without losing upsell revenue', desc: 'As UX researcher and designer, I tested with 6 users and rebuilt the flow without hidden fees or pre-checked add-ons. Reported trust rose 65%.' },
+  { org: 'Mixed-method UX research', year: '2025', href: '/poe', badge: 'AI · Consumer tech', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
 ];
 const WORK = [
-  { org: 'CRO strategy · CX/UX design · Visual design · Team lead', year: '2022–24', href: '/ayurveda', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
-  { org: 'Website redesign · Information architecture · Visual design', year: '2023', href: '/ncci', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'Making conservation research easy to find for visitors and easy to publish for the team', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
+  { org: 'CRO strategy · CX/UX design · Visual design · Team lead', year: '2022–24', href: '/ayurveda', badge: 'D2C e-commerce · Beauty & Wellness', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
+  { org: 'Website redesign · Information architecture · Visual design', year: '2023', href: '/ncci', badge: 'Nonprofit · Conservation', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'Making conservation research easy to find and easy to publish', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
@@ -639,7 +639,7 @@ class Component extends DCLogic {
       activeTabLabel: activeTab.label, panelBg: activeTab.color,
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
       leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile),
-      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
+      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasBadge: !!r.badge, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
       goWork: () => this.scrollToId('projects'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
       deckH: (cardH + 60) + 'px', cardW: cardW + 'px', cardH: cardH + 'px', cardML: (-cardW / 2) + 'px',
