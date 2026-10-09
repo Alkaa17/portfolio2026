@@ -86,6 +86,11 @@ sed -i '' "s#return (m\&\&r\&\&r\[m.getAttribute('data-resource-id')\])||p;};#re
 # Hero walk frames (the mobile LCP element) are served as WebP, about half the size of the PNGs.
 sed -i '' 's/alka-walk-\([12]\)\.png/alka-walk-\1.webp/g' index.html
 
+# Static header + hero painted straight from the HTML so the first fold doesn't wait on
+# React (see hero-shell.html). Re-inserted fresh each run so edits to the partial apply.
+sed -i '' '/<!-- hero-shell:/,/<!-- \/hero-shell -->/d' index.html
+sed -i '' '/^<body>$/r hero-shell.html' index.html
+
 # Below-the-fold media shouldn't compete with the hero for bandwidth.
 sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: 'metadata'/g" \
   -e 's|<img src="./assets/covers/thryve-pitch2win.png" alt=|<img src="./assets/covers/thryve-pitch2win.png" loading="lazy" decoding="async" alt=|' index.html

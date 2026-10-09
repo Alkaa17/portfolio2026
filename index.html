@@ -51,6 +51,62 @@
 <script src="/clarity.js" async></script>
 </head>
 <body>
+<!-- hero-shell: static copy of the header + hero, painted before React boots. fix-export.sh inserts this after <body>; it removes itself once the real hero has rendered. -->
+<style>
+@font-face{font-family:"Fredoka";font-weight:400 700;font-display:swap;src:url("_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts/Fredoka-400.woff2") format("woff2")}
+@font-face{font-family:"Figtree";font-weight:400 700;font-display:swap;src:url("_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts/Figtree-400.woff2") format("woff2")}
+@font-face{font-family:"Pacifico";font-weight:400;font-display:swap;src:url("_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts/Pacifico-400.woff2") format("woff2")}
+body{margin:0}
+#hero-shell{position:absolute;top:0;left:0;right:0;z-index:40;background:#FFFCF5;color:#3B1D2A;font-family:"Figtree","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased;pointer-events:none}
+.hs-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 32px;border-bottom:2px solid #FFE3EA;background:#FFFCF5}
+.hs-nav img{height:86px;width:auto;display:block}
+.hs-links{display:flex;align-items:center;gap:6px}
+.hs-links span{padding:12px 21px;font:500 20px/1 "Fredoka",system-ui,sans-serif;color:#5E3847}
+.hs-links b{display:inline-flex;align-items:center;height:47px;padding:0 21px;margin-left:10px;border-radius:999px;background:#FA4A7B;color:#fff;font:600 17px/1 "Fredoka",system-ui,sans-serif;box-sizing:border-box;border:2px solid #FA4A7B}
+.hs-burger{display:none;padding:10px;width:44px;height:44px;border-radius:999px;border:2px solid #FCC6D3;background:#fff;box-sizing:border-box}
+.hs-hero{position:relative;height:calc(100vh - 120px);min-height:560px;overflow:hidden}
+.hs-check{position:absolute;inset:0;background:repeating-conic-gradient(#FFE3EA 0 25%,#FFFCF5 0 50%) 0 0/64px 64px;opacity:.5}
+.hs-pad{position:relative;height:100%;display:flex;align-items:center;padding:4px clamp(20px,5vw,56px) 36px;box-sizing:border-box}
+.hs-row{max-width:1120px;margin:0 auto;width:100%;display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;column-gap:56px;row-gap:28px}
+.hs-copy{flex:0 1 auto;width:max-content;max-width:min(640px,100%);min-width:0;display:flex;flex-direction:column;gap:18px;position:relative;isolation:isolate}
+.hs-glow{position:absolute;inset:-22% -12%;z-index:-1;background:radial-gradient(closest-side,rgba(255,255,255,.76) 0%,rgba(255,255,255,.68) 55%,rgba(255,255,255,0) 100%)}
+.hs-copy h1{margin:0;font:600 clamp(27px,3.4vw,48px)/1.15 "Fredoka","Nunito",system-ui,sans-serif;letter-spacing:-0.01em}
+.hs-copy h1 span{display:block}.hs-copy h1 em{font:400 1.1em/1 "Pacifico","Brush Script MT",cursive;color:#FA4A7B}
+.hs-copy p{margin:0;font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:#5E3847;max-width:30em;text-wrap:pretty}
+.hs-figwrap{flex:0 1 auto;display:flex;justify-content:center;padding:8px 24px}
+.hs-fig{position:relative;width:clamp(200px,24vw,360px);aspect-ratio:1080/1350}
+.hs-star{position:absolute;left:48%;top:42%;width:145%;aspect-ratio:5/4;transform:translate(-50%,-50%) rotate(12deg);background:#FFF184;opacity:.9;clip-path:polygon(50.0% 0.0%,53.8% 39.7%,75.7% 19.4%,59.5% 44.5%,96.3% 41.8%,60.8% 51.9%,81.2% 68.0%,57.1% 58.4%,67.1% 97.0%,50.0% 61.0%,35.6% 89.5%,42.9% 58.4%,10.2% 73.0%,39.2% 51.9%,12.6% 43.4%,40.5% 44.5%,21.7% 16.3%,46.2% 39.7%)}
+.hs-fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.hs-burger svg{display:block;width:20px;height:20px}
+.hs-fig svg{position:absolute;left:55%;top:11%;width:8%;height:auto;transform:rotate(-14deg);z-index:2;filter:drop-shadow(0 2px 3px rgba(59,29,42,.18))}
+@media (max-width:767px){
+.hs-nav{padding:12px 16px}.hs-nav img{height:56px;max-width:calc(100vw - 96px);object-fit:contain}
+.hs-links{display:none}.hs-burger{display:block}
+.hs-hero{height:auto}.hs-pad{padding-top:40px}.hs-row{flex-wrap:wrap}.hs-fig{width:min(74vw,300px)}
+}
+</style>
+<div id="hero-shell" aria-hidden="true">
+  <div class="hs-nav"><img src="./assets/ds/logo-script.png" alt=""><div class="hs-links"><span>work</span><span>about me</span><span>playground</span><b>let’s chat ✦</b></div><i class="hs-burger"><svg viewBox="0 0 24 24" fill="none" stroke="#B03355" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></i></div>
+  <div class="hs-hero"><div class="hs-check"></div><div class="hs-pad"><div class="hs-row">
+    <div class="hs-copy"><div class="hs-glow"></div><h1><span>AI-native product designer</span><span>balancing business goals,</span><span>user needs &amp; <em>visual craft.</em></span></h1><p>I bring research, visual design and rapid prototyping together to create experiences that drive revenue, reduce friction and ensure accessibility.</p></div>
+    <div class="hs-figwrap"><div class="hs-fig"><div class="hs-star"></div><img src="./assets/alka-walk-1.webp" alt="" fetchpriority="high"><svg viewBox="48 77 36 36" fill="none"><circle cx="66" cy="86" r="9" fill="#FF5C9A"/><circle cx="57" cy="93" r="8.5" fill="#FF5C9A"/><circle cx="75" cy="93" r="8.5" fill="#FF5C9A"/><circle cx="60" cy="103" r="8" fill="#F2357F"/><circle cx="72" cy="103" r="8" fill="#F2357F"/><circle cx="66" cy="96" r="6" fill="#FFF4D6"/></svg></div></div>
+  </div></div></div>
+</div>
+<script>
+(function () {
+  // Hand over once React has rendered the real header + hero (and their images have loaded,
+  // or had 3s to try). Until then the shell stays, so a slow network never shows a blank page.
+  var shell = document.getElementById('hero-shell'), seen = 0;
+  function swap() {
+    var walk = document.querySelector('#dc-root img.am-walk-1'), nav = document.querySelector('#dc-root .sc-nav img');
+    if (walk && nav && !seen) seen = Date.now();
+    if (seen && ((walk.complete && nav.complete) || Date.now() - seen > 3000)) { shell.remove(); return; }
+    requestAnimationFrame(swap);
+  }
+  requestAnimationFrame(swap);
+})();
+</script>
+<!-- /hero-shell -->
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/fonts.css"></link>
