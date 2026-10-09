@@ -459,6 +459,36 @@ main h3{font-size:19px;line-height:1.2}
 .ba-tabs button{white-space:nowrap;flex:none}
 #outcomes .car-track{max-height:min(620px,76vh);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#FCA5B5 transparent;border-radius:18px}
 #outcomes .car-track .slide img{display:block;width:100%}
+.mboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:32px}
+.mb-g{padding:22px 24px 24px;display:flex;flex-direction:column}
+.mb-g+.mb-g{border-left:1.5px solid var(--line)}
+.mb-g:first-child{padding-left:0}
+.mb-t{margin:0 0 6px;font:500 12px/1.4 'DM Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.mb-m{display:flex;flex-direction:column;gap:6px;padding:16px 0}
+.mb-n{font:600 clamp(36px,4.6vw,56px)/1 var(--head);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em;display:inline-block;transform-origin:left bottom;white-space:nowrap}
+.mb-n.roll{animation:mbIn .9s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes mbIn{0%{transform:translateY(40%) rotate(-4deg);opacity:0}100%{transform:none;opacity:1}}
+.mb-l{font:500 15.5px/1.3 var(--head);color:var(--ink)}
+@media (max-width:760px){.mboard{grid-template-columns:1fr}.mb-g{padding:18px 0}.mb-g+.mb-g{border-left:0;border-top:1.5px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){.mb-n.roll{animation:none}}
+.lh{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 12px}
+.lh-card{background:#fff;border:1px solid #FCC6D3;border-radius:18px;box-shadow:0 8px 24px -10px rgba(176,51,85,.25);padding:22px 24px}
+.lh-card h3{margin:0 0 4px;font-size:16px;color:#5E3847}
+.lh-big{font:600 clamp(26px,3vw,34px)/1.1 'Fredoka',ui-rounded,sans-serif;color:#3B1D2A}
+.lh-rings{display:flex;gap:24px;margin-top:16px}
+.lh-ring{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:#5E3847}
+.lh-dial{position:relative;width:76px;height:76px}
+.lh-dial.fail{color:#D6085D}
+.lh-dial.avg{color:#F08C21}
+.lh-dial.pass{color:#4F8A57}
+.lh-dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.lh-dial circle{fill:none;stroke-width:6}
+.lh-dial .trk{stroke:currentColor;opacity:.14}
+.lh-dial .val{stroke:currentColor;stroke-linecap:round;stroke-dasharray:100px;stroke-dashoffset:100px;transition:stroke-dashoffset 1.2s cubic-bezier(.4,.1,.2,1)}
+.lh.seen .lh-dial .val{stroke-dashoffset:calc((100 - var(--s)) * 1px)}
+.lh.seen .lh-card:nth-child(2) .val{transition-delay:.15s}
+.lh-dial b{position:absolute;inset:0;display:grid;place-items:center;font:600 20px/1 'Fredoka',ui-rounded,sans-serif;color:#3B1D2A}
+@media (max-width:640px){.lh{grid-template-columns:1fr}}
 #outcomes .carousel .ba-hint{margin:10px 0 0;font:400 12px/1.4 'DM Mono',ui-monospace,monospace;color:#B03355;letter-spacing:.04em}
 </style>
 <script src="/clarity.js" async></script>
@@ -507,6 +537,10 @@ main h3{font-size:19px;line-height:1.2}
     <div class="full"><dt>Deliverables</dt><dd>Website redesign, design system, responsive design</dd></div>
     <div class="full cs-cta-row"><a class="cs-cta" href="https://www.conservingcentralindia.org/" target="_blank" rel="noopener">visit the live site <span aria-hidden="true">↗</span></a></div>
   </dl>
+  <div class="mboard" aria-label="Outcomes">
+    <div class="mb-g"><p class="mb-t">Accessibility</p><div class="mb-m"><b class="mb-n" data-count="94" data-from="42" data-prefix="42 → " data-suffix="">42 → 94</b><span class="mb-l">Lighthouse accessibility score</span></div></div>
+    <div class="mb-g"><p class="mb-t">Speed</p><div class="mb-m"><b class="mb-n" data-count="86" data-from="31" data-prefix="31 → " data-suffix="">31 → 86</b><span class="mb-l">Lighthouse mobile performance score</span></div></div>
+  </div>
   </section>
 
 <!-- ========== Problem ========== -->
@@ -723,6 +757,25 @@ main h3{font-size:19px;line-height:1.2}
 <section id="outcomes">
   <span class="kicker">outcomes</span>
   <h2>What changed for NCCI</h2>
+  <p>The old site was an archive on Weebly: navigation built around internal program names, dense text-heavy pages, inconsistent type and buttons, and layouts that weren’t built for phones. Moving to Wix and rebuilding the IA, visual system and page templates turned it into a site that leads with the mission, and one the team can keep adding to. Google Lighthouse scores for the old and new sites:</p>
+  <div class="lh" id="lhViz">
+    <div class="lh-card">
+      <h3>Accessibility</h3>
+      <div class="lh-big">42 → 94</div>
+      <div class="lh-rings">
+        <div class="lh-ring"><div class="lh-dial fail" style="--s:42"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="trk" cx="32" cy="32" r="28" pathLength="100"/><circle class="val" cx="32" cy="32" r="28" pathLength="100"/></svg><b>42</b></div>Before</div>
+        <div class="lh-ring"><div class="lh-dial pass" style="--s:94"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="trk" cx="32" cy="32" r="28" pathLength="100"/><circle class="val" cx="32" cy="32" r="28" pathLength="100"/></svg><b>94</b></div>After</div>
+      </div>
+    </div>
+    <div class="lh-card">
+      <h3>Mobile performance</h3>
+      <div class="lh-big">31 → 86</div>
+      <div class="lh-rings">
+        <div class="lh-ring"><div class="lh-dial fail" style="--s:31"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="trk" cx="32" cy="32" r="28" pathLength="100"/><circle class="val" cx="32" cy="32" r="28" pathLength="100"/></svg><b>31</b></div>Before</div>
+        <div class="lh-ring"><div class="lh-dial avg" style="--s:86"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="trk" cx="32" cy="32" r="28" pathLength="100"/><circle class="val" cx="32" cy="32" r="28" pathLength="100"/></svg><b>86</b></div>After</div>
+      </div>
+    </div>
+  </div>
   <ul class="outcomes" id="outList">
     <li><svg class="tick" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13"/><path d="M7.5 13.5l3.8 3.8 7.2-7.6"/></svg>Migrated website from Weebly to Wix</li>
     <li><svg class="tick" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13"/><path d="M7.5 13.5l3.8 3.8 7.2-7.6"/></svg>Established scalable information architecture</li>
@@ -930,6 +983,23 @@ main h3{font-size:19px;line-height:1.2}
   if('IntersectionObserver' in window){
     new IntersectionObserver((es,ob)=>{ es.forEach(e=>{ if(e.isIntersecting){ out.classList.add('seen'); ob.disconnect(); } }); },{threshold:.4}).observe(out);
   } else out.classList.add('seen');
+
+  /* ---- Lighthouse score rings ---- */
+  const lh = document.getElementById('lhViz');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver((es,ob)=>{ es.forEach(e=>{ if(e.isIntersecting){ lh.classList.add('seen'); ob.disconnect(); } }); },{threshold:.4}).observe(lh);
+  } else lh.classList.add('seen');
+
+  /* ---- Overview number board ---- */
+  const nums = [...document.querySelectorAll('.mb-n[data-count]')];
+  const fmt = (el, v) => { el.textContent = el.dataset.prefix + v.toFixed(0) + el.dataset.suffix; };
+  function run(el){ const end = +el.dataset.count, from = +(el.dataset.from||0); if (reduce) { fmt(el, end); return; }
+    el.classList.remove('roll'); void el.offsetWidth; el.classList.add('roll');
+    const t0 = performance.now(), dur = 1400;
+    (function f(t){ const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); fmt(el, from + (end - from) * e); if (p < 1) requestAnimationFrame(f); })(t0); }
+  if ('IntersectionObserver' in window) { nums.forEach(el => fmt(el, +(el.dataset.from||0)));
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { [...e.target.querySelectorAll('.mb-n')].forEach((n,i) => setTimeout(() => run(n), i * 90)); io.unobserve(e.target); } }), { threshold: .35 });
+    document.querySelectorAll('.mboard').forEach(b => io.observe(b)); }
 })();
 </script>
 <script src="./sound-toggle.js"></script>
