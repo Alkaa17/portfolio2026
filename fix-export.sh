@@ -56,6 +56,27 @@ for f in *.html; do
 ' "$f"
 done
 
+# Home-page first-fold speed. Nothing paints until support.js pulls React from unpkg,
+# so start that download (and the hero art + fonts) from the <head> instead of waiting.
+if ! grep -q 'perf:preload' index.html; then
+  DS=_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts
+  sed -i '' '/<meta name="view-transition"/a\
+<!-- perf:preload -->\
+<link rel="preconnect" href="https://unpkg.com" crossorigin>\
+<link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">\
+<link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">\
+<link rel="preload" as="image" href="./assets/alka-walk-1.png" fetchpriority="high">\
+<link rel="preload" as="image" href="./assets/alka-walk-2.png">\
+<link rel="preload" as="image" href="./assets/ds/logo-script.png">\
+<link rel="preload" as="font" type="font/woff2" href="'"$DS"'/Fredoka-400.woff2" crossorigin>\
+<link rel="preload" as="font" type="font/woff2" href="'"$DS"'/Figtree-400.woff2" crossorigin>\
+<link rel="preload" as="font" type="font/woff2" href="'"$DS"'/Pacifico-400.woff2" crossorigin>
+' index.html
+fi
+# Below-the-fold media shouldn't compete with the hero for bandwidth.
+sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: 'metadata'/g" \
+  -e 's|<img src="./assets/covers/thryve-pitch2win.png" alt=|<img src="./assets/covers/thryve-pitch2win.png" loading="lazy" decoding="async" alt=|' index.html
+
 leftover=$(grep -lE "Portfolio v4|Resume v3|Playground\.dc|Case Study\.html|Portfolio%20" *.html *.js || true)
 if [ -n "$leftover" ]; then
   echo "warning: old page names still referenced in:"
