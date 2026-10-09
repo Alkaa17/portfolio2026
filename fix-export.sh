@@ -73,6 +73,19 @@ if ! grep -q 'perf:preload' index.html; then
 <link rel="preload" as="font" type="font/woff2" href="'"$DS"'/Pacifico-400.woff2" crossorigin>
 ' index.html
 fi
+# .image-slots.state.json holds every page's images (~1.7MB); the home page only uses the
+# testimonial avatars, so give it a trimmed copy instead of starving the hero on mobile.
+python3 - <<'PY'
+import json
+slots = json.load(open('.image-slots.state.json'))
+home = {k: v for k, v in slots.items() if k.startswith(('avatar-', 'research-cover-', 'cover-work-'))}
+json.dump(home, open('.image-slots.home.json', 'w'), separators=(',', ':'))
+PY
+sed -i '' "s#return (m\&\&r\&\&r\[m.getAttribute('data-resource-id')\])||p;};#return (m\&\&r\&\&r[m.getAttribute('data-resource-id')])||(p==='.image-slots.state.json'?'.image-slots.home.json':p);};#" index.html
+
+# Hero walk frames (the mobile LCP element) are served as WebP, about half the size of the PNGs.
+sed -i '' 's/alka-walk-\([12]\)\.png/alka-walk-\1.webp/g' index.html
+
 # Below-the-fold media shouldn't compete with the hero for bandwidth.
 sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: 'metadata'/g" \
   -e 's|<img src="./assets/covers/thryve-pitch2win.png" alt=|<img src="./assets/covers/thryve-pitch2win.png" loading="lazy" decoding="async" alt=|' index.html

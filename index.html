@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preload" as="script" href="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous">
 <link rel="preload" as="script" href="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous">
-<link rel="preload" as="image" href="./assets/alka-walk-1.png" fetchpriority="high">
-<link rel="preload" as="image" href="./assets/alka-walk-2.png">
+<link rel="preload" as="image" href="./assets/alka-walk-1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="./assets/alka-walk-2.webp">
 <link rel="preload" as="image" href="./assets/ds/logo-script.png">
 <link rel="preload" as="font" type="font/woff2" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts/Fredoka-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/fonts/Figtree-400.woff2" crossorigin>
@@ -27,9 +27,9 @@
 <meta name="ext-resource-dependency" content="./assets/poe-cover.webp" data-resource-id="r5">
 <meta name="ext-resource-dependency" content="./assets/project3-cover.mp4" data-resource-id="r6">
 <meta name="ext-resource-dependency" content="./assets/frontier-plane.png" data-resource-id="r7">
-<meta name="ext-resource-dependency" content="./assets/alka-walk-1.png" data-resource-id="r8">
+<meta name="ext-resource-dependency" content="./assets/alka-walk-1.webp" data-resource-id="r8">
 <meta name="ext-resource-dependency" content="./assets/ayurveda/tae-cover.mp4" data-resource-id="r_tae">
-<meta name="ext-resource-dependency" content="./assets/alka-walk-2.png" data-resource-id="r9">
+<meta name="ext-resource-dependency" content="./assets/alka-walk-2.webp" data-resource-id="r9">
 <meta name="ext-resource-dependency" content="./assets/icons/milkis.png" data-resource-id="r10">
 <meta name="ext-resource-dependency" content="./assets/icons/figma.png" data-resource-id="r11">
 <meta name="ext-resource-dependency" content="./assets/icons/chatgpt.png" data-resource-id="r12">
@@ -45,7 +45,7 @@
 <meta name="ext-resource-dependency" content="./assets/ds/logo-script.png" data-resource-id="r22">
 <meta name="ext-resource-dependency" content="./assets/ds/wand-sm.png" data-resource-id="r23">
 <meta name="ext-resource-dependency" content=".image-slots.state.json" data-resource-id="r24">
-<script>window.__res=function(p){var m=document.querySelector('meta[name="ext-resource-dependency"][content="'+p+'"]');var r=window.__resources;return (m&&r&&r[m.getAttribute('data-resource-id')])||p;};</script>
+<script>window.__res=function(p){var m=document.querySelector('meta[name="ext-resource-dependency"][content="'+p+'"]');var r=window.__resources;return (m&&r&&r[m.getAttribute('data-resource-id')])||(p==='.image-slots.state.json'?'.image-slots.home.json':p);};</script>
 <script src="./support.js"></script>
 <template id="__bundler_thumbnail" data-bg-color="#FFE3EA"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFE3EA"/><text x="50" y="64" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="44" fill="#FA4A7B">am</text><path d="M78 26l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FA4A7B"/></svg></template>
 <script src="/clarity.js" async></script>
@@ -511,8 +511,8 @@ class Component extends DCLogic {
     if (!this.walkerEl) {
       const img = (src, extra) => React.createElement('img', { src, className: extra && extra.animation.startsWith('alkaWalk ') ? 'am-walk-2' : 'am-walk-1', alt: extra && extra.animation.startsWith('alkaWalk ') ? '' : 'Illustrated Alka walking with a coffee', 'aria-hidden': extra && extra.animation.startsWith('alkaWalk ') ? 'true' : undefined, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', ...(extra || {}) } });
       this.walkerEl = React.createElement(React.Fragment, null,
-        img(__res('./assets/alka-walk-1.png'), { animation: 'alkaWalkA 1s steps(1,end) infinite' }),
-        img(__res('./assets/alka-walk-2.png'), { animation: 'alkaWalk 1s steps(1,end) infinite' }));
+        img(__res('./assets/alka-walk-1.webp'), { animation: 'alkaWalkA 1s steps(1,end) infinite' }),
+        img(__res('./assets/alka-walk-2.webp'), { animation: 'alkaWalk 1s steps(1,end) infinite' }));
     }
     if (!this.iconsEl) {
       const SETS = [
