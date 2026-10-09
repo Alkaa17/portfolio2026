@@ -195,9 +195,9 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </sc-if>
           </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px;max-width:820px">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px">
             <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ p.org }}</span></p>
-            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:balance">{{ p.title }}</h3>
+            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:pretty">{{ p.title }}</h3>
             <p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ p.desc }}</p>
           </div>
         </a>
@@ -223,7 +223,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
               <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ r.org }}</span></p>
-              <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:balance">{{ r.title }}</h3>
+              <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:pretty">{{ r.title }}</h3>
               <p style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ r.desc }}</p>
             </div>
           </a>
@@ -247,9 +247,9 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
           </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px;max-width:820px">
+          <div style="display:flex;flex-direction:column;gap:12px;padding:0 8px">
             <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ p.org }}</span></p>
-            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:balance">{{ p.title }}</h3>
+            <h3 style="margin:0;font:600 clamp(22px,2.2vw,28px)/1.2 var(--font-display);text-wrap:pretty">{{ p.title }}</h3>
             <p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ p.desc }}</p>
           </div>
         </a>
@@ -424,11 +424,11 @@ const PROJECTS = {
 };
 const RESEARCH = [
   { org: 'UX research · Interaction design', year: '2025', href: '/frontier', frontier: true, title: 'Making airline booking honest for travellers without losing upsell revenue', desc: 'As UX researcher and designer, I tested with 6 users and rebuilt the flow without hidden fees or pre-checked add-ons. Reported trust rose 65%.' },
-  { org: 'UX research · Usability evaluation', year: '2025', href: '/poe', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
+  { org: 'Mixed-method UX research', year: '2025', href: '/poe', cover: __res('./assets/poe-cover.webp'), coverAlt: 'Poe by Quora animated logo', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
 ];
 const WORK = [
-  { org: 'Product design · Growth · Team lead', year: '2022–24', href: '/ayurveda', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
-  { org: 'UX/UI design · Information architecture', year: '2023', href: '/ncci', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'Making conservation research easy to find for visitors and easy to publish for the team', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
+  { org: 'CRO strategy · CX/UX design · Visual design · Team lead', year: '2022–24', href: '/ayurveda', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
+  { org: 'Website redesign · Information architecture · Visual design', year: '2023', href: '/ncci', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'Making conservation research easy to find for visitors and easy to publish for the team', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
