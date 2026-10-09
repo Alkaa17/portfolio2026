@@ -78,8 +78,6 @@ section:last-of-type{border-bottom:0}
 .info-card .people{display:block;font-weight:400;font-size:1rem;color:var(--iron);margin-top:4px}
 .info-card .people b{font-weight:500;color:var(--graphite)}
 .info-card .mentors .people:first-child{margin-top:0}
-.info-card .people a{color:var(--dusk);text-decoration:none;border-bottom:1.5px solid var(--ash);transition:border-color .3s}
-.info-card .people a:hover{border-color:var(--dusk)}
 .pills{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 .pills li{font-weight:400;font-size:.95rem;padding:7px 16px;border:1.5px solid var(--dust);border-radius:999px;transition:border-color .3s,background .3s}
 
@@ -464,7 +462,9 @@ body{font-size:16px;line-height:1.65}
 .cs-details{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px 26px!important;margin:34px 0 32px!important;padding:24px 26px!important;background:#fff!important;border:1px solid #FCC6D3!important;border-radius:18px!important;box-shadow:0 8px 24px -10px rgba(176,51,85,.25)!important}
 .cs-details dt{font-size:12px!important;color:#5E3847!important;margin:0 0 2px!important;font-weight:400!important}
 .cs-details dd{margin:0!important;font-weight:500!important;font-size:16px!important;line-height:1.45!important;color:#3B1D2A!important}
-.cs-details .people{font-size:14px!important;font-weight:400!important}
+.cs-details .people{font-size:14px!important;font-weight:400!important;color:var(--muted)!important}
+.cs-details .people b{font-weight:500;color:var(--iron)}
+.cs-details .mentors{font-size:14px!important;font-weight:400!important}
 .cs-details .span2{grid-column:span 2}
 .cs-details .full{grid-column:1/-1}
 @media (max-width:1100px){.cs-details{grid-template-columns:repeat(2,minmax(0,1fr))!important}.cs-details .span2{grid-column:1/-1}}
@@ -507,10 +507,10 @@ aside{padding:28px 22px 24px 26px}
     <div class="span2"><dt>Company</dt><dd>Quora runs the question-and-answer platform of the same name and built Poe to let people chat with many AI models in one app.</dd></div>
     <div><dt>Role</dt><dd>UX Researcher</dd></div>
     <div><dt>Tools</dt><dd>Google Sheets, Google Docs, Zoom, Figma</dd></div>
-    <div><dt>Team</dt><dd>The Vanguard Collective<span class="people">With <a href="https://www.linkedin.com/in/tolani-smith/" target="_blank" rel="noopener">Tolani Smith</a>, <a href="https://www.linkedin.com/in/ayeshaahakim/" target="_blank" rel="noopener">Ayesha A. Hakim</a>, <a href="https://www.linkedin.com/in/jda26/" target="_blank" rel="noopener">Jahir Alvarez</a>, <a href="https://www.linkedin.com/in/marilynbbwang/" target="_blank" rel="noopener">Marilyn Wang</a></span></dd></div>
+    <div><dt>Team</dt><dd>The Vanguard Collective<span class="people">With Tolani Smith, Ayesha A. Hakim, Jahir Alvarez, Marilyn Wang</span></dd></div>
     <div class="span2"><dt>Mentors</dt><dd class="mentors">
-      <span class="people"><b>Senior Researchers at Quora Poe:</b> <a href="https://www.linkedin.com/in/jaredramsburgphd/" target="_blank" rel="noopener">Jared T Ramsburg</a>, <a href="https://www.linkedin.com/in/olga-kramarova-a5095510b/" target="_blank" rel="noopener">Olga Kramarova</a></span>
-      <span class="people"><b>Teaching team:</b> Prof. <a href="https://www.linkedin.com/in/mechalms/" target="_blank" rel="noopener">Melissa Chalmers</a>, <a href="https://www.linkedin.com/in/jaylaflowers/" target="_blank" rel="noopener">Jayla Flowers</a>, <a href="https://www.linkedin.com/in/rheaacharyadesign/" target="_blank" rel="noopener">Rhea Acharya</a></span>
+      <span class="people"><b>Senior Researchers at Quora Poe:</b> Jared T Ramsburg, Olga Kramarova</span>
+      <span class="people"><b>Teaching team:</b> Prof. Melissa Chalmers, Jayla Flowers, Rhea Acharya</span>
     </dd></div>
     <div class="span2"><dt>Focus</dt><dd><ul class="pills">
       <li>UX Research</li><li>AI Interfaces</li><li>Conversational Design</li><li>Onboarding</li><li>Feature Discoverability</li><li>Usability Testing</li><li>Heuristic Evaluation</li>
