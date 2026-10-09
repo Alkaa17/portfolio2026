@@ -91,9 +91,16 @@ sed -i '' 's/alka-walk-\([12]\)\.png/alka-walk-\1.webp/g' index.html
 sed -i '' '/<!-- hero-shell:/,/<!-- \/hero-shell -->/d' index.html
 sed -i '' '/^<body>$/r hero-shell.html' index.html
 
+# support.js only waits on React before booting, so it needn't block the first paint.
+# It normally hides the raw <x-dc> template on load; do that inline instead.
+sed -i '' 's#^<script src="./support.js"></script>$#<style>x-dc{display:none!important}</style><script src="./support.js" defer></script>#' index.html
+
 # Below-the-fold media shouldn't compete with the hero for bandwidth.
 sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: 'metadata'/g" \
-  -e 's|<img src="./assets/covers/thryve-pitch2win.png" alt=|<img src="./assets/covers/thryve-pitch2win.png" loading="lazy" decoding="async" alt=|' index.html
+  -e 's|<img src="./assets/covers/thryve-pitch2win.png" alt=|<img src="./assets/covers/thryve-pitch2win.png" loading="lazy" decoding="async" alt=|' \
+  -e 's|<img src="./assets/frontier-logo.png" alt=|<img src="./assets/frontier-logo.png" loading="lazy" alt=|' \
+  -e 's|<img src="./assets/award-rosette.png" alt=|<img src="./assets/award-rosette.png" loading="lazy" alt=|' \
+  -e '/<link rel="preload" as="image" href=".\/assets\/alka-walk-2\.[a-z]*">/d' index.html
 
 leftover=$(grep -lE "Portfolio v4|Resume v3|Playground\.dc|Case Study\.html|Portfolio%20" *.html *.js || true)
 if [ -n "$leftover" ]; then
