@@ -728,7 +728,6 @@ main h3{font-size:19px;line-height:1.2}
       <ol>
         <li class="group">Context</li>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#outcomes">Outcomes</a></li>
         <li><a href="#problem">The problem</a></li>
         <li class="group">Research</li>
         <li><a href="#journey">Journey map</a></li>
@@ -751,7 +750,7 @@ main h3{font-size:19px;line-height:1.2}
     <section id="overview" class="hero">
       <span class="kicker">booking without the tricks</span>
       <h1>Frontier Airlines ticketing UX redesign</h1>
-      <p class="lede">In collaboration with Sarosh Manzar, I redesigned Frontier Airlines' ticket booking flow to reduce manipulative patterns and build user trust. The existing system caused decision fatigue, hidden fees, and intrusive upsell pop-ups. We applied humane design principles to prioritize clarity, reduce friction, and empower informed decision-making.</p>
+      <p class="lede">In collaboration with Sarosh Manzar, I redesigned Frontier Airlines' ticket booking flow to reduce manipulative patterns and build user trust, without giving up the upsells the business depends on. The existing system caused decision fatigue, hidden fees, and intrusive upsell pop-ups. We applied humane design principles to prioritize clarity, reduce friction, and empower informed decision-making.</p>
 
       <div class="pass" role="group" aria-label="Project details">
         <div class="pass-main">
@@ -769,41 +768,6 @@ main h3{font-size:19px;line-height:1.2}
           <div class="stat"><b data-count="2" data-suffix="×">2×</b><small>faster task completion</small></div>
           <div class="stat"><b data-count="65" data-prefix="+" data-suffix="%">+65%</b><small>reported user trust</small></div>
           <div class="stat"><b>5 of 6</b><small>users preferred the redesign</small></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= OUTCOMES ================= -->
-    <section id="outcomes">
-      <span class="kicker">tl;dr</span>
-      <h2>Clarity and trust, without losing the business goals</h2>
-      <p class="prose">The redesigned booking flow improved clarity, trust, and usability without sacrificing essential business goals, by restructuring pricing visibility and reducing manipulative interruptions. The result is a transparent, user-respecting interface that simplifies decisions and builds long-term loyalty.</p>
-
-      <div class="outcomes reveal" id="outcomeViz">
-        <div class="card">
-          <h3>Task completion time</h3>
-          <div class="big">2× faster</div>
-          <div class="meter-label"><span>Original</span><span>baseline</span></div>
-          <div class="meter"><i class="orig" data-w="100"></i></div>
-          <div class="meter-label"><span>Redesign</span><span>half the time</span></div>
-          <div class="meter"><i class="new" data-w="50"></i></div>
-        </div>
-        <div class="card">
-          <h3>Reported user trust</h3>
-          <div class="big">+65%</div>
-          <div class="meter-label"><span>Original</span><span>baseline</span></div>
-          <div class="meter"><i class="orig" data-w="60"></i></div>
-          <div class="meter-label"><span>Redesign</span><span>+65%</span></div>
-          <div class="meter"><i class="new" data-w="99"></i></div>
-        </div>
-        <div class="card">
-          <h3>A/B preference</h3>
-          <div class="big">5 of 6 users</div>
-          <div class="seats" id="seats" aria-label="5 of 6 participants preferred the redesign">
-            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
-            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
-          </div>
-          <div class="legend"><span><i style="background:var(--granite)"></i>Redesign</span><span><i style="background:var(--rose)"></i>Original</span></div>
         </div>
       </div>
     </section>
@@ -1206,7 +1170,7 @@ main h3{font-size:19px;line-height:1.2}
         </div>
         <div>
           <h3>Methods</h3>
-          <p class="muted">Usability testing with six participants from North America, ages 29 to 70, booking a Frontier flight on desktop. Tasks assessed how users interacted with pricing and bundle benefits, and which upsell pop-up felt clearer and more trustworthy.</p>
+          <p class="muted">Usability testing with six participants from North America booking a Frontier flight on desktop. Tasks assessed how users interacted with pricing and bundle benefits, and which upsell pop-up felt clearer and more trustworthy.</p>
         </div>
       </div>
 
@@ -1431,13 +1395,43 @@ main h3{font-size:19px;line-height:1.2}
     <section id="conclusion">
       <span class="kicker">conclusion</span>
       <h2>Ethical design improves both trust and usability</h2>
-      <div class="takeaways">
-        <div class="card"><h3>Trust</h3><p class="muted" style="margin:0">Removing dark patterns increased user trust by 65%.</p></div>
-        <div class="card"><h3>Upsells</h3><p class="muted" style="margin:0">Subtle upsells performed better than disruptive pop-ups.</p></div>
-        <div class="card"><h3>Speed</h3><p class="muted" style="margin:0">Transparent pricing and a simplified flow led to faster task completion.</p></div>
-        <div class="card"><h3>Control</h3><p class="muted" style="margin:0">User feedback confirmed a preference for clarity and control.</p></div>
+      <p class="prose">We started with a booking flow that worked against its own customers: prices shown as "+$" differences that forced mental math, a comparison chart that vanished at the moment of decision, upsell pop-ups at every step, and opt-ins checked by default. Users reached the end confused, fatigued, and unsure what they were paying for. Taking those tricks out, while keeping the bundles and upsells the business relies on, changed how people felt and how fast they finished.</p>
+
+      <div class="outcomes reveal" id="outcomeViz">
+        <div class="card">
+          <h3>Task completion time</h3>
+          <div class="big">2× faster</div>
+          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter"><i class="orig" data-w="100"></i></div>
+          <div class="meter-label"><span>Redesign</span><span>half the time</span></div>
+          <div class="meter"><i class="new" data-w="50"></i></div>
+        </div>
+        <div class="card">
+          <h3>Reported user trust</h3>
+          <div class="big">+65%</div>
+          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter"><i class="orig" data-w="60"></i></div>
+          <div class="meter-label"><span>Redesign</span><span>+65%</span></div>
+          <div class="meter"><i class="new" data-w="99"></i></div>
+        </div>
+        <div class="card">
+          <h3>A/B preference</h3>
+          <div class="big">5 of 6 users</div>
+          <div class="seats" id="seats" aria-label="5 of 6 participants preferred the redesign">
+            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
+            <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
+          </div>
+          <div class="legend"><span><i style="background:var(--granite)"></i>Redesign</span><span><i style="background:var(--rose)"></i>Original</span></div>
+        </div>
       </div>
 
+      <h3 style="margin-top:40px">What we learned</h3>
+      <div class="takeaways">
+        <div class="card"><h3>Trust</h3><p class="muted" style="margin:0">Trust came from taking things away: hidden totals, forced interruptions, and pre-checked boxes.</p></div>
+        <div class="card"><h3>Upsells</h3><p class="muted" style="margin:0">Subtle upsells inside summary screens performed better than disruptive pop-ups.</p></div>
+        <div class="card"><h3>Speed</h3><p class="muted" style="margin:0">Showing full prices upfront removed the mental math that slowed every decision.</p></div>
+        <div class="card"><h3>Control</h3><p class="muted" style="margin:0">User feedback confirmed a preference for clarity and control over pressure.</p></div>
+      </div>
     </section>
   </main>
 </div>
