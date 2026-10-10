@@ -349,9 +349,6 @@ details.sheet img{margin-top:14px;border-radius:8px}
 .qual h4{font-family:var(--body);font-weight:500;font-size:.95rem}
 .qual p{font-size:.9rem;margin:2px 0 0}
 .note{font-size:.82rem;color:var(--muted);margin-top:16px}
-.closing{margin-top:40px;padding:28px;border-radius:18px;background:#fff;border:1px solid var(--line);border-left:6px solid var(--dusk)}
-.closing .script{color:var(--dusk);font-size:1.15rem;display:block;margin-bottom:6px}
-.closing p{margin:0;font-size:1.05rem}
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
@@ -412,8 +409,8 @@ h1{font-size:clamp(2.4rem,5vw,3.6rem)}
 .info-card{border-radius:18px}
 .method:hover{border-color:var(--ink-900);box-shadow:var(--shadow-pop);transform:translate(-2px,-4px) rotate(-.4deg)}
 .method,.t-card,.diff-list li{transition:opacity .5s ease,transform var(--dur-base) var(--ease-bouncy),box-shadow var(--dur-base),border-color var(--dur-base)}
-.hmw,.closing{background:var(--pink-50);border-color:var(--pink-200)}
-.hmw .script,.closing .script{color:var(--brand)}
+.hmw{background:var(--pink-50);border-color:var(--pink-200)}
+.hmw .script{color:var(--brand)}
 .rec{border-left-width:2px;background:var(--white)}
 .rec b{font:500 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
 .quote{border-left:0;padding-left:0;color:var(--ink-700)}
@@ -432,7 +429,6 @@ h1{font-size:clamp(2.4rem,5vw,3.6rem)}
 .seg{background:var(--pink-100)}
 .quad{border-radius:14px;background:var(--pink-50)}
 .stat .num{color:var(--brand)}
-.qual div{border-top:2px dashed var(--pink-300)}
 .compare .vs{color:var(--brand)}
 @media (max-width:900px){.pw-home{flex-direction:row;align-items:center;flex:none}.pw-home img{height:30px}.pw-back{padding:7px 12px;font-size:13px}}
 
@@ -836,10 +832,8 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
     <div><h4>Better error prevention</h4><p>More trust and task confidence</p></div>
   </div>
 
-  <div class="closing">
-    <span class="script">What I took away</span>
-    <p>Combining three methods let each one check the others. The heuristic audit predicted where users would struggle, and testing showed exactly how badly, which made our recommendations much easier to defend.</p>
-  </div>
+  <h3 style="margin-top:40px">What I took away</h3>
+  <p class="prose">Combining three methods let each one check the others. The heuristic audit predicted where users would struggle, and testing showed exactly how badly, which made our recommendations much easier to defend.</p>
 </section>
 
 </div>

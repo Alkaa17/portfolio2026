@@ -200,9 +200,6 @@ input[type=range]{accent-color:var(--terracotta)}
 .outcomes.seen li:nth-child(3) .tick path{transition-delay:.3s}
 .outcomes.seen li:nth-child(4) .tick path{transition-delay:.45s}
 .outcomes.seen li:nth-child(5) .tick path{transition-delay:.6s}
-blockquote{margin:0;padding:24px 28px;background:var(--olive);color:#fff;border-radius:14px;font-size:1.15rem}
-blockquote h3{color:var(--beige);margin:0 0 8px}
-blockquote p{margin:0}
 
 /* ===== Lightbox ===== */
 dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
@@ -321,8 +318,6 @@ input[type=range]{accent-color:var(--rose)}
 .outcomes li{border-color:var(--line)}
 .tick circle{fill:#FFE3EA}
 .tick path{stroke:var(--dusk)}
-blockquote{background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px}
-blockquote h3{color:var(--rose);font-family:var(--script);font-weight:400;font-size:22px}
 dialog::backdrop{background:rgba(59,29,42,.55);backdrop-filter:blur(4px)}
 @media (min-width:901px){.trail{top:var(--hdr-h,72px);height:calc(100dvh - var(--hdr-h,72px))}}
 @media (max-width:900px){
@@ -825,10 +820,8 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
     </div>
     <p class="ba-hint">Scroll inside the frame to see the full pages · click to enlarge</p>
   </div>
-  <blockquote>
-    <h3>What I learned</h3>
-    <p>This project taught me how to balance conservation storytelling with information architecture, designing for both inspiration and action while creating a system that could evolve alongside the organization.</p>
-  </blockquote>
+  <h3 style="margin-top:40px">What I learned</h3>
+  <p class="prose">This project taught me how to balance conservation storytelling with information architecture, designing for both inspiration and action while creating a system that could evolve alongside the organization.</p>
 </section>
 
 </main>

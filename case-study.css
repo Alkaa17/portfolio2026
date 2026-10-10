@@ -37,3 +37,23 @@ html body main .tabs .tab[aria-selected="true"]{border-color:#D6085D !important;
 html body main :is(.switch,.toggle,.ba-tabs,.seg){display:inline-flex !important;gap:0 !important;background:#FFF4F7 !important;border:1px solid #FCC6D3 !important;border-radius:999px !important;padding:3px !important}
 html body main :is(.switch,.toggle,.ba-tabs,.seg) button{font:500 13px/1.2 'Figtree','Helvetica Neue',Arial,sans-serif !important;border:0 !important;background:none !important;color:#5E3847 !important;padding:6px 14px !important;min-height:40px;border-radius:999px !important;box-shadow:none !important;transform:none !important;cursor:pointer;transition:all .2s}
 html body main :is(.switch,.toggle,.ba-tabs,.seg) button:is([aria-pressed="true"],[aria-selected="true"]){background:#fff !important;color:#3B1D2A !important;box-shadow:0 8px 24px -10px rgba(176,51,85,.25) !important}
+
+html body main .prose{max-width:66ch}
+
+/* Results: white cards, label above a 30px number (Frontier's .outcomes).
+   Ayurveda: .impact-grid/.impact-metric, NCCI: .ig/.ig-m, Poe: #impact .impact/.stat */
+html body main :is(#impact .impact-grid,#outcomes .ig,#impact > .impact){display:grid !important;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)) !important;gap:20px !important;margin:26px 0 0 !important;border:0 !important;padding:0 !important}
+html body main :is(.impact-metric,.ig-m,#impact > .impact .stat){display:flex !important;flex-direction:column !important;min-width:0;margin:0 !important;padding:22px !important;background:#fff !important;border:1px solid #FCC6D3 !important;border-radius:14px !important;box-shadow:0 8px 24px -10px rgba(176,51,85,.25) !important}
+html body main :is(.impact-metric .metric-label,.ig-m .ig-l,#impact > .impact .stat h4){order:-1;font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:19px !important;font-weight:600 !important;line-height:1.2 !important;color:#3B1D2A !important;margin:0 0 4px !important}
+html body main :is(.impact-metric .metric-num,.ig-m .ig-n,#impact > .impact .stat .num){font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:30px !important;font-weight:400 !important;line-height:1.1 !important;letter-spacing:0 !important;color:#3B1D2A !important;margin:4px 0 0 !important;white-space:nowrap}
+html body main #impact > .impact .stat p{color:#5E3847 !important;font-size:14px !important;margin:6px 0 0 !important}
+/* Poe's qualitative impacts follow the same hairline as the section dividers */
+html body main #impact .qual div{border-top:1px solid #FCC6D3 !important}
+
+/* Reflection: plain heading + muted text, no boxes or numerals (Frontier's "What we learned") */
+html body main #impact .lesson{display:block !important;margin-top:40px !important}
+html body main #impact .lesson h3{font-size:19px !important;margin:0 0 8px !important}
+html body main #impact .lesson p{font-family:'Figtree','Helvetica Neue',Arial,sans-serif !important;font-size:16px !important;font-weight:400 !important;line-height:1.65 !important;color:#3B1D2A !important;max-width:66ch !important}
+html body main .reflect-grid{gap:24px 40px !important}
+html body main .reflect-grid h3{margin:0 0 4px !important}
+html body main .reflect-grid p{color:#5E3847 !important;margin:0 !important}
