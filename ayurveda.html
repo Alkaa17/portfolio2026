@@ -1430,6 +1430,16 @@ html body .orig .cta-ab>div{background:none !important;border-radius:0 !importan
 html body .orig .cta-ab>div+div{border-top:1px solid color-mix(in srgb,var(--rose) 18%,transparent)}
 html body .orig .impact{background:none !important}
 </style>
+<style id="chapter-width">
+/* Chapters use the same column as the sections above: no extra side padding, and text/list pairs stack */
+html body .orig .wrap{padding-inline:0;max-width:none}
+html body .orig .split,html body .orig .split-7-5,html body .orig .wants,html body .orig .app-work,html body .orig .story{grid-template-columns:minmax(0,1fr) !important;gap:clamp(20px,3vw,32px) !important}
+html body .orig .split p,html body .orig .wants p,html body .orig .app-work p,html body .orig .story p{max-width:none}
+html body .orig .exp-row:not(.variants){grid-template-columns:minmax(0,1fr) !important;gap:20px !important}
+html body .orig .exp-row:not(.variants) p{max-width:none}
+html body .orig .cta-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:24px}
+@media (max-width:900px){html body .orig .cta-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <site-header active="work" shrink></site-header>
