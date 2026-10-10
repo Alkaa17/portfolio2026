@@ -233,11 +233,6 @@ ul.clean li{margin-bottom:6px}
 /* ---------- Testing ---------- */
 .task{border-left:3px solid var(--dusk);padding:4px 0 4px 16px;margin-bottom:16px}
 .task b{font-family:var(--head);font-weight:400;color:var(--dusk)}
-.learn{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.learn li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.learn .tag{font-size:11.5px;border-radius:20px;padding:1px 9px;white-space:nowrap;margin-top:3px}
-.tag.good{background:var(--granite-soft);color:var(--granite)} .tag.bad{background:var(--rose-soft);color:var(--rose)} .tag.mix{background:var(--camel-soft);color:#8a6a2c}
-[data-theme="dark"] .tag.mix{color:var(--camel)}
 .iter{counter-reset:it;display:grid;gap:18px;margin-top:20px}
 .iter-item{display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .iter-item > .n{width:36px;height:36px;border-radius:50%;background:var(--dusk);color:#fff;display:grid;place-items:center;font-family:var(--head)}
@@ -718,7 +713,6 @@ html body .toggle button[aria-selected="true"],
 html body .dec-tabs button[aria-selected="true"],
 html body .dec-tabs button[aria-selected="true"] span,
 html body .tab[aria-selected="true"],
-html body .tag.bad,
 html body .pdrop,
 html body .stops a.active[aria-current]{color:#B03355}
 
@@ -1347,13 +1341,13 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
       </div>
 
       <h3 style="margin-top:30px">Learnings</h3>
-      <ul class="learn" style="margin-top:12px">
-        <li><span class="tag good">Worked</span><span>Overall, users found the booking process straightforward and appreciated the clutter-free layout.</span></li>
-        <li><span class="tag bad">Gap</span><span>Some struggled with the lack of filters for baggage-inclusive fares and a visually unengaging design.</span></li>
-        <li><span class="tag mix">Mixed</span><span>The live site looked visually better but suffered from intrusive ads and upsells.</span></li>
-        <li><span class="tag good">Worked</span><span>Users preferred the redesigned upsell pop-up for its clearer details on premium benefits, though a few liked the original's appealing seat images.</span></li>
-        <li><span class="tag mix">Surprise</span><span>Trust was not a concern for everyone; some assumed Frontier was reputable by default.</span></li>
-        <li><span class="tag bad">Gap</span><span>Baggage filters, upfront bundle dropdowns, and a stronger upsell design could significantly improve the experience.</span></li>
+      <ul class="clean" style="margin-top:12px">
+        <li>Overall, users found the booking process straightforward and appreciated the clutter-free layout.</li>
+        <li>Some struggled with the lack of filters for baggage-inclusive fares and a visually unengaging design.</li>
+        <li>The live site looked visually better but suffered from intrusive ads and upsells.</li>
+        <li>Users preferred the redesigned upsell pop-up for its clearer details on premium benefits, though a few liked the original's appealing seat images.</li>
+        <li>Trust was not a concern for everyone; some assumed Frontier was reputable by default.</li>
+        <li>Baggage filters, upfront bundle dropdowns, and a stronger upsell design could significantly improve the experience.</li>
       </ul>
     </section>
 
