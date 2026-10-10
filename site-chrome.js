@@ -9,6 +9,7 @@
   var css = document.createElement('style');
   css.textContent =
     'site-header,site-footer{display:block}' +
+    'site-header[shrink]{position:sticky;top:0;z-index:40}' +
     '.sc-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 32px;background:var(--cream,#FFFCF5);border-bottom:2px solid var(--pink-100,#FFE3EA);transition:padding 320ms cubic-bezier(.22,.61,.36,1)}' +
     '.sc-logo img{transition:height 320ms cubic-bezier(.22,.61,.36,1)}.sc-link,.sc-cta{transition:padding 320ms cubic-bezier(.22,.61,.36,1),height 320ms cubic-bezier(.22,.61,.36,1),background 140ms,transform 220ms ' + EASE + '}' +
     'site-header.sc-compact .sc-nav{padding:8px 32px}site-header.sc-compact .sc-logo img{height:30px}site-header.sc-compact .sc-link{padding:7px 14px}site-header.sc-compact .sc-cta{height:32px}' +
