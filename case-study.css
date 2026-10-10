@@ -57,3 +57,16 @@ html body main #impact .lesson p{font-family:'Figtree','Helvetica Neue',Arial,sa
 html body main .reflect-grid{gap:24px 40px !important}
 html body main .reflect-grid h3{margin:0 0 4px !important}
 html body main .reflect-grid p{color:#5E3847 !important;margin:0 !important}
+
+/* User quotes: Fredoka 20px in dusk, no bubble (Frontier's .quote).
+   Poe's .bubble quotes have no quote marks in their text, so they're added here. */
+html body main :is(.quote,.bubble,.orig .tracking-q blockquote){font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:20px !important;font-weight:400 !important;line-height:1.65 !important;letter-spacing:0 !important;color:#B03355 !important;background:none !important;box-shadow:none !important;border:0 !important;border-radius:0 !important;padding:0 !important;max-width:46ch !important;white-space:normal !important}
+html body main .bubble{align-self:flex-start !important}
+html body main .bubble::before{content:"“"}
+html body main .bubble::after{content:"”" !important;position:static !important;border:0 !important}
+
+/* How might we: pale pink box, script label, Fredoka question (Ayurveda .ay-hmw, Poe .hmw) */
+html body main :is(.ay-hmw,.hmw){background:#FFF4F7 !important;border:1px solid #FCC6D3 !important;border-radius:14px !important;box-shadow:none !important;padding:24px 28px !important;margin-top:28px !important;color:#3B1D2A !important}
+html body main :is(.ay-hmw .hm-l,.hmw .script){font-family:'Pacifico','Brush Script MT',cursive !important;font-size:19px !important;font-weight:400 !important;line-height:1.4 !important;color:#FA4A7B !important;margin:0 0 6px !important}
+html body main :is(.ay-hmw .q,.hmw p){font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:22px !important;font-weight:600 !important;line-height:1.35 !important;color:#3B1D2A !important;margin:0 !important}
+html body main .ay-hmw .hm-s{font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:19px !important;font-weight:600 !important;line-height:1.4 !important;color:#5E3847 !important;text-decoration-color:#D6085D !important}
