@@ -356,6 +356,8 @@
     // to the frame's top-right in viewport px (translateX(-100%)
     // right-aligns against the computed left edge); inset:auto clears the
     // base rule's top/right so the inline left/top position it alone.
+    // Off the editor canvas the controls do nothing; keep them out of the tab order.
+    ':host(:not([data-editable])) .ctl{display:none}' +
     '.ctl:popover-open{position:fixed;inset:auto;transform:translateX(-100%)}' +
     ':host([data-filled][data-editable]:hover) .ctl,:host([data-reframe]) .ctl' +
     '  {opacity:1;pointer-events:auto}' +

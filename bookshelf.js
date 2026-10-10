@@ -15,7 +15,7 @@
   :host{display:block;font-family:var(--font-body,"Figtree",sans-serif);color:var(--ink-900,#3B1D2A)}
   *{box-sizing:border-box}
   .shelf-section{max-width:720px;margin:0 auto;padding:8px 0 16px}
-  .shelf-hint{position:absolute;left:0;bottom:122px;width:150px;margin:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px;pointer-events:none;color:var(--pink-700,#B03355);opacity:.6;transition:opacity .35s ease}
+  .shelf-hint{position:absolute;left:0;bottom:122px;width:150px;margin:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px;pointer-events:none;color:var(--pink-700,#B03355);opacity:.9;transition:opacity .35s ease}
   .shelf-hint-text{font:400 16px/1.35 var(--font-script,"Pacifico",cursive);text-align:left;align-self:stretch}
   .shelf-fit{position:relative}
   .shelf-scale{position:relative;width:620px;transform-origin:0 0;margin:0 auto}

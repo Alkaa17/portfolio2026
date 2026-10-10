@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,46 @@
 <style>x-dc{display:none!important}</style><script src="./support.js" defer></script>
 <template id="__bundler_thumbnail" data-bg-color="#FFE3EA"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#FFE3EA"/><text x="50" y="64" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="44" fill="#FA4A7B">am</text><path d="M78 26l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FA4A7B"/></svg></template>
 <script src="/clarity.js" async></script>
+<!-- a11y: see a11y.css / a11y.js -->
+<style>
+/* Accessibility overrides (WCAG 2.1 AA contrast). fix-export.sh inlines this into every
+   page's <head>, so it survives a fresh Claude Design export. Rules are prefixed with
+   `html body` to outrank the exported !important styles they replace. */
+
+/* pink-600 text on the pale pink chip is 4.3:1; pink-700 is 5.0:1 */
+html body .toggle button[aria-selected="true"],
+html body .dec-tabs button[aria-selected="true"],
+html body .dec-tabs button[aria-selected="true"] span,
+html body .tab[aria-selected="true"],
+html body .tag.bad,
+html body .pdrop,
+html body .stops a.active[aria-current]{color:#B03355}
+
+/* Frontier: darker granite green, orange feature labels, and the booking-UI mockups */
+:root:has(#psychViz){--granite:#43754A}
+html body .fnum{color:#AC5F0C}
+html body .fr-legs small,html body .fr-dl{color:#707070}
+html body .fr-chip{background:#707070}
+html body .rd-low{color:#2D8453}
+html body .rd-pb[style*="--p:#2fae74"]{--p:#268F5F!important}
+html body .rd-pb[data-c="1"].picked{background:#46805B;border-color:#46805B}
+html body .rd-card[style*="--t:#4cb37a"]{--t:#378359!important}
+html body .rd-big[style*="#12b26b"]{background:#0E8651!important}
+html body .rd-big[style*="#2f8a57"]{background:#2D8453!important}
+
+/* Ayurveda: steps not in focus were dimmed to 40%, which drops body text to ~2:1 */
+html body .orig .callout:not(.on){opacity:.8}
+
+/* About: the "see how it works" hint peaked at 55% opacity. The page's own flowerHint
+   keyframes come later in the document, so swap in a renamed copy instead of redefining it. */
+html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
+@keyframes a11yFlowerHint{0%{opacity:0}5%,95%{opacity:.9}100%{opacity:0;visibility:hidden}}
+
+/* Visually hidden, still read by screen readers */
+.a11y-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+<script src="./a11y.js" defer></script>
+<!-- /a11y -->
 </head>
 <body>
 <!-- hero-shell: static copy of the header + hero, painted before React boots. fix-export.sh inserts this after <body>; it removes itself once the real hero has rendered. -->
@@ -315,7 +355,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
             <figcaption style="display:flex;flex-direction:column;gap:4px;min-width:0">
               <span style="font:600 19px/1.2 var(--font-display)">{{ t.name }}</span>
-              <span style="font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)">{{ t.role }}</span>
+              <span style="font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-700)">{{ t.role }}</span>
             </figcaption>
           </div>
           <blockquote style="margin:0;font-size:{{ quoteFs }};line-height:1.55;color:var(--ink-700);text-wrap:pretty;opacity:{{ t.contentOp }};transition:opacity .3s ease"><span aria-hidden="true" style="display:block;font:400 44px/0.6 var(--font-script);color:var(--brand);margin:10px 0 6px">“</span><sc-for list="{{ t.parts }}" as="q" hint-placeholder-count="1"><span style="background:{{ q.bg }};color:{{ q.color }};font-weight:{{ q.fw }};padding:{{ q.pad }};border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone">{{ q.text }}</span></sc-for></blockquote>
@@ -346,7 +386,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
 
 <div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
-  <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
+  <span aria-hidden="true" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
   <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
     <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -560,7 +600,7 @@ class Component extends DCLogic {
       }, { threshold: 0.5 }).observe(el);
     });
   }
-  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', tags: [], badge: (mobile && p.badgeMobile) || p.badge, hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif), media: p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'metadata', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif, slot: p.slot || `cover-work-${i}`,
+  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', tags: [], badge: (mobile && p.badgeMobile) || p.badge, hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif), media: p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'metadata', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif, slot: p.slot || `cover-work-${i}`,
         tagList: (p.tags || []).map((t, j) => ({ label: t, tone: TAG_TONES[(i + j) % TAG_TONES.length] })) })); }
   renderVals() {
     if (!this.walkerEl) {
@@ -652,7 +692,7 @@ class Component extends DCLogic {
           x: (sg * G.x[a] * cardW) + 'px', scale: G.s[a], rot: (sg * G.r[a]) + 'deg',
           opacity: Math.abs(rel) >= 3 ? 0 : 1, pe: Math.abs(rel) >= 3 ? 'none' : 'auto',
           bg: on ? 'var(--white)' : 'var(--pink-50)', bd: on ? 'var(--ink-900)' : 'var(--pink-200)', shadow: on ? 'var(--shadow-pop)' : 'none',
-          contentOp: on ? 1 : (mobile ? 0 : 0.45),
+          contentOp: on ? 1 : (mobile ? 0 : 0.85),
           initials: t.name.split(' ').map(w => w[0]).join(''), slot: 'avatar-' + t.name.split(' ')[0].toLowerCase(),
           current: on ? 'true' : undefined, dotW: on ? '28px' : '8px', dotColor: on ? 'var(--pink-700)' : 'var(--pink-300)',
           dotLabel: `Testimonial ${i + 1}: ${t.name}`, go: () => this.goTesti(i) };

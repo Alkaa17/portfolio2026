@@ -14,7 +14,7 @@
   document.head.appendChild(css);
   const mount = () => {
     const wrap = document.createElement('div'); wrap.className = 'am-snd';
-    wrap.innerHTML = '<span class="am-snd-tip" role="tooltip"></span><button type="button"></button>';
+    wrap.innerHTML = '<span class="am-snd-tip" aria-hidden="true"></span><button type="button"></button>';
     const tip = wrap.firstChild, btn = wrap.lastChild;
     let on = localStorage.getItem('am-wand-sound') === 'on';
     const paint = () => {

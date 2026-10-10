@@ -102,6 +102,31 @@ sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: '
   -e 's|<img src="./assets/award-rosette.png" alt=|<img src="./assets/award-rosette.png" loading="lazy" alt=|' \
   -e '/<link rel="preload" as="image" href=".\/assets\/alka-walk-2\.[a-z]*">/d' index.html
 
+# Accessibility (WCAG 2.1 AA). Page-level fixes that can't live in the shared scripts:
+# - pages missing a language
+# - sound-button tooltips repeat the button's aria-label, so hide them from screen readers
+# - home testimonials: side cards dimmed to 45% fail contrast; 85% with ink-700 role text passes
+# - home project videos don't start on their own for people who ask for reduced motion
+for f in index.html about.html playground.html; do
+  sed -i '' -e 's/^<html>$/<html lang="en">/' \
+    -e 's#<span role="tooltip" style="background:var(--ink-900)#<span aria-hidden="true" style="background:var(--ink-900)#' "$f"
+done
+sed -i '' -e 's/contentOp: on ? 1 : (mobile ? 0 : 0.45)/contentOp: on ? 1 : (mobile ? 0 : 0.85)/' \
+  -e 's#color:var(--ink-500)">{{ t.role }}#color:var(--ink-700)">{{ t.role }}#' \
+  -e "s/if (e.isIntersecting) v.play()/if (e.isIntersecting \&\& !matchMedia('(prefers-reduced-motion: reduce)').matches) v.play()/" index.html
+# Shared contrast overrides (a11y.css, inlined so it doesn't cost a request) and ARIA fixes
+# (a11y.js) go before </head> on every page. Re-inserted fresh each run so edits apply.
+python3 - <<'PY'
+import glob, re
+css = open('a11y.css').read().strip()
+block = '<!-- a11y: see a11y.css / a11y.js -->\n<style>\n' + css + '\n</style>\n<script src="./a11y.js" defer></script>\n<!-- /a11y -->\n'
+for f in ['index.html', 'about.html', 'playground.html', 'poe.html', 'frontier.html', 'ayurveda.html', 'ncci.html']:
+    s = open(f).read()
+    s = re.sub(r'<!-- a11y: .*?<!-- /a11y -->\n', '', s, flags=re.S)
+    s = s.replace('</head>', block + '</head>', 1)
+    open(f, 'w').write(s)
+PY
+
 leftover=$(grep -lE "Portfolio v4|Resume v3|Playground\.dc|Case Study\.html|Portfolio%20" *.html *.js || true)
 if [ -n "$leftover" ]; then
   echo "warning: old page names still referenced in:"
