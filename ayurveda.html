@@ -1445,6 +1445,9 @@ html body .orig .cta-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px
 html body main section:is(#challenge,#audience,#ecosystem,#method,#app,#impact,#reflection) h2{font-size:clamp(24px,3vw,30px) !important;line-height:1.1 !important;letter-spacing:0 !important}
 html body main section:is(#convert,#optimize) h3{font-size:clamp(24px,3vw,30px) !important;line-height:1.1 !important;letter-spacing:0 !important}
 html body main section:is(#ecosystem,#educate,#retain,#app,#reflection) h3{font-size:19px !important;line-height:1.2 !important;letter-spacing:0 !important}
+/* Content images use the shared 14px corner; device frames keep their own */
+html body .orig .aud-img,html body .orig .ph{border-radius:14px !important}
+html body .orig .push-fig img,html body .orig .push-flow img{border-radius:14px !important}
 </style>
 <link rel="stylesheet" href="./case-study.css">
 </head>
