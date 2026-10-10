@@ -465,6 +465,9 @@ p{text-wrap:pretty}
 .rd{font-family:'Montserrat',system-ui,sans-serif;color:#111;font-size:13px;line-height:1.3;background:#f3f3f3;padding:16px}
 .rd p{max-width:none}
 .f1.after .rd-before,.f1:not(.after) .rd-after{display:none}
+.bav.after .v-before,.bav:not(.after) .v-after{display:none}
+.fr-orig .fr-scroll.scrollbox{max-height:min(420px,50vh);height:min(420px,50vh)}
+#f3View .fr-orig{min-height:440px}
 .rd-before{margin:-16px -16px 0}
 .rd-title{font:700 17px/1.2 'Montserrat',sans-serif;margin:0 0 12px;color:#111}
 .rd-shell{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:16px 18px;margin-bottom:12px}
@@ -526,20 +529,21 @@ p{text-wrap:pretty}
 .rd-f3s #sumBtn{animation:none;box-shadow:0 0 0 0 rgba(76,179,122,.5);transition:box-shadow .25s,filter .2s}
 .rd-f3s #sumBtn:hover{filter:brightness(.95);box-shadow:0 0 0 4px rgba(76,179,122,.3)}
 
-#problem .fr-row{grid-template-columns:minmax(0,1fr) repeat(4,minmax(62px,82px));gap:6px}
-#problem .fr-itin{min-width:0}
-#problem .fr-legs{gap:10px}
-#problem .fr-price{padding:4px 2px}
-#problem .fr-price b{font-size:13px}
-#problem .fr-price span{font-size:10.5px}
+#problem .fr-row,.fr-orig .fr-row{grid-template-columns:minmax(0,1fr) repeat(4,minmax(62px,82px));gap:6px}
+#problem .fr-itin,.fr-orig .fr-itin{min-width:0}
+#problem .fr-legs,.fr-orig .fr-legs{gap:10px}
+#problem .fr-price,.fr-orig .fr-price{padding:4px 2px}
+#problem .fr-price b,.fr-orig .fr-price b{font-size:13px}
+#problem .fr-price span,.fr-orig .fr-price span{font-size:10.5px}
 
-#problem .fr-row{grid-template-columns:minmax(max-content,1fr) repeat(4,minmax(50px,76px))}
-#problem .fr-legs{gap:7px}
-#problem .fr-legs b{font-size:11px}
-#problem .fr-legs small{font-size:9px}
-#problem .fr-legs .fr-pl{width:14px;flex:none}
+#problem .fr-row,.fr-orig .fr-row{grid-template-columns:minmax(max-content,1fr) repeat(4,minmax(50px,76px))}
+#problem .fr-legs,.fr-orig .fr-legs{gap:7px}
+#problem .fr-legs b,.fr-orig .fr-legs b{font-size:11px}
+#problem .fr-legs small,.fr-orig .fr-legs small{font-size:9px}
+#problem .fr-legs .fr-pl,.fr-orig .fr-legs .fr-pl{width:14px;flex:none}
 
-.ba-mocks{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin:28px 0 32px}
+.ba-mocks{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin:0 0 32px}
+.ba-switch{margin-top:28px}
 .ba-screen{padding:0;container-type:inline-size}
 .ba-screen .rd{padding:20px 28px}
 .ba-screen .rd-card{cursor:default}
@@ -1063,8 +1067,8 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
         </div>
         <div>
           <div class="switch" role="group" aria-label="Compare versions">
-            <button type="button" aria-pressed="false" data-v="before">Original</button>
-            <button type="button" aria-pressed="true" data-v="after">Redesign</button>
+            <button type="button" aria-pressed="false" data-v="before">Before</button>
+            <button type="button" aria-pressed="true" data-v="after">After</button>
           </div>
           <div class="browser">
             <div class="browser-bar"><i></i><i></i><i></i><span>Select your fare</span></div>
@@ -1106,9 +1110,66 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
           <p class="muted">In the original, bundle information was scattered and needed scrolling, scanning, and mental effort. The redesign places features and total price for each bundle in a direct, adjacent layout, so users see the differences without losing context.</p>
           <p class="muted">Seeing benefits and costs together gives users confidence and control over their selection, instead of feeling overwhelmed or misled.</p>
         </div>
-        <div class="browser">
+        <div>
+          <div class="switch" role="group" aria-label="Compare versions">
+            <button type="button" aria-pressed="false" data-v="before">Before</button>
+            <button type="button" aria-pressed="true" data-v="after">After</button>
+          </div>
+        <div class="browser bav after" id="f2View">
           <div class="browser-bar"><i></i><i></i><i></i><span>Compare bundles (select one)</span></div>
-          <div class="screen rd-screen">
+          <div class="screen fr fr-orig v-before">
+              <div class="fr-scroll scrollbox" tabindex="0" aria-label="Scrollable fare page, original design">
+                <div class="fr-hd"><div class="fr-top"><img src="./assets/frontier-logo-white.svg" alt="Frontier" class="fr-logo"><nav class="fr-steps" aria-hidden="true"><span class="on">FLIGHT</span><span>INFO</span><span>BUNDLES</span><span>SEATS</span><span>BAGS</span><span>ADD-ONS</span><span>PAYMENT</span></nav><span class="fr-login">Hi, log in | sign up</span><span class="fr-es">Español</span></div><div class="fr-app"><span><b>JFK ⟶ ORD</b> <i>1 adult | edit</i> <span class="fr-edit" aria-hidden="true">✎</span></span><span class="fr-cart">$0.00 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20.5 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg></span></div></div>
+                <div class="fr-pad">
+                  <div class="fr-dep"><span><svg class="fr-pl fr-pl-l" aria-hidden="true"><use href="#i-plane"/></svg>Departing: JFK - ORD April 17</span><u>Low Fare Calendar</u></div>
+                  <div class="fr-banner"><div class="fr-bl"><span class="fr-tag">FREE CHECKED BAG</span><p>Book a DISCOUNT <b>DEN</b><sup>*</sup> fare by 4/22 and get a <b>FREE checked bag!</b><sup>*</sup></p></div><div class="fr-br"><span>DISCOUNT</span><b>DEN</b></div></div>
+                  <p class="fr-lbl">Show Prices For:</p>
+                  <div class="fr-seg">
+                    <div class="on"><span class="fr-chip dark">$166</span>Standard</div>
+                    <div><span class="fr-save">Save up to 13%!</span><span class="fr-chip">$146</span><span class="fr-den"><small>DISCOUNT</small>DEN</span><small class="fr-tiny">Members unlock low fares all year long with Discount Den!</small></div>
+                    <div><span class="fr-chip">--</span>GoWild!™</div>
+                    <div><span class="fr-chip">mi + $</span>Miles</div>
+                  </div>
+                  <div class="fr-tw"><table class="fr-tbl">
+                    <tr><td class="fr-leg"><span><span class="fr-ck" style="--k:#9a9a9a"><svg><use href="#i-check"/></svg></span> Included</span><span><span class="fr-dl">$</span> Additional Charge</span></td><th style="--h:#e9e9e9;color:#333">Basic<br>Fare</th><th style="--h:#2a6b47">Economy<br>Bundle</th><th style="--h:#2c6e96">Premium<br>Bundle</th><th style="--h:#3d2a8c">Business<br>Bundle</th></tr>
+                    <tr><td>Personal Item</td><td><span class="fr-ck" style="--k:#3a3a3a"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
+                    <tr><td>Carry-on Bag</td><td><span class="fr-dl">$</span></td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
+                    <tr><td>Choose Your Seat</td><td><span class="fr-dl">$</span></td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span><b>Standard</b></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span><b>Premium</b><small>Extra Legroom</small></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span><b>UpFront Plus</b><small>Empty Middle Seat<br>Extra Legroom</small></td></tr>
+                    <tr><td>No Change or Cancel Fees</td><td>—</td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
+                    <tr><td>Board First<sup>SM</sup></td><td><span class="fr-dl">$</span></td><td><span class="fr-dl">$</span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
+                    <tr><td>Checked Bags</td><td><span class="fr-dl">$</span></td><td><span class="fr-dl">$</span></td><td><span class="fr-dl">$</span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span><b>2 Bags (50lbs ea)</b></td></tr>
+                  </table></div>
+                  <u class="fr-terms">Bundle Feature Terms and Conditions</u>
+                  <div class="fr-results fr-results-sm">
+                <div class="fr-row">
+                  <div class="fr-itin">
+                    <div class="fr-legs"><div><b>6:00 AM</b><small>JFK</small></div><div><b>9:01 AM</b><small>MCO</small></div><svg class="fr-pl" aria-hidden="true"><use href="#i-plane"/></svg><div><b>2:01 PM</b><small>MCO</small></div><div><b>4:18 PM</b><small>ORD</small></div></div>
+                    <p class="fr-dur"><b>11 hrs 18 min</b> | 1 Stop MCO</p>
+                    <span class="fr-det">+Details</span>
+                  </div>
+                  <div class="fr-price"><b>$166</b><span>One-way</span><em>total $166</em></div><div class="fr-price"><b>+$29</b><span>One-way</span><em>total $195</em></div><div class="fr-price"><b>+$59</b><span>One-way</span><em>total $225</em></div><div class="fr-price"><b>+$159</b><span>One-way</span><em>total $325</em></div>
+                </div>
+                <div class="fr-row">
+                  <div class="fr-itin">
+                    <div class="fr-legs"><div><b>6:00 AM</b><small>JFK</small></div><div><b>9:01 AM</b><small>MCO</small></div><svg class="fr-pl" aria-hidden="true"><use href="#i-plane"/></svg><div><b>5:34 PM</b><small>MCO</small></div><div><b>7:55 PM</b><small>ORD</small></div></div>
+                    <p class="fr-dur"><b>14 hrs 55 min</b> | 1 Stop MCO</p>
+                    <span class="fr-det">+Details</span>
+                  </div>
+                  <div class="fr-price"><b>$166</b><span>One-way</span><em>total $166</em></div><div class="fr-price"><b>+$29</b><span>One-way</span><em>total $195</em></div><div class="fr-price"><b>+$59</b><span>One-way</span><em>total $225</em></div><div class="fr-price"><b>+$159</b><span>One-way</span><em>total $325</em></div>
+                </div>
+                <div class="fr-row">
+                  <div class="fr-itin">
+                    <div class="fr-legs"><div><b>6:59 AM</b><small>JFK</small></div><div><b>9:51 AM</b><small>LAS</small></div><svg class="fr-pl" aria-hidden="true"><use href="#i-plane"/></svg><div><b>11:15 PM</b><small>LAS</small></div><div><b>4:54 AM</b><small>ORD</small></div></div>
+                    <p class="fr-dur"><b>22 hrs 55 min <u>(+1 day)</u></b> | 1 Stop LAS</p>
+                    <span class="fr-det">+Details</span>
+                  </div>
+                  <div class="fr-price"><b>$196</b><span>One-way</span><em>total $196</em></div><div class="fr-price"><b>+$29</b><span>One-way</span><em>total $225</em></div><div class="fr-price"><b>+$59</b><span>One-way</span><em>total $255</em></div><div class="fr-price"><b>+$169</b><span>One-way</span><em>total $365</em></div>
+                </div></div>
+                </div>
+              </div>
+            <p class="note" style="margin:10px 16px 14px">Scroll the page. By the time you reach a fare, the chart explaining the bundles is gone.</p>
+          </div>
+          <div class="screen rd-screen v-after">
             <div class="rd" id="cmp">
               <h4 class="rd-title">Departing Detroit, going to Baltimore</h4>
               <div class="rd-shell">
@@ -1140,6 +1201,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
             </div>
           </div>
         </div>
+        </div>
       </div>
 
       <div class="feature" id="f3">
@@ -1149,9 +1211,53 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
           <p class="muted">Instead of frequent, disruptive upsell pop-ups, the redesign offers a subtle upgrade inside a contextual flight summary. It appears at a natural point, when users review their chosen flight before payment, rather than at every step.</p>
           <p class="muted">Because users are already reviewing their booking, the upgrade feels like a helpful option rather than a sales tactic.</p>
         </div>
-        <div class="browser rd-f3">
+        <div>
+          <div class="switch" role="group" aria-label="Compare versions">
+            <button type="button" aria-pressed="false" data-v="before">Before</button>
+            <button type="button" aria-pressed="true" data-v="after">After</button>
+          </div>
+        <div class="browser rd-f3 bav after" id="f3View">
           <div class="browser-bar"><i></i><i></i><i></i><span>Your trip</span></div>
-          <div class="screen rd rd-f3s">
+          <div class="screen fr fr-orig v-before">
+              <div class="fr-hd"><div class="fr-top"><img src="./assets/frontier-logo-white.svg" alt="Frontier" class="fr-logo"><nav class="fr-steps" aria-hidden="true"><span>FLIGHT</span><span>INFO</span><span>BUNDLES</span><span class="on">SEATS</span><span>BAGS</span><span>ADD-ONS</span><span>PAYMENT</span></nav><span class="fr-login">Hi, log in | sign up</span><span class="fr-es">Español</span></div><div class="fr-app"><span><b>JFK ⟶ ORD</b> <i>1 adult | edit</i> <span class="fr-edit" aria-hidden="true">✎</span></span><span class="fr-cart">$0.00 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20.5 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></svg></span></div></div>
+              <div class="fr-pad fr-seatstep">
+                <p class="fr-h">Select Seats <span class="counter-pill" id="f3PopCount">0 interruptions</span></p>
+                <div class="fr-seatsum"><span>Passenger 1</span><b>Seat 14C · Standard</b></div>
+                <p class="note">Try to move on to bags and payment.</p>
+                <button class="fr-btn" id="f3ContBtn" type="button">Continue</button>
+              </div>
+              <div class="fr-ov" id="f3Upsell">
+                <div class="fr-modal" data-m="den" role="dialog" aria-label="Join and save pop-up">
+                  <div class="fr-mh">JOIN AND SAVE!<button type="button" class="fr-x-btn" aria-label="Close" data-close>✕</button></div>
+                  <div class="fr-mb">
+                    <p>Save even more with a Discount Den membership!</p>
+                    <div class="fr-den-card">
+                      <div class="fr-dh"><b>Discount Den®</b><span>Low Fare Travel Club</span></div>
+                      <div class="fr-db">
+                        <span class="fr-ribbon">Save $20!</span>
+                        <ul><li>Low fares guaranteed</li><li>Share the savings with up to 8 others</li><li>Save all year long!</li></ul>
+                        <button type="button" class="fr-btn fr-sq" data-close>Save Now</button>
+                        <p class="fr-fine">Annual membership costs $59.99 per year. New members pay $99.99 their first year ($59.99 + $40.00 enrollment fee). <u style="color:#2c6e96">Learn more</u></p>
+                      </div>
+                    </div>
+                    <button type="button" class="fr-link" data-close><u>Continue Without Joining</u> <b>$224.58</b></button>
+                  </div>
+                </div>
+                <div class="fr-modal" data-m="prem" role="dialog" aria-label="Upgrade to premium pop-up" hidden>
+                  <div class="fr-mh">UPGRADE TO PREMIUM<button type="button" class="fr-x-btn" aria-label="Close" data-close>✕</button></div>
+                  <div class="fr-mb">
+                    <img src="./assets/fr-seats.png" alt="Frontier premium seats with extra legroom" class="fr-seatimg">
+                    <p>Choose our Premium Bundle to get all the benefits of our Economy Bundle plus:</p>
+                    <ul><li><b>Board First<sup>SM</sup></b> : Board before Zone 1 and get early access to overhead bin space</li><li><b>Premium Seating</b>: Choose a seat with extra legroom and comfort</li></ul>
+                    <div class="fr-up"><b>+$30</b><span>Per person, per direction</span></div>
+                    <button type="button" class="fr-btn fr-sq fr-blue" data-close>Add Premium Bundle &amp; Continue</button>
+                    <button type="button" class="fr-link" data-close><u>Continue with Economy</u></button>
+                    <span class="fr-tc">⌄ <u>Terms and Conditions</u></span>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="screen rd rd-f3s v-after">
             <h4 class="rd-title">Departing Detroit, going to Baltimore</h4>
             <div class="rd-shell">
               <div class="rd-flight">
@@ -1180,7 +1286,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
                 </div></div></div>
             <p class="note" style="margin:12px 0 0">Click “Continue with basic”: one calm checkpoint, zero interruptions.</p>
           </div>
-          <div class="summary-modal rd-ov" id="sumModal" role="dialog" aria-label="Flight summary">
+          <div class="summary-modal rd-ov v-after" id="sumModal" role="dialog" aria-label="Flight summary">
             <div class="rd-sum">
               <div class="rd-sh"><b>Flight Summary ($245 total)</b><button type="button" id="sumBack" aria-label="Close">✕</button></div>
               <div class="rd-sb">
@@ -1191,6 +1297,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
               <button type="button" class="rd-big" id="upgLink" style="background:#2f8a57"><u>Need a carry on? Get economy for $299</u></button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -1332,8 +1439,12 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
       <span class="kicker">before &amp; after</span>
       <h2>The shift in experience</h2>
       <p class="prose">The redesign removed friction from decision points while supporting user needs and aligning with business intent over the long term.</p>
-      <div class="ba-mocks">
-        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>Original</span></div><div class="screen ba-screen" id="baOrig"><div class="fr"><div class="fr-x"><div class="fr-tw"><table class="fr-tbl">
+      <div class="switch ba-switch" role="group" aria-label="Compare versions">
+        <button type="button" aria-pressed="true" data-v="before">Before</button>
+        <button type="button" aria-pressed="false" data-v="after">After</button>
+      </div>
+      <div class="ba-mocks bav" id="baView">
+        <div class="browser v-before"><div class="browser-bar"><i></i><i></i><i></i><span>Before</span></div><div class="screen ba-screen" id="baOrig"><div class="fr"><div class="fr-x"><div class="fr-tw"><table class="fr-tbl">
                     <tr><td class="fr-leg"><span><span class="fr-ck" style="--k:#9a9a9a"><svg><use href="#i-check"/></svg></span> Included</span><span><span class="fr-dl">$</span> Additional Charge</span></td><th style="--h:#e9e9e9;color:#333">Basic<br>Fare</th><th style="--h:#2a6b47">Economy<br>Bundle</th><th style="--h:#2c6e96">Premium<br>Bundle</th><th style="--h:#3d2a8c">Business<br>Bundle</th></tr>
                     <tr><td>Personal Item</td><td><span class="fr-ck" style="--k:#3a3a3a"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
                     <tr><td>Carry-on Bag</td><td><span class="fr-dl">$</span></td><td><span class="fr-ck" style="--k:#2a6b47"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#2c6e96"><svg><use href="#i-check"/></svg></span></td><td><span class="fr-ck" style="--k:#3d2a8c"><svg><use href="#i-check"/></svg></span></td></tr>
@@ -1372,7 +1483,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
                   </div>
                 </div></div></div>
         </div>
-        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>Redesign</span></div><div class="screen ba-screen" id="baRed"><div class="rd"><h4 class="rd-title">Departing Detroit, going to Baltimore</h4><div class="rd-shell">
+        <div class="browser v-after"><div class="browser-bar"><i></i><i></i><i></i><span>After</span></div><div class="screen ba-screen" id="baRed"><div class="rd"><h4 class="rd-title">Departing Detroit, going to Baltimore</h4><div class="rd-shell">
               <div class="rd-flight">
                 <div class="rd-times">
                   <small class="rd-low">Lowest fare</small>
@@ -1420,7 +1531,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
       </div>
       <div class="ba-wrap">
         <table class="ba">
-          <thead><tr><th>Category</th><th style="color:var(--rose)">Original design</th><th style="color:var(--granite)">Redesign</th></tr></thead>
+          <thead><tr><th>Category</th><th style="color:var(--rose)">Before</th><th style="color:var(--granite)">After</th></tr></thead>
           <tbody>
             <tr><td>Emotional impact</td><td class="o">Confusion, fatigue, mistrust</td><td class="r">Clarity, control, and confidence</td></tr>
             <tr><td>Upsells</td><td class="o">Multiple disruptive pop-ups</td><td class="r">Integrated suggestions within summary screens</td></tr>
@@ -1441,17 +1552,17 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
         <div class="card">
           <h3>Task completion time</h3>
           <div class="big">2× faster</div>
-          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter-label"><span>Before</span><span>baseline</span></div>
           <div class="meter"><i class="orig" data-w="100"></i></div>
-          <div class="meter-label"><span>Redesign</span><span>half the time</span></div>
+          <div class="meter-label"><span>After</span><span>half the time</span></div>
           <div class="meter"><i class="new" data-w="50"></i></div>
         </div>
         <div class="card">
           <h3>Reported user trust</h3>
           <div class="big">+65%</div>
-          <div class="meter-label"><span>Original</span><span>baseline</span></div>
+          <div class="meter-label"><span>Before</span><span>baseline</span></div>
           <div class="meter"><i class="orig" data-w="60"></i></div>
-          <div class="meter-label"><span>Redesign</span><span>+65%</span></div>
+          <div class="meter-label"><span>After</span><span>+65%</span></div>
           <div class="meter"><i class="new" data-w="99"></i></div>
         </div>
         <div class="card">
@@ -1461,7 +1572,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
             <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
             <svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg><svg class="seat"><use href="#i-seat"/></svg>
           </div>
-          <div class="legend"><span><i style="background:var(--granite)"></i>Redesign</span><span><i style="background:var(--rose)"></i>Original</span></div>
+          <div class="legend"><span><i style="background:var(--granite)"></i>After</span><span><i style="background:var(--rose)"></i>Before</span></div>
         </div>
       </div>
 
@@ -1665,6 +1776,22 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
     $$('.total-tag',f1).forEach(t=>t.style.visibility=after?'visible':'hidden');
     $('#f1Note').textContent=after?'Totals and bag allowance (personal item, carry-on, checked) visible at a glance.':'Only differences shown. Bag rules are hidden in sub-menus.';
   }));
+
+  /* ---------- before/after toggles (features 2, 3 and before & after section) ---------- */
+  [['#f2','#f2View'],['#f3','#f3View'],['#before-after','#baView']].forEach(([wrap,view])=>{
+    const v=$(view), bs=$$(wrap+' .switch button');
+    bs.forEach(btn=>btn.addEventListener('click',()=>{
+      bs.forEach(b=>b.setAttribute('aria-pressed',b===btn));
+      v.classList.toggle('after',btn.dataset.v==='after');
+    }));
+  });
+
+  /* ---------- feature 3 before: repeated upsell pop-ups ---------- */
+  (()=>{let n=0; const ov=$('#f3Upsell'), den=$('[data-m="den"]',ov), prem=$('[data-m="prem"]',ov), btn=$('#f3ContBtn');
+    btn.addEventListener('click',()=>{const a=n%2===0; den.hidden=!a; prem.hidden=a; n++; $('#f3PopCount').textContent=n+(n===1?' interruption':' interruptions'); ov.classList.add('show'); $('.fr-x-btn',a?den:prem).focus();});
+    $$('[data-close]',ov).forEach(b=>b.addEventListener('click',()=>{ov.classList.remove('show');btn.focus();}));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')ov.classList.remove('show');});
+  })();
 
   /* ---------- feature 2 compare ---------- */
   const cmp=$('#cmp');
