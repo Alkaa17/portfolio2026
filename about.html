@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,50 @@
 <style>html,body{background:#FFFCF5;color-scheme:light}@view-transition{navigation:auto}</style>
 <script src="./support.js"></script>
 <script src="/clarity.js" async></script>
+<!-- a11y: see a11y.css / a11y.js -->
+<style>
+/* Accessibility overrides (WCAG 2.1 AA contrast). fix-export.sh inlines this into every
+   page's <head>, so it survives a fresh Claude Design export. Rules are prefixed with
+   `html body` to outrank the exported !important styles they replace. */
+
+/* Brand pink #FA4A7B is 3.2:1 on cream/white. Text and white-on-pink use pink-600 (5.2:1). */
+html body .kicker{color:#D6085D!important}
+html body .cs-cta{background:#D6085D;border-color:#D6085D}
+html body .cs-cta:hover{background:#B03355;border-color:#B03355}
+html body .ba-tabs button[aria-selected="true"]{background:#D6085D}
+/* pink-600 text on the pale pink chip is 4.3:1; pink-700 is 5.0:1 */
+html body .toggle button[aria-selected="true"],
+html body .dec-tabs button[aria-selected="true"],
+html body .dec-tabs button[aria-selected="true"] span,
+html body .tab[aria-selected="true"],
+html body .tag.bad,
+html body .pdrop{color:#B03355}
+/* Home page script words inside section headings */
+html body h2>span[style*="var(--font-script)"][style*="var(--brand)"]{color:#D6085D!important}
+
+/* Frontier: darker granite green, orange feature labels, and the booking-UI mockups */
+:root:has(#psychViz){--granite:#43754A}
+html body .fnum{color:#AC5F0C}
+html body .fr-legs small,html body .fr-dl{color:#707070}
+html body .fr-chip{background:#707070}
+html body .rd-low{color:#2D8453}
+html body .rd-pb[style*="--p:#2fae74"]{--p:#268F5F!important}
+html body .rd-pb[data-c="1"].picked{background:#46805B;border-color:#46805B}
+html body .rd-card[style*="--t:#4cb37a"]{--t:#378359!important}
+html body .rd-big[style*="#12b26b"]{background:#0E8651!important}
+html body .rd-big[style*="#2f8a57"]{background:#2D8453!important}
+
+/* Ayurveda: steps not in focus were dimmed to 40%, which drops body text to ~2:1 */
+html body .orig .callout:not(.on){opacity:.8}
+
+/* About: the "see how it works" hint peaked at 55% opacity */
+@keyframes flowerHint{0%{opacity:0}10%,85%{opacity:.9}100%{opacity:0;visibility:hidden}}
+
+/* Visually hidden, still read by screen readers */
+.a11y-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+<script src="./a11y.js" defer></script>
+<!-- /a11y -->
 </head>
 <body>
 <x-dc>
@@ -40,7 +84,7 @@ nav > div > button{height:47px !important;padding:0 21px !important;font-size:17
 p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
 h1,h2,h3,h4{text-wrap-style:balance}
 @keyframes flowerSpin{to{transform:rotate(360deg)}}
-@keyframes flowerHint{0%{opacity:0}10%,85%{opacity:.55}100%{opacity:0;visibility:hidden}}
+@keyframes flowerHint{0%{opacity:0}5%,95%{opacity:.55}100%{opacity:0;visibility:hidden}}
 @media (prefers-reduced-motion: reduce){.am-flower{animation:none !important}}
 </style>
 </helmet>
@@ -152,7 +196,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
 
 <div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
-  <span role="tooltip" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
+  <span aria-hidden="true" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
   <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
     <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -272,9 +316,9 @@ class Component extends DCLogic {
       flower: this.flowerEl || (this.flowerEl = React.createElement('span', { style: { position: 'relative', flex: 'none', alignSelf: 'center', display: 'block', width: 42, height: 42 } },
         React.createElement('button', { type: 'button', 'aria-label': 'Make it rain flowers', onClick: () => this.flowerShower(), style: { width: 42, height: 42, padding: 0, border: 0, background: 'transparent', cursor: 'pointer', display: 'block' } },
           React.createElement('span', { className: 'am-flower', style: { width: 42, height: 42, display: 'block', animation: 'flowerSpin 9s linear infinite' }, dangerouslySetInnerHTML: { __html: this.flowerSvg('#FF5C9A', '#F2357F', 42) } })),
-        React.createElement('span', { 'aria-hidden': 'true', style: { position: 'absolute', left: 30, top: 34, display: 'flex', alignItems: 'flex-start', gap: 2, pointerEvents: 'none', whiteSpace: 'nowrap', color: 'var(--pink-700)', opacity: 0, animation: 'flowerHint 5s ease forwards', ...(window.innerWidth < 600 ? { left: 'auto', right: 30, flexDirection: 'row-reverse' } : {}) } },
+        React.createElement('span', { 'aria-hidden': 'true', style: { position: 'absolute', left: 30, top: 34, display: 'flex', alignItems: 'flex-start', gap: 2, pointerEvents: 'none', whiteSpace: 'nowrap', color: 'var(--pink-700)', opacity: 0, animation: 'flowerHint 11s ease forwards', ...(window.innerWidth < 600 ? { left: 'auto', right: 30, flexDirection: 'row-reverse' } : {}) } },
           React.createElement('span', { style: { display: 'block', width: 34, height: 30, transform: window.innerWidth < 600 ? 'scaleX(-1)' : undefined }, dangerouslySetInnerHTML: { __html: '<svg width="34" height="30" viewBox="0 0 34 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M30 26C18 26 8 20 5 5"/><path d="M1.5 10 5 4.5 10 8.5"/></svg>' } }),
-          React.createElement('span', { style: { fontFamily: 'Pacifico, cursive', fontSize: 17, lineHeight: 1, marginTop: 20 } }, 'see how it works')))),
+          React.createElement('span', { style: { fontFamily: 'Pacifico, cursive', fontSize: 17, lineHeight: 1, marginTop: 20 } }, 'Click to see how it works')))),
       openLinkedIn: () => window.open('https://www.linkedin.com/in/alka-mahapatra', '_blank', 'noopener'),
       copyEmail: () => {
         const done = () => { this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); };
