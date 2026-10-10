@@ -70,3 +70,27 @@ html body main :is(.ay-hmw,.hmw){background:#FFF4F7 !important;border:1px solid 
 html body main :is(.ay-hmw .hm-l,.hmw .script){font-family:'Pacifico','Brush Script MT',cursive !important;font-size:19px !important;font-weight:400 !important;line-height:1.4 !important;color:#FA4A7B !important;margin:0 0 6px !important}
 html body main :is(.ay-hmw .q,.hmw p){font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:22px !important;font-weight:600 !important;line-height:1.35 !important;color:#3B1D2A !important;margin:0 !important}
 html body main .ay-hmw .hm-s{font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:19px !important;font-weight:600 !important;line-height:1.4 !important;color:#5E3847 !important;text-decoration-color:#D6085D !important}
+
+/* Left rail: one look on every case study (Frontier's). Each page keeps its own markup, script
+   and marker icon: Frontier .rail/.route (plane), Ayurveda + NCCI .trail/.stops (cart, paw),
+   Poe aside nav (sparkle). Passed/active states are .passed on Frontier and Poe, .done on the trail. */
+html body :is(.route-progress,.trail-progress,.shell > aside .track){background:#F08C21 !important}
+html body .shell > aside nav ol::before{background:none !important;width:0 !important;border-left:2px dashed #FCC6D3}
+html body :is(.route,.stops,.shell > aside nav) .group{list-style:none;font-family:'Fredoka',ui-rounded,sans-serif !important;font-size:12.5px !important;font-weight:400 !important;color:#D6085D !important;margin:14px 0 2px 8px !important;padding:0 !important}
+html body :is(.route,.stops,.shell > aside nav) .group:is(:first-child,:first-of-type){margin-top:0 !important}
+html body .shell > aside .spark{position:absolute;left:-5px;top:0;width:20px;height:20px;color:#000;z-index:3;pointer-events:none;transition:transform .3s ease}
+@media (min-width:901px){
+  html body :is(aside.rail,nav.trail,.shell > aside){border-right:2px solid #FCC6D3 !important}
+  html body :is(.route,.stops,.shell > aside nav) li:not(.sub):not(.group) > a{font-family:'Figtree','Helvetica Neue',Arial,sans-serif !important;font-size:14.5px !important;line-height:1.35 !important;color:#5E3847 !important;font-weight:400 !important;background:none !important}
+  html body :is(.route,.stops,.shell > aside nav) a:hover{color:#3B1D2A !important;background:#FFF4F7 !important}
+  html body :is(.route,.stops,.shell > aside nav) a.active{color:#3B1D2A !important;font-weight:500 !important;background:none !important}
+  html body :is(.route,.stops,.shell > aside nav) a:is(.active,.passed,.done)::before{background:#F08C21 !important;border-color:#F08C21 !important}
+}
+@media (max-width:900px){
+  /* Mobile: the rail is a horizontal strip of chips; the active one is filled */
+  html body :is(.route,.stops,.shell > aside nav) .group,html body .shell > aside .spark{display:none !important}
+  html body .shell > aside{border-right:0 !important;padding-top:10px !important;padding-bottom:10px !important}
+  html body :is(.route,.stops,.shell > aside nav) li:not(.sub) > a{font-family:'Figtree','Helvetica Neue',Arial,sans-serif !important;font-size:13.5px !important;white-space:nowrap;color:#5E3847 !important;border-radius:999px !important}
+  html body :is(.route,.stops,.shell > aside nav) a.active{background:#FFF4F7 !important;color:#B03355 !important;font-weight:500 !important}
+}
+html body .shell > aside nav a::before{width:8px !important;height:8px !important;left:-17px !important;top:15px !important}
