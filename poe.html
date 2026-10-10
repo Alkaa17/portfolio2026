@@ -106,13 +106,13 @@ section:last-of-type{border-bottom:0}
 .different{display:grid;grid-template-columns:230px 1fr;gap:48px;align-items:center;margin:8px 0 40px}
 .diff-phone img{width:100%;height:auto;filter:drop-shadow(0 14px 26px rgba(39,40,39,.18));opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .in .diff-phone img{opacity:1;transform:none}
-.diff-list{list-style:none;counter-reset:d;padding:0;margin:18px 0 0;display:grid;gap:12px}
-.diff-list li{counter-increment:d;position:relative;padding:16px 20px 16px 62px;background:#fff;border:1px solid var(--line);border-radius:16px;opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease,border-color .3s}
+.diff-list{list-style:none;counter-reset:d;padding:0;margin:18px 0 0;display:grid;gap:20px}
+.diff-list li{counter-increment:d;position:relative;padding:0 0 0 42px;opacity:0;transform:translateX(16px);transition:opacity .5s ease,transform .5s ease,border-color .3s}
 .in .diff-list li{opacity:1;transform:none}
 .in .diff-list li:nth-child(2){transition-delay:.15s,.15s,0s}
 .in .diff-list li:nth-child(3){transition-delay:.3s,.3s,0s}
 
-.diff-list li::before{content:counter(d);position:absolute;left:20px;top:16px;width:26px;height:26px;border-radius:50%;background:var(--soft);color:var(--dusk);font-weight:500;font-size:.82rem;display:grid;place-items:center}
+.diff-list li::before{content:counter(d);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--soft);color:var(--dusk);font-weight:500;font-size:.82rem;display:grid;place-items:center}
 .diff-list h4{font-family:var(--body);font-weight:500;font-size:1rem;margin:2px 0 2px}
 .diff-list p{font-size:.92rem;margin:0 0 8px;color:var(--muted)}
 .why-pill{display:inline-block;font-size:.82rem;color:#fff;background:var(--green);padding:3px 12px;border-radius:999px}
@@ -408,7 +408,7 @@ aside nav a::before{border-width:2px;border-color:var(--pink-200)}
 .phase-tag{background:var(--brand);padding:6px 14px}
 h1{font-size:clamp(2.4rem,5vw,3.6rem)}
 .hero h1::after{content:" ✦";color:var(--brand)}
-.info-card,.method,.diff-list li,.side-card,.t-card,.area,.heur-fig,.concepts figure,.friction,.sev-desc,.rec,.closing,.hmw,details.sheet{border:2px solid var(--line);border-radius:24px;box-shadow:none}
+.info-card,.method,.side-card,.t-card,.area,.heur-fig,.concepts figure,.friction,.sev-desc,.rec,.closing,.hmw,details.sheet{border:2px solid var(--line);border-radius:24px;box-shadow:none}
 .method:hover{border-color:var(--ink-900);box-shadow:var(--shadow-pop);transform:translate(-2px,-4px) rotate(-.4deg)}
 .method,.t-card,.diff-list li{transition:opacity .5s ease,transform var(--dur-base) var(--ease-bouncy),box-shadow var(--dur-base),border-color var(--dur-base)}
 .hmw,.closing{background:var(--pink-50);border-color:var(--pink-200)}

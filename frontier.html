@@ -247,17 +247,15 @@ ul.clean li{margin-bottom:6px}
 .shots figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
 .shots figcaption{font-size:13px;color:var(--muted);padding:8px 12px}
 .ba-wrap{overflow-x:auto;margin-top:22px}
-.ba{width:100%;min-width:560px;border-collapse:separate;border-spacing:0 8px}
-.ba th{text-align:left;font-family:var(--head);font-weight:400;font-size:15px;padding:0 14px}
-.ba td{padding:14px;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top;transition:background .2s}
-.ba td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;font-weight:500;width:22%}
-.ba td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
+.ba{width:100%;min-width:560px;border-collapse:collapse}
+.ba th{text-align:left;font-family:var(--head);font-weight:400;font-size:15px;padding:0 14px 10px 0}
+.ba td{padding:14px 14px 14px 0;border-top:1px solid var(--line);vertical-align:top}
+.ba td:first-child{font-weight:500;width:22%}
 .ba td.o{color:var(--rose)} .ba td.r{color:var(--granite)}
-.ba tr:hover td{background:var(--sunk)}
 .ba .o::before{content:"✕ ";font-weight:700}
 .ba .r::before{content:"✓ ";font-weight:700}
-.takeaways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
-.takeaways .card{border-top:4px solid var(--camel)}
+.takeaways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px;margin-top:22px}
+.takeaways h3{margin:0 0 4px}
 .contact{margin-top:40px;padding:28px;border-radius:18px;background:var(--dusk);color:#FAF9F6}
 .contact h3{font-size:24px}
 .contact a{color:#FAF9F6}
@@ -1566,10 +1564,10 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 
       <h3 style="margin-top:40px">What we learned</h3>
       <div class="takeaways">
-        <div class="card"><h3>Trust</h3><p class="muted" style="margin:0">Trust came from taking things away: hidden totals, forced interruptions, and pre-checked boxes.</p></div>
-        <div class="card"><h3>Upsells</h3><p class="muted" style="margin:0">Subtle upsells inside summary screens performed better than disruptive pop-ups.</p></div>
-        <div class="card"><h3>Speed</h3><p class="muted" style="margin:0">Showing full prices upfront removed the mental math that slowed every decision.</p></div>
-        <div class="card"><h3>Control</h3><p class="muted" style="margin:0">User feedback confirmed a preference for clarity and control over pressure.</p></div>
+        <div><h3>Trust</h3><p class="muted" style="margin:0">Trust came from taking things away: hidden totals, forced interruptions, and pre-checked boxes.</p></div>
+        <div><h3>Upsells</h3><p class="muted" style="margin:0">Subtle upsells inside summary screens performed better than disruptive pop-ups.</p></div>
+        <div><h3>Speed</h3><p class="muted" style="margin:0">Showing full prices upfront removed the mental math that slowed every decision.</p></div>
+        <div><h3>Control</h3><p class="muted" style="margin:0">User feedback confirmed a preference for clarity and control over pressure.</p></div>
       </div>
     </section>
   </main>

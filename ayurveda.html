@@ -1414,6 +1414,19 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 </style>
 <script src="./a11y.js" defer></script>
 <!-- /a11y -->
+<style id="flat-boxes">
+/* No boxes inside boxes: chapter content sits on the page, only visuals keep a frame */
+html body .orig .story{background:none !important;border-radius:0 !important;padding:clamp(32px,4vw,48px) 0 0 !important;border-top:1px solid var(--line)}
+html body .orig .r-card{background:none !important;border:0 !important;border-radius:0 !important;padding:0 !important}
+html body .orig .tracking{background:none !important;border-radius:0 !important;padding:0 !important}
+html body .orig .priority{gap:0 !important}
+html body .orig .priority li{background:none !important;outline:0 !important;border-radius:0 !important;padding:12px 0 !important;border-top:1px solid var(--line)}
+html body .orig .app-card{background:none !important;border-radius:0 !important;padding:0 !important}
+html body .orig .exp{background:none !important;border:0 !important;border-top:1px solid var(--line) !important;border-radius:0 !important;padding:clamp(32px,4vw,48px) 0 0 !important}
+html body .orig .cta-ab>div{background:none !important;border-radius:0 !important;padding:8px 0 !important;min-height:52px}
+html body .orig .cta-ab>div+div{border-top:1px solid color-mix(in srgb,var(--rose) 18%,transparent)}
+html body .orig .impact{background:none !important}
+</style>
 </head>
 <body>
 <site-header active="work" shrink></site-header>
