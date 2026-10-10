@@ -468,7 +468,7 @@ main h3{font-size:19px;line-height:1.2}
 .chips li{padding:6px 12px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);font:500 13.5px/1.2 var(--head);color:var(--ink-soft)}
 .label-sm{font:500 12px/1.4 'DM Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dusk);margin:0 0 10px}
 .ay-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 10px}
-.ay-stat{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.ay-stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px -10px rgba(176,51,85,.25);padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
 .ay-stat b{font:600 clamp(26px,3vw,34px)/1 var(--head);color:var(--ink)}
 .ay-stat span{font:500 11.5px/1.4 'DM Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
 .ay-stat i{font-style:normal;align-self:flex-start;padding:3px 8px;border-radius:999px;font:500 10.5px/1 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
@@ -481,7 +481,7 @@ main h3{font-size:19px;line-height:1.2}
 .ay-hmw .not s{display:block;font:600 22px/1.25 var(--head);color:var(--ink);text-decoration-color:var(--rose);text-decoration-thickness:3px;margin-top:6px}
 .ay-hmw .q{font:600 clamp(19px,2vw,23px)/1.35 var(--head);color:var(--ink);margin:0;max-width:none}
 .journey{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:none}
-.journey li.stage{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.journey li.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px -10px rgba(176,51,85,.25);padding:16px;display:flex;flex-direction:column;gap:10px}
 .journey h3{margin:0;font-size:18px}
 .journey .ch{font:500 11px/1 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dusk)}
 .journey .chips li{font-size:12px;padding:4px 9px;background:var(--pink-100,#FFE3EC);border:0;color:var(--ink)}
@@ -678,7 +678,7 @@ main h3{font-size:19px;line-height:1.2}
   --f-body:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
   --f-note:"Pacifico","Brush Script MT","Segoe Script",cursive;
 
-  --r-sm:10px; --r-md:16px; --r-lg:28px;
+  --r-sm:10px; --r-md:14px; --r-lg:18px;
   --ease:cubic-bezier(.22,.61,.36,1);
   --header-h:68px;
 
@@ -932,7 +932,7 @@ main h3{font-size:19px;line-height:1.2}
 .orig .app-work .chips li{background:#475A5E;color:#FAF9F6}
 .orig .app .banner-ph{margin-top:clamp(32px,5vw,56px)}
 .orig .experiments{display:grid;gap:clamp(24px,4vw,40px);margin-top:clamp(40px,6vw,72px)}
-.orig .exp{border:1.5px dashed color-mix(in srgb,var(--mauve) 70%,transparent);border-radius:var(--r-lg);padding:clamp(20px,3.6vw,44px);background:var(--bg)}
+.orig .exp{border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,3.6vw,44px);background:var(--bg)}
 .orig .exp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
 .orig .exp-top .exp-id{font-size:.88rem;color:var(--mauve-ink);font-weight:500;margin-bottom:4px}
 .orig .exp-top h3{font-size:clamp(1.4rem,2.4vw,1.9rem)}
@@ -1039,8 +1039,8 @@ main h3{font-size:19px;line-height:1.2}
 @media (prefers-reduced-motion:reduce){.orig *,.orig *::before,.orig *::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
 }
 
-.orig{--dusk:#D6085D;--camel:#FA4A7B;--rose:#D6085D;--granite:#D6085D;--iron:#3B1D2A;--mauve:#FA4A7B;--ash:#FFE3EA;--dust:#FCC6D3;--porcelain:#FFFCF5;--graphite:#3B1D2A;--bg:#FFFCF5;--surface:#FFFFFF;--surface-2:#FFF4F7;--ink:#3B1D2A;--ink-soft:#5E3847;--line:#FCC6D3;--line-strong:#FCA5B5;--camel-ink:#B03355;--mauve-ink:#B03355;--ph-a:#FFF4F7;--ph-b:#FFE3EA;--focus:#FA4A7B;--f-head:'Fredoka',ui-rounded,sans-serif;--f-body:'Figtree','Helvetica Neue',Arial,sans-serif;--f-note:'Pacifico',cursive;--r-sm:12px;--r-md:18px;--r-lg:28px;--ease:cubic-bezier(.22,.61,.36,1);--header-h:70px;padding:0;box-sizing:border-box}
-.mphone{position:relative;aspect-ratio:9/18.5;border-radius:34px;background:#3B1D2A;padding:10px;box-shadow:4px 4px 0 #FA4A7B}
+.orig{--dusk:#D6085D;--camel:#FA4A7B;--rose:#D6085D;--granite:#D6085D;--iron:#3B1D2A;--mauve:#FA4A7B;--ash:#FFE3EA;--dust:#FCC6D3;--porcelain:#FFFCF5;--graphite:#3B1D2A;--bg:#FFFCF5;--surface:#FFFFFF;--surface-2:#FFF4F7;--ink:#3B1D2A;--ink-soft:#5E3847;--line:#FCC6D3;--line-strong:#FCA5B5;--camel-ink:#B03355;--mauve-ink:#B03355;--ph-a:#FFF4F7;--ph-b:#FFE3EA;--focus:#FA4A7B;--f-head:'Fredoka',ui-rounded,sans-serif;--f-body:'Figtree','Helvetica Neue',Arial,sans-serif;--f-note:'Pacifico',cursive;--r-sm:12px;--r-md:14px;--r-lg:18px;--ease:cubic-bezier(.22,.61,.36,1);--header-h:70px;padding:0;box-sizing:border-box}
+.mphone{position:relative;aspect-ratio:9/18.5;border-radius:34px;background:#3B1D2A;padding:10px;box-shadow:0 8px 24px -10px rgba(176,51,85,.25)}
 .mphone-notch{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:34%;height:16px;border-radius:999px;background:#3B1D2A;z-index:2}
 .mphone-screen{height:100%;border-radius:26px;overflow-y:auto;overscroll-behavior:contain;background:#62D3E0;scrollbar-width:thin;scrollbar-color:#FA4A7B transparent}
 .mphone-screen img{display:block;width:100%;height:auto}
@@ -1254,7 +1254,7 @@ main h3{font-size:19px;line-height:1.2}
 .orig .ay-gal .gcol{display:flex;flex-direction:column;gap:clamp(24px,3vw,36px)}
 .orig .ay-gal .media{margin:0}
 .orig .amz{margin:clamp(32px,4vw,48px) 0 0;display:flex;flex-direction:column;gap:12px}
-.dbrowser{position:relative;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px #3B1D2A,4px 4px 0 2px #FA4A7B}
+.dbrowser{position:relative;border-radius:12px;overflow:hidden;background:#fff;border:1px solid #FCC6D3;box-shadow:0 8px 24px -10px rgba(176,51,85,.25)}
 .dbrowser-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#3B1D2A;color:#FFE3EA;font:500 11.5px/1 'DM Mono',monospace}
 .dbrowser-bar i{width:9px;height:9px;border-radius:50%;background:#FCC6D3;flex:none}
 .dbrowser-bar span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
