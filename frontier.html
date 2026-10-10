@@ -572,22 +572,22 @@ p{text-wrap:pretty}
 #baRed .rd-btn{transition:filter .2s,box-shadow .2s}
 #baRed .rd-btn:hover{filter:brightness(.93);box-shadow:0 0 0 3px rgba(0,0,0,.08)}
 
-#baUpsell{padding:0;justify-content:flex-end;align-items:stretch;overflow:hidden;background:rgba(20,20,20,.55)}
-#baUpsell.show .fr-modal{animation:frDrawer .45s cubic-bezier(.22,.8,.3,1) both}
-#baUpsell .fr-modal{max-width:none;width:min(48%,440px);height:100%;border:0;overflow:auto;box-shadow:-8px 0 24px rgba(0,0,0,.25);display:flex;flex-direction:column}
-#baUpsell .fr-mh{position:sticky;top:0;z-index:1;background:#006643;color:#fff;text-align:center;justify-content:center;font:800 15px/1 'Montserrat',sans-serif;letter-spacing:.01em;padding:14px 40px;border:0}
-#baUpsell .fr-x-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;background:none;border:0;font-size:18px}
-#baUpsell .fr-mb{padding:12px 14px 18px}
-#baUpsell .fr-seatimg{width:100%;display:block;margin-bottom:14px}
-#baUpsell .fr-up{text-align:right;margin:10px 18px 12px 0}
-#baUpsell .fr-up b{font-size:22px}
-#baUpsell .fr-sq{display:block;margin:0 0 0 auto;background:#0b7ab8;border-radius:0;font-weight:500}
-#baUpsell .fr-link{display:block;margin:14px auto 0}
+#baUpsell,#f3Upsell{padding:0;justify-content:flex-end;align-items:stretch;overflow:hidden;background:rgba(20,20,20,.55)}
+#baUpsell.show .fr-modal,#f3Upsell.show .fr-modal{animation:frDrawer .45s cubic-bezier(.22,.8,.3,1) both}
+#baUpsell .fr-modal,#f3Upsell .fr-modal{max-width:none;width:min(48%,440px);height:100%;border:0;overflow:auto;box-shadow:-8px 0 24px rgba(0,0,0,.25);display:flex;flex-direction:column}
+#baUpsell .fr-mh,#f3Upsell .fr-mh{position:sticky;top:0;z-index:1;background:#006643;color:#fff;text-align:center;justify-content:center;font:800 15px/1 'Montserrat',sans-serif;letter-spacing:.01em;padding:14px 40px;border:0}
+#baUpsell .fr-x-btn,#f3Upsell .fr-x-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;background:none;border:0;font-size:18px}
+#baUpsell .fr-mb,#f3Upsell .fr-mb{padding:12px 14px 18px}
+#baUpsell .fr-seatimg,#f3Upsell .fr-seatimg{width:100%;display:block;margin-bottom:14px}
+#baUpsell .fr-up,#f3Upsell .fr-up{text-align:right;margin:10px 18px 12px 0}
+#baUpsell .fr-up b,#f3Upsell .fr-up b{font-size:22px}
+#baUpsell .fr-sq,#f3Upsell .fr-sq{display:block;margin:0 0 0 auto;background:#0b7ab8;border-radius:0;font-weight:500}
+#baUpsell .fr-link,#f3Upsell .fr-link{display:block;margin:14px auto 0}
 @keyframes frDrawer{from{transform:translateX(100%)}to{transform:none}}
-@container (max-width:560px){#baUpsell .fr-modal{width:88%}}
+@container (max-width:560px){#baUpsell .fr-modal,#f3Upsell .fr-modal{width:88%}}
 
-#baUpsell .fr-modal[hidden]{display:none}
-#baUpsell .fr-modal{min-width:min(320px,92%)}
+#baUpsell .fr-modal[hidden],#f3Upsell .fr-modal[hidden]{display:none}
+#baUpsell .fr-modal,#f3Upsell .fr-modal{min-width:min(320px,92%)}
 
 .pax{position:absolute;inset:0;z-index:9;overflow:auto;background:#f6f6f6;color:#222;font-family:'Montserrat',sans-serif;animation:fade .3s ease;text-align:left}
 .pax .fr-hd{position:sticky;top:0}
@@ -1788,7 +1788,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 
   /* ---------- feature 3 before: repeated upsell pop-ups ---------- */
   (()=>{let n=0; const ov=$('#f3Upsell'), den=$('[data-m="den"]',ov), prem=$('[data-m="prem"]',ov), btn=$('#f3ContBtn');
-    btn.addEventListener('click',()=>{const a=n%2===0; den.hidden=!a; prem.hidden=a; n++; $('#f3PopCount').textContent=n+(n===1?' interruption':' interruptions'); ov.classList.add('show'); $('.fr-x-btn',a?den:prem).focus();});
+    btn.addEventListener('click',()=>{const a=n%2===0; den.hidden=!a; prem.hidden=a; n++; $('#f3PopCount').textContent=n+(n===1?' interruption':' interruptions'); ov.scrollLeft=0; ov.classList.add('show'); $('.fr-x-btn',a?den:prem).focus({preventScroll:true});});
     $$('[data-close]',ov).forEach(b=>b.addEventListener('click',()=>{ov.classList.remove('show');btn.focus();}));
     document.addEventListener('keydown',e=>{if(e.key==='Escape')ov.classList.remove('show');});
   })();
