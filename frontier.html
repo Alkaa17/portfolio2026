@@ -20,7 +20,7 @@
 html,body{overflow-x:clip;max-width:100%}
 @media (max-width:767px){img,video{max-width:100%;height:auto}.switch button{min-height:40px;padding-left:16px;padding-right:16px}}
 html,body{cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
-a,button,[role=button],[role=tab],label,summary,select,[tabindex="0"],[data-zoom],.col,.need,.hp-pin button{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+a,button,[role=button],[role=tab],label,summary,select,[tabindex="0"],[data-zoom],.col,.hp-pin button{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
 </style>
 <script src="./wand.js"></script>
 <script>window.AMWand && AMWand.init();</script>
@@ -192,14 +192,9 @@ ul.clean li{margin-bottom:6px}
 .facts div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:4px 0}
 .needs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
 .need-list{list-style:none;padding:0;margin:0}
-.need{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--surface);cursor:pointer;transition:border-color .2s, background .2s, transform .2s}
+.need{margin-bottom:14px}
 .need b{font-weight:500;display:block}
 .need span{font-size:14px;color:var(--muted)}
-.need .link{display:block;font-size:12.5px;color:var(--dusk);margin-top:6px;max-height:0;overflow:hidden;transition:max-height .3s}
-.need:hover,.need:focus-visible,.need.lit{transform:translateX(3px)}
-.goals .need:hover,.goals .need.lit,.goals .need:focus-visible{border-color:var(--granite);background:var(--granite-soft)}
-.frust .need:hover,.frust .need.lit,.frust .need:focus-visible{border-color:var(--rose);background:var(--rose-soft)}
-.need:hover .link,.need.lit .link,.need:focus-visible .link{max-height:40px}
 .need-title{font-family:var(--head);font-size:16px;margin-bottom:10px}
 .goals .need-title{color:var(--granite)} .frust .need-title{color:var(--rose)}
 
@@ -208,7 +203,6 @@ ul.clean li{margin-bottom:6px}
 .feature + .feature{border-top:1px dashed var(--line)}
 .feature.flip .feat-copy{order:2}
 .fnum{display:inline-block;font-family:var(--head);font-size:13px;color:var(--camel);border:1.5px solid var(--camel);border-radius:20px;padding:1px 10px;margin-bottom:8px}
-.feature.flash .browser{box-shadow:0 0 0 3px var(--camel),var(--shadow)}
 .switch{display:inline-flex;background:var(--sunk);border-radius:999px;padding:3px;margin-bottom:12px;border:1px solid var(--line)}
 .switch button{font:500 13px var(--body);border:0;background:none;color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .2s}
 .switch button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
@@ -1014,7 +1008,7 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
     <section id="persona">
       <span class="kicker">persona</span>
       <h2>Designing for David</h2>
-      <p class="prose">To guide our solution, we developed a user persona grounded in behavioral insights. Hover or tab through his goals and frustrations to see which feature answers each one.</p>
+      <p class="prose">To guide our solution, we developed a user persona grounded in behavioral insights.</p>
       <div class="card" style="margin-top:20px">
         <div class="persona">
           <div>
@@ -1035,17 +1029,17 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
           <div class="goals">
             <div class="need-title">Goals</div>
             <ul class="need-list">
-              <li class="need" tabindex="0" data-f="f1"><b>Clear total cost</b><span>Easily see the complete price of flights and bundles upfront.</span><span class="link">Answered by key feature 1: transparent pricing</span></li>
-              <li class="need" tabindex="0" data-f="f2"><b>Informed choices</b><span>Understand options without losing key comparison points.</span><span class="link">Answered by key feature 2: side-by-side comparison</span></li>
-              <li class="need" tabindex="0" data-f="f3"><b>Efficient booking</b><span>Quickly navigate without unnecessary steps or distractions.</span><span class="link">Answered by key feature 3: no pop-ups</span></li>
+              <li class="need"><b>Clear total cost</b><span>Easily see the complete price of flights and bundles upfront.</span></li>
+              <li class="need"><b>Informed choices</b><span>Understand options without losing key comparison points.</span></li>
+              <li class="need"><b>Efficient booking</b><span>Quickly navigate without unnecessary steps or distractions.</span></li>
             </ul>
           </div>
           <div class="frust">
             <div class="need-title">Frustrations</div>
             <ul class="need-list">
-              <li class="need" tabindex="0" data-f="f1"><b>Hidden charges</b><span>Unexpected fees added late in the booking process.</span><span class="link">Answered by key feature 1: transparent pricing</span></li>
-              <li class="need" tabindex="0" data-f="f2"><b>Confusing pricing</b><span>Hard to understand the actual cost of bundles and options.</span><span class="link">Answered by key feature 2: side-by-side comparison</span></li>
-              <li class="need" tabindex="0" data-f="f3"><b>Pushy upsells</b><span>Constant and irrelevant prompts to purchase upgrades.</span><span class="link">Answered by key feature 3: no pop-ups</span></li>
+              <li class="need"><b>Hidden charges</b><span>Unexpected fees added late in the booking process.</span></li>
+              <li class="need"><b>Confusing pricing</b><span>Hard to understand the actual cost of bundles and options.</span></li>
+              <li class="need"><b>Pushy upsells</b><span>Constant and irrelevant prompts to purchase upgrades.</span></li>
             </ul>
           </div>
         </div>
@@ -1756,15 +1750,6 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
     pv.appendChild(b);});
   pv._on=()=>$$('.pcol',pv).forEach((b,i)=>{const bar=$('.pbar',b);setTimeout(()=>{bar.style.height=b._h+'px';bar.style.top=(b._pos?ZP-b._h:ZP)+'px';},reduce?0:i*120);});
   io.observe(pv);
-
-  /* ---------- persona -> features ---------- */
-  $$('.need').forEach(n=>{
-    const lite=on=>$$(`.need[data-f="${n.dataset.f}"]`).forEach(x=>x.classList.toggle('lit',on));
-    n.addEventListener('mouseenter',()=>lite(true)); n.addEventListener('mouseleave',()=>lite(false));
-    n.addEventListener('focus',()=>lite(true)); n.addEventListener('blur',()=>lite(false));
-    const go=()=>{const f=$('#'+n.dataset.f);f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});f.classList.add('flash');setTimeout(()=>f.classList.remove('flash'),1600);};
-    n.addEventListener('click',go); n.addEventListener('keydown',e=>{if(e.key==='Enter'){go();}});
-  });
 
   /* ---------- feature 1 toggle ---------- */
   const f1=$('#f1Screen');
