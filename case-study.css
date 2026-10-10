@@ -15,3 +15,9 @@ html body .chapter-header .chapter-sub{font-family:'Fredoka',ui-rounded,sans-ser
 @media (max-width:640px){
   html body .chapter-header{grid-template-columns:minmax(0,1fr) !important;gap:8px !important}
 }
+
+/* Section rhythm: 56px above and below, a solid hairline between sections, none after the last.
+   Poe and Ayurveda wrap some sections in a div inside <main>, so the last section is either
+   <main>'s last child or the last section in its last wrapper. */
+html body main section{padding:56px 0 !important;margin:0 !important;border:0 !important;border-bottom:1px solid #FCC6D3 !important}
+html body main > section:last-child,html body main > :last-child > section:last-of-type{border-bottom:0 !important}
