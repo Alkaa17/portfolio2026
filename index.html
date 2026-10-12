@@ -299,6 +299,23 @@ h1,h2,h3,h4{text-wrap-style:balance}
           </div>
         </a>
       </sc-for>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
+        <sc-for list="{{ visualWork }}" as="v" hint-placeholder-count="2">
+          <a href="{{ v.href }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+            <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+            <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+              <img src="{{ v.cover }}" alt="{{ v.coverAlt }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:{{ v.coverPos }};display:block"></img>
+              <span style="position:absolute;right:12px;top:12px;padding:6px 10px;border-radius:999px;background:var(--pink-100);font:500 10px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700);pointer-events:none">{{ v.badge }}</span>
+            </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
+              <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase"><span style="color:var(--pink-700)">{{ v.org }}</span></p>
+              <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:pretty">{{ v.title }}</h3>
+              <p style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ v.desc }}</p>
+            </div>
+          </a>
+        </sc-for>
+      </div>
     </div>
   </div>
 </section>
@@ -491,6 +508,10 @@ const RESEARCH = [
 const WORK = [
   { org: 'CRO strategy · CX/UX design · Visual design · Team lead', year: '2022–24', href: '/ayurveda', badge: 'D2C e-commerce · Beauty & Wellness', badgeMobile: 'D2C e-commerce', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
   { org: 'Website redesign · Information architecture · Visual design', year: '2023', href: '/ncci', badge: 'Nonprofit · Conservation', badgeMobile: 'Conservation', url: 'conservingcentralindia.org', video: __res('./assets/project3-cover.mp4'), title: 'Making conservation research easy to find and easy to publish', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
+];
+const VISUAL_WORK = [
+  { org: 'Visual design · Graphic design · Merchandise', year: '2022', href: 'https://canva.link/86hqehcb306thvz', badge: 'Fashion · Streetwear', cover: __res('./assets/covers/trendgully-cover.jpg'), coverPos: 'center 70%', coverAlt: 'Black sweatshirt with a FREEDOM streetwear graphic of a winged statue', title: 'Turning streetwear trends into graphics people want to wear', desc: 'As associate graphic designer, I translated fashion forecasts, visual culture and client briefs into apparel graphics and merchandise concepts that balanced aesthetic direction with commercial needs.' },
+  { org: 'Visual systems · Packaging · Retail collateral', year: '2021–22', href: 'https://canva.link/x5mskzh5zufzotv', badge: 'Fashion · Menswear', cover: __res('./assets/covers/blackberrys-cover.jpg'), coverAlt: 'Front and back of a brown Blackberrys gift card with a gold ribbon', title: 'One tag system for 1,500 SKUs at a national menswear brand', desc: 'As graphic designer, I built visual systems across packaging, catalogs and retail collateral, and merged 3–8 garment tags per product into one. Annual print cost fell 62%.' }
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
@@ -706,7 +727,7 @@ class Component extends DCLogic {
       tabItems: TABS.map(t => ({ key: t.key, label: t.label })), tab: s.tab, selectTab: (k) => this.selectTab(k),
       activeTabLabel: activeTab.label, panelBg: activeTab.color,
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
-      leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile),
+      leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile), visualWork: VISUAL_WORK.map(v => ({ ...v, coverPos: v.coverPos || 'center' })),
       research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasBadge: !!r.badge, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', noCover: !r.cover && !r.frontier, hasOverlay: !!r.overlay })),
       goWork: () => this.scrollToId('projects'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
