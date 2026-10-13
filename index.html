@@ -258,9 +258,6 @@ h1,h2,h3,h4{text-wrap-style:balance}
               <sc-if value="{{ r.hasPhoto }}" hint-placeholder-val="{{ false }}">
                 <img src="{{ r.photo }}" alt="{{ r.coverAlt }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></img>
               </sc-if>
-              <sc-if value="{{ r.hasWash }}" hint-placeholder-val="{{ false }}">
-                <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 100% 0,rgba(255,255,255,.92) 0,rgba(255,255,255,.75) 35%,rgba(255,255,255,.3) 65%,rgba(255,255,255,0) 100%);pointer-events:none"></div>
-              </sc-if>
               <sc-if value="{{ r.isFrontier }}" hint-placeholder-val="{{ false }}">
                 <div role="img" aria-label="Frontier Airlines plane and logo" style="position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9%;padding:0 6%;overflow:hidden">
                   <div style="width:92%;aspect-ratio:{{ r.planeRatio }};position:relative">{{ r.planeEl }}</div>
@@ -512,7 +509,7 @@ const PROJECTS = {
 };
 const RESEARCH = [
   { org: 'UX research · Interaction design', year: '2025', href: '/frontier', badge: 'Travel · Airline', photo: __res('./assets/covers/frontier-cover.jpg'), logo: './assets/frontier-logo.png', coverAlt: 'Laptop showing a redesigned Frontier fare picker comparing Basic, Economy and Business bundles', title: 'Making airline booking honest for travellers without losing upsell revenue', desc: 'As UX researcher and designer, I tested with 6 users and rebuilt the flow without hidden fees or pre-checked add-ons. Reported trust rose 65%.' },
-  { org: 'Mixed-method UX research', year: '2025', href: '/poe', badge: 'AI · Consumer tech', photo: __res('./assets/covers/poe-cover.jpg'), logo: './assets/poe-logo.png', wash: true, coverAlt: 'Person holding a phone showing the Poe app home screen with reasoning, search and image generation bots', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
+  { org: 'Mixed-method UX research', year: '2025', href: '/poe', badge: 'AI · Consumer tech', photo: __res('./assets/covers/poe-cover.jpg'), logo: './assets/poe-logo.png', coverAlt: 'Person at a sunlit desk holding a phone showing the Poe app home screen, with lavender in a purple vase behind', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
 ];
 const WORK = [
   { org: 'CRO strategy · CX/UX design · Visual design · Team lead', year: '2022–24', href: '/ayurveda', badge: 'D2C e-commerce · Beauty & Wellness', badgeMobile: 'D2C e-commerce', url: 'theayurvedaexperience.com', video: __res('./assets/ayurveda/tae-cover.mp4'), title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
@@ -737,7 +734,7 @@ class Component extends DCLogic {
       activeTabLabel: activeTab.label, panelBg: activeTab.color,
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
       leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile), visualWork: VISUAL_WORK.map(v => ({ ...v, coverPos: v.coverPos || 'center' })),
-      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasBadge: !!r.badge, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', hasPhoto: !!r.photo, hasLogo: !!r.logo, hasWash: !!r.wash, noCover: !r.cover && !r.frontier && !r.photo, hasOverlay: !!r.overlay })),
+      research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasBadge: !!r.badge, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', hasPhoto: !!r.photo, hasLogo: !!r.logo, noCover: !r.cover && !r.frontier && !r.photo, hasOverlay: !!r.overlay })),
       goWork: () => this.scrollToId('projects'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
       deckH: (cardH + 60) + 'px', cardW: cardW + 'px', cardH: cardH + 'px', cardML: (-cardW / 2) + 'px',
