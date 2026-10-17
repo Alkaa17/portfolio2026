@@ -12,14 +12,11 @@
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/colors.css">
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/typography.css">
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/effects.css">
-<style id="wand-cursor">
+<style>
 html,body{overflow-x:clip;max-width:100%}
 @media (max-width:767px){img,video{max-width:100%;height:auto}}
-html,body{cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
-a,button,[role=button],[role=tab],label,summary,select,[tabindex="0"],[data-zoom],.col,.need,.hp-pin button{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+a,button,[role=button],[role=tab],label,summary,select,[tabindex="0"],[data-zoom],.col,.need,.hp-pin button{cursor:pointer}
 </style>
-<script src="./wand.js"></script>
-<script>window.AMWand && AMWand.init();</script>
 <script src="./site-chrome.js"></script>
 <script src="./image-slot.js"></script>
 <meta name="view-transition" content="same-origin">
@@ -2266,7 +2263,6 @@ html body .orig .push-fig img,html body .orig .push-flow img{border-radius:14px 
 })();
 </script>
 <script>document.querySelectorAll('.mphone-screen,.dbrowser-screen').forEach(el=>el.addEventListener('scroll',()=>el.parentElement.classList.toggle('scrolled',el.scrollTop>10),{passive:true}));</script>
-<script src="./sound-toggle.js"></script>
 <script src="./nav-follow.js"></script>
 </body>
 </html>

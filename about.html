@@ -64,12 +64,11 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/styles.css"></link>
 <script src="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
-<script src="./wand.js"></script>
 <script src="./transition.js"></script>
 <style>
 html{scroll-behavior:smooth}html,body{overflow-x:clip;max-width:100%}
-body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased;cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
-a,button,[role=button]{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a,button,[role=button]{cursor:pointer}
 a{color:var(--pink-700)}
 a:hover{color:var(--pink-600)}
 *:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
@@ -191,17 +190,6 @@ h1,h2,h3,h4{text-wrap-style:balance}
 </main>
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
 
-<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
-  <span aria-hidden="true" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
-  <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
-    <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-    </sc-if>
-    <sc-if value="{{ soundOff }}" hint-placeholder-val="{{ false }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-    </sc-if>
-  </button>
-</div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script >
@@ -242,13 +230,10 @@ const TOOL_GROUPS = [
 ];
 
 class Component extends DCLogic {
-  state = { copied: false, vw: 1200, open: { 'edu-0': true, 'exp-0': true }, soundOn: false, tip: false };
-  wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.t = setTimeout(go, 50)); go(); }
+  state = { copied: false, vw: 1200, open: { 'edu-0': true, 'exp-0': true } };
   componentDidMount() {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
-    this.setState({ soundOn: localStorage.getItem('am-wand-sound') === 'on' });
-    this.wand(w => { w.init(); w.set({ style: this.props.wandSoundStyle ?? 'shimmer' }); });
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
     window.addEventListener('resize', this.onResize);
@@ -323,12 +308,7 @@ class Component extends DCLogic {
         else { this.fallbackCopy(txt); done(); }
       },
       copyText: s.copied ? 'copied ✦' : 'copy', copyBg: s.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: s.copied ? 'var(--white)' : 'var(--pink-700)',
-      soundOn: s.soundOn, soundOff: !s.soundOn, heroJustify: s.vw < 640 ? 'center' : 'flex-start', heroAlign: s.vw < 640 ? 'center' : 'stretch', heroText: s.vw < 640 ? 'center' : 'left', soundDisp: s.vw < 768 ? 'none' : 'flex',
-      soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
-      soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
-      toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
-      tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
-      tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px'
+      heroJustify: s.vw < 640 ? 'center' : 'flex-start', heroAlign: s.vw < 640 ? 'center' : 'stretch', heroText: s.vw < 640 ? 'center' : 'left',
     };
   }
 }

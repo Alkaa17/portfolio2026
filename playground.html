@@ -63,13 +63,12 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/tokens/patterns.css"></link>
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/styles.css"></link>
 <script src="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/_ds_bundle.js"></script>
-<script src="./wand.js"></script>
 <script src="./transition.js"></script>
 <script src="./image-slot.js"></script>
 <style>
 html{scroll-behavior:smooth}html,body{overflow-x:clip;max-width:100%}
-body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased;cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
-a,button,[role=button]{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a,button,[role=button]{cursor:pointer}
 a{color:var(--pink-700)}
 a:hover{color:var(--pink-600)}
 *:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
@@ -137,17 +136,6 @@ h1,h2,h3,h4{text-wrap-style:balance}
   </div>
 </main>
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
-<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
-  <span aria-hidden="true" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
-  <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
-    <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-    </sc-if>
-    <sc-if value="{{ soundOff }}" hint-placeholder-val="{{ false }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-    </sc-if>
-  </button>
-</div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -174,13 +162,10 @@ const ART_TONES = ['var(--maize)', 'var(--pink-100)', 'var(--vanilla)'];
 const ART_TILTS = ['-1deg', '1.5deg', '-1.5deg', '1.2deg', '-0.8deg', '0.6deg', '1deg', '0.8deg', '0.6deg', '-0.8deg'];
 const TAPES = ['var(--pink-300)', 'var(--maize)', 'var(--sky)', 'var(--mint)', 'var(--lemon)', 'var(--tangerine)'];
 class Component extends DCLogic {
-  state = { vw: 1200, soundOn: false, tip: false, active: 'books' };
-  wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.t = setTimeout(go, 50)); go(); }
+  state = { vw: 1200, active: 'books' };
   componentDidMount() {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
-    this.setState({ soundOn: localStorage.getItem('am-wand-sound') === 'on' });
-    this.wand(w => { w.init(); w.set({ style: 'shimmer' }); });
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
     window.addEventListener('resize', this.onResize);
@@ -205,12 +190,6 @@ class Component extends DCLogic {
         if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fb); else fb();
       },
       copyText: this.state.copied ? 'copied ✦' : 'copy', copyBg: this.state.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: this.state.copied ? 'var(--white)' : 'var(--pink-700)',
-      soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex',
-      soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
-      toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
-      soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
-      tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
-      tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px',
       fullW: { width: '100%' },
       sections: SECTIONS.map(x => { const on = x.id === s.active; return { ...x, current: on ? 'true' : undefined,
         bg: on ? 'var(--pink-100)' : 'transparent', fg: on ? 'var(--pink-700)' : 'var(--pink-400)',

@@ -5,7 +5,6 @@
   var BOUNCE = 'cubic-bezier(.34,1.56,.64,1)';
   var css = document.createElement('style');
   css.textContent =
-    '@keyframes amtWiggle{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.06)}}' +
     '@keyframes amtHop{0%,100%{transform:translateY(0);opacity:.55}40%{transform:translateY(-9px);opacity:1}}' +
     '@keyframes amtTwinkle{0%,100%{transform:scale(.6) rotate(0);opacity:0}50%{transform:scale(1) rotate(45deg);opacity:1}}' +
     '#am-curtain{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;' +
@@ -15,9 +14,6 @@
     '#am-curtain.amt-hidden{opacity:0}' +
     '#am-curtain .amt-inner{display:flex;flex-direction:column;align-items:center;gap:18px;transition:opacity 900ms ease,transform 1100ms ' + BOUNCE + '}' +
     '#am-curtain.amt-hidden .amt-inner{opacity:0;transform:scale(.94)}' +
-    '#am-curtain .amt-wand{position:relative;width:96px;height:96px}' +
-    '#am-curtain .amt-wand img{width:100%;height:100%;object-fit:contain;animation:amtWiggle 1800ms ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(217,184,214,.9))}' +
-    '#am-curtain .amt-star{position:absolute;font:600 18px/1 var(--font-display,sans-serif);animation:amtTwinkle 2.6s ease-in-out infinite}' +
     '#am-curtain .amt-logo{height:56px;width:auto}' +
     '#am-curtain .amt-label{display:flex;gap:10px;align-items:center;font:500 13px/1 var(--font-mono,monospace);letter-spacing:.24em;text-transform:uppercase}' +
     '#am-curtain .amt-dots{display:flex;gap:6px}#am-curtain .amt-dots span{animation:amtHop 1600ms ease-in-out infinite}' +
@@ -30,10 +26,6 @@
   el.setAttribute('aria-live', 'polite');
   el.innerHTML =
     '<div class="amt-inner">' +
-      '<div class="amt-wand"><img src="' + (window.__res ? __res('./assets/ds/wand-sm.png') : './assets/ds/wand-sm.png') + '" alt="">' +
-        '<span class="amt-star" style="left:-14px;top:6px;color:var(--pink-500)">✦</span>' +
-        '<span class="amt-star" style="right:-12px;top:-4px;animation-delay:.45s;color:var(--lemon)">✦</span>' +
-        '<span class="amt-star" style="right:-4px;bottom:0;font-size:12px;animation-delay:.9s;color:var(--sky)">✦</span></div>' +
       '<img class="amt-logo" src="' + (window.__res ? __res('./assets/ds/logo-script.png') : './assets/ds/logo-script.png') + '" alt="Alka Mahapatra">' +
       '<div class="amt-label"><span>sprinkling magic</span><span class="amt-dots" aria-hidden="true">' +
         '<span style="color:var(--pink-500)">✦</span><span style="animation-delay:.15s;color:var(--tangerine)">✦</span><span style="animation-delay:.3s;color:var(--olivine)">✦</span><span style="animation-delay:.45s;color:var(--sea)">✦</span></span></div>' +

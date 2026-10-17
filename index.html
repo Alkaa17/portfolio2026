@@ -40,7 +40,6 @@
 <meta name="ext-resource-dependency" content="./assets/icons/accessibility.png" data-resource-id="r20">
 <meta name="ext-resource-dependency" content="./assets/icons/michigan.png" data-resource-id="r21">
 <meta name="ext-resource-dependency" content="./assets/ds/logo-script.png" data-resource-id="r22">
-<meta name="ext-resource-dependency" content="./assets/ds/wand-sm.png" data-resource-id="r23">
 <meta name="ext-resource-dependency" content=".image-slots.state.json" data-resource-id="r24">
 <script>window.__res=function(p){var m=document.querySelector('meta[name="ext-resource-dependency"][content="'+p+'"]');var r=window.__resources;return (m&&r&&r[m.getAttribute('data-resource-id')])||(p==='.image-slots.state.json'?'.image-slots.home.json':p);};</script>
 <style>x-dc{display:none!important}</style><script src="./support.js" defer></script>
@@ -155,12 +154,11 @@ body{margin:0}
 <link rel="stylesheet" href="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/styles.css"></link>
 <script src="_ds/pink-whimsy-design-system-dd5f6817-60f6-4a58-8d80-94aa49022c1a/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
-<script src="./wand.js"></script>
 <script src="./transition.js"></script>
 <style>
 html{scroll-behavior:smooth}html,body{overflow-x:clip;max-width:100%}
-body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased;cursor:url("./assets/ds/wand-cursor.png") 12 3,auto}
-a,button,[role=button],[role=tab]{cursor:url("./assets/ds/wand-cursor.png") 12 3,pointer !important}
+body{margin:0;background:var(--cream);color:var(--ink-900);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a,button,[role=button],[role=tab]{cursor:pointer}
 a{color:var(--pink-700)}
 a:hover{color:var(--pink-600)}
 *:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
@@ -431,20 +429,9 @@ h1,h2,h3,h4{text-wrap-style:balance}
 </main>
 <x-import component-from-global-scope="site-footer" from="./site-chrome.js" hint-size="100%,170px"></x-import>
 
-<div onMouseEnter="{{ tipOn }}" onMouseLeave="{{ tipOff }}" onFocus="{{ tipOn }}" onBlur="{{ tipOff }}" style="position:fixed;right:24px;bottom:24px;z-index:60;display:{{ soundDisp }};align-items:center;gap:12px">
-  <span aria-hidden="true" style="background:var(--ink-900);color:var(--cream);font:500 13px/1.2 var(--font-display);padding:8px 12px;border-radius:12px;white-space:nowrap;pointer-events:none;opacity:{{ tipOp }};transform:translateX({{ tipX }});transition:opacity var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)">{{ soundTip }}</span>
-  <button type="button" aria-label="{{ soundLabel }}" aria-pressed="{{ soundOn }}" onClick="{{ toggleSound }}" style="width:52px;height:52px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;background:var(--maize);color:#6B4A00;box-shadow:0 6px 16px rgba(176,120,0,.22),0 1px 3px rgba(59,29,42,.1);cursor:pointer;transition:background var(--dur-base) ease,transform var(--dur-base) var(--ease-bouncy)" style-hover="background:#FFEA5C;transform:scale(1.06)">
-    <sc-if value="{{ soundOn }}" hint-placeholder-val="{{ true }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-    </sc-if>
-    <sc-if value="{{ soundOff }}" hint-placeholder-val="{{ false }}">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-    </sc-if>
-  </button>
-</div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;wandSoundStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;fairy&quot;,&quot;chime&quot;,&quot;harp&quot;,&quot;shimmer&quot;],&quot;default&quot;:&quot;shimmer&quot;,&quot;tsType&quot;:&quot;'fairy'|'chime'|'harp'|'shimmer'&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;wandSound&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;starTrail&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Magic wand&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 const STORIES = [
   { src: __res('./assets/ds/cat-graduate-sm.png'), label: 'the graduate', alt: 'Cat mascot in a graduation cap holding a diploma',
     pre: 'Hi, I\'m', script: 'Alka.', sub: '4+ years turning hard questions into products people understand the first time.' },
@@ -532,7 +519,7 @@ const PRIZE_PHOTOS = [
 ];
 
 class Component extends DCLogic {
-  state = { section: 'home', story: 0, testiIdx: 0, prizeIdx: 0, tab: 'design', shownTab: 'design', fading: false, vw: 1200, soundOn: false };
+  state = { section: 'home', story: 0, testiIdx: 0, prizeIdx: 0, tab: 'design', shownTab: 'design', fading: false, vw: 1200 };
   rootRef = React.createRef();
   heroRef = React.createRef();
   timers = {};
@@ -552,8 +539,6 @@ class Component extends DCLogic {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
     this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.setState({ soundOn: (this.props.wandSound ?? true) && localStorage.getItem('am-wand-sound') === 'on' });
-    this.wand(w => { w.init(); w.set({ sound: this.state.soundOn, style: this.props.wandSoundStyle ?? 'shimmer', trail: this.props.starTrail ?? true }); });
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
     window.addEventListener('resize', this.onResize);
@@ -590,11 +575,6 @@ class Component extends DCLogic {
       this.timers.land = setTimeout(tick, 100);
     };
     tick();
-  }
-  wand(fn) { const go = () => window.AMWand ? fn(window.AMWand) : (this.timers.wand = setTimeout(go, 50)); go(); }
-  componentDidUpdate(prev) {
-    if (prev.wandSoundStyle !== this.props.wandSoundStyle) this.wand(w => { w.set({ style: this.props.wandSoundStyle ?? 'shimmer' }); w.play(); });
-    if (prev.starTrail !== this.props.starTrail) this.wand(w => w.set({ trail: this.props.starTrail ?? true }));
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEsc);
@@ -710,12 +690,7 @@ class Component extends DCLogic {
         else if (k === 'resume') (window.AMGo ? window.AMGo('/aboutme') : (window.location.href = '/aboutme'));
         else if (k === 'playground') (window.AMGo ? window.AMGo('/playground') : (window.location.href = '/playground'));
       },
-      soundOn: s.soundOn, soundOff: !s.soundOn, soundDisp: s.vw < 768 ? 'none' : 'flex', soundLabel: s.soundOn ? 'Mute wand sound' : 'Turn on wand sound',
-      soundTip: s.soundOn ? 'Wand sound is on · click to mute' : 'Wand sound is off · click to turn on',
-      tipOn: () => this.setState({ tip: true }), tipOff: () => this.setState({ tip: false }),
-      tipOp: s.tip ? 1 : 0, tipX: s.tip ? '0px' : '8px',
 
-      toggleSound: () => { const v = !s.soundOn; this.wand(w => w.set({ sound: v })); this.setState({ soundOn: v }); },
       chevron: React.createElement('span', { 'aria-hidden': true, style: { display: 'block', animation: 'bob 1.6s ease-in-out infinite' } },
         React.createElement('span', { style: { display: 'block', width: 12, height: 12, borderRight: '2.5px solid var(--pink-700)', borderBottom: '2.5px solid var(--pink-700)', transform: 'rotate(45deg)' } })),
       storyCounter: `scroll ✦ 0${s.story + 1} / 0${STORIES.length}`,
