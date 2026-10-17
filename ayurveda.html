@@ -1178,7 +1178,8 @@ main h3{font-size:19px;line-height:1.2}
 .orig .navshot .ph-hero img{object-fit:cover;object-position:top}
 .orig .exp-status.win{border:0 !important;background:var(--rose) !important;color:#fff !important;font-weight:600}
 .orig .navshot{height:clamp(320px,38vw,480px);border-radius:var(--r-md);background:color-mix(in srgb,var(--rose) 7%,#FFFCF5);display:grid;place-items:center;padding:16px;overflow:hidden}
-.orig .navshot{height:auto !important;padding:24px 10px !important}
+.orig .navshot{height:auto !important;padding:24px 0 !important;justify-items:start !important;overflow:visible !important}
+.orig .exp-row.variants:not(.v3){grid-template-columns:repeat(2,minmax(0,250px));column-gap:clamp(32px,5vw,72px);justify-content:start}
 @media (max-width:1100px){.orig .exp-row.variants{grid-template-columns:1fr !important}}
 .orig .phone{width:100%;max-width:250px;aspect-ratio:1/2;border-radius:40px;background:#fff;padding:0;border:9px solid #3B1D2A;box-shadow:0 18px 40px -18px color-mix(in srgb,var(--rose) 45%,transparent)}
 .orig .ph-screen{position:relative;height:100%;border-radius:31px;overflow:hidden;background:#fff;display:flex;flex-direction:column;font-family:Figtree,sans-serif;color:#3B1D2A}
