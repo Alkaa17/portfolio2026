@@ -1421,8 +1421,13 @@ html body span[style*="flowerHint"]{animation-name:a11yFlowerHint!important}
 html body .orig .story{background:none !important;border-radius:0 !important;padding:clamp(32px,4vw,48px) 0 0 !important;border-top:1px solid var(--line)}
 html body .orig .r-card{background:none !important;border:0 !important;border-radius:0 !important;padding:0 !important}
 html body .orig .tracking{background:none !important;border-radius:0 !important;padding:0 !important}
-html body .orig .priority{gap:0 !important}
-html body .orig .priority li{background:none !important;outline:0 !important;border-radius:0 !important;padding:12px 0 !important;border-top:1px solid var(--line)}
+html body .orig .priority{grid-template-columns:repeat(5,minmax(0,1fr));gap:0 clamp(16px,2vw,28px) !important;margin-top:12px}
+html body .orig .priority li{background:none !important;outline:0 !important;border-radius:0 !important;padding:14px 0 0 !important;border-top:1px solid var(--line);grid-template-columns:1fr;gap:10px;align-content:start}
+html body .orig .priority li:first-child{border-top:2px solid var(--granite)}
+html body .orig .priority li::before{width:26px;height:26px;font-size:.8rem}
+html body .orig .priority span{display:block;margin-top:2px;line-height:1.4}
+@media (max-width:860px){html body .orig .priority{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px !important}html body .orig .priority li{grid-template-columns:26px minmax(0,1fr)}}
+@media (max-width:480px){html body .orig .priority{grid-template-columns:1fr;row-gap:0 !important}html body .orig .priority li{padding:10px 0 !important}}
 html body .orig .app-card{background:none !important;border-radius:0 !important;padding:0 !important}
 html body .orig .exp{background:none !important;border:0 !important;border-top:1px solid var(--line) !important;border-radius:0 !important;padding:clamp(32px,4vw,48px) 0 0 !important}
 html body .orig .cta-ab>div{background:none !important;border-radius:0 !important;padding:8px 0 !important;min-height:52px}
