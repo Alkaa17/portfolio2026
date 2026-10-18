@@ -33,10 +33,10 @@
     '.sc-link[aria-current="page"]{color:var(--pink-700,#B03355);background:var(--pink-100,#FFE3EA)}' +
     '.sc-cta{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;height:20px;padding:0 10px;margin-left:10px;border-radius:999px;border:2px solid var(--brand,#FA4A7B);background:var(--brand,#FA4A7B);color:#fff;font:600 13px/1 var(--font-display,sans-serif);letter-spacing:.01em;cursor:pointer;transition:transform 220ms ' + EASE + ',background 140ms}' +
     '.sc-cta:hover{background:var(--pink-600,#D6085D);border-color:var(--pink-600,#D6085D);color:#fff;transform:translateY(-2px)}.sc-cta:active{transform:translate(2px,2px) scale(.97)}' +
-    '.sc-fab{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:900;display:grid;place-items:center;width:56px;height:56px;padding:0;border-radius:50%;border:1.5px solid var(--pink-200,#FCC6D3);background:var(--pink-100,#FFE3EA);color:var(--pink-700,#B03355);box-shadow:0 8px 20px -8px rgba(59,29,42,.3);cursor:pointer;transition:transform 220ms ' + EASE + ',box-shadow 220ms ' + EASE + ',background 140ms,border-color 140ms}' +
-    '.sc-fab svg{width:30px;height:30px}' +
-    '.sc-fab:hover{background:var(--pink-50,#FFF4F7);border-color:var(--pink-300,#F78FAD);transform:translateY(-3px);box-shadow:0 12px 24px -8px rgba(59,29,42,.35)}.sc-fab:active{transform:scale(.94)}' +
-    '@media (max-width:767px){.sc-fab{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:50px;height:50px}.sc-fab svg{width:27px;height:27px}}' +
+    '.sc-fab{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:900;display:grid;place-items:center;width:56px;height:56px;padding:0;border-radius:50%;border:0;background:var(--pink-100,#FFE3EA);color:var(--pink-700,#B03355);box-shadow:0 0 0 1px rgba(176,51,85,.12),0 10px 24px -10px rgba(59,29,42,.35);cursor:pointer;transition:transform 220ms ' + EASE + ',box-shadow 220ms ' + EASE + ',background 140ms,border-color 140ms}' +
+    '.sc-fab svg{width:26px;height:26px}' +
+    '.sc-fab:hover{background:var(--pink-200,#FCC6D3);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(176,51,85,.18),0 14px 28px -10px rgba(59,29,42,.4)}.sc-fab:active{transform:scale(.94)}' +
+    '@media (max-width:767px){.sc-fab{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:50px;height:50px}.sc-fab svg{width:24px;height:24px}}' +
     '@media print{.sc-fab{display:none}}' +
     
     '.sc-scrim{position:fixed;inset:0;background:rgba(59,29,42,.35);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:1000;padding:24px}' +
@@ -82,7 +82,7 @@
       if (!document.querySelector('.sc-fab')) {
         var fab = document.createElement('button');
         fab.type = 'button'; fab.className = 'sc-fab'; fab.setAttribute('aria-label', 'let\u2019s chat'); fab.title = 'let\u2019s chat';
-        fab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.8"/></svg>';
+        fab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>';
         fab.addEventListener('click', this.openChat.bind(this));
         document.body.appendChild(fab); this._fab = fab;
       }
