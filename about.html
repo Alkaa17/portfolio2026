@@ -78,9 +78,57 @@ nav > div > button{height:47px !important;padding:0 21px !important;font-size:17
 @media (prefers-reduced-motion: reduce){*{transition-duration:0.01ms !important}html{scroll-behavior:auto}}
 p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
 h1,h2,h3,h4{text-wrap-style:balance}
-@keyframes flowerSpin{to{transform:rotate(360deg)}}
-@keyframes flowerHint{0%{opacity:0}5%,95%{opacity:.55}100%{opacity:0;visibility:hidden}}
-@media (prefers-reduced-motion: reduce){.am-flower{animation:none !important}}
+/* intro */
+.am-bio{margin:0;font-size:17px;line-height:1.65;color:var(--ink-700);max-width:600px}
+.am-bio strong{color:var(--ink-900);font-weight:600}
+/* how I design */
+.am-pillars{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.am-pillar{background:var(--white);border:1.5px solid var(--pink-200);border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.am-pillar .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--ink-900)}
+.am-pillar h3{margin:0;font:600 18px/1.25 var(--font-display)}
+.am-pillar p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-700)}
+/* journey timeline */
+.g-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px}
+.g-legend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font:500 12px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-700)}
+.g-legend li{display:flex;align-items:center;gap:8px}
+.g-legend i{width:22px;height:10px;border-radius:99px;display:block}
+.tl-card{background:var(--white);border:1.5px solid var(--pink-200);border-radius:24px;overflow:hidden}
+.tl-scroll{padding:0 28px}
+.tl-plot{position:relative;height:calc(var(--ax) + 34px)}
+.tl-axis{position:absolute;left:0;right:0;top:var(--ax);height:2px;background:var(--pink-200);border-radius:2px}
+.tl-yr{position:absolute;top:var(--ax);width:10%;padding-top:10px;text-align:center;font:500 12px/1.2 var(--font-mono);letter-spacing:.04em;color:var(--ink-500)}
+.tl-yr::before{content:"";position:absolute;left:0;top:-4px;width:2px;height:10px;border-radius:2px;background:var(--pink-200)}
+.tl-now{position:absolute;top:36px;height:calc(var(--ax) - 28px);width:0;border-left:2px dashed var(--pink-300)}
+.tl-now span{position:absolute;top:-18px;left:-14px;font:500 11px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--pink-700)}
+.tl-pill{all:unset;box-sizing:border-box;position:absolute;height:8px;min-width:8px;border-radius:99px;background:var(--c);cursor:pointer;transition:box-shadow var(--dur-fast)}
+.tl-pill::before{content:"";position:absolute;inset:-3px -2px}
+.tl-pill:hover,.tl-pill:focus-visible{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--c);z-index:3}
+.tl-pill[aria-pressed="true"],.tl-pill[aria-pressed="true"]:hover{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--ink-900);z-index:2}
+.tl-pill:focus-visible{outline:3px solid var(--sky);outline-offset:6px}
+.st-mono{display:grid;place-items:center;width:100%;height:100%;border-radius:14px;color:var(--ink-900);font:600 22px/1 var(--font-display)}
+.tl-tip{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translate(-50%,4px);display:flex;flex-direction:column;gap:1px;padding:7px 11px;border-radius:12px;background:var(--ink-900);color:var(--white);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--dur-fast),transform var(--dur-base) var(--ease-soft)}
+.tl-tip b{font:600 14px/1.25 var(--font-display)}
+.tl-tip span{font-size:12px;line-height:1.3;opacity:.85}
+.tl-tip.l{left:0;transform:translate(0,4px)}
+.tl-tip.r{left:auto;right:0;transform:translate(0,4px)}
+.tl-pill:hover .tl-tip,.tl-pill:focus-visible .tl-tip{opacity:1;transform:translate(-50%,0)}
+.tl-pill:hover .tl-tip.l,.tl-pill:focus-visible .tl-tip.l,.tl-pill:hover .tl-tip.r,.tl-pill:focus-visible .tl-tip.r{transform:translate(0,0)}
+.st-detail{border-top:1.5px solid var(--pink-100);padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px}
+.st-head{display:flex;gap:16px;align-items:center}
+.st-head .lg{flex:none;width:52px;height:52px}
+.st-detail h3{margin:0;font:600 19px/1.3 var(--font-display)}
+.st-detail p{margin:0;color:var(--ink-700)}
+.st-when{font:500 12px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)}
+.st-photos{display:flex;flex-wrap:wrap;gap:12px}
+.st-photos > div{width:min(200px,45%);aspect-ratio:16/10}
+@media (prefers-reduced-motion: reduce){.tl-pill,.tl-tip{transition:none}}
+@media (max-width:640px){
+  .tl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 20px}
+  .tl-plot{min-width:720px}
+  .st-detail{padding:18px 16px 20px}
+  .am-pillar{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:14px;row-gap:4px;padding:16px}
+  .am-pillar .ic{grid-row:span 2}
+}
 </style>
 </helmet>
 <div style="min-height:100vh;background:var(--cream);color:var(--ink-900);font-size:16px;line-height:1.55">
@@ -88,7 +136,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
   <x-import component-from-global-scope="site-header" from="./site-chrome.js" active="resume" hint-size="100%,78px"></x-import>
 </div>
 
-<main style="max-width:820px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4vw,32px) 144px;display:flex;flex-direction:column;gap:clamp(56px,6vw,80px)">
+<main style="max-width:920px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4vw,32px) 144px;display:flex;flex-direction:column;gap:clamp(56px,6vw,80px)">
   <header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:{{ heroJustify }};gap:clamp(28px,5vw,56px)">
     <div style="flex:none;position:relative;width:180px;padding:8px;background:var(--white);border-radius:24px;box-shadow:var(--shadow-sticker);transform:rotate(-2deg);margin:6px">
       <div style="position:relative;width:100%;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:var(--pink-50)">
@@ -100,76 +148,76 @@ h1,h2,h3,h4{text-wrap-style:balance}
     </div>
     <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;align-items:{{ heroAlign }};text-align:{{ heroText }};gap:22px">
     <div style="display:flex;flex-direction:column;align-items:{{ heroAlign }};gap:8px;max-width:560px">
-      <h1 style="margin:0;display:flex;flex-direction:column;align-items:{{ heroAlign }};gap:2px;font:600 25px/1.2 var(--font-display);letter-spacing:-0.01em"><span>I can be who I want to be, but for now I am a</span><span style="font:400 clamp(30px,3.2vw,38px)/1.35 var(--font-script);color:var(--brand);white-space:nowrap">Product Designer</span></h1>
+      <div style="display:flex;align-items:center;justify-content:{{ heroJustify }};gap:14px;width:100%">
+        <h1 style="margin:0;font:400 clamp(38px,4.6vw,50px)/1.3 var(--font-script);color:var(--brand);white-space:nowrap">Product Designer</h1>
+        <button onClick="{{ openLinkedIn }}" aria-label="LinkedIn profile" style="flex:none;width:46px;height:46px;padding:0;border-radius:50%;border:0;background:var(--pink-100);color:var(--pink-700);display:grid;place-items:center;cursor:pointer;transition:transform var(--dur-base) var(--ease-bouncy),background var(--dur-fast)" style-hover="background:var(--pink-200);transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></button>
+      </div>
       <p style="margin:0;display:flex;flex-wrap:wrap;justify-content:{{ heroJustify }};gap:6px 10px;font:500 13px/1.5 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)"><span>New York</span><span aria-hidden="true" style="color:var(--pink-400)">✦</span><span>Available immediately</span><span aria-hidden="true" style="color:var(--pink-400)">✦</span><span>Open to relocation</span></p>
     </div>
-    <div style="display:flex;flex-wrap:wrap;justify-content:{{ heroJustify }};gap:10px">
-      <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.Button" variant="primary" on-click="{{ downloadPdf }}" hint-size="170px,46px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>download pdf</x-import>
-      <button onClick="{{ openLinkedIn }}" aria-label="LinkedIn profile" style="flex:none;width:46px;height:46px;padding:0;border-radius:50%;border:0;background:var(--pink-100);color:var(--pink-700);display:grid;place-items:center;cursor:pointer;transition:transform var(--dur-base) var(--ease-bouncy),background var(--dur-fast)" style-hover="background:var(--pink-200);transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></button>
-      {{ flower }}
-    </div>
+    <p class="am-bio">With <strong>5+ years</strong> of experience, I bring <strong>UX consulting for B2B</strong> products, <strong>CX and conversion (CRO)</strong> work in e-commerce, and a <strong>strong visual design</strong> background. I design end to end, from research and strategy to shipped, accessible UI, and I measure success in business metrics and happier users alike.</p>
     </div>
   </header>
 
-    <section aria-labelledby="edu-h" style="display:flex;flex-direction:column;gap:28px">
-      <div id="edu-h"><x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Education" title="where I" script="learned" size="m" hint-size="100%,60px"></x-import></div>
-      <sc-for list="{{ education }}" as="x" hint-placeholder-count="2">
-        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.Card" variant="plain" padding="{{ 22 }}" hint-size="100%,220px">
-          <article style="display:flex;flex-direction:column;gap:16px">
-            <div style="display:flex;gap:20px;align-items:flex-start">
-              <div style="flex:none;width:56px;height:56px"><image-slot id="{{ x.logo }}" shape="rounded" radius="14" placeholder="Logo" style="width:100%;height:100%;background:transparent"></image-slot></div>
-              <div style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0">
-                <p style="margin:0;font:600 19px/1.25 var(--font-display)">{{ x.title }}</p>
-                <p style="margin:0;color:var(--pink-700);font-weight:600">{{ x.org }}</p>
-                <p style="margin:0;font:500 12px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)">{{ x.when }} · {{ x.where }}</p>
-              </div>
-              <button onClick="{{ x.toggle }}" aria-expanded="{{ x.open }}" aria-label="{{ x.toggleLabel }}" style="flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--pink-100);color:var(--pink-700);display:grid;place-items:center;padding:0;transform:rotate({{ x.rot }});transition:transform var(--dur-base) var(--ease-bouncy),background var(--dur-fast)" style-hover="background:var(--pink-200)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              </button>
-            </div>
-            <sc-if value="{{ x.open }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:0;padding-left:clamp(0px,8vw,76px);color:var(--ink-700);text-wrap:pretty">{{ x.desc }}</p>
-            </sc-if>
-            <sc-if value="{{ x.hasPhotos }}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;flex-wrap:wrap;gap:12px;padding-left:clamp(0px,8vw,76px)">
-              <sc-for list="{{ x.photos }}" as="ph" hint-placeholder-count="2">
-                <div style="width:min(200px,42%);aspect-ratio:16/10"><image-slot id="{{ ph }}" shape="rounded" radius="16" placeholder="Photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
-              </sc-for>
-            </div>
-            </sc-if>
-          </article>
-        </x-import>
-      </sc-for>
+    <section aria-labelledby="how-h" style="display:flex;flex-direction:column;gap:28px">
+      <div id="how-h"><x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Approach" title="how I" script="design" size="m" hint-size="100%,60px"></x-import></div>
+      <ul class="am-pillars">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <li class="am-pillar">
+            <span class="ic" style="background:{{ p.bg }}">{{ p.icon }}</span>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.body }}</p>
+          </li>
+        </sc-for>
+      </ul>
     </section>
 
-    <section aria-labelledby="exp-h" style="display:flex;flex-direction:column;gap:28px">
-      <div id="exp-h"><x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Experience" title="where I've" script="worked" size="m" hint-size="100%,60px"></x-import></div>
-      <sc-for list="{{ experience }}" as="x" hint-placeholder-count="3">
-        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.Card" variant="plain" padding="{{ 22 }}" hint-size="100%,220px">
-          <article style="display:flex;flex-direction:column;gap:16px">
-            <div style="display:flex;gap:20px;align-items:flex-start">
-              <div style="flex:none;width:56px;height:56px"><image-slot id="{{ x.logo }}" shape="rounded" radius="14" placeholder="Logo" style="width:100%;height:100%;background:transparent"></image-slot></div>
-              <div style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0">
-                <p style="margin:0;font:600 19px/1.3 var(--font-display)">{{ x.title }} <span style="color:var(--pink-400)">@</span> <span style="color:var(--pink-700)">{{ x.org }}</span></p>
-                <p style="margin:0;font:500 12px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500)">{{ x.when }} · {{ x.where }}</p>
-              </div>
-              <button onClick="{{ x.toggle }}" aria-expanded="{{ x.open }}" aria-label="{{ x.toggleLabel }}" style="flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--pink-100);color:var(--pink-700);display:grid;place-items:center;padding:0;transform:rotate({{ x.rot }});transition:transform var(--dur-base) var(--ease-bouncy),background var(--dur-fast)" style-hover="background:var(--pink-200)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              </button>
+    <section aria-labelledby="jr-h" style="display:flex;flex-direction:column;gap:22px">
+      <div id="jr-h"><x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" eyebrow="Education &amp; experience" title="my" script="journey" size="m" hint-size="100%,60px"></x-import></div>
+      <div class="g-top">
+        <ul class="g-legend" aria-label="Legend">
+          <sc-for list="{{ kinds }}" as="k" hint-placeholder-count="3">
+            <li><i style="background:{{ k.color }}" aria-hidden="true"></i>{{ k.label }}</li>
+          </sc-for>
+        </ul>
+      </div>
+      <div class="tl-card">
+        <div class="st-scroll tl-scroll">
+          <div class="tl-plot" style="--ax:{{ axisY }}">
+            <div class="tl-axis" aria-hidden="true"></div>
+            <sc-for list="{{ years }}" as="y" hint-placeholder-count="10">
+              <span class="tl-yr" style="left:{{ y.left }}" aria-hidden="true">{{ y.label }}</span>
+            </sc-for>
+            <span class="tl-now" style="left:{{ nowLeft }}" aria-hidden="true"><span>now</span></span>
+            <ol aria-label="Education and experience, oldest to newest" style="list-style:none;margin:0;padding:0">
+              <sc-for list="{{ journey }}" as="x" hint-placeholder-count="11">
+                <li><button type="button" class="tl-pill" onClick="{{ x.select }}" aria-pressed="{{ x.on }}" aria-label="{{ x.label }}" style="left:{{ x.left }};width:calc({{ x.width }} - 3px);top:{{ x.top }};--c:{{ x.c }}">
+                  <span class="{{ x.tipCls }}" aria-hidden="true"><b>{{ x.org }}</b><span>{{ x.title }} · {{ x.when }}</span></span>
+                </button></li>
+              </sc-for>
+            </ol>
+          </div>
+        </div>
+        <div class="st-detail" aria-live="polite">
+          <div class="st-head">
+            <div class="lg">
+              <sc-if value="{{ cur.hasLogo }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ cur.logo }}" shape="rounded" radius="14" placeholder="Logo" style="width:100%;height:100%;background:transparent"></image-slot></sc-if>
+              <sc-if value="{{ cur.mono }}" hint-placeholder-val="{{ false }}"><span class="st-mono" aria-hidden="true" style="background:{{ cur.tint }}">{{ cur.mono }}</span></sc-if>
             </div>
-            <sc-if value="{{ x.open }}" hint-placeholder-val="{{ true }}">
-              <p style="margin:0;padding-left:clamp(0px,8vw,76px);color:var(--ink-700);text-wrap:pretty">{{ x.desc }}</p>
-            </sc-if>
-            <sc-if value="{{ x.hasPhotos }}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;flex-wrap:wrap;gap:12px;padding-left:clamp(0px,8vw,76px)">
-              <sc-for list="{{ x.photos }}" as="ph" hint-placeholder-count="2">
-                <div style="width:min(200px,42%);aspect-ratio:16/10"><image-slot id="{{ ph }}" shape="rounded" radius="16" placeholder="Photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <h3>{{ cur.title }} <span style="color:var(--pink-400)">@</span> <span style="color:var(--pink-700)">{{ cur.org }}</span></h3>
+              <p class="st-when">{{ cur.when }} · {{ cur.where }}</p>
+            </div>
+          </div>
+          <p>{{ cur.desc }}</p>
+          <sc-if value="{{ cur.hasPhotos }}" hint-placeholder-val="{{ false }}">
+            <div class="st-photos">
+              <sc-for list="{{ cur.photos }}" as="ph" hint-placeholder-count="2">
+                <div><image-slot id="{{ ph }}" shape="rounded" radius="16" placeholder="Photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
               </sc-for>
             </div>
-            </sc-if>
-          </article>
-        </x-import>
-      </sc-for>
+          </sc-if>
+        </div>
+      </div>
     </section>
 
     <section aria-labelledby="tool-h" style="display:flex;flex-direction:column;gap:28px">
@@ -194,29 +242,37 @@ h1,h2,h3,h4{text-wrap-style:balance}
 </x-dc>
 <script type="text/x-dc" data-dc-script >
 const EXPERIENCE = [
-  { title: 'UX Consultant', org: 'Cocoon Technologies', when: 'Jan 2026 – Present', where: 'USA (Remote)', logo: 'logo-cocoon',
-    desc: 'Designing an accessibility-first app where privacy, safety and consent all get a seat at the table.' },
-  { title: 'Product Designer & UX Researcher', org: 'Haptiq', when: 'Jun 2025 – Jun 2026', where: 'New York', logo: 'logo-haptiq',
-    desc: 'Turned tangled enterprise workflows into tidy dashboards, one interview and Figma variant at a time.' },
-  { title: 'UX Designer (Accessibility)', org: 'Michigan Publishing', when: 'Feb 2025 – May 2025', where: 'Michigan, USA', logo: 'logo-michigan-publishing',
-    desc: 'Tabbed, swiped and screen-read through every barrier so real readers wouldn’t have to.' },
-  { title: 'UX Lead & Manager', org: 'Transformative Ventures', when: 'Oct 2022 – May 2024', where: 'India', logo: 'logo-transformative',
-    desc: 'Promoted from designer to lead: mentored 3 designers across a 1.5M+ user wellness app and helped lift app conversion by 50%.' },
-  { title: 'UX Designer', org: 'Network for Conserving Central India', when: 'Jun 2023 – Aug 2023', where: 'India', logo: 'logo-ncci',
+  { title: 'UX Designer', org: 'Cocoon Technologies', s: [2026, 7], e: null, kind: 'ux', when: 'Jul 2026 – Present', where: 'New York', logo: 'logo-cocoon',
+    desc: 'Designing high-stakes consumer flows (onboarding, live communication, notifications, consent and emergency contacts) where privacy, safety and accessibility all get a seat at the table.' },
+  { title: 'UX Designer', org: 'Haptiq', s: [2025, 6], e: [2026, 6], kind: 'ux', when: 'Jun 2025 – Jun 2026', where: 'New York', logo: 'logo-haptiq',
+    desc: 'Turned tangled B2B workflows (service ticketing, pricing, product configuration, CMS and admin tools) into clear product direction, one interview and Figma variant at a time.' },
+  { title: 'UX Designer', org: 'Michigan Publishing, University of Michigan', s: [2025, 2], e: [2025, 5], kind: 'ux', when: 'Feb 2025 – May 2025', where: 'Ann Arbor, USA', logo: 'logo-michigan-publishing',
+    desc: 'Tabbed, swiped and screen-read (VoiceOver, NVDA, TalkBack) through e-book publishing against WCAG 2.2 AA, then turned the barriers into a prioritized remediation roadmap.' },
+  { title: 'UX Researcher (academic client project)', org: 'Quora', s: [2025, 1], e: [2025, 4], kind: 'ux', when: 'Jan 2025 – Apr 2025', where: 'Ann Arbor, USA', logo: null, mono: 'Q', noPhotos: true,
+    desc: 'Studied how people use Poe, Quora’s AI platform, through interviews and usability tests, and turned the friction into product recommendations.' },
+  { title: 'Lead UX Designer, UX Manager (promoted from UX UI Designer)', org: 'Transformative Learning Solutions', s: [2022, 10], e: [2024, 5], kind: 'ux', when: 'Oct 2022 – May 2024', where: 'Gurugram, India', logo: 'logo-transformative',
+    desc: 'Started out running A/B tests, heatmaps and session recordings on a global wellness e-commerce platform, then was promoted to lead: mentored 3 designers and drove +10.6% web conversion, +35% engagement and +50% app conversion (~$100K impact).' },
+  { title: 'UX/UI Designer', org: 'Network for Conserving Central India', s: [2022, 7], e: [2022, 9], kind: 'ux', when: 'Jul 2022 – Sep 2022', where: 'India', logo: 'logo-ncci',
     desc: 'Untangled a jungle of content so people could finally find their way (pun very much intended).' },
-  { title: 'Associate UX/UI Designer', org: 'Kandle (formerly dRisk)', when: 'Jul 2022 – Aug 2022', where: 'India', logo: 'logo-kandle',
+  { title: 'Associate UX UI Designer', org: 'Kandle', s: [2022, 5], e: [2022, 6], kind: 'ux', when: 'May 2022 – Jun 2022', where: 'Gurugram, India', logo: 'logo-kandle',
     desc: 'Took a fintech product from 0→1, side by side with the founder and developers.' },
-  { title: 'Associate Graphic Designer', org: 'Trendgully', when: 'Mar 2022 – Apr 2022', where: 'India', logo: 'logo-trendgully',
+  { title: 'Associate Graphic Designer', org: 'Trendgully', s: [2022, 3], e: [2022, 4], kind: 'gfx', when: 'Mar 2022 – Apr 2022', where: 'India', logo: 'logo-trendgully',
     desc: 'Turned streetwear forecasts into graphics people actually wanted to wear.' },
-  { title: 'Senior Executive, Graphic Design', org: 'Blackberrys Menswear', when: 'Jan 2021 – Feb 2022', where: 'India', logo: 'logo-blackberrys',
-    desc: 'Went from intern to full-time, then squeezed up to 8 garment tags into one and cut printing costs by 62%.' },
-  { title: 'Research Analyst', org: 'Arvora', when: 'Nov 2020 – Dec 2020', where: 'India', logo: 'logo-arvora',
-    desc: 'Sat with artisans to document Odisha’s silver filigree for a GI initiative.' }
+  { title: 'Senior Executive Graphic Designer', org: 'Blackberrys Menswear', s: [2021, 5], e: [2022, 2], kind: 'gfx', when: 'May 2021 – Feb 2022', where: 'Gurugram, India', logo: 'logo-blackberrys',
+    desc: 'Squeezed 3–8 garment tags into one scalable system and cut annual production costs by 62%.' },
+  { title: 'Graduation Project Intern (Knitwear Design)', org: 'Blackberrys Menswear', s: [2021, 1], e: [2021, 4], kind: 'gfx', when: 'Jan 2021 – Apr 2021', where: 'Gurugram, India', logo: 'logo-blackberrys', noPhotos: true,
+    desc: 'Took a knitwear collection from consumer research to final production, and earned a Top 3 Industry Project recognition at NIFT Delhi.' },
+  { title: 'Research Analyst, GI Tag for Odisha Silver Filigree', org: 'Arvora', s: [2020, 11], e: [2020, 12], kind: 'gfx', when: 'Nov 2020 – Dec 2020', where: 'Bhubaneswar, India', logo: 'logo-arvora',
+    desc: 'Sat with artisans to document Cuttack’s silver filigree for the Government of Odisha’s GI initiative.' },
+  { title: 'Summer Intern', org: 'Odisha Crafts Museum – Kalabhoomi', s: [2019, 7], e: [2019, 7], kind: 'gfx', when: 'Jul 2019', where: 'Bhubaneswar, India', logo: null, mono: 'K', noPhotos: true,
+    desc: 'Made graphics and social posts celebrating Odisha’s craft heritage and museum programs.' }
 ];
 const EDUCATION = [
-  { title: 'M.S. in Information (UX Research & Design)', org: 'University of Michigan', when: '2024 – 2026', where: 'Ann Arbor, USA', logo: 'logo-umich',
+  { title: 'M.S. in UX Research & Design', org: 'University of Michigan', short: 'University of Michigan', s: [2024, 8], e: [2026, 5], kind: 'edu', when: '2024 – 2026', where: 'Ann Arbor, USA', logo: 'logo-umich',
     desc: 'Interaction design, UX research, information architecture and accessibility · GPA 4.0 / 4.0' },
-  { title: 'Bachelor of Design', org: 'National Institute of Fashion Technology', when: '2017 – 2021', where: 'New Delhi, India', logo: 'logo-nift',
+  { title: 'Google UX Design Professional Certificate', org: 'Google', s: [2022, 3], e: [2022, 9], kind: 'edu', when: '2022', where: 'Online', logo: null, mono: 'G', noPhotos: true,
+    desc: 'Learned the UX process end to end (empathy maps, wireframes, prototypes and usability studies) while moving from graphic design into UX.' },
+  { title: 'Bachelor of Design, Knitwear Design (Sportswear)', org: 'National Institute of Fashion Technology', short: 'NIFT Delhi', s: [2017, 7], e: [2021, 5], kind: 'edu', when: '2017 – 2021', where: 'New Delhi, India', logo: 'logo-nift',
     desc: 'Consumer research, visual communication, typography and brand storytelling · GPA 8.0 / 10.0' }
 ];
 const NO_PHOTOS = ['logo-haptiq', 'logo-cocoon', 'logo-michigan-publishing', 'logo-ncci', 'logo-kandle', 'logo-trendgully'];
@@ -229,57 +285,67 @@ const TOOL_GROUPS = [
   { label: 'Tools', tone: 'matcha', items: ['Figma', 'FigJam', 'Miro', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'HTML/CSS'] }
 ];
 
+const KINDS = {
+  edu: { label: 'Education', color: 'var(--sky)', tint: '#DDF0FA' },
+  ux: { label: 'Product & UX design', color: 'var(--brand)', tint: 'var(--pink-100)' },
+  gfx: { label: 'Visual design / craft / fashion', color: 'var(--lemon)', tint: '#FDEBC8' }
+};
+const pos = (d) => d[0] + (d[1] - 1) / 12;
+const T0 = 2017, T1 = 2027, NOW = [2026, 10], STEP = 14;
+const ICONS = {
+  e2e: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+  user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  data: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M16 8h4v4"/>',
+  a11y: '<circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5"/><path d="M12 10v5l-3 6"/><path d="m12 15 3 6"/>'
+};
+const PILLARS = [
+  { icon: 'e2e', bg: 'var(--pink-100)', title: 'End to end', body: 'Research, strategy, flows, high-fidelity UI and dev handoff, including 0→1 builds side by side with founders.' },
+  { icon: 'user', bg: '#DDF0FA', title: 'Users at the centre', body: 'Interviews, usability tests and diary studies keep real people in the room for every decision.' },
+  { icon: 'data', bg: '#E6F2E4', title: 'Business meets data', body: 'I design against the numbers that matter (conversion, retention, cost) and back it up with A/B tests and funnels.' },
+  { icon: 'a11y', bg: '#FDEBC8', title: 'Accessible by default', body: 'WCAG 2.2 AA from the first wireframe, tested with VoiceOver, NVDA and TalkBack.' }
+];
+
 class Component extends DCLogic {
-  state = { copied: false, vw: 1200, open: { 'edu-0': true, 'exp-0': true } };
+  state = { copied: false, vw: 1200, sel: null };
   componentDidMount() {
     this.onEsc = (e) => { if (e.key === 'Escape' && this.state.chatOpen) this.setState({ chatOpen: false }); };
     document.addEventListener('keydown', this.onEsc);
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
     window.addEventListener('resize', this.onResize);
+    // Phones scroll the timeline sideways; start on the newest step.
+    this.t = setTimeout(() => { const el = document.querySelector('.st-scroll'); if (el) el.scrollLeft = el.scrollWidth; }, 300);
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onEsc); clearTimeout(this.t); window.removeEventListener('resize', this.onResize); }
   fallbackCopy(t) { const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); }
-  cards(list, prefix) {
+  axisY(n) { return 56 + (n - 1) * STEP + 16; }
+  journey() {
+    // Each step sits one row above the last, so the line climbs as the career grows.
+    const list = [...EXPERIENCE, ...EDUCATION].sort((a, b) => pos(a.s) - pos(b.s) || (b.kind === 'edu') - (a.kind === 'edu'));
+    const sel = this.state.sel || 'now';
     return list.map((x, i) => {
-      const id = `${prefix}-${i}`, open = !!this.state.open[id];
-      return { ...x, open, rot: open ? '45deg' : '0deg', hasPhotos: !NO_PHOTOS.includes(x.logo), photos: NO_PHOTOS.includes(x.logo) ? [] : [`${x.logo}-photo-1`, `${x.logo}-photo-2`],
-        toggleLabel: `${open ? 'Collapse' : 'Expand'} ${x.org}`,
-        toggle: () => this.setState(s => ({ open: { ...s.open, [id]: !s.open[id] } })) };
+      const id = x.org + x.s.join('-'), k = KINDS[x.kind], on = sel === id || (sel === 'now' && !x.e), a = pos(x.s), b = x.e ? pos(x.e) + 1 / 12 : pos(NOW);
+      const left = (a - T0) / (T1 - T0) * 100, width = (b - a) / (T1 - T0) * 100;
+      return { ...x, on, c: k.color, tint: k.tint, left: left + '%', width: width + '%',
+        top: (this.axisY(list.length) - 16 - i * STEP) + 'px',
+        tipCls: 'tl-tip' + (left < 12 ? ' l' : left + width > 88 ? ' r' : ''),
+        label: `${x.org}, ${x.title}, ${x.when}`,
+        hasLogo: !!x.logo, hasPhotos: !x.noPhotos && !NO_PHOTOS.includes(x.logo), photos: [`${x.logo}-photo-1`, `${x.logo}-photo-2`],
+        select: () => this.setState({ sel: id }) };
     });
   }
-  flowerSvg(a, b, size) {
-    return '<svg width="' + size + '" height="' + size + '" viewBox="48 77 36 36" fill="none"><circle cx="66" cy="86" r="9" fill="' + a + '"/><circle cx="57" cy="93" r="8.5" fill="' + a + '"/><circle cx="75" cy="93" r="8.5" fill="' + a + '"/><circle cx="60" cy="103" r="8" fill="' + b + '"/><circle cx="72" cy="103" r="8" fill="' + b + '"/><circle cx="66" cy="96" r="6" fill="#FFF4D6"/></svg>';
-  }
-  flowerShower() {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const tones = [['#FF5C9A', '#F2357F'], ['#FFC93C', '#FF9F2E'], ['#7FD4C1', '#3FB5A0'], ['#A8A6FF', '#7F7CF0'], ['#FF8FB8', '#FF5C9A']];
-    const layer = document.createElement('div');
-    layer.setAttribute('aria-hidden', 'true');
-    Object.assign(layer.style, { position: 'fixed', inset: '0', pointerEvents: 'none', zIndex: 90, overflow: 'hidden' });
-    document.body.appendChild(layer);
-    const n = 42, vw = innerWidth, vh = innerHeight;
-    let left = n;
-    for (let i = 0; i < n; i++) {
-      const t = tones[i % tones.length], size = 18 + Math.random() * 26;
-      const el = document.createElement('span');
-      el.innerHTML = this.flowerSvg(t[0], t[1], size);
-      Object.assign(el.style, { position: 'absolute', left: (Math.random() * vw) + 'px', top: -size - 10 + 'px', display: 'block' });
-      layer.appendChild(el);
-      const drift = (Math.random() - .5) * 160, spin = (Math.random() < .5 ? -1 : 1) * (240 + Math.random() * 360);
-      const a = el.animate([
-        { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-        { transform: `translate(${drift * .6}px,${vh * .5}px) rotate(${spin * .5}deg)`, opacity: 1, offset: .5 },
-        { transform: `translate(${drift}px,${vh + size + 40}px) rotate(${spin}deg)`, opacity: .9 }
-      ], { duration: 2600 + Math.random() * 1800, delay: Math.random() * 900, easing: 'cubic-bezier(.35,.1,.6,1)', fill: 'both' });
-      a.onfinish = () => { el.remove(); if (--left === 0) layer.remove(); };
-    }
+  icon(k) {
+    return this['ic_' + k] || (this['ic_' + k] = React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true', dangerouslySetInnerHTML: { __html: ICONS[k] } }));
   }
   renderVals() {
     const s = this.state, mobile = s.vw < 768;
+    let j;
     return {
-      experience: this.cards(EXPERIENCE, 'exp'), education: this.cards(EDUCATION, 'edu'),
+      journey: (j = this.journey()), axisY: this.axisY(j.length) + 'px', cur: j.find(x => x.on) || j[j.length - 1],
+      years: Array.from({ length: T1 - T0 }, (_, i) => ({ label: String(T0 + i), left: (i * 100 / (T1 - T0)) + '%' })), nowLeft: ((pos(NOW) - T0) / (T1 - T0) * 100) + '%',
+      kinds: Object.values(KINDS),
+      pillars: PILLARS.map(p => ({ ...p, icon: this.icon(p.icon) })),
       toolGroups: TOOL_GROUPS, fullW: { width: '100%' },
       asidePos: s.vw < 860 ? 'static' : 'sticky',
       navLinks: mobile ? [{ key: 'work', label: 'work' }, { key: 'resume', label: 'about me' }]
@@ -293,13 +359,6 @@ class Component extends DCLogic {
         else if (k === 'work') (window.AMGo ? window.AMGo('/#projects') : (window.location.href = '/#projects'));
         else if (k === 'playground') (window.AMGo ? window.AMGo('/playground') : (window.location.href = '/playground'));
       },
-      downloadPdf: () => { const a = document.createElement('a'); a.href = './assets/Alka-Mahapatra-Resume.pdf'; a.download = 'Alka Mahapatra - Resume.pdf'; document.body.appendChild(a); a.click(); a.remove(); },
-      flower: this.flowerEl || (this.flowerEl = React.createElement('span', { style: { position: 'relative', flex: 'none', alignSelf: 'center', display: 'block', width: 42, height: 42 } },
-        React.createElement('button', { type: 'button', 'aria-label': 'Make it rain flowers', onClick: () => this.flowerShower(), style: { width: 42, height: 42, padding: 0, border: 0, background: 'transparent', cursor: 'pointer', display: 'block' } },
-          React.createElement('span', { className: 'am-flower', style: { width: 42, height: 42, display: 'block', animation: 'flowerSpin 9s linear infinite' }, dangerouslySetInnerHTML: { __html: this.flowerSvg('#FF5C9A', '#F2357F', 42) } })),
-        React.createElement('span', { 'aria-hidden': 'true', style: { position: 'absolute', left: 30, top: 34, display: 'flex', alignItems: 'flex-start', gap: 2, pointerEvents: 'none', whiteSpace: 'nowrap', color: 'var(--pink-700)', opacity: 0, animation: 'flowerHint 11s ease forwards', ...(window.innerWidth < 600 ? { left: 'auto', right: 30, flexDirection: 'row-reverse' } : {}) } },
-          React.createElement('span', { style: { display: 'block', width: 34, height: 30, transform: window.innerWidth < 600 ? 'scaleX(-1)' : undefined }, dangerouslySetInnerHTML: { __html: '<svg width="34" height="30" viewBox="0 0 34 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M30 26C18 26 8 20 5 5"/><path d="M1.5 10 5 4.5 10 8.5"/></svg>' } }),
-          React.createElement('span', { style: { fontFamily: 'Pacifico, cursive', fontSize: 17, lineHeight: 1, marginTop: 20 } }, 'Click to see how it works')))),
       openLinkedIn: () => window.open('https://www.linkedin.com/in/alka-mahapatra', '_blank', 'noopener'),
       copyEmail: () => {
         const done = () => { this.setState({ copied: true }); clearTimeout(this.ct); this.ct = setTimeout(() => this.setState({ copied: false }), 1800); };
