@@ -79,7 +79,7 @@ nav > div > button{height:47px !important;padding:0 21px !important;font-size:17
 p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
 h1,h2,h3,h4{text-wrap-style:balance}
 /* intro */
-.am-bio{margin:0;font-size:17px;line-height:1.65;color:var(--ink-700);max-width:600px}
+.am-bio{margin:0;font-size:17px;line-height:1.65;color:var(--ink-700)}
 .am-bio strong{color:var(--ink-900);font-weight:600}
 /* journey timeline */
 .g-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px}
@@ -133,7 +133,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
 .sk-detail{display:flex;flex-direction:column;gap:14px;min-width:0}
 .sk-hint{margin:6px 0 0;text-align:center;font:500 11px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-500)}
 .sk-kick{margin:0;font:500 13px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pink-700)}
-.sk-detail h3{margin:0;font:600 clamp(24px,2.6vw,30px)/1.2 var(--font-display)}
+.sk-tt h2,.sk-detail h3{margin:0;font:600 clamp(24px,2.6vw,30px)/1.2 var(--font-display)}
 .sk-body{margin:0;font-size:17px;line-height:1.6;color:var(--ink-700)}
 .sk-tags{display:flex;flex-wrap:wrap;gap:8px}
 .sk-proof{margin:0;font-size:15px;line-height:1.5;color:var(--ink-700)}
@@ -154,16 +154,8 @@ h1,h2,h3,h4{text-wrap-style:balance}
 
 <main style="max-width:920px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4vw,32px) 144px;display:flex;flex-direction:column;gap:clamp(56px,6vw,80px)">
   <header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:{{ heroJustify }};gap:clamp(28px,5vw,56px)">
-    <div style="flex:none;position:relative;width:180px;padding:8px;background:var(--white);border-radius:24px;box-shadow:var(--shadow-sticker);transform:rotate(-2deg);margin:6px">
-      <div style="position:relative;width:100%;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:var(--pink-50)">
-        <image-slot id="resume-portrait-4" shape="rounded" radius="18" placeholder="Portrait photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
-      </div>
-      <div style="position:absolute;left:50%;top:-16px;transform:translateX(-50%);z-index:5">
-        <x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.Tape" tone="pink" tilt="{{ 3 }}" hint-size="90px,32px">hi there ✦</x-import>
-      </div>
-    </div>
     <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;align-items:{{ heroAlign }};text-align:{{ heroText }};gap:22px">
-    <div style="display:flex;flex-direction:column;align-items:{{ heroAlign }};gap:8px;max-width:560px">
+    <div style="display:flex;flex-direction:column;align-items:{{ heroAlign }};gap:8px">
       <div style="display:flex;align-items:center;justify-content:{{ heroJustify }};gap:14px;width:100%">
         <h1 style="margin:0;font:400 clamp(38px,4.6vw,50px)/1.3 var(--font-script);color:var(--brand);white-space:nowrap">Product Designer</h1>
         <button onClick="{{ openLinkedIn }}" aria-label="LinkedIn profile" style="flex:none;width:46px;height:46px;padding:0;border-radius:50%;border:0;background:var(--pink-100);color:var(--pink-700);display:grid;place-items:center;cursor:pointer;transition:transform var(--dur-base) var(--ease-bouncy),background var(--dur-fast)" style-hover="background:var(--pink-200);transform:translateY(-2px)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></button>
@@ -178,7 +170,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
       <div class="sk-card">
         <div class="sk-text">
         <sc-if value="{{ skillHead }}" hint-placeholder-val="{{ true }}">
-          <div class="sk-head"><x-import component-from-global-scope="PinkWhimsyDesignSystem_dd5f68.SectionHeading" style="{{ fullW }}" title="end-to-end" script="product designer" size="m" hint-size="100%,40px"></x-import></div>
+          <div class="sk-head sk-tt"><p class="sk-kick">How I work</p><h2>End-to-end approach</h2></div>
         </sc-if>
         <div class="sk-detail" aria-live="polite">
           <sc-if value="{{ skill.title }}" hint-placeholder-val="{{ false }}">
@@ -427,9 +419,9 @@ class Component extends DCLogic {
           h('text', { key: 't', className: cur ? 'ol on' : 'ol', x, y: y + fs * 0.36, textAnchor: 'middle', style: { fontSize: fs + 'px' } }, label)
         ]);
       }),
-      hot('me', 'Alka: end-to-end product designer', [
-        h('circle', { key: 'c', className: 'hit', cx: SK.C, cy: SK.C, r: 44, style: { fill: 'var(--white)' } }),
-        h('text', { key: 't', className: 'me', x: SK.C, y: SK.C + 9, textAnchor: 'middle' }, 'Alka')
+      hot('me', 'You get all five roles together: end-to-end approach', [
+        h('circle', { key: 'c', className: 'hit', cx: SK.C, cy: SK.C, r: 44, style: { fill: 'transparent' } }),
+        h('text', { key: 't', className: 'me', x: SK.C, y: SK.C + 9, textAnchor: 'middle' }, 'you get')
       ])
     ];
     return h('svg', { viewBox: '0 0 480 480', role: 'group', 'aria-label': 'Skills diagram: five overlapping roles' }, kids);
