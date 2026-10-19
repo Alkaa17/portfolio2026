@@ -3,7 +3,7 @@
   if (customElements.get('site-header')) return;
   var HOME = '/';
   var LINKS = [{ key: 'work', label: 'work', href: HOME + '#projects' }, { key: 'resume', label: 'about me', href: '/aboutme' }, { key: 'playground', label: 'playground', href: '/playground' }];
-  var RESUME = '/assets/Alka-Mahapatra-Resume.pdf';
+  var RESUME = '/assets/Alka-Mahapatra-Resume.pdf?v=2026-10';
   var EMAIL = 'alkamahapatra99@gmail.com';
   var CAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ17eQf9wzg3K0u9CMDXwZlbNp9Bmsvc-OJ-10tZGEf5sOO54zEkWEoEdCYMKohAlRRW5dqphsPh?gv=true';
   var EASE = 'cubic-bezier(.34,1.56,.64,1)';
