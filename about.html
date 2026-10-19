@@ -79,7 +79,7 @@ nav > div > button{height:47px !important;padding:0 21px !important;font-size:17
 p,li,blockquote,figcaption,dd{text-wrap-style:pretty}
 h1,h2,h3,h4{text-wrap-style:balance}
 /* intro */
-.am-bio{margin:0;font-size:17px;line-height:1.65;color:var(--ink-700)}
+.am-bio{margin:0;text-align:left;font-size:17px;line-height:1.65;color:var(--ink-700)}
 .am-bio strong{color:var(--ink-900);font-weight:600}
 /* journey timeline */
 .g-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px}
@@ -140,10 +140,37 @@ h1,h2,h3,h4{text-wrap-style:balance}
 .sk-proof span{color:var(--pink-400)}
 @media (max-width:760px){.sk-card{grid-template-columns:1fr;grid-template-areas:'head' 'plot' 'detail';row-gap:28px}.sk-text{display:contents}.sk-head{grid-area:head}.sk-plot{grid-area:plot}.sk-detail{grid-area:detail}.sk-plot{max-width:440px;margin:0 auto;width:100%}.sk-plot .rl{font-size:21px}}
 @media (prefers-reduced-motion: reduce){.sk-plot .pt{transition:none}}
+/* phones: vertical timeline, newest first, tap a step to open it */
+.tv{display:none;position:relative;list-style:none;margin:0;padding:0}
+.tv::before{content:"";position:absolute;left:11px;top:6px;bottom:24px;width:2px;border-radius:2px;background:var(--pink-200)}
+.tv-yr{position:relative;padding:18px 0 8px 32px;font:600 13px/1 var(--font-mono);letter-spacing:.08em;color:var(--pink-700)}
+.tv-yr:first-child{padding-top:0}
+.tv-yr::before{content:"";position:absolute;left:4px;bottom:7px;width:16px;height:2px;border-radius:2px;background:var(--pink-300)}
+.tv-it{position:relative;padding:0 0 8px 32px}
+.tv-dot{position:absolute;left:5px;top:21px;width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px var(--cream);z-index:1}
+.tv-card{background:var(--white);border:1.5px solid var(--pink-100);border-radius:18px;transition:border-color var(--dur-fast)}
+.tv-it[data-open="true"] .tv-card{border-color:var(--pink-300)}
+.tv-btn{all:unset;box-sizing:border-box;width:100%;display:flex;gap:12px;align-items:flex-start;padding:12px 14px;cursor:pointer;border-radius:18px}
+.tv-btn:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.tv-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.tv-org{font:600 16px/1.3 var(--font-display);color:var(--ink-900)}
+.tv-role{font-size:14px;line-height:1.4;color:var(--ink-700)}
+.tv-when{margin-top:4px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font:500 11px/1.4 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-500)}
+.tv-len{padding:2px 7px;border-radius:99px;background:var(--tint);color:var(--ink-700)}
+.tv-chev{flex:none;margin-top:3px;color:var(--pink-400);transition:transform var(--dur-base) var(--ease-soft)}
+.tv-it[data-open="true"] .tv-chev{transform:rotate(180deg)}
+.tv-body{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows var(--dur-base) var(--ease-soft),visibility 0s var(--dur-base)}
+.tv-it[data-open="true"] .tv-body{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows var(--dur-base) var(--ease-soft)}
+.tv-in{overflow:hidden;min-height:0}
+.tv-in > div{padding:0 14px 16px;display:flex;flex-direction:column;gap:12px}
+.tv-in .lg{width:40px;height:40px}
+.tv-in p{margin:0}
+.tv-in p:not(.st-when){font-size:15px;line-height:1.55;color:var(--ink-700)}
+.tv-in .st-photos > div{width:calc(50% - 6px)}
+@media (prefers-reduced-motion: reduce){.tv-body,.tv-chev{transition:none}}
 @media (max-width:640px){
-  .tl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 20px}
-  .tl-plot{min-width:720px}
-  .st-detail{padding:18px 16px 20px}
+  .tl-card{display:none}
+  .tv{display:block}
 }
 </style>
 </helmet>
@@ -236,6 +263,35 @@ h1,h2,h3,h4{text-wrap-style:balance}
           </sc-if>
         </div>
       </div>
+      <ol class="tv" aria-label="Education and experience, newest first">
+        <sc-for list="{{ journeyV }}" as="x" hint-placeholder-count="14">
+          <sc-if value="{{ x.yearMark }}" hint-placeholder-val="{{ false }}"><li class="tv-yr" aria-hidden="true">{{ x.yearMark }}</li></sc-if>
+          <li class="tv-it" data-open="{{ x.open }}" style="--c:{{ x.c }};--tint:{{ x.tint }}">
+            <span class="tv-dot" aria-hidden="true"></span>
+            <div class="tv-card">
+              <button type="button" class="tv-btn" onClick="{{ x.toggle }}" aria-expanded="{{ x.open }}">
+                <span class="tv-txt">
+                  <span class="tv-org">{{ x.org }}</span>
+                  <span class="tv-role">{{ x.title }}</span>
+                  <span class="tv-when"><span>{{ x.when }}</span><span class="tv-len">{{ x.len }}</span></span>
+                </span>
+                <svg class="tv-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+              </button>
+              <div class="tv-body"><div class="tv-in"><div>
+                <p class="st-when">{{ x.where }}</p>
+                <p>{{ x.desc }}</p>
+                <sc-if value="{{ x.hasPhotos }}" hint-placeholder-val="{{ false }}">
+                  <div class="st-photos">
+                    <sc-for list="{{ x.photos }}" as="ph" hint-placeholder-count="2">
+                      <div><image-slot id="{{ ph }}" shape="rounded" radius="14" placeholder="Photo" style="width:100%;height:100%;background:var(--pink-50)"></image-slot></div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div></div></div>
+            </div>
+          </li>
+        </sc-for>
+      </ol>
     </section>
 
 </main>
@@ -362,11 +418,9 @@ class Component extends DCLogic {
     this.onResize = () => this.setState({ vw: window.innerWidth });
     this.onResize();
     window.addEventListener('resize', this.onResize);
-    // Phones scroll the timeline sideways; start on the newest step.
-    this.t = setTimeout(() => { const el = document.querySelector('.st-scroll'); if (el) el.scrollLeft = el.scrollWidth; }, 300);
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onEsc); clearTimeout(this.t); window.removeEventListener('resize', this.onResize); }
+    document.removeEventListener('keydown', this.onEsc); window.removeEventListener('resize', this.onResize); }
   fallbackCopy(t) { const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); }
   axisY(n) { return 56 + (n - 1) * STEP + 16; }
   journey() {
@@ -382,6 +436,19 @@ class Component extends DCLogic {
         label: `${x.org}, ${x.title}, ${x.when}`,
         hasLogo: !!x.logo, hasPhotos: !x.noPhotos && !NO_PHOTOS.includes(x.logo), photos: [`${x.logo}-photo-1`, `${x.logo}-photo-2`],
         select: () => this.setState({ sel: id }) };
+    });
+  }
+  journeyV(j) {
+    // Phones: newest first, a year marker wherever the start year changes, current step(s) open.
+    const v = this.state.vsel, list = [...j].sort((a, b) => pos(b.s) - pos(a.s));
+    const len = (x) => {
+      const e = x.e || NOW, m = (e[0] - x.s[0]) * 12 + e[1] - x.s[1] + 1, y = Math.floor(m / 12), r = m % 12;
+      return [y && y + (y > 1 ? ' yrs' : ' yr'), r && r + ' mo'].filter(Boolean).join(' ');
+    };
+    return list.map((x, i) => {
+      const id = x.org + x.s.join('-'), open = v === undefined ? !x.e : v === id;
+      return { ...x, open, len: len(x), yearMark: i && list[i - 1].s[0] === x.s[0] ? '' : String(x.s[0]),
+        toggle: () => this.setState({ vsel: open ? null : id }) };
     });
   }
   skillMap() {
@@ -437,7 +504,7 @@ class Component extends DCLogic {
     const s = this.state, mobile = s.vw < 768;
     let j;
     return {
-      journey: (j = this.journey()), axisY: this.axisY(j.length) + 'px', cur: j.find(x => x.on) || j[j.length - 1],
+      journey: (j = this.journey()), axisY: this.axisY(j.length) + 'px', cur: j.find(x => x.on) || j[j.length - 1], journeyV: this.journeyV(j),
       years: Array.from({ length: T1 - T0 }, (_, i) => ({ label: String(T0 + i), left: (i * 100 / (T1 - T0)) + '%' })), nowLeft: ((pos(NOW) - T0) / (T1 - T0) * 100) + '%',
       kinds: Object.values(KINDS),
       // On desktop a selected petal's own title replaces the section heading; phones keep it so the diagram below doesn't jump.
@@ -462,7 +529,7 @@ class Component extends DCLogic {
         else { this.fallbackCopy(txt); done(); }
       },
       copyText: s.copied ? 'copied ✦' : 'copy', copyBg: s.copied ? 'var(--brand)' : 'var(--pink-100)', copyFg: s.copied ? 'var(--white)' : 'var(--pink-700)',
-      heroJustify: s.vw < 640 ? 'center' : 'flex-start', heroAlign: s.vw < 640 ? 'center' : 'stretch', heroText: s.vw < 640 ? 'center' : 'left',
+      heroJustify: 'flex-start', heroAlign: 'stretch', heroText: 'left',
     };
   }
 }
