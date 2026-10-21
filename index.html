@@ -244,6 +244,29 @@ h1,h2,h3,h4{text-wrap-style:balance}
         </a>
       </sc-for>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
+        <sc-for list="{{ firstProjects }}" as="p" hint-placeholder-count="1">
+          <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+            <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+            <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+              <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
+                {{ p.media }}
+              </sc-if>
+              <sc-if value="{{ p.noVideo }}" hint-placeholder-val="{{ true }}">
+                <image-slot id="{{ p.slot }}" shape="rect" placeholder="Project cover — GIF or image" style="width:100%;height:100%;background:var(--pink-50)"></image-slot>
+              </sc-if>
+              <span style="position:absolute;right:12px;top:12px;padding:6px 10px;border-radius:999px;background:var(--pink-100);font:500 10px/1 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700);pointer-events:none">{{ p.badge }}</span>
+              <sc-if value="{{ p.hasLogo }}" hint-placeholder-val="{{ false }}">
+                <img src="{{ p.logo }}" alt="" loading="lazy" decoding="async" style="position:absolute;right:12px;top:46px;width:clamp(48px,16.8%,70px);height:auto;opacity:.8;pointer-events:none"></img>
+              </sc-if>
+            </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px;container-type:inline-size">
+              <p style="margin:0;display:flex;flex-wrap:wrap;gap:10px;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;{{ p.orgStyle }}"><span style="color:var(--pink-700)">{{ p.org }}</span></p>
+              <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:pretty">{{ p.title }}</h3>
+              <p style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">{{ p.desc }}</p>
+            </div>
+          </a>
+        </sc-for>
         <sc-for list="{{ research }}" as="r" hint-placeholder-count="2">
           <a href="{{ r.href }}" class="rcard" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
@@ -278,8 +301,6 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
           </a>
         </sc-for>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="2">
           <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
@@ -500,7 +521,7 @@ const RESEARCH = [
   { org: 'Mixed-method UX research', year: '2025', href: '/poe', badge: 'AI · Consumer tech', photo: __res('./assets/covers/poe-cover.jpg'), logo: './assets/poe-logo.png', coverAlt: 'Person at a sunlit desk holding a phone showing the Poe app home screen, with lavender in a purple vase behind', title: 'Helping first-time users find their way in an AI app to reduce early drop-off', desc: 'As UX researcher, I ran heuristic and usability testing and led synthesis. Issues turned up in 60% of tasks and became prioritized fixes for onboarding and discovery.' }
 ];
 const WORK = [
-  { org: 'CRO strategy · CX/UX & visual design · Team lead', orgOneLine: true, year: '2022–24', href: '/ayurveda', badge: 'E-commerce · Beauty & Wellness', badgeMobile: 'E-commerce', url: 'theayurvedaexperience.com', photo: __res('./assets/covers/tae-cover.jpg'), logo: './assets/tae-logo.png', coverAlt: 'Hand holding a phone showing a Citrenis skin-buffing gelly launch email from The Ayurveda Experience', title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
+  { first: true, org: 'CRO strategy · CX/UX & visual design · Team lead', orgOneLine: true, year: '2022–24', href: '/ayurveda', badge: 'E-commerce · Beauty & Wellness', badgeMobile: 'E-commerce', url: 'theayurvedaexperience.com', photo: __res('./assets/covers/tae-cover.jpg'), logo: './assets/tae-logo.png', coverAlt: 'Hand holding a phone showing a Citrenis skin-buffing gelly launch email from The Ayurveda Experience', title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
   { org: 'Website redesign · Information architecture · Visual design', year: '3 months', href: '/ncci', badge: 'Nonprofit · Conservation', badgeMobile: 'Conservation', url: 'conservingcentralindia.org', photo: __res('./assets/covers/ncci-cover.jpg'), coverAlt: 'Desktop monitor showing the redesigned NCCI homepage with a sunset over a central Indian lake and a Latest Updates section', title: 'Making conservation research easy to find and easy to publish', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
 ];
 const VISUAL_WORK = [
@@ -709,7 +730,7 @@ class Component extends DCLogic {
       tabItems: TABS.map(t => ({ key: t.key, label: t.label })), tab: s.tab, selectTab: (k) => this.selectTab(k),
       activeTabLabel: activeTab.label, panelBg: activeTab.color,
       gridOpacity: s.fading ? 0 : 1, gridShift: s.fading ? '10px' : '0px',
-      leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead), mobile), visualWork: VISUAL_WORK.map(v => ({ ...v, coverPos: v.coverPos || 'center' })),
+      leadProjects: this.mapWork(WORK.filter(p => p.lead), mobile), firstProjects: this.mapWork(WORK.filter(p => p.first && !p.lead), mobile), projects: this.mapWork(WORK.filter(p => !p.lead && !p.first), mobile), visualWork: VISUAL_WORK.map(v => ({ ...v, coverPos: v.coverPos || 'center' })),
       research: RESEARCH.map((r, i) => ({ ...r, coverRef: r.cover ? this.scrollCoverRef(r.cover) : undefined, href: r.href || '#', slot: 'research-cover-' + (i + 1), isFrontier: !!r.frontier, planeRatio: '691 / 195', planeEl: r.frontier ? this.planeEl() : null, hasBadge: !!r.badge, hasCover: !!r.cover, coverBg: r.cover ? `url("${r.cover}")` : 'none', hasPhoto: !!r.photo, hasLogo: !!r.logo, noCover: !r.cover && !r.frontier && !r.photo, hasOverlay: !!r.overlay })),
       goWork: () => this.scrollToId('projects'),
       openDeck: () => window.open('https://www.canva.com/design/DAG_orrxO_k/tWi-rwNR2bDKdVcvYmg1Jg/view?utm_content=DAG_orrxO_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h74f250f02a', '_blank', 'noopener'),
