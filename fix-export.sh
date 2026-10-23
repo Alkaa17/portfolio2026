@@ -102,6 +102,29 @@ sed -i '' -e "s/playsInline: true, preload: 'auto'/playsInline: true, preload: '
   -e 's|<img src="./assets/award-rosette.png" alt=|<img src="./assets/award-rosette.png" loading="lazy" alt=|' \
   -e '/<link rel="preload" as="image" href=".\/assets\/alka-walk-2\.[a-z]*">/d' index.html
 
+# Home project covers: 800px WebP copies (cards never show them bigger) instead of the 1000–1200px JPGs.
+sed -i '' -E "s#(\./assets/covers/(tae|ncci|poe|frontier|trendgully|blackberrys)-cover)\.jpg#\1.webp#g" index.html
+
+# Ayurveda case study was ~21MB of PNG screenshots and the page people land on first.
+# Serve the WebP copies (made with PIL: max 1600px wide, q80; longform 800px, q75),
+# lazy-load every image after the first, and give its one image slot (tae-ing-a) a
+# trimmed state file instead of the 1.7MB all-pages one.
+sed -i '' -E -e 's#(assets/ayurveda/(push-banners|push-lock|audience|ing-labels|splash-after|splash-before|coll-before|coll-after|push-flow-1|push-flow-2|ing-png|app-hero|app-promo))\.png#\1.webp#g' \
+  -e 's#assets/ayurveda/iyura-longform\.jpg#assets/ayurveda/iyura-longform.webp#g' \
+  -e 's#\./assets/(tae-mothers-day|tae-app-banner)\.png#./assets/\1.webp#g' ayurveda.html
+python3 - <<'PY'
+import json, re
+slots = json.load(open('.image-slots.state.json'))
+json.dump({k: v for k, v in slots.items() if k.startswith('tae-')}, open('.image-slots.ayurveda.json', 'w'), separators=(',', ':'))
+s = open('ayurveda.html').read()
+first = s.index('<img ')
+s = s[:first + 5] + re.sub(r'<img (?![^>]*\bloading=)', '<img loading="lazy" decoding="async" ', s[first + 5:])
+res = "<script>window.__res=function(p){return p==='.image-slots.state.json'?'.image-slots.ayurveda.json':p;};</script>\n"
+if 'window.__res' not in s:
+    s = s.replace('<script src="./image-slot.js"></script>', res + '<script src="./image-slot.js"></script>', 1)
+open('ayurveda.html', 'w').write(s)
+PY
+
 # Accessibility (WCAG 2.1 AA). Page-level fixes that can't live in the shared scripts:
 # - pages missing a language
 # - sound-button tooltips repeat the button's aria-label, so hide them from screen readers
@@ -122,8 +145,11 @@ css = open('a11y.css').read().strip()
 block = '<!-- a11y: see a11y.css / a11y.js -->\n<style>\n' + css + '\n</style>\n<script src="./a11y.js" defer></script>\n<!-- /a11y -->\n'
 for f in ['index.html', 'about.html', 'playground.html', 'poe.html', 'frontier.html', 'ayurveda.html', 'ncci.html']:
     s = open(f).read()
-    s = re.sub(r'<!-- a11y: .*?<!-- /a11y -->\n', '', s, flags=re.S)
-    s = s.replace('</head>', block + '</head>', 1)
+    # Update in place when present so styles linked after it (case-study.css) keep their order.
+    if '<!-- a11y: ' in s:
+        s = re.sub(r'<!-- a11y: .*?<!-- /a11y -->\n', lambda m: block, s, count=1, flags=re.S)
+    else:
+        s = s.replace('</head>', block + '</head>', 1)
     open(f, 'w').write(s)
 PY
 
