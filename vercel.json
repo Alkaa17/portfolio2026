@@ -17,6 +17,8 @@
     { "source": "/about", "destination": "/aboutme", "permanent": true },
     { "source": "/about.html", "destination": "/aboutme", "permanent": true },
     { "source": "/resume.html", "destination": "/aboutme", "permanent": true },
-    { "source": "/resume", "destination": "/aboutme", "permanent": true }
+    { "source": "/resume", "destination": "/aboutme", "permanent": true },
+    { "source": "/nukkad", "destination": "/cafe-n", "permanent": true },
+    { "source": "/nukkad/:path*", "destination": "/cafe-n/:path*", "permanent": true }
   ]
 }

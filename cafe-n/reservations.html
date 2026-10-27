@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>Reserve · Nukkad Café</title>
+<title>Reserve · Café N</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/nukkad/support.js"></script>
+<script src="/cafe-n/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -18,26 +18,26 @@ input,textarea{font:inherit}</style>
 </helmet>
 <div style="min-height:100vh;display:flex;flex-direction:column;background:#F6F0E3">
 <nav style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,5vw,64px);flex-wrap:wrap;background:rgba(243,236,221,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
-  <a href="/nukkad" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
+  <a href="/cafe-n" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
     <span style="font-family:'Anton',sans-serif;font-size:clamp(24px,6vw,30px);letter-spacing:.04em;color:#10282A">NUKKAD</span>
     <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:22px;color:#0E8F99;line-height:1">نکڑ</span>
   </a>
   <div style="display:flex;gap:4px;padding:4px;border-radius:999px;font-weight:600;font-size:15px;letter-spacing:.02em">
     <sc-if value="{{ navWide }}" hint-placeholder-val="{{ true }}">
-    <a href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
-    <a href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Order</a>
-    <a href="/nukkad/reservations" aria-current="page" style="color:#10282A;background:#BFE7E8;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="color:#10282A">Reserve</a>
+    <a href="/cafe-n#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
+    <a href="/cafe-n/menu" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Order</a>
+    <a href="/cafe-n/reservations" aria-current="page" style="color:#10282A;background:#BFE7E8;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="color:#10282A">Reserve</a>
     </sc-if>
     <div ref="{{ moreRef }}" style="position:relative">
       <button onClick="{{ toggleMore }}" aria-expanded="{{ moreOpen }}" aria-haspopup="true" style="display:flex;align-items:center;gap:6px;color:#10282A;background:{{ moreBg }};border:0;font:inherit;font-weight:600;font-size:15px;letter-spacing:.02em;padding:8px 14px 8px 16px;border-radius:999px;cursor:pointer" style-hover="background:rgba(16,40,42,.08)">{{ moreLabel }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate({{ moreRot }}deg);transition:transform .2s"><path d="M6 9l6 6 6-6"></path></svg></button>
       <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
         <div role="menu" style="position:absolute;right:0;top:calc(100% + 10px);min-width:180px;display:flex;flex-direction:column;padding:6px;border-radius:15px;background:#FDFBF6;box-shadow:0 14px 34px rgba(16,40,42,.22);z-index:20">
           <sc-if value="{{ navNarrow }}" hint-placeholder-val="{{ false }}">
-          <a role="menuitem" href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
-          <a role="menuitem" href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
-          <a role="menuitem" href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
+          <a role="menuitem" href="/cafe-n#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
+          <a role="menuitem" href="/cafe-n/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
+          <a role="menuitem" href="/cafe-n/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
           </sc-if>
-          <a role="menuitem" href="/nukkad#faq" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
+          <a role="menuitem" href="/cafe-n#faq" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
           <a role="menuitem" href="#find" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Find us</a>
         </div>
       </sc-if>
@@ -54,7 +54,7 @@ input,textarea{font:inherit}</style>
       <p style="margin:12px 0 0;font-size:17px;line-height:1.5;text-wrap:pretty">Walk-ins are always welcome. Booking just means your table’s waiting, great for groups, birthdays and chai nights.</p>
     </div>
     <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
-      <img src="/nukkad/assets-sa/chai-pour.jpg" alt="Pouring karak chai from height into a steaming pot" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%;display:block;border-radius:15px">
+      <img src="/cafe-n/assets-sa/chai-pour.jpg" alt="Pouring karak chai from height into a steaming pot" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%;display:block;border-radius:15px">
       <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3A4A49">The terrace, 171 Thornton Rd</figcaption>
     </figure>
   </div>
@@ -180,7 +180,7 @@ input,textarea{font:inherit}</style>
           </dl>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px">
-          <a href="/nukkad/menu" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:999px;background:#10282A;color:#F6F0E3;font-weight:700;font-size:15px;text-decoration:none" style-hover="background:#C2412D;color:#F6F0E3">Browse the menu</a>
+          <a href="/cafe-n/menu" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:999px;background:#10282A;color:#F6F0E3;font-weight:700;font-size:15px;text-decoration:none" style-hover="background:#C2412D;color:#F6F0E3">Browse the menu</a>
           <button onClick="{{ again }}" style="height:52px;padding:0 24px;border-radius:999px;border:0;background:rgba(16,40,42,.06);color:#10282A;font:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#BFE7E8;color:#10282A">Make another booking</button>
         </div>
       </div>

@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>Order · Nukkad Café</title>
+<title>Order · Café N</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/nukkad/support.js"></script>
+<script src="/cafe-n/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -19,26 +19,26 @@ input,textarea,select{font:inherit}
 </helmet>
 <div style="min-height:100vh;display:flex;flex-direction:column;background:#F3ECDD">
 <nav ref="{{ navRef }}" style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,5vw,64px);flex-wrap:wrap;background:rgba(243,236,221,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
-  <a href="/nukkad" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
+  <a href="/cafe-n" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
     <span style="font-family:'Anton',sans-serif;font-size:clamp(24px,6vw,30px);letter-spacing:.04em;color:#10282A">NUKKAD</span>
     <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:22px;color:#0E8F99;line-height:1">نکڑ</span>
   </a>
   <div style="display:flex;gap:4px;padding:4px;border-radius:999px;font-weight:600;font-size:15px;letter-spacing:.02em">
     <sc-if value="{{ navWide }}" hint-placeholder-val="{{ true }}">
-    <a href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
-    <a href="/nukkad/menu" aria-current="page" style="color:#10282A;background:#BFE7E8;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="color:#10282A">Order</a>
-    <a href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Reserve</a>
+    <a href="/cafe-n#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
+    <a href="/cafe-n/menu" aria-current="page" style="color:#10282A;background:#BFE7E8;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="color:#10282A">Order</a>
+    <a href="/cafe-n/reservations" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Reserve</a>
     </sc-if>
     <div ref="{{ moreRef }}" style="position:relative">
       <button onClick="{{ toggleMore }}" aria-expanded="{{ moreOpen }}" aria-haspopup="true" style="display:flex;align-items:center;gap:6px;color:#10282A;background:{{ moreBg }};border:0;font:inherit;font-weight:600;font-size:15px;letter-spacing:.02em;padding:8px 14px 8px 16px;border-radius:999px;cursor:pointer" style-hover="background:rgba(16,40,42,.08)">{{ moreLabel }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate({{ moreRot }}deg);transition:transform .2s"><path d="M6 9l6 6 6-6"></path></svg></button>
       <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
         <div role="menu" style="position:absolute;right:0;top:calc(100% + 10px);min-width:180px;display:flex;flex-direction:column;padding:6px;border-radius:15px;background:#FDFBF6;box-shadow:0 14px 34px rgba(16,40,42,.22);z-index:20">
           <sc-if value="{{ navNarrow }}" hint-placeholder-val="{{ false }}">
-          <a role="menuitem" href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
-          <a role="menuitem" href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
-          <a role="menuitem" href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
+          <a role="menuitem" href="/cafe-n#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
+          <a role="menuitem" href="/cafe-n/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
+          <a role="menuitem" href="/cafe-n/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
           </sc-if>
-          <a role="menuitem" href="/nukkad#faq" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
+          <a role="menuitem" href="/cafe-n#faq" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
           <a role="menuitem" href="#find" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Find us</a>
         </div>
       </sc-if>
@@ -340,7 +340,7 @@ input,textarea,select{font:inherit}
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px">
         <button onClick="{{ again }}" style="height:52px;padding:0 24px;border-radius:999px;border:0;background:#10282A;color:#F6F0E3;font:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#C2412D">Start a new order</button>
-        <a href="/nukkad/reservations" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:999px;border:0;box-sizing:border-box;color:#10282A;font-weight:700;font-size:15px;text-decoration:none" style-hover="background:#BFE7E8;color:#10282A">Book a table</a>
+        <a href="/cafe-n/reservations" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:999px;border:0;box-sizing:border-box;color:#10282A;font-weight:700;font-size:15px;text-decoration:none" style-hover="background:#BFE7E8;color:#10282A">Book a table</a>
       </div>
     </div>
   </section>
@@ -466,7 +466,7 @@ class Component extends DCLogic {
   componentWillUnmount() { if (this.navRO) this.navRO.disconnect(); document.removeEventListener('pointerdown', this.moreOut); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll); clearTimeout(this.payT); }
   componentDidUpdate(pp, ps) { if (ps.cart !== this.state.cart || ps.mode !== this.state.mode) { try { localStorage.setItem('nukkad-cart', JSON.stringify({ cart: this.state.cart, mode: this.state.mode })); } catch (e) {} } }
   money = p => '£' + (p / 100).toFixed(2);
-  items() { if (!this._items) { this._items = {}; this.DATA.forEach(c => c.items.forEach(([id, name, price, desc, img, best]) => { this._items[id] = { id, name, price, desc, img: this.PHOTOS[id] ? '/nukkad/assets/menu/' + this.PHOTOS[id] + '.webp' : '', best: !!best, tint: c.tint }; })); } return this._items; }
+  items() { if (!this._items) { this._items = {}; this.DATA.forEach(c => c.items.forEach(([id, name, price, desc, img, best]) => { this._items[id] = { id, name, price, desc, img: this.PHOTOS[id] ? '/cafe-n/assets/menu/' + this.PHOTOS[id] + '.webp' : '', best: !!best, tint: c.tint }; })); } return this._items; }
   setQty = (id, d) => this.setState(s => { const cart = { ...s.cart }, q = (cart[id] || 0) + d; if (q <= 0) delete cart[id]; else cart[id] = Math.min(20, q); return { cart }; });
   go = step => { this.setState({ step, tried: false }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
   london() {
