@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Nukkad Café · Bradford</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/photo-spanish-latte.webp" data-resource-id="r0">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/photo-iced-mocha.webp" data-resource-id="r1">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/photo-iced-pour.webp" data-resource-id="r2">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-fries.webp" data-resource-id="r3">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-iced-latte.webp" data-resource-id="r4">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-wrap.webp" data-resource-id="r5">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-lotus.webp" data-resource-id="r6">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-hot-chai.webp" data-resource-id="r7">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-chaat.webp" data-resource-id="r8">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-mocha.webp" data-resource-id="r9">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-burger.webp" data-resource-id="r10">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/fav-iced-chai.webp" data-resource-id="r11">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/photo-kettle.webp" data-resource-id="r12">
+<meta name="ext-resource-dependency" content="/nukkad/assets-sa/photo-milk-pour.webp" data-resource-id="r13">
+<script src="/nukkad/support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#10282A"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#10282A"/><circle cx="50" cy="50" r="22" fill="#E5A823"/><text x="50" y="58" text-anchor="middle" font-family="Arial" font-weight="700" font-size="24" fill="#10282A">N</text></svg></template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>@media (pointer:fine){html:not([data-kdock]) *{cursor:none !important}}
+
+body{margin:0;background:#F3ECDD;color:#14201F;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0E4F55}a:hover{color:#C2412D}
+input[type=range]{accent-color:#0E4F55}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F3ECDD;overflow-x:clip">
+<div ref="{{ cursorLayer }}" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden">
+  <img ref="{{ kettleRef }}" src="/nukkad/assets-sa/kettle-cursor.webp" alt="" style="position:absolute;left:0;top:0;width:72px;pointer-events:none;z-index:2;opacity:0;transition:opacity .2s;will-change:transform;filter:drop-shadow(0 6px 10px rgba(16,40,42,.25))">
+</div>
+
+<nav style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,5vw,64px);flex-wrap:wrap;background:{{ navBg }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};transition:background .25s">
+  <a href="/nukkad" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
+    <span style="font-family:'Anton',sans-serif;font-size:clamp(24px,6vw,30px);letter-spacing:.04em;color:#10282A">NUKKAD</span>
+    <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:22px;color:#0E8F99;line-height:1">نکڑ</span>
+  </a>
+  <div style="display:flex;gap:4px;padding:4px;border-radius:999px;font-weight:600;font-size:15px;letter-spacing:.02em">
+    <sc-if value="{{ navWide }}" hint-placeholder-val="{{ true }}">
+    <a href="#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
+    <a href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Order</a>
+    <a href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Reserve</a>
+    </sc-if>
+    <div ref="{{ moreRef }}" style="position:relative">
+      <button onClick="{{ toggleMore }}" aria-expanded="{{ moreOpen }}" aria-haspopup="true" style="display:flex;align-items:center;gap:6px;color:#10282A;background:{{ moreBg }};border:0;font:inherit;font-weight:600;font-size:15px;letter-spacing:.02em;padding:8px 14px 8px 16px;border-radius:999px;cursor:pointer" style-hover="background:rgba(16,40,42,.08)">{{ moreLabel }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate({{ moreRot }}deg);transition:transform .2s"><path d="M6 9l6 6 6-6"></path></svg></button>
+      <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="menu" style="position:absolute;right:0;top:calc(100% + 10px);min-width:180px;display:flex;flex-direction:column;padding:6px;border-radius:15px;background:#FDFBF6;box-shadow:0 14px 34px rgba(16,40,42,.22);z-index:20">
+          <sc-if value="{{ navNarrow }}" hint-placeholder-val="{{ false }}">
+          <a role="menuitem" href="#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
+          <a role="menuitem" href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
+          <a role="menuitem" href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
+          </sc-if>
+          <a role="menuitem" href="#faq" onClick="{{ closeMore }}" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
+          <a role="menuitem" href="#find" onClick="{{ closeMore }}" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Find us</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</nav>
+<header ref="{{ heroRef }}" style="position:relative;margin-top:-76px;padding-top:76px;background:#F3E6CF url(/nukkad/assets-sa/hero-cafe.webp) center bottom/cover no-repeat;overflow:hidden;cursor:none">
+  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(246,240,227,.92) 0%,rgba(246,240,227,.78) 38%,rgba(246,240,227,.25) 70%,rgba(246,240,227,.05) 100%)"></div>
+  <div ref="{{ steamLayer }}" style="position:absolute;inset:0;pointer-events:none;z-index:3"></div>
+  
+  <div style="position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;align-items:center;padding:clamp(24px,5vw,56px) clamp(20px,5vw,64px) 72px;max-width:1180px;margin:0 auto">
+    <div style="flex:1 1 400px;max-width:780px;min-width:0;display:flex;flex-direction:column;gap:24px">
+      <a href="https://maps.google.com/?q=171+Thornton+Rd,+Bradford+BD1+2JH" target="_blank" rel="noopener" style="align-self:flex-start;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;color:#10282A;font-size:15px;text-decoration:none" style-hover="color:#C2412D"><span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;color:{{ openBg }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ openBg }}"></span>{{ openLabel }}</span><span>{{ openDetail }}</span><span aria-hidden="true" style="opacity:.4">·</span><span>171 Thornton Rd, Bradford</span></a>
+      <h1 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(40px,4.4vw,72px);line-height:1;letter-spacing:.015em;color:#10282A;text-transform:uppercase;text-wrap:balance">A corner of South Asia. <span style="color:#0E8F99">A home in Bradford.</span></h1>
+      <p style="margin:0;max-width:30em;font-size:19px;line-height:1.5;color:#10282A;text-wrap:pretty">In South Asia, a nukkad is where conversations begin and neighbours become friends over chai. Ours is a South Asian-inspired outdoor café, and there’s always a seat for you.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="/nukkad/menu" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px 0 24px;border-radius:999px;background:#10282A;color:#F6F0E3;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s" style-hover="background:#C2412D;color:#F6F0E3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>Place order</a>
+        <a href="#cups" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px 0 24px;border-radius:999px;border:2px solid #10282A;background:rgba(246,240,227,.55);color:#10282A;font-weight:700;font-size:16px;text-decoration:none;box-sizing:border-box;transition:background .2s" style-hover="background:#10282A;color:#F6F0E3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>See the menu</a>
+      </div>
+    </div>
+    <div style="flex:0 1 300px;min-width:0;position:relative;display:flex;justify-content:center;perspective:1100px;padding:20px 0 0">
+      <div ref="{{ floatRef }}" style="position:relative;width:min(100%,340px)">
+        <div aria-hidden="true" style="position:absolute;left:8%;right:8%;bottom:-3%;height:9%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(40,22,10,.55) 0%,rgba(40,22,10,.28) 45%,rgba(40,22,10,0) 72%);filter:blur(3px)"></div>
+        <div aria-hidden="true" style="position:absolute;left:18%;right:18%;bottom:0;height:3%;border-radius:50%;background:rgba(30,16,8,.45);filter:blur(2px)"></div>
+        <div ref="{{ cupRef }}" style="position:relative;width:100%;aspect-ratio:940/1410;transform-style:preserve-3d;transition:transform .3s ease-out">
+          <div ref="{{ cupSteamOrigin }}" style="position:absolute;top:0;left:50%;width:1px;height:1px"></div>
+          <img src="/nukkad/assets-sa/nukkad-cup-hd.webp" alt="Nukkad cup" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;z-index:2;background:#14AEBB;border-top:3px solid #10282A;border-bottom:3px solid #10282A;overflow:hidden;padding:14px 0">
+    <div ref="{{ marqueeRef }}" style="display:flex;gap:40px;width:max-content;font-family:'Anton',sans-serif;font-size:24px;letter-spacing:.06em;color:#10282A;white-space:nowrap">
+      <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="8">
+        <span style="display:flex;align-items:center;gap:40px"><span>{{ m }}</span><span style="width:10px;height:10px;background:#F6F0E3;transform:rotate(45deg)"></span></span>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<section id="cups" ref="{{ cupsSection }}" style="position:relative;background:{{ cupBg }};transition:background-color .6s ease;color:#10282A;padding:clamp(24px,4vh,64px) 0 clamp(48px,6vw,80px);overflow:hidden">
+  <div ref="{{ coffeeLayer }}" data-float-layer="1" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none;opacity:{{ coffeeOpacity }};transition:opacity .6s ease">
+    <img src="/nukkad/assets-sa/milk-splash-1.webp" alt="" style="position:absolute;right:calc(50% + clamp(150px,17vw,260px));top:-2%;width:clamp(220px,24vw,380px);transform:rotate(-8deg);filter:drop-shadow(0 10px 14px rgba(40,22,10,.12));pointer-events:none">
+    <img src="/nukkad/assets-sa/milk-splash-2.webp" alt="" style="position:absolute;left:calc(50% + clamp(150px,17vw,260px));top:-12%;width:clamp(220px,24vw,380px);transform:scaleX(-1) rotate(39deg);filter:drop-shadow(0 10px 14px rgba(40,22,10,.12));pointer-events:none">
+    <img data-spice="1" data-w="30" data-x="-2.25" data-y="8" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:8%;width:30px;transform:rotate(-20deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="24" data-x="-1.6" data-y="4" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:4%;width:24px;transform:rotate(35deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="34" data-x="-1" data-y="12" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:12%;width:34px;transform:rotate(-50deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="22" data-x="-0.55" data-y="4" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:4%;width:22px;transform:rotate(70deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="26" data-x="-1.95" data-y="26" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:26%;width:26px;transform:rotate(15deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="30" data-x="-1.25" data-y="30" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:30%;width:30px;transform:rotate(-75deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="20" data-x="-0.6" data-y="24" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:24%;width:20px;transform:rotate(25deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="28" data-x="0.6" data-y="8" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:8%;width:28px;transform:rotate(40deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="22" data-x="1.1" data-y="3" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:3%;width:22px;transform:rotate(-30deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="34" data-x="1.7" data-y="10" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:10%;width:34px;transform:rotate(60deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="24" data-x="2.25" data-y="4" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:4%;width:24px;transform:rotate(-15deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="24" data-x="0.75" data-y="28" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:28%;width:24px;transform:rotate(-60deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="30" data-x="1.45" data-y="26" src="/nukkad/assets-sa/bean-tilt.webp" alt="" style="position:absolute;left:50%;top:26%;width:30px;transform:rotate(20deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="20" data-x="2.1" data-y="30" src="/nukkad/assets-sa/bean-front.webp" alt="" style="position:absolute;left:50%;top:30%;width:20px;transform:rotate(85deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+  </div>
+  <div ref="{{ biscoffLayer }}" data-float-layer="1" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none;opacity:{{ biscoffOpacity }};transition:opacity .6s ease">
+    <img src="/nukkad/assets-sa/milk-splash-1.webp" alt="" style="position:absolute;right:calc(50% + clamp(150px,17vw,260px));top:-2%;width:clamp(220px,24vw,380px);transform:rotate(-8deg);filter:drop-shadow(0 10px 14px rgba(40,22,10,.12));pointer-events:none">
+    <img src="/nukkad/assets-sa/milk-splash-2.webp" alt="" style="position:absolute;left:calc(50% + clamp(150px,17vw,260px));top:-12%;width:clamp(220px,24vw,380px);transform:scaleX(-1) rotate(39deg);filter:drop-shadow(0 10px 14px rgba(40,22,10,.12));pointer-events:none">
+    <img src="/nukkad/assets-sa/caramel-drip.webp" alt="" style="position:absolute;left:calc(50% + clamp(170px,19vw,290px));top:24%;width:clamp(56px,5.5vw,86px);transform:rotate(18deg);filter:drop-shadow(0 8px 10px rgba(90,45,10,.2));pointer-events:none">
+    <img data-spice="1" data-w="25" data-x="-2.25" data-y="8" src="/nukkad/assets-sa/crumb-1.webp" alt="" style="position:absolute;left:50%;top:8%;width:25px;transform:rotate(-20deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="20" data-x="-1.6" data-y="4" src="/nukkad/assets-sa/crumb-2.webp" alt="" style="position:absolute;left:50%;top:4%;width:20px;transform:rotate(35deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="26" data-x="-1" data-y="12" src="/nukkad/assets-sa/crumb-3.webp" alt="" style="position:absolute;left:50%;top:12%;width:26px;transform:rotate(-50deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="19" data-x="-0.55" data-y="4" src="/nukkad/assets-sa/crumb-1.webp" alt="" style="position:absolute;left:50%;top:4%;width:19px;transform:rotate(70deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="21" data-x="-1.95" data-y="26" src="/nukkad/assets-sa/crumb-2.webp" alt="" style="position:absolute;left:50%;top:26%;width:21px;transform:rotate(15deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="23" data-x="-1.25" data-y="30" src="/nukkad/assets-sa/crumb-3.webp" alt="" style="position:absolute;left:50%;top:30%;width:23px;transform:rotate(-75deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="18" data-x="-0.6" data-y="24" src="/nukkad/assets-sa/crumb-1.webp" alt="" style="position:absolute;left:50%;top:24%;width:18px;transform:rotate(25deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="23" data-x="0.6" data-y="8" src="/nukkad/assets-sa/crumb-2.webp" alt="" style="position:absolute;left:50%;top:8%;width:23px;transform:rotate(40deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="19" data-x="1.1" data-y="3" src="/nukkad/assets-sa/crumb-3.webp" alt="" style="position:absolute;left:50%;top:3%;width:19px;transform:rotate(-30deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="26" data-x="1.7" data-y="10" src="/nukkad/assets-sa/crumb-1.webp" alt="" style="position:absolute;left:50%;top:10%;width:26px;transform:rotate(60deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="20" data-x="2.25" data-y="4" src="/nukkad/assets-sa/crumb-2.webp" alt="" style="position:absolute;left:50%;top:4%;width:20px;transform:rotate(-15deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="21" data-x="0.75" data-y="28" src="/nukkad/assets-sa/crumb-3.webp" alt="" style="position:absolute;left:50%;top:28%;width:21px;transform:rotate(-60deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="23" data-x="1.45" data-y="26" src="/nukkad/assets-sa/crumb-1.webp" alt="" style="position:absolute;left:50%;top:26%;width:23px;transform:rotate(20deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+    <img data-spice="1" data-w="18" data-x="2.1" data-y="30" src="/nukkad/assets-sa/crumb-2.webp" alt="" style="position:absolute;left:50%;top:30%;width:18px;transform:rotate(85deg);filter:drop-shadow(0 8px 8px rgba(90,45,10,.25))">
+  </div>
+  <div ref="{{ spiceLayer }}" data-float-layer="1" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none;opacity:{{ spiceOpacity }};transition:opacity .6s ease">
+    <img data-spice="1" data-w="40" data-x="-2.15" data-y="6" src="/nukkad/assets-sa/spice-cinnamon.webp" alt="" style="position:absolute;left:50%;top:6%;width:40px;transform:rotate(-38deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="62" data-x="-1.25" data-y="4" src="/nukkad/assets-sa/spice-star-anise.webp" alt="" style="position:absolute;left:50%;top:4%;width:62px;transform:rotate(12deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="32" data-x="-1.8" data-y="28" src="/nukkad/assets-sa/spice-cardamom.webp" alt="" style="position:absolute;left:50%;top:28%;width:32px;transform:rotate(-24deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="16" data-x="-0.6" data-y="6" src="/nukkad/assets-sa/spice-clove.webp" alt="" style="position:absolute;left:50%;top:6%;width:16px;transform:rotate(30deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="12" data-x="-2.4" data-y="30" src="/nukkad/assets-sa/spice-pepper.webp" alt="" style="position:absolute;left:50%;top:30%;width:12px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="12" data-x="-0.7" data-y="26" src="/nukkad/assets-sa/spice-pepper.webp" alt="" style="position:absolute;left:50%;top:26%;width:12px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="54" data-x="-1.05" data-y="26" src="/nukkad/assets-sa/spice-ginger.webp" alt="" style="position:absolute;left:50%;top:26%;width:54px;transform:rotate(-10deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="56" data-x="1.95" data-y="24" src="/nukkad/assets-sa/spice-star-anise.webp" alt="" style="position:absolute;left:50%;top:24%;width:56px;transform:rotate(-16deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="58" data-x="1.2" data-y="4" src="/nukkad/assets-sa/spice-ginger.webp" alt="" style="position:absolute;left:50%;top:4%;width:58px;transform:rotate(14deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="32" data-x="0.65" data-y="22" src="/nukkad/assets-sa/spice-cardamom.webp" alt="" style="position:absolute;left:50%;top:22%;width:32px;transform:rotate(28deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="16" data-x="2.35" data-y="6" src="/nukkad/assets-sa/spice-clove.webp" alt="" style="position:absolute;left:50%;top:6%;width:16px;transform:rotate(-34deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="12" data-x="0.6" data-y="6" src="/nukkad/assets-sa/spice-pepper.webp" alt="" style="position:absolute;left:50%;top:6%;width:12px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="12" data-x="1.55" data-y="30" src="/nukkad/assets-sa/spice-pepper.webp" alt="" style="position:absolute;left:50%;top:30%;width:12px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="36" data-x="1.85" data-y="4" src="/nukkad/assets-sa/spice-cinnamon.webp" alt="" style="position:absolute;left:50%;top:4%;width:36px;transform:rotate(52deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+  </div>
+  <div ref="{{ chaatLayer }}" data-float-layer="1" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none;opacity:{{ chaatOpacity }};transition:opacity .6s ease">
+    <img data-spice="1" data-w="8" data-x="-0.61" data-y="2" src="/nukkad/assets-sa/chaat-sev-1.webp" alt="" style="position:absolute;left:50%;top:2%;width:8px;transform:rotate(-70deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="26" data-x="-1.57" data-y="5" src="/nukkad/assets-sa/chaat-chana-2.webp" alt="" style="position:absolute;left:50%;top:5%;width:26px;transform:rotate(-3deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="-2.48" data-y="3" src="/nukkad/assets-sa/chaat-sev-3.webp" alt="" style="position:absolute;left:50%;top:3%;width:8px;transform:rotate(64deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="20" data-x="-1.24" data-y="17" src="/nukkad/assets-sa/chaat-onion-1.webp" alt="" style="position:absolute;left:50%;top:17%;width:20px;transform:rotate(-9deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="-1.99" data-y="15" src="/nukkad/assets-sa/chaat-sev-5.webp" alt="" style="position:absolute;left:50%;top:15%;width:8px;transform:rotate(58deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="23" data-x="-0.70" data-y="24" src="/nukkad/assets-sa/chaat-tomato-3.webp" alt="" style="position:absolute;left:50%;top:24%;width:23px;transform:rotate(-15deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="-1.66" data-y="27" src="/nukkad/assets-sa/chaat-sev-2.webp" alt="" style="position:absolute;left:50%;top:27%;width:8px;transform:rotate(52deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="42" data-x="-1.96" data-y="25" src="/nukkad/assets-sa/chaat-cilantro-2.webp" alt="" style="position:absolute;left:50%;top:25%;width:42px;transform:rotate(-21deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="-0.67" data-y="38" src="/nukkad/assets-sa/chaat-sev-4.webp" alt="" style="position:absolute;left:50%;top:38%;width:8px;transform:rotate(46deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="18" data-x="-1.63" data-y="36" src="/nukkad/assets-sa/chaat-onion-1.webp" alt="" style="position:absolute;left:50%;top:36%;width:18px;transform:rotate(-27deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="21" data-x="-2.54" data-y="34" src="/nukkad/assets-sa/chaat-chana-1.webp" alt="" style="position:absolute;left:50%;top:34%;width:21px;transform:rotate(40deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="-1.09" data-y="5" src="/nukkad/assets-sa/chaat-sev-2.webp" alt="" style="position:absolute;left:50%;top:5%;width:8px;transform:rotate(-33deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="27" data-x="-1.60" data-y="14" src="/nukkad/assets-sa/chaat-tomato-1.webp" alt="" style="position:absolute;left:50%;top:14%;width:27px;transform:rotate(34deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="1.06" data-y="2" src="/nukkad/assets-sa/chaat-sev-2.webp" alt="" style="position:absolute;left:50%;top:2%;width:8px;transform:rotate(-30deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="26" data-x="2.02" data-y="5" src="/nukkad/assets-sa/chaat-chana-1.webp" alt="" style="position:absolute;left:50%;top:5%;width:26px;transform:rotate(37deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="0.73" data-y="14" src="/nukkad/assets-sa/chaat-sev-4.webp" alt="" style="position:absolute;left:50%;top:14%;width:8px;transform:rotate(-36deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="20" data-x="1.69" data-y="17" src="/nukkad/assets-sa/chaat-onion-2.webp" alt="" style="position:absolute;left:50%;top:17%;width:20px;transform:rotate(31deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="2.39" data-y="15" src="/nukkad/assets-sa/chaat-sev-1.webp" alt="" style="position:absolute;left:50%;top:15%;width:8px;transform:rotate(-42deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="23" data-x="1.15" data-y="24" src="/nukkad/assets-sa/chaat-tomato-1.webp" alt="" style="position:absolute;left:50%;top:24%;width:23px;transform:rotate(25deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="2.11" data-y="27" src="/nukkad/assets-sa/chaat-sev-3.webp" alt="" style="position:absolute;left:50%;top:27%;width:8px;transform:rotate(-48deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="42" data-x="2.36" data-y="25" src="/nukkad/assets-sa/chaat-cilantro-1.webp" alt="" style="position:absolute;left:50%;top:25%;width:42px;transform:rotate(19deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="1.12" data-y="38" src="/nukkad/assets-sa/chaat-sev-5.webp" alt="" style="position:absolute;left:50%;top:38%;width:8px;transform:rotate(-54deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="18" data-x="2.08" data-y="36" src="/nukkad/assets-sa/chaat-onion-2.webp" alt="" style="position:absolute;left:50%;top:36%;width:18px;transform:rotate(13deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="21" data-x="0.79" data-y="2" src="/nukkad/assets-sa/chaat-chana-2.webp" alt="" style="position:absolute;left:50%;top:2%;width:21px;transform:rotate(-60deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="8" data-x="1.09" data-y="16" src="/nukkad/assets-sa/chaat-sev-3.webp" alt="" style="position:absolute;left:50%;top:16%;width:8px;transform:rotate(7deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+    <img data-spice="1" data-w="27" data-x="1.60" data-y="25" src="/nukkad/assets-sa/chaat-tomato-2.webp" alt="" style="position:absolute;left:50%;top:25%;width:27px;transform:rotate(-66deg);filter:drop-shadow(0 6px 6px rgba(40,22,10,.22))">
+  </div>
+  <div ref="{{ rollLayer }}" data-float-layer="1" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none;opacity:{{ rollOpacity }};transition:opacity .6s ease">
+    <img data-spice="1" data-w="62" data-x="-2.2" data-y="6" src="/nukkad/assets-sa/roll-chicken-1.webp" alt="" style="position:absolute;left:50%;top:6%;width:62px;transform:rotate(-38deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="80" data-x="-1.3" data-y="4" src="/nukkad/assets-sa/roll-onion-1.webp" alt="" style="position:absolute;left:50%;top:4%;width:80px;transform:rotate(12deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="40" data-x="-0.65" data-y="9" src="/nukkad/assets-sa/roll-cilantro-1.webp" alt="" style="position:absolute;left:50%;top:9%;width:40px;transform:rotate(30deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="32" data-x="-1.85" data-y="18" src="/nukkad/assets-sa/roll-tomato-5.webp" alt="" style="position:absolute;left:50%;top:18%;width:32px;transform:rotate(-24deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="56" data-x="-0.75" data-y="27" src="/nukkad/assets-sa/roll-chicken-2.webp" alt="" style="position:absolute;left:50%;top:27%;width:56px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="30" data-x="-2.4" data-y="30" src="/nukkad/assets-sa/roll-tomato-8.webp" alt="" style="position:absolute;left:50%;top:30%;width:30px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="42" data-x="-1.0" data-y="18" src="/nukkad/assets-sa/roll-cilantro-3.webp" alt="" style="position:absolute;left:50%;top:18%;width:42px;transform:rotate(-20deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="64" data-x="2.2" data-y="5" src="/nukkad/assets-sa/roll-chicken-3.webp" alt="" style="position:absolute;left:50%;top:5%;width:64px;transform:rotate(14deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="74" data-x="1.3" data-y="6" src="/nukkad/assets-sa/roll-onion-2.webp" alt="" style="position:absolute;left:50%;top:6%;width:74px;transform:rotate(-16deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="32" data-x="0.65" data-y="8" src="/nukkad/assets-sa/roll-tomato-7.webp" alt="" style="position:absolute;left:50%;top:8%;width:32px;transform:rotate(-34deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="40" data-x="1.85" data-y="18" src="/nukkad/assets-sa/roll-cilantro-1.webp" alt="" style="position:absolute;left:50%;top:18%;width:40px;transform:rotate(52deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="54" data-x="0.75" data-y="28" src="/nukkad/assets-sa/roll-chicken-1.webp" alt="" style="position:absolute;left:50%;top:28%;width:54px;transform:rotate(0deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="30" data-x="2.4" data-y="29" src="/nukkad/assets-sa/roll-tomato-9.webp" alt="" style="position:absolute;left:50%;top:29%;width:30px;transform:rotate(-10deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+    <img data-spice="1" data-w="42" data-x="1.0" data-y="18" src="/nukkad/assets-sa/roll-cilantro-3.webp" alt="" style="position:absolute;left:50%;top:18%;width:42px;transform:rotate(28deg);filter:drop-shadow(0 8px 8px rgba(40,22,10,.25))">
+  </div>
+  <div style="position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,64px);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+    <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:28px;line-height:1.7;white-space:nowrap;margin-bottom:0;color:#C2412D">سب کی پسند</span>
+    <h2 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1;text-transform:uppercase;text-wrap:balance">Bestseller : {{ activeCup.name }}<span ref="{{ kettleDock }}" aria-hidden="true" style="display:inline-block;width:clamp(48px,5vw,72px);margin-left:.25em;vertical-align:-.08em;pointer-events:none"><img ref="{{ kettleDocked }}" src="/nukkad/assets-sa/kettle-cursor.webp" alt="" style="display:block;width:100%;opacity:0;transform:rotate(-6deg);transition:opacity .25s;filter:drop-shadow(0 6px 10px rgba(16,40,42,.25))"></span></h2>
+    <p style="margin:8px 0 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase">The signatures everyone comes back for</p>
+  </div>
+  <div ref="{{ cupStage }}" tabIndex="0" onKeyDown="{{ cupKey }}" style="position:relative;z-index:2;height:clamp(200px,calc(100svh - 340px),560px);margin-top:0;outline:none">
+    <div ref="{{ cupSteam }}" style="position:absolute;inset:0;pointer-events:none;z-index:3"></div>
+    <div style="position:absolute;left:50%;bottom:0;width:0;height:100%">
+      <sc-for list="{{ cupList }}" as="c" hint-placeholder-count="0">
+        <button onClick="{{ c.pick }}" aria-label="{{ c.name }}" style="position:absolute;left:0;bottom:0;width:{{ slot }}px;display:flex;justify-content:center;align-items:flex-end;padding:0;border:0;background:none;cursor:pointer;transform:translateX({{ c.x }}px);transition:transform .6s cubic-bezier(.2,.8,.2,1);z-index:{{ c.z }}">
+          <div role="img" aria-label="{{ c.name }}" style="width:92%;display:block;aspect-ratio:1122/1402;background-image:{{ c.bg }};background-size:contain;background-repeat:no-repeat;background-position:center bottom;filter:{{ c.filter }};transform:{{ c.transform }};transform-origin:50% 100%;opacity:{{ c.opacity }};transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s"></div>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="position:relative;z-index:2;max-width:640px;margin:16px auto 0;padding:0 20px;display:flex;align-items:center;justify-content:center;gap:24px">
+    <button onClick="{{ prevCup }}" aria-label="Previous cup" style="flex:0 0 auto;width:56px;height:56px;border-radius:50%;border:2px solid #10282A;background:transparent;color:#10282A;font-size:22px;cursor:pointer" style-hover="background:#10282A;color:#F6F0E3">←</button>
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C2412D">{{ activeCup.tag }}</span>
+      <span style="font-size:16px;line-height:1.45;max-width:28em;text-wrap:pretty">{{ activeCup.desc }}</span>
+    </div>
+    <button onClick="{{ nextCup }}" aria-label="Next cup" style="flex:0 0 auto;width:56px;height:56px;border-radius:50%;border:2px solid #10282A;background:transparent;color:#10282A;font-size:22px;cursor:pointer" style-hover="background:#10282A;color:#F6F0E3">→</button>
+  </div>
+</section>
+
+<section id="corner" data-screen-label="From the corner" style="position:relative;background:#10282A;color:#F6F0E3;padding:clamp(56px,7vw,104px) clamp(20px,5vw,64px)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,3.5vw,48px)">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:26px;line-height:1.7;color:#14AEBB">نکڑ سے</span>
+        <h2 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1;text-transform:uppercase;color:#F6F0E3">From the corner</h2>
+      </div>
+      <p style="margin:0;max-width:26em;font-size:17px;line-height:1.5;color:#CFE3E2;text-wrap:pretty">Photos from the café and words from the people who keep coming back.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ bentoCols }};grid-auto-rows:clamp(150px,17vw,230px);grid-auto-flow:{{ bentoFlow }};gap:clamp(8px,1vw,14px)">
+      <figure style="grid-column:span 2;grid-row:span 2;position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/wall-ludo-couple.jpg" alt="A young couple playing ludo over karak" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"><figcaption style="position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:#F6F0E3;color:#10282A;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">Ludo and karak</figcaption></figure>
+      <figure style="grid-column:span 2;margin:0;border-radius:15px;padding:clamp(16px,1.8vw,26px);background:#E5A823;color:#10282A;display:flex;flex-direction:column;justify-content:space-between;gap:12px"><blockquote style="margin:0;font-size:clamp(16px,1.5vw,21px);line-height:1.3;font-weight:600;text-wrap:pretty">“Hands down the best Karak Tea in Bradford. The chapal kebab roll hits the spot every time.”</blockquote><figcaption style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase"><span style="font-weight:700">Halimah Sadiya</span><span>via Google</span></figcaption></figure>
+      <figure style="grid-row:span 2;position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/photo-kettle.webp" alt="Karak, straight from the kettle" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"><figcaption style="position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:#F6F0E3;color:#10282A;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">From the kettle</figcaption></figure>
+      <figure style="position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/photo-iced-pour.webp" alt="Iced americano, poured slow" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"></figure>
+            <figure style="grid-column:span 2;position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/wall-friends.jpg" alt="Two friends laughing over chai and books" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"><figcaption style="position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:#F6F0E3;color:#10282A;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">Old friends, fresh chai</figcaption></figure>
+      <figure style="position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/wall-strainer.jpg" alt="Karak strained into Nukkad cups" style="width:100%;height:100%;object-fit:cover;object-position:50% 72%;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"></figure>
+      <figure style="grid-column:span 2;grid-row:span 2;margin:0;border-radius:15px;padding:clamp(20px,2.4vw,36px);background:#14AEBB;color:#10282A;display:flex;flex-direction:column;justify-content:space-between;gap:16px"><span aria-hidden="true" style="font-family:'Anton',sans-serif;font-size:clamp(64px,7vw,110px);line-height:.8;color:#10282A">“</span><blockquote style="margin:0;font-size:clamp(20px,2.3vw,34px);line-height:1.2;font-weight:600;letter-spacing:-.01em;text-wrap:pretty">Even though it was cold and rainy outside, you are made to feel warm and cozy by the owners’ kindness.</blockquote><figcaption style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase"><span style="font-weight:700">Royal Car</span><span>via Google</span></figcaption></figure>
+      <figure style="grid-row:span 2;position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/chai-pour.jpg" alt="Chai poured from height" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"><figcaption style="position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:#F6F0E3;color:#10282A;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">Poured from height</figcaption></figure>
+      <figure style="position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/photo-iced-mocha.webp" alt="Iced mocha" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"></figure>
+      <figure style="position:relative;margin:0;border-radius:15px;overflow:hidden;background:#1C3A3D"><img src="/nukkad/assets-sa/photo-topview.webp" alt="Fresh karak in Nukkad cups" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)" style-hover="transform:scale(1.05)"></figure>
+      <figure style="grid-column:span 2;margin:0;border-radius:15px;padding:clamp(16px,1.8vw,26px);background:#F6F0E3;color:#10282A;display:flex;flex-direction:column;justify-content:space-between;gap:12px"><blockquote style="margin:0;font-size:clamp(16px,1.5vw,21px);line-height:1.3;font-weight:600;text-wrap:pretty">“One of the best chai in Bradford, with nice Lahore burger (anda wala burger) and masala fries.”</blockquote><figcaption style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase"><span style="font-weight:700">Aitsam Ali</span><span>via Google</span></figcaption></figure>
+      <figure style="grid-column:span 2;margin:0;border-radius:15px;padding:clamp(16px,1.8vw,26px);background:#C2412D;color:#FDFBF6;display:flex;flex-direction:column;justify-content:space-between;gap:12px"><blockquote style="margin:0;font-size:clamp(16px,1.5vw,21px);line-height:1.3;font-weight:600;text-wrap:pretty">“Malai boti paratha roll was so tasty. Specially the sauce in it. Tea was good too.”</blockquote><figcaption style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase"><span style="font-weight:700">Maira Ahmed</span><span>via Google</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="faq" ref="{{ faqSec }}" style="position:relative;background:#F6F0E3;color:#10282A;padding:clamp(48px,6vw,88px) clamp(20px,5vw,64px) clamp(48px,6vw,80px)">
+  <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:stretch">
+    <div style="flex:1 1 280px;max-width:400px;display:flex;flex-direction:column;gap:8px">
+      <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:28px;line-height:1.7;color:#C2412D">کام کی باتیں</span>
+      <h2 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(36px,4.4vw,60px);line-height:1;text-transform:uppercase">Good to know before you come</h2>
+      <p style="margin:8px 0 0;font-size:16px;line-height:1.5;text-wrap:pretty">Something else on your mind? Message us on <a href="https://wa.me/" target="_blank" rel="noopener" style="font-weight:700">WhatsApp</a>. We usually reply within the hour.</p>
+      <div ref="{{ rkWrap }}" aria-hidden="true" style="margin-top:auto;padding-top:32px;display:flex;align-items:flex-end">
+        <div style="width:clamp(200px,24vw,320px)">
+          <div ref="{{ rkEl }}" style="will-change:transform">
+            <img src="/nukkad/assets-sa/rickshaw.webp" alt="" style="width:100%;display:block">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:2 1 480px;min-width:0;display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+        <div style="border-radius:15px;background:#FDFBF6;box-shadow:0 1px 2px rgba(16,40,42,.06),0 8px 22px rgba(16,40,42,.08);overflow:hidden">
+          <button onClick="{{ q.toggle }}" aria-expanded="{{ q.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border:0;background:{{ q.bg }};color:#10282A;font:inherit;font-weight:700;font-size:17px;text-align:left;cursor:pointer;transition:background .2s" style-hover="background:#DDF1F1">
+            <span style="display:flex;align-items:center;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C2412D;min-width:96px">{{ q.tag }}</span><span>{{ q.q }}</span></span>
+            <span aria-hidden="true" style="flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:rgba(16,40,42,.08);display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;transform:rotate({{ q.rot }}deg);transition:transform .3s">+</span>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:18px 22px 22px;display:flex;flex-direction:column;gap:12px">
+              <p style="margin:0;font-size:16px;line-height:1.55;max-width:40em;text-wrap:pretty">{{ q.a }}</p>
+              <sc-if value="{{ q.hasLink }}" hint-placeholder-val="{{ false }}">
+                <a href="{{ q.href }}" style="align-self:flex-start;font-weight:700;font-size:15px;text-underline-offset:3px">{{ q.linkLabel }} →</a>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<footer id="find" style="background:#10282A;color:#F6F0E3;padding:64px clamp(20px,5vw,64px) 32px">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:48px clamp(32px,5vw,72px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:30px;color:#15ADB3;line-height:1.6">خوش آمدید</span>
+      <span style="font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);line-height:1;text-transform:uppercase">171 Thornton Road</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.1em;color:#E5A823">BRADFORD · BD1 2HJ</span>
+      <a href="https://maps.google.com/?q=171+Thornton+Rd,+Bradford+BD1+2JH" target="_blank" rel="noopener" style="margin-top:8px;color:#CFDAD9;font-size:15px;text-decoration:underline;text-underline-offset:3px" style-hover="color:#F6F0E3">Get directions</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823">Opening hours</span>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ weekHours }}" as="d" hint-placeholder-count="7">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid rgba(246,240,227,.12);font-size:15px;color:{{ d.color }};font-weight:{{ d.weight }}"><span>{{ d.day }}</span><span style="font-variant-numeric:tabular-nums">{{ d.hours }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823">Offers in your inbox</span>
+      <p style="margin:0;font-size:15px;line-height:1.5;color:#CFDAD9;text-wrap:pretty">New specials, chai nights and the odd free cup. No spam, promise.</p>
+      <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ subscribe }}" style="display:flex;gap:8px;flex-wrap:wrap">
+          <input type="email" required placeholder="you@email.com" aria-label="Email address" style="flex:1 1 180px;min-width:0;height:48px;padding:0 18px;border-radius:999px;border:1px solid rgba(246,240,227,.3);background:rgba(246,240,227,.06);color:#F6F0E3;font:inherit;font-size:15px;outline:none" style-focus="border-color:#E5A823">
+          <button type="submit" style="height:48px;padding:0 22px;border:0;border-radius:999px;background:#E5A823;color:#10282A;font:inherit;font-size:15px;font-weight:700" style-hover="background:#F6F0E3">Sign up</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:15px;font-weight:600;color:#15ADB3">Shukriya! You're on the list.</p>
+      </sc-if>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823;margin-top:12px">Follow along</span>
+      <div style="display:flex;gap:10px">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"></circle></svg></a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.6 2.3 4.3 5 4.5"></path></svg></a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h-2a2 2 0 0 0-2 2v11"></path><path d="M8 13h6"></path><circle cx="12" cy="12" r="9"></circle></svg></a>
+        <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1 1.5.8"></path></svg></a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1320px;margin:56px auto 0;padding-top:24px;border-top:1px solid rgba(246,240,227,.15);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#CFDAD9">
+    <span>Together. Rooted. Real. A place for everyone. See you at the corner.</span>
+    <span>© 2026 Nukkad</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;cursorSteam&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { strength: 60, milk: 0.2, pouring: false, sugar: 1, spices: ['elaichi'], cubes: [], tab: 'chai', hoverIdx: -1, cup: 0, kPour: false, kFill: 0 };
+  kStage = React.createRef(); kFx = React.createRef(); kTop = React.createRef(); kSwirl = React.createRef(); spiceStage = React.createRef(); bubbleLayer = React.createRef(); rippleLayer = React.createRef(); streamRef = React.createRef();
+  cupStage = React.createRef(); cupSteam = React.createRef(); cupsSection = React.createRef(); beanLayer = React.createRef();
+  ITEM_PHOTOS = { 'Iced Spanish Latte': ((window.__resources||{}).r0||'/nukkad/assets-sa/photo-spanish-latte.webp'), 'Iced Mocha': ((window.__resources||{}).r1||'/nukkad/assets-sa/photo-iced-mocha.webp'), 'Belgian Mocha': ((window.__resources||{}).r1||'/nukkad/assets-sa/photo-iced-mocha.webp'), 'Iced Latte': ((window.__resources||{}).r2||'/nukkad/assets-sa/photo-iced-pour.webp'), 'Americano': ((window.__resources||{}).r2||'/nukkad/assets-sa/photo-iced-pour.webp') };
+  BEANS = [[3,22,-30],[6,30,40],[9,24,75],[4,70,10],[8,76,-50],[12,82,20],[90,18,60],[94,26,-20],[88,30,110],[92,72,-70],[96,64,30],[86,80,5],[15,12,-80],[82,10,45]].map(([x,y,rot]) => ({ x, y, rot }));
+  CUPS = [
+    { liquid: '#B97A44', drink: true, src: ((window.__resources||{}).r3||'/nukkad/assets-sa/fav-fries.webp'), best: true, name: 'Karak Chai', kind: 'Chai', price: '£3.00', desc: 'Strong, milky, slow-brewed and poured from a height. The one that started it all.', filter: 'none' },
+    { liquid: '#B97A44', drink: false, src: ((window.__resources||{}).r4||'/nukkad/assets-sa/fav-iced-latte.webp'), name: 'Paratha Roll', kind: 'Street food', price: '£6.50', desc: 'Flaky paratha wrapped around charred kebab, green chutney and raita.', filter: 'none' },
+    { liquid: '#6B3A1E', drink: true, src: ((window.__resources||{}).r5||'/nukkad/assets-sa/fav-wrap.webp'), best: true, name: 'Iced Latte', kind: 'Coffee', price: '£4.20', desc: 'Double espresso, cold milk, lots of ice. Simple and sorted.', filter: 'none' },
+    { liquid: '#B97A44', drink: false, src: ((window.__resources||{}).r6||'/nukkad/assets-sa/fav-lotus.webp'), name: 'Samosa Chaat', kind: 'Street food', price: '£6.00', desc: 'Crushed samosa, chana, yoghurt, imli and chutney, topped with sev.', filter: 'none' },
+    { liquid: '#A8692F', drink: true, src: ((window.__resources||{}).r7||'/nukkad/assets-sa/fav-hot-chai.webp'), name: 'Lotus Biscoff Shake', kind: 'Specials', price: '£5.50', desc: 'Biscoff, caramel and crumble, blended thick and piled high.', filter: 'none' },
+    { liquid: '#B97A44', drink: false, src: ((window.__resources||{}).r8||'/nukkad/assets-sa/fav-chaat.webp'), best: true, name: 'Loaded Chicken Fries', kind: 'Street food', price: '£7.50', desc: 'Crispy fries piled with spiced chicken, garlic mayo, chilli sauce and red onion.', filter: 'none' },
+    { liquid: '#C98E55', drink: true, src: ((window.__resources||{}).r9||'/nukkad/assets-sa/fav-mocha.webp'), name: 'Iced Chai', kind: 'Chai', price: '£3.80', desc: 'Our karak, cooled down and poured over plenty of ice.', filter: 'none' },
+    { liquid: '#B97A44', drink: false, src: ((window.__resources||{}).r10||'/nukkad/assets-sa/fav-burger.webp'), name: 'Anda Shami Burger', kind: 'Street food', price: '£6.50', desc: 'Shami kebab, fried egg, chutney and spiced mayo in a soft brioche bun.', filter: 'none' },
+    { liquid: '#4A2511', drink: true, src: ((window.__resources||{}).r11||'/nukkad/assets-sa/fav-iced-chai.webp'), name: 'Iced Mocha', kind: 'Coffee', price: '£4.80', desc: 'Espresso and proper Belgian chocolate over ice, dusted with cocoa.', filter: 'none' }
+  ];
+  heroRef = React.createRef(); kettleRef = React.createRef(); kettleDock = React.createRef(); kettleDocked = React.createRef(); cursorLayer = React.createRef(); steamLayer = React.createRef(); cupRef = React.createRef(); cupSteamOrigin = React.createRef(); marqueeRef = React.createRef(); glossRef = React.createRef(); cupShadow = React.createRef(); floatRef = React.createRef();
+  SPICES = [
+    { id: 'elaichi', label: 'Elaichi', color: '#8DB255' },
+    { id: 'adrak', label: 'Adrak', color: '#E5C15A' },
+    { id: 'darchini', label: 'Darchini', color: '#8A4B22' },
+    { id: 'laung', label: 'Laung', color: '#3B2416' },
+  ];
+  MENU = {
+    chai: { label: 'Chai', urdu: 'چائے', blurb: 'Brewed low and slow, strained twice, poured from a height. The reason most people find us.', badge: 'House favourite', photo: 'karak chai being strained', photoSrc: ((window.__resources||{}).r12||'/nukkad/assets-sa/photo-kettle.webp'), items: [['Karak Chai', '£3.00'], ['Karak Chai Large', '£3.75']] },
+    coffee: { label: 'Speciality Coffee', urdu: 'کافی', blurb: 'For the coffee crowd: properly pulled shots, plus a few desi twists.', badge: 'Try the Spanish', photo: 'iced latte on the terrace', photoSrc: ((window.__resources||{}).r2||'/nukkad/assets-sa/photo-iced-pour.webp'), items: [['Double Espresso', '£2.50'], ['Americano', '£3.50'], ['Flat White', '£3.80'], ['Latte', '£3.80'], ['Cappuccino', '£3.80'], ['Belgian Mocha', '£4.50'], ['Belgian Hot Chocolate', '£4.50'], ['Iced Latte', '£4.50'], ['Iced Mocha', '£4.50'], ['Iced Spanish Latte', '£5.00']] },
+    coolers: { label: 'Coolers', urdu: 'ٹھنڈا', blurb: 'Bright, fruity and very cold, for long summer evenings outside.', badge: 'Ice cold', photo: 'mango & dragon fruit cooler', photoSrc: ((window.__resources||{}).r13||'/nukkad/assets-sa/photo-milk-pour.webp'), items: [['Raspberry & Lemonade', '£3.90'], ['Mango & Dragon Fruit', '£3.90'], ['Tropical', '£3.90']] },
+    rolls: { label: 'Paratha Rolls', urdu: 'رول', blurb: 'Flaky paratha, wrapped hot off the tawa. The perfect partner for a karak.', badge: 'Fresh off the tawa', photo: 'paratha roll, sliced', items: [['Chicken Chutney', '£3.50'], ['Chappal Kebab', '£3.50'], ['Veg Tikki', '£3.50'], ['Malai Boti', '£3.50'], ['Cheese Omelette', '£3.50'], ['Nutella', '£3.00']] },
+    specials: { label: 'Specials & Chaats', urdu: 'خاص', blurb: 'Karachi street-food classics, done the Nukkad way.', badge: 'Street classics', photo: 'bun kebab & chaat spread', items: [['Anday Wala Burger', '£6.50'], ['Karachi Bun Kebab', '£6.00'], ['Chappal Kebab Burger', '£6.50'], ['Chappal Kebab Pitta', '£6.50'], ['Samosa Chaat', '£6.00']] },
+    fries: { label: 'Fries & Sides', urdu: 'ساتھ', blurb: 'Loaded, spiced and made for sharing across the table.', badge: 'Share it', photo: 'kebab loaded fries', items: [['Kebab Loaded Fries', '£6.50'], ['Chicken Loaded Fries', '£6.00'], ['Skin On Fries', '£2.50'], ['Masala Chips', '£3.00'], ['2 Samosas', '£3.00']] },
+  };
+  faqSec = React.createRef(); moreRef = React.createRef();
+  FAQS = [
+    { tag: 'Seating', q: 'Is all the seating outdoors?', a: 'Yes, Nukkad is an outdoor-only café. There’s no indoor dining room, so wrap up on colder days. Takeaway and delivery are always an option.', link: ['Order ahead', '/nukkad/menu'] },
+    { tag: 'Shelter', q: 'Is there covered seating?', a: 'Part of the terrace sits under a canopy, so you can stay dry when the weather turns. Covered tables are limited, choose “Covered” when you book and we’ll do our best.', link: ['Book a covered table', '/nukkad/reservations'] },
+    { tag: 'Access', q: 'Is Nukkad wheelchair accessible?', a: 'Yes. There’s step-free access from Thornton Road, a level seating area and space between tables. Tick “step-free table” when you reserve and we’ll keep an easy-access spot for you.' },
+    { tag: 'Parking', q: 'Where can I park?', a: 'There’s on-street parking along Thornton Road and the side streets nearby, plus pay-and-display car parks a short walk away in the city centre. Please check local signs for times and charges.' },
+    { tag: 'Transport', q: 'How do I get here by bus or train?', a: 'Buses along Thornton Road stop close by. Bradford Interchange and Forster Square stations are both around a 15–20 minute walk, or a short bus or taxi ride.', link: ['Get directions', 'https://maps.google.com/?q=171+Thornton+Rd,+Bradford+BD1+2JH'] }
+  ];
+  rkSec = React.createRef(); rkEl = React.createRef(); rkFoot = React.createRef();
+  rkWrap = React.createRef();
+  rkDrive = () => {
+    const el = this.rkEl.current; if (!el || this.rkDone) return;
+    this.rkDone = true;
+    const from = -(el.parentNode.getBoundingClientRect().left + el.offsetWidth + 40);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { this.rkHold && this.rkHold.cancel(); return; }
+    const kf = []; for (let i = 0; i <= 20; i++) { const t = i / 20, e = 1 - Math.pow(1 - t, 3); kf.push({ transform: 'translate(' + (from * (1 - e)).toFixed(1) + 'px,' + (t < 1 ? Math.sin(i * 1.9) * 2 * (1 - t) : 0).toFixed(2) + 'px) rotate(' + (t < 1 ? Math.sin(i * 1.3) * 0.8 * (1 - t) : 0).toFixed(2) + 'deg)' }); }
+    kf.push({ transform: 'translate(0,0) rotate(-1.2deg)', offset: 0.97 }); kf[kf.length - 2].offset = 0.93;
+    kf.push({ transform: 'translate(0,0) rotate(0deg)' });
+    this.rkHold && this.rkHold.cancel();
+    this.rkAnim = el.animate(kf, { duration: 2200, easing: 'linear', fill: 'forwards' });
+  };
+  rkUpdate = () => {}; rkUpdateOld = () => {
+    const s = this.rkSec.current, el = this.rkEl.current; if (!s || !el) return;
+    const c = document.getElementById('corner'); if (c) { [s].forEach(n => { if (!n) return; const off = -((n.offsetTop - c.offsetTop) % 120) + 'px'; if (n.style.getPropertyValue('--brick-off') !== off) n.style.setProperty('--brick-off', off); }); }
+    const r = s.getBoundingClientRect(), vh = window.innerHeight;
+    const topAbs = r.top + window.scrollY, startY = Math.max(0, topAbs - vh * 0.85);
+    const maxY = Math.max(startY + 1, document.documentElement.scrollHeight - vh);
+    const p = Math.min(1, Math.max(0, (window.scrollY - startY) / (maxY - startY)));
+    const drive = Math.min(1, p / 0.55), rise = Math.min(1, Math.max(0, (p - 0.55) / 0.4));
+    const start = (s.clientWidth - el.offsetWidth) / 2, e = Math.pow(drive, 1.6);
+    const x = start + e * (s.clientWidth - start + 20);
+    const f = this.rkFoot.current; if (f) f.style.transform = 'scaleY(' + (1 - Math.pow(1 - rise, 3)).toFixed(4) + ')';
+    const bob = Math.sin(p * 60) * 2;
+    el.style.transform = 'translate(' + x + 'px,' + bob + 'px) rotate(' + (Math.sin(p * 40) * 0.8) + 'deg)';
+  };
+  spiceLayer = React.createRef(); coffeeLayer = React.createRef(); biscoffLayer = React.createRef(); rollLayer = React.createRef(); chaatLayer = React.createRef();
+  fitSpices = () => {
+    if (this.spiceW === window.innerWidth) return;
+    this.spiceW = window.innerWidth;
+    const st = this.cupStage.current; if (!st || !st.offsetHeight || !window.innerWidth) return;
+    const slot = this.slotW(), W = window.innerWidth, k = Math.max(0.5, Math.min(1, W / 1280));
+    const sr = st.getBoundingClientRect();
+    const boxes = [...st.querySelectorAll('[role="img"]')].map(n => n.getBoundingClientRect()).filter(r => r.width > 4 && r.right > sr.left && r.left < sr.right)
+      .map(r => ({ l: r.left - sr.left + r.width * 0.06, r: r.right - sr.left - r.width * 0.06, t: r.top - sr.top + r.height * 0.04, b: r.bottom - sr.top }));
+    [this.spiceLayer.current, this.coffeeLayer.current, this.biscoffLayer.current, this.rollLayer.current, this.chaatLayer.current].forEach(L => { if (!L) return;
+      L.style.top = st.offsetTop + 'px'; L.style.height = st.offsetHeight + 'px';
+      L.querySelectorAll('[data-spice]').forEach(el => {
+        const w = Math.round(+el.dataset.w * k); el.style.width = w + 'px';
+        const sx = Math.max(-W / 2 + 8, Math.min(W / 2 - w - 8, +el.dataset.x * slot - w / 2));
+        el.style.top = (+el.dataset.y / 100 * st.offsetHeight) + 'px';
+        el.style.marginLeft = sx + 'px';
+        const H = st.offsetHeight, eh = el.offsetHeight || w; el.style.top = Math.max(0, +el.dataset.y / 100 * H) + 'px';
+      });
+    });
+    const H = st.offsetHeight, travel = H < 320 ? 8 : 18, gap = 8, kH = Math.max(0.55, Math.min(1, H / 420));
+    [this.spiceLayer.current, this.coffeeLayer.current, this.biscoffLayer.current, this.rollLayer.current, this.chaatLayer.current].forEach(L => { if (!L) return;
+      const hidden = { L: [], R: [] }, placed = [];
+      L.querySelectorAll('[data-spice]').forEach(el => {
+        el.style.visibility = 'visible';
+        const src = el.getAttribute('src') || '', key = /cinnamon|star-anise|ginger|cardamom/.test(src), side = +el.dataset.x < 0 ? -1 : 1;
+        el.style.width = Math.round(parseFloat(el.style.width) * kH) + 'px';
+        const hits = () => { const r = el.getBoundingClientRect(), l = r.left - sr.left - travel, rr = r.right - sr.left + travel, t = r.top - sr.top - travel, b = r.bottom - sr.top + travel;
+          if (boxes.find(q => l < q.r + gap && rr > q.l - gap && t < q.b + gap && b > q.t - gap)) return true;
+          const pl = r.left - sr.left, pr = r.right - sr.left, pt = r.top - sr.top, pb = r.bottom - sr.top;
+          return placed.some(q => pl < q.r + 4 && pr > q.l - 4 && pt < q.b + 4 && pb > q.t - 4); };
+        const baseTop = parseFloat(el.style.top) || 0, baseML = parseFloat(el.style.marginLeft) || 0;
+        let ok = !hits();
+        for (let tries = 0; !ok && tries < 3; tries++) {
+          const tops = [baseTop, travel, Math.max(travel, baseTop * 0.5)];
+          for (let d = 0; d <= 160 && !ok; d += 16) {
+            for (const t of tops) {
+              el.style.top = t + 'px';
+              const ml = baseML + side * d;
+              if (W / 2 + ml < 4 || W / 2 + ml + el.offsetWidth > W - 4) continue;
+              el.style.marginLeft = ml + 'px';
+              if (!hits()) { ok = true; break; }
+            }
+          }
+          if (!ok) { el.style.width = Math.round(parseFloat(el.style.width) * 0.8) + 'px'; el.style.top = baseTop + 'px'; el.style.marginLeft = baseML + 'px'; }
+        }
+        if (!ok) {
+          if (key) { el.style.top = travel + 'px'; el.style.marginLeft = baseML + 'px'; }
+          else { el.style.visibility = 'hidden'; hidden[side < 0 ? 'L' : 'R'].push(el); }
+        }
+        if (el.style.visibility !== 'hidden') { const q = el.getBoundingClientRect(); placed.push({ l: q.left - sr.left, r: q.right - sr.left, t: q.top - sr.top, b: q.bottom - sr.top }); }
+      });
+      const visSmall = side => [...L.querySelectorAll('[data-spice]')].filter(n => n.style.visibility !== 'hidden' && !/cinnamon|star-anise|ginger|cardamom/.test(n.getAttribute('src') || '') && (+n.dataset.x < 0) === (side === 'L'));
+      let diff = hidden.L.length - hidden.R.length;
+      while (diff > 0) { const v = visSmall('R').pop(); if (!v) break; v.style.visibility = 'hidden'; diff--; }
+      while (diff < 0) { const v = visSmall('L').pop(); if (!v) break; v.style.visibility = 'hidden'; diff++; }
+    });
+  };
+  componentDidMount() {
+    this.navResize = () => { const n = window.innerWidth < 720; if (n !== !!this.state.navNarrow) this.setState({ navNarrow: n }); };
+    window.addEventListener('resize', this.navResize); this.navResize();
+    window.addEventListener('resize', this.fitSpices); this.fitSpices(); setTimeout(this.fitSpices, 600); 
+    this.spiceAnims = [...document.querySelectorAll('[data-float-layer] [data-spice]')].map((el, i) => {
+      const r = parseFloat(el.style.transform.replace(/[^-\d.]/g, '')) || 0, dy = 10 + (i % 4) * 4, dx = (i % 2 ? 1 : -1) * (4 + i % 3 * 3), dr = (i % 2 ? 1 : -1) * (6 + i % 3 * 4);
+      return el.animate([{ transform: 'translate(0,0) rotate(' + r + 'deg)' }, { transform: 'translate(' + dx + 'px,' + -dy + 'px) rotate(' + (r + dr) + 'deg)' }, { transform: 'translate(0,0) rotate(' + r + 'deg)' }], { duration: 4200 + i * 370, iterations: Infinity, easing: 'ease-in-out', delay: -i * 600 });
+    });
+    this.moreOut = e => { if (this.state.moreOpen && this.moreRef.current && !this.moreRef.current.contains(e.target)) this.setState({ moreOpen: false }); };
+    document.addEventListener('pointerdown', this.moreOut);
+    if (this.rkWrap.current && this.rkEl.current) { this.rkHold = this.rkEl.current.animate([{ transform: 'translateX(-120vw)' }, { transform: 'translateX(-120vw)' }], { duration: 1, fill: 'forwards' }); this.rkIO = new IntersectionObserver(es => { if (es[0].isIntersecting) { this.rkDrive(); this.rkIO.disconnect(); } }, { threshold: 0.3 }); this.rkIO.observe(this.rkWrap.current); }
+    const hero = this.heroRef.current;
+    this.last = 0;
+    this.onMove = e => {
+      const r = hero.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const cx = x / r.width - 0.5, cy = y / r.height - 0.5;
+      if (false) this.cupRef.current.style.transform = `rotateY(${cx * 28}deg) rotateX(${-cy * 14}deg) rotateZ(${cx * 3}deg) translateZ(30px)`;
+      if (this.glossRef.current) this.glossRef.current.style.left = (52 - cx * 70) + '%';
+      if (this.cupShadow.current) this.cupShadow.current.style.transform = `translateX(${-cx * 60}px) scaleX(${1 + Math.abs(cx) * 0.3})`;
+
+    };
+    hero.addEventListener('pointermove', this.onMove);
+    this.kMove = e => {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      const x = e.clientX, y = e.clientY, k = this.kettleRef.current;
+      this.kx = x; this.ky = y - 2;
+      if (this.docked) return;
+      if (k) { k.style.opacity = 1; k.style.transform = `translate(${x - 6}px, ${y - 33}px) rotate(${-6 + (x / window.innerWidth - .5) * 10}deg)`; }
+      this.kx = x; this.ky = y - 2; this.kIn = true;
+      if (this.props.cursorSteam === false) return;
+      const now = performance.now(); if (now - this.last < 60) return; this.last = now;
+      this.puff(x - 4, y - 4, 0.8, this.cursorLayer.current);
+    };
+    this.kOut = () => { this.kIn = false; if (this.kettleRef.current) this.kettleRef.current.style.opacity = 0; };
+    window.addEventListener('pointermove', this.kMove, { passive: true });
+    this.kDockCheck = () => {
+      const sec = this.cupsSection.current, dock = this.kettleDock.current, k = this.kettleRef.current, still = this.kettleDocked.current;
+      if (!sec || !dock || !k || !still || !matchMedia('(pointer:fine)').matches) return;
+      const should = sec.getBoundingClientRect().top < window.innerHeight * 0.55;
+      if (should === !!this.docked) return;
+      this.docked = should; clearTimeout(this.kDockT);
+      if (should) {
+        cancelAnimationFrame(this.kRaf);
+        const finish = () => { still.style.opacity = 1; k.style.transition = 'opacity .15s'; k.style.opacity = 0; document.documentElement.setAttribute('data-kdock', ''); };
+        if (!this.kIn) { finish(); return; }
+        k.style.transition = 'none'; k.style.opacity = 1;
+        const sx = this.kx - 6, sy = this.ky - 31, sw = k.offsetWidth || 72, t0 = performance.now(), dur = 650;
+        const ease = t => 1 - Math.pow(1 - t, 3);
+        const step = now => {
+          if (!this.docked) return;
+          const t = Math.min(1, (now - t0) / dur), e = ease(t), d = dock.getBoundingClientRect();
+          const w = sw + (d.width - sw) * e;
+          k.style.width = w + 'px';
+          k.style.transform = `translate(${sx + (d.left - sx) * e}px, ${sy + (d.top - sy) * e}px) rotate(-6deg)`;
+          if (t < 1) this.kRaf = requestAnimationFrame(step); else finish();
+        };
+        this.kRaf = requestAnimationFrame(step);
+      } else {
+        cancelAnimationFrame(this.kRaf);
+        document.documentElement.removeAttribute('data-kdock');
+        still.style.opacity = 0; k.style.transition = 'opacity .2s'; k.style.width = '72px';
+        if (this.kIn) { k.style.opacity = 1; k.style.transform = `translate(${this.kx - 6}px, ${this.ky - 31}px) rotate(-6deg)`; }
+      }
+    };
+    this.boardResize = () => { const n = window.innerWidth < 720; if (n !== !!this.state.boardNarrow) this.setState({ boardNarrow: n }); };
+    window.addEventListener('resize', this.boardResize); this.boardResize();
+    this.navScroll = () => { const v = window.scrollY > 24; if (v !== !!this.state.navSolid) this.setState({ navSolid: v }); };
+    window.addEventListener('scroll', this.navScroll, { passive: true }); this.navScroll();
+    window.addEventListener('scroll', this.kDockCheck, { passive: true });
+    this.kDockCheck();
+    document.documentElement.addEventListener('pointerleave', this.kOut);
+    this.kettleT = setInterval(() => { if (this.kIn && !this.docked && this.props.cursorSteam !== false) this.puff(this.kx - 4 + (Math.random() - .5) * 6, this.ky, 0.6, this.cursorLayer.current); }, 240);
+    const sec = this.cupsSection.current;
+    this.onBeans = e => {
+      const L = this.beanLayer.current; if (!L) return;
+      L.querySelectorAll('[data-bean]').forEach(b => {
+        const r = b.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const dx = cx - e.clientX, dy = cy - e.clientY, d = Math.hypot(dx, dy) || 1, rot = +b.dataset.rot;
+        if (d < 150) { const p = (150 - d) * 0.9; b.dataset.spin = (+(b.dataset.spin || 0) + (dx > 0 ? 25 : -25)); b.style.transform = 'translate(' + (dx / d * p) + 'px,' + (dy / d * p) + 'px) rotate(' + (rot + +b.dataset.spin) + 'deg)'; }
+      });
+    };
+    sec && sec.addEventListener('pointermove', this.onBeans);
+    const sp = this.spiceStage.current;
+    if (sp) {
+      sp.querySelectorAll('[data-spice]').forEach((w, i) => w.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(' + (6 + (i % 4) * 3) + 'px)' }, { transform: 'translateY(0)' }], { duration: 3000 + (i % 5) * 500, iterations: Infinity, easing: 'ease-in-out', delay: -i * 300 }));
+      for (let i = 0; i < 40; i++) this.bubble();
+      this.spiceVis = false;
+      this.io = new IntersectionObserver(es => { const v = es[0].isIntersecting; if (v && !this.spiceBurst) { this.spiceBurst = true; setTimeout(this.burst, 400); } this.spiceVis = v; }, { threshold: 0.35 });
+      this.io.observe(sp);
+      this.bubT = setInterval(() => { if (this.spiceVis) { this.bubble(); this.bubble(); } }, 140);
+      this.ripT = setInterval(() => { if (this.spiceVis) { this.ripple(false); if (Math.random() < 0.5) this.ripple(true); } }, 420);
+      if (this.streamRef.current) this.streamAnim = this.streamRef.current.animate([{ backgroundPosition: '0 0' }, { backgroundPosition: '0 60px' }], { duration: 400, iterations: Infinity });
+    }
+    this.kBubT = setInterval(() => { const f = this.state.kFill; if (f <= 0) return; const n = this.state.kPour && f < 1 ? 3 : Math.random() < 0.5 ? 1 : 0; for (let i = 0; i < n; i++) this.kBubble(); }, 140);
+    if (this.kSwirl.current) this.kSwirlA = this.kSwirl.current.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 9000, iterations: Infinity });
+    this.kSteamT = setInterval(() => { if (this.state.kFill > 0.25 && this.kFx.current) this.puff(305 + (Math.random() - 0.5) * 60, this.kSurface() - 10, 1, this.kFx.current); }, 300);
+    this.startAnims();
+    this.leave = () => {
+      if (this.cupRef.current) this.cupRef.current.style.transform = '';
+      if (this.glossRef.current) this.glossRef.current.style.left = '30%';
+      if (this.cupShadow.current) this.cupShadow.current.style.transform = '';
+    };
+    hero.addEventListener('pointerleave', this.leave);
+  }
+  footVals() {
+    const today = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'long' }).format(new Date());
+    const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    return {
+      weekHours: days.map(d => ({ day: d === today ? d + ' · today' : d, hours: (d === 'Friday' || d === 'Saturday') ? '10 AM – 12 AM' : '10 AM – 11 PM', color: d === today ? '#E5A823' : '#F6F0E3', weight: d === today ? 700 : 400 })),
+      subscribed: !!this.state.subscribed, notSubscribed: !this.state.subscribed,
+      subscribe: e => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+  openStatus() {
+    if (!this.clockT) this.clockT = setInterval(() => this.forceUpdate(), 60000);
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const d = days.indexOf(p.weekday), mins = +p.hour * 60 + +p.minute;
+    const close = i => (i === 5 || i === 6) ? 24 : 23;
+    const fmt = h => h === 24 ? '12 AM' : (h > 12 ? (h - 12) + ' PM' : h + ' AM');
+    const open = mins >= 600 && mins < close(d) * 60;
+    if (open) return { openBg: '#2F6B3A', openLabel: 'Open now', openDetail: 'Until ' + fmt(close(d)) + ' today' };
+    return { openBg: '#C2412D', openLabel: 'Closed', openDetail: 'Opens ' + (mins < 600 ? 'today' : 'tomorrow') + ' at 10 AM' };
+  }
+  componentDidUpdate(pp, ps) { this.startAnims(); if (ps && ps.cup !== this.state.cup && this.CUPS[this.state.cup].drink) this.pour(); }
+  cupTopY() {
+    const st = this.cupStage.current; if (!st) return 0;
+    const el = st.querySelectorAll('[role="img"]')[this.state.cup]; if (!el) return 0;
+    const r = el.getBoundingClientRect(), sr = st.getBoundingClientRect();
+    return r.top - sr.top + r.height * 0.11;
+  }
+  pour() {
+    const st = this.cupStage.current, L = this.cupSteam.current; if (!st || !L) return;
+    const w = st.clientWidth, hh = st.clientHeight, slot = this.slotW(), topY = this.cupTopY() + 6, col = this.CUPS[this.state.cup].liquid;
+    L.querySelectorAll('[data-pour]').forEach(n => n.remove());
+    const s = document.createElement('div'); s.dataset.pour = 1;
+    Object.assign(s.style, { position: 'absolute', left: w / 2 - 6 + 'px', top: '0px', width: '12px', height: topY + 'px', borderRadius: '0 0 8px 8px', background: 'linear-gradient(90deg,' + col + ',' + col + 'cc 45%,' + col + ')' });
+    L.appendChild(s);
+    s.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)', offset: 0.35 }, { clipPath: 'inset(0 0 0 0)', offset: 0.6 }, { clipPath: 'inset(100% 0 0 0)' }], { duration: 1300, easing: 'ease-in-out' }).onfinish = () => s.remove();
+    setTimeout(() => {
+      for (let i = 0; i < 16; i++) {
+        const d = document.createElement('div'), sz = 4 + Math.random() * 8, ang = Math.PI * (1.05 + Math.random() * 0.9), sp = 50 + Math.random() * 90;
+        const dx = Math.cos(ang) * sp * 1.4, up = Math.sin(ang) * sp;
+        Object.assign(d.style, { position: 'absolute', left: w / 2 - sz / 2 + 'px', top: topY - sz / 2 + 'px', width: sz + 'px', height: sz * 1.15 + 'px', borderRadius: '50%', background: col });
+        L.appendChild(d);
+        d.animate([{ transform: 'translate(0,0) scale(.6)', opacity: 1 }, { transform: 'translate(' + dx * 0.6 + 'px,' + up + 'px) scale(1)', opacity: 1, offset: 0.45 }, { transform: 'translate(' + dx + 'px,' + (up * 0.2 + 40) + 'px) scale(.7)', opacity: 0 }], { duration: 650 + Math.random() * 300, easing: 'cubic-bezier(.2,.7,.4,1)' }).onfinish = () => d.remove();
+      }
+    }, 430);
+  }
+  startAnims() {
+    const m = this.marqueeRef.current;
+    if (m && m.children.length && !this.mq) this.mq = m.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-50%)' }], { duration: 28000, iterations: Infinity });
+    const f = this.floatRef.current;
+    if (false) this.fl = f.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-14px)' }, { transform: 'translateY(0)' }], { duration: 4200, iterations: Infinity, easing: 'ease-in-out' });
+  }
+  kStart = e => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.kFill >= 1 || this.kTimer) return;
+    this.setState({ kPour: true });
+    this.kDelay = setTimeout(() => {
+      this.kBurst(16);
+      this.kTimer = setInterval(() => {
+        const f = Math.min(1, this.state.kFill + 0.007);
+        this.setState({ kFill: f });
+        if (Math.random() < 0.5) this.kDrop();
+        if (f >= 1) { this.kBurst(30); this.kStop(); }
+      }, 40);
+    }, 380);
+  };
+  kBurst(n) {
+    const L = this.kFx.current; if (!L) return;
+    const T = [
+      { w: 11, h: 17, r: '50%', bg: 'radial-gradient(ellipse at 35% 30%,#B5C97A,#6F8A3A 70%)' },
+      { w: 5, h: 15, r: '3px 3px 2px 2px', bg: 'linear-gradient(#3A2014,#5A3320)', sh: '0 -3px 0 1px #4A2A18' },
+      { w: 8, h: 28, r: '4px', bg: 'linear-gradient(90deg,#7E4620,#C07A3E 40%,#8E5326)' },
+      { w: 20, h: 20, r: '0', bg: 'radial-gradient(circle,#A0592C 20%,#5A2E16 80%)', clip: 'polygon(50% 0,60% 38%,98% 35%,66% 58%,79% 96%,50% 72%,21% 96%,34% 58%,2% 35%,40% 38%)' },
+      { w: 7, h: 7, r: '50%', bg: 'radial-gradient(circle at 35% 30%,#5A4030,#1E120C)' }
+    ];
+    const ox = 305, oy = this.kSurface();
+    for (let i = 0; i < n; i++) {
+      const t = T[i % T.length], d = document.createElement('div');
+      Object.assign(d.style, { position: 'absolute', left: ox - t.w / 2 + 'px', top: oy - t.h / 2 + 'px', width: t.w + 'px', height: t.h + 'px', borderRadius: t.r, background: t.bg, boxShadow: t.sh || 'none', clipPath: t.clip || 'none', zIndex: 3 });
+      L.appendChild(d);
+      const ang = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, sp = 160 + Math.random() * 200, vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp, rot = (Math.random() - 0.5) * 900, kf = [];
+      for (let k = 0; k <= 8; k++) { const tt = k / 8 * 1.3; kf.push({ transform: 'translate(' + vx * tt + 'px,' + (vy * tt + 300 * tt * tt) + 'px) rotate(' + rot * k / 8 + 'deg) scale(' + (k ? 1 : .3) + ')', opacity: k > 6 ? 0 : 1 }); }
+      d.animate(kf, { duration: 1100 + Math.random() * 500, easing: 'linear' }).onfinish = () => d.remove();
+    }
+  }
+  kBubble() {
+    const L = this.kTop.current; if (!L) return;
+    const b = document.createElement('div'), sz = 4 + Math.random() * 12, a = Math.random() * Math.PI * 2, rr = Math.sqrt(Math.random()) * 46;
+    Object.assign(b.style, { position: 'absolute', left: 64 + Math.cos(a) * rr - sz / 2 + 'px', top: 64 + Math.sin(a) * rr - sz / 2 + 'px', width: sz + 'px', height: sz + 'px', borderRadius: '50%', border: '1.5px solid rgba(255,240,220,.75)', background: 'radial-gradient(circle at 30% 30%,rgba(255,255,255,.7),rgba(255,236,205,.15) 45%,transparent 70%)' });
+    L.appendChild(b);
+    b.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: .95, offset: .25 }, { transform: 'scale(1.05) translate(' + (Math.random() * 8 - 4) + 'px,' + (Math.random() * 8 - 4) + 'px)', opacity: .9, offset: .85 }, { transform: 'scale(1.5)', opacity: 0 }], { duration: 900 + Math.random() * 1400, easing: 'ease-out' }).onfinish = () => b.remove();
+  }
+  kStop = () => { clearTimeout(this.kDelay); clearInterval(this.kTimer); this.kTimer = null; if (this.state.kPour) this.setState({ kPour: false }); };
+  kSurface() { return 300 + 152 * (1 - this.state.kFill * 0.88); }
+  kDrop() {
+    const L = this.kFx.current; if (!L) return;
+    const d = document.createElement('div'), sz = 3 + Math.random() * 5, y = this.kSurface(), dx = (Math.random() - 0.5) * 70, up = -20 - Math.random() * 40;
+    Object.assign(d.style, { position: 'absolute', left: 305 - sz / 2 + 'px', top: y - sz + 'px', width: sz + 'px', height: sz + 'px', borderRadius: '50%', background: '#C98E55' });
+    L.appendChild(d);
+    d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: 'translate(' + dx * 0.6 + 'px,' + up + 'px)', opacity: 1, offset: 0.5 }, { transform: 'translate(' + dx + 'px,8px)', opacity: 0 }], { duration: 520, easing: 'ease-out' }).onfinish = () => d.remove();
+  }
+  burst = () => {
+    const st = this.spiceStage.current; if (!st) return;
+    const W = st.clientWidth;
+    st.querySelectorAll('[data-spice]').forEach(w => {
+      const inner = w.firstElementChild, r = +inner.dataset.rot;
+      const cx = w.offsetLeft + w.offsetWidth / 2 - W / 2, cy = w.offsetTop + w.offsetHeight / 2 - W / 2, d = Math.hypot(cx, cy) || 1;
+      const p = W * (0.18 + Math.random() * 0.2), dx = cx / d * p, dy = cy / d * p - W * 0.08, spin = (Math.random() < 0.5 ? -1 : 1) * (180 + Math.random() * 360);
+      inner.animate([{ transform: 'translate(0,0) rotate(' + r + 'deg)' }, { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + (r + spin * 0.7) + 'deg) scale(1.12)', offset: 0.35 }, { transform: 'translate(0,0) rotate(' + (r + spin) + 'deg)' }], { duration: 2200 + Math.random() * 600, easing: 'cubic-bezier(.15,.8,.25,1)' }).onfinish = () => { inner.dataset.rot = (r + spin) % 360; inner.style.transform = 'rotate(' + inner.dataset.rot + 'deg)'; };
+    });
+    for (let i = 0; i < 14; i++) this.ripple(true);
+  };
+  ripple(splash) {
+    const L = this.rippleLayer.current, st = this.spiceStage.current; if (!L || !st) return;
+    const W = st.clientWidth, x = W * 0.6, y = W * 0.4, d = document.createElement('div');
+    if (splash) {
+      const sz = 4 + Math.random() * 8, a = Math.random() * Math.PI * 2, sp = W * (0.05 + Math.random() * 0.12);
+      Object.assign(d.style, { position: 'absolute', left: x - sz / 2 + 'px', top: y - sz / 2 + 'px', width: sz + 'px', height: sz + 'px', borderRadius: '50%', background: '#C98E55' });
+      L.appendChild(d);
+      d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: 'translate(' + Math.cos(a) * sp + 'px,' + (Math.sin(a) * sp - W * 0.06) + 'px)', opacity: 1, offset: 0.5 }, { transform: 'translate(' + Math.cos(a) * sp * 1.3 + 'px,' + Math.sin(a) * sp * 1.3 + 'px) scale(.6)', opacity: 0 }], { duration: 700, easing: 'ease-out' }).onfinish = () => d.remove();
+      return;
+    }
+    Object.assign(d.style, { position: 'absolute', left: x - 20 + 'px', top: y - 12 + 'px', width: '40px', height: '24px', borderRadius: '50%', border: '2px solid rgba(255,236,210,.55)' });
+    L.appendChild(d);
+    d.animate([{ transform: 'scale(.4)', opacity: 0.9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 1400, easing: 'ease-out' }).onfinish = () => d.remove();
+  }
+  bubble() {
+    const L = this.bubbleLayer.current; if (!L) return;
+    const S = L.clientWidth, near = Math.random() < 0.45;
+    let bx, by;
+    if (near) { const a = Math.random() * 6.28, r = Math.random() * S * 0.16; bx = S * 0.658 + Math.cos(a) * r; by = S * 0.342 + Math.sin(a) * r; }
+    else { const a = Math.random() * 6.28, r = Math.sqrt(Math.random()) * S * 0.46; bx = S / 2 + Math.cos(a) * r; by = S / 2 + Math.sin(a) * r; }
+    const sz = (near ? 6 : 4) + Math.random() * (near ? 16 : 10), d = document.createElement('div');
+    Object.assign(d.style, { position: 'absolute', left: bx - sz / 2 + 'px', top: by - sz / 2 + 'px', width: sz + 'px', height: sz + 'px', borderRadius: '50%', background: 'radial-gradient(circle at 34% 32%,rgba(255,248,235,.95) 0 14%,rgba(246,222,186,.45) 34%,rgba(150,90,45,.18) 70%)', boxShadow: 'inset 0 0 0 1px rgba(255,238,214,.55),0 1px 2px rgba(70,35,12,.35)' });
+    L.appendChild(d);
+    const life = 1800 + Math.random() * 2600, dx = (Math.random() - 0.5) * 16, dy = (Math.random() - 0.5) * 16;
+    d.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1, offset: 0.15 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(1.05)', opacity: 1, offset: 0.9 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(1.5)', opacity: 0 }], { duration: life, easing: 'ease-out' }).onfinish = () => d.remove();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.navScroll); window.removeEventListener('resize', this.boardResize);
+    window.removeEventListener('resize', this.fitSpices); this.spiceRO && this.spiceRO.disconnect();
+    (this.spiceAnims || []).forEach(a => a.cancel());
+    window.removeEventListener('scroll', this.rkUpdate); window.removeEventListener('resize', this.rkUpdate); document.removeEventListener('pointerdown', this.moreOut); this.rkIO && this.rkIO.disconnect();
+    clearInterval(this.bubT); clearInterval(this.ripT); this.io && this.io.disconnect(); this.streamAnim && this.streamAnim.cancel();
+    this.kStop(); clearInterval(this.kSteamT); clearInterval(this.kBubT); this.kSwirlA && this.kSwirlA.cancel();
+    this.heroRef.current && this.heroRef.current.removeEventListener('pointermove', this.onMove);
+    this.heroRef.current && this.heroRef.current.removeEventListener('pointerleave', this.leave);
+    clearInterval(this.clockT); clearInterval(this.kettleT); window.removeEventListener('pointermove', this.kMove); window.removeEventListener('scroll', this.kDockCheck); cancelAnimationFrame(this.kRaf); document.documentElement.removeAttribute('data-kdock'); document.documentElement.removeEventListener('pointerleave', this.kOut); clearInterval(this.cupTimer); clearInterval(this.cupSteamTimer); clearTimeout(this.pourT); this.cupsSection.current && this.cupsSection.current.removeEventListener('pointermove', this.onBeans); clearInterval(this.pourTimer); this.mq && this.mq.cancel(); this.fl && this.fl.cancel();
+  }
+  slotW() { const w = window.innerWidth, sh = Math.max(200, Math.min(560, window.innerHeight - 340)); return Math.round(Math.min(w < 640 ? 250 : w < 1000 ? 330 : 400, sh / 1.72)); }
+  goCup = d => this.setState(s => ({ cup: (s.cup + d + this.CUPS.length) % this.CUPS.length }));
+  puff(x, y, k, lyr) {
+    const layer = lyr || this.steamLayer.current; if (!layer) return;
+    const d = document.createElement('div'), s = (24 + Math.random() * 30) * k;
+    Object.assign(d.style, { position: 'absolute', left: x - s / 2 + 'px', top: y - s / 2 + 'px', width: s + 'px', height: s + 'px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,0) 70%)', filter: 'blur(3px)', pointerEvents: 'none' });
+    layer.appendChild(d);
+    const dx = (Math.random() - 0.5) * 70;
+    const a = d.animate([{ transform: 'translate(0,0) scale(.5)', opacity: 0.9 }, { transform: `translate(${dx * 0.4}px,-70px) scale(1.4)`, opacity: 0.6, offset: 0.4 }, { transform: `translate(${dx}px,-170px) scale(2.4)`, opacity: 0 }], { duration: 1800 + Math.random() * 600, easing: 'ease-out' });
+    a.onfinish = () => d.remove();
+  }
+  startPour = e => {
+    e.preventDefault();
+    if (this.state.milk >= 0.5) return;
+    this.setState({ pouring: true });
+    clearInterval(this.pourTimer);
+    this.pourTimer = setInterval(() => {
+      this.setState(s => {
+        const milk = Math.min(0.5, s.milk + 0.008);
+        if (milk >= 0.5) { clearInterval(this.pourTimer); return { milk, pouring: false }; }
+        return { milk };
+      });
+    }, 40);
+  };
+  stopPour = () => { clearInterval(this.pourTimer); if (this.state.pouring) this.setState({ pouring: false }); };
+  setSugar = n => {
+    const add = n > this.state.sugar;
+    const cubes = add ? Array.from({ length: n - this.state.sugar }, (_, i) => ({ id: Math.random(), x: -40 + i * 30, rot: Math.random() * 40 - 20, bottom: 470 })) : [];
+    this.setState({ sugar: n, cubes });
+    if (add) {
+      requestAnimationFrame(() => requestAnimationFrame(() => this.setState(s => ({ cubes: s.cubes.map(c => ({ ...c, bottom: 120 })) }))));
+      clearTimeout(this.cubeT); this.cubeT = setTimeout(() => this.setState({ cubes: [] }), 560);
+    }
+  };
+  mix(a, b, t) {
+    const h = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+    const A = h(a), B = h(b);
+    return 'rgb(' + A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(',') + ')';
+  }
+  cornerVals(s) {
+    const narrow = !!s.boardNarrow;
+    return { bentoCols: narrow ? 'repeat(2,minmax(0,1fr))' : 'repeat(4,minmax(0,1fr))', bentoFlow: narrow ? 'row dense' : 'row' };
+  }
+  renderVals() {
+    const s = this.state, st = s.strength / 100;
+    const tea = this.mix('#C77A3A', '#3E1C0A', st);
+    const teaHex = '#' + tea.match(/\d+/g).map(v => (+v).toString(16).padStart(2, '0')).join('');
+    const level = 0.4 + s.milk, milkRatio = s.milk / level;
+    const liquidColor = this.mix(teaHex, '#F1E3CC', Math.min(0.85, milkRatio * 1.35));
+    const foamColor = this.mix(teaHex, '#FBF4E6', 0.8);
+    const strengthLabel = st < 0.33 ? 'Halki (light)' : st < 0.7 ? 'Normal' : 'Karak (strong)';
+    const milkLabel = s.milk < 0.08 ? 'Barely any' : s.milk < 0.25 ? 'A splash' : s.milk < 0.42 ? 'Doodh patti' : 'Full to the brim';
+    const sugarNames = ['Bilkul nahi', 'Thoda meetha', 'Meetha', 'Bohot meetha'];
+    const spiceNames = this.SPICES.filter(x => s.spices.includes(x.id)).map(x => x.label);
+    const base = st >= 0.7 ? 'Karak' : s.milk >= 0.42 ? 'Doodh Patti' : st < 0.33 ? 'Halki' : 'Classic';
+    const chaiName = (spiceNames.length > 2 ? 'Masala' : spiceNames.join(' ')) + (spiceNames.length ? ' ' : '') + base + ' Chai';
+    const specks = [];
+    this.SPICES.forEach((sp, si) => { if (s.spices.includes(sp.id)) for (let i = 0; i < 7; i++) { const seed = Math.sin(si * 31 + i * 7.3) * 10000; const r = seed - Math.floor(seed); const seed2 = Math.sin(si * 13 + i * 3.1) * 10000; const r2 = seed2 - Math.floor(seed2); specks.push({ x: 8 + r * 84, y: 12 + r2 * 80, size: 5 + (i % 3) * 2, color: sp.color }); } });
+    const cat = this.MENU[s.tab];
+    const slot = this.slotW();
+    return {
+      spiceStage: this.spiceStage, bubbleLayer: this.bubbleLayer, rippleLayer: this.rippleLayer, streamRef: this.streamRef, burst: this.burst,
+      kStage: this.kStage, kFx: this.kFx, kTop: this.kTop, kSwirl: this.kSwirl, kTopOpacity: s.kFill > 0 ? 1 : 0, kTopScale: (0.6 + 0.4 * s.kFill).toFixed(3), kStart: this.kStart, kStop: this.kStop,
+      kReset: () => { this.kStop(); this.setState({ kFill: 0 }); },
+      kAngle: s.kPour ? 38 : 0, kFillPct: Math.round(s.kFill * 88),
+      kStreamX: 304, kStreamTop: 234, kStreamH: s.kPour && s.kFill < 1 ? Math.max(0, this.kSurface() - 234) : 0,
+      kBtnBg: s.kPour ? '#F6F0E3' : '#E5A823', kBtnLabel: s.kFill >= 1 ? 'Glass is full' : s.kPour ? 'Pouring…' : 'Hold to pour',
+      kStatus: s.kFill >= 1 ? 'Chai ready. Ek aur?' : s.kFill > 0.6 ? 'Almost there…' : s.kFill > 0 ? Math.round(s.kFill * 100) + '% full' : 'Glass is empty',
+      rkSec: this.rkSec, rkEl: this.rkEl, rkFoot: this.rkFoot, rkWrap: this.rkWrap, faqSec: this.faqSec, moreRef: this.moreRef,
+      ...this.cornerVals(s),
+      boardCols: s.boardNarrow ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr) minmax(0,1fr) minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr)', signCol: s.boardNarrow ? '1 / -1' : '3',
+      navBg: s.navSolid ? 'rgba(243,236,221,.82)' : 'rgba(246,240,227,.38)', navBlur: s.navSolid ? 'blur(14px) saturate(1.2)' : 'blur(10px) saturate(1.2)',
+      navWide: !this.state.navNarrow, navNarrow: !!this.state.navNarrow, moreLabel: this.state.navNarrow ? 'Menu' : 'More', 
+      moreOpen: !!s.moreOpen, moreBg: s.moreOpen ? 'rgba(16,40,42,.08)' : 'transparent', moreRot: s.moreOpen ? 180 : 0,
+      toggleMore: () => this.setState({ moreOpen: !s.moreOpen }), closeMore: () => this.setState({ moreOpen: false }),
+      faqs: this.FAQS.map((f, i) => { const open = (s.faq ?? 0) === i; return { ...f, open, bg: open ? '#DDF1F1' : '#FDFBF6', rot: open ? 45 : 0, hasLink: !!f.link, linkLabel: f.link ? f.link[0] : '', href: f.link ? f.link[1] : '', toggle: () => this.setState({ faq: open ? -1 : i }) }; }),
+      ...this.footVals(),
+      cupBg: ['#F6F0E3','#BFE7E8','#F3E2B8','#F2D4C9','#D7EEE6'][s.cup % 5],
+      chaatLayer: this.chaatLayer, chaatOpacity: /Samosa Chaat/.test(this.CUPS[s.cup].name) ? 1 : 0, spiceOpacity: this.CUPS[s.cup].kind === 'Chai' ? 1 : 0, spiceLayer: this.spiceLayer, coffeeLayer: this.coffeeLayer, coffeeOpacity: this.CUPS[s.cup].kind === 'Coffee' ? 1 : 0, biscoffLayer: this.biscoffLayer, rollLayer: this.rollLayer, rollOpacity: this.CUPS[s.cup].name === 'Paratha Roll' ? 1 : 0, biscoffOpacity: /Biscoff/.test(this.CUPS[s.cup].name) ? 1 : 0,
+      cupStage: this.cupStage, cupSteam: this.cupSteam, cupsSection: this.cupsSection, beanLayer: this.beanLayer, beans: this.BEANS,
+      hasPhoto: !!(s.hoverIdx >= 0 && this.ITEM_PHOTOS[cat.items[s.hoverIdx][0]] || cat.photoSrc), noPhoto: !(s.hoverIdx >= 0 && this.ITEM_PHOTOS[cat.items[s.hoverIdx][0]] || cat.photoSrc),
+      photoSrc: (s.hoverIdx >= 0 && this.ITEM_PHOTOS[cat.items[s.hoverIdx][0]]) || cat.photoSrc || '', slot, trackX: -(s.cup * slot + slot / 2),
+      cupList: this.CUPS.map((c, i) => { const N = this.CUPS.length, sd = ((i - s.cup) % N + N + Math.floor(N / 2)) % N - Math.floor(N / 2), d = Math.abs(sd); return { x: sd * slot - slot / 2, z: 10 - d, ready: true, name: c.name, src: c.src, bg: 'url(' + c.src + ')', filter: c.filter, opacity: d === 0 ? 1 : d === 1 ? 0.9 : d <= 3 ? 0.6 : 0, transform: (k => d === 0 ? `scale(${1.45 * k}) translateY(-4%)` : `scale(${(d === 1 ? 0.95 : 0.8) * k}) rotate(${(sd < 0 ? -1 : 1) * 3}deg)`)(c.drink ? 1 : 0.96), pick: () => this.setState({ cup: i }), }; }),
+      activeCup: { ...this.CUPS[s.cup], tag: this.CUPS[s.cup].kind + ' · ' + this.CUPS[s.cup].price, title: (this.CUPS[s.cup].best ? 'Bestseller : ' : '') + this.CUPS[s.cup].name }, prevCup: () => this.goCup(-1), nextCup: () => this.goCup(1),
+      cupKey: e => { if (e.key === 'ArrowLeft') this.goCup(-1); if (e.key === 'ArrowRight') this.goCup(1); },
+      heroRef: this.heroRef, kettleRef: this.kettleRef, kettleDock: this.kettleDock, kettleDocked: this.kettleDocked, cursorLayer: this.cursorLayer, steamLayer: this.steamLayer, cupRef: this.cupRef, cupSteamOrigin: this.cupSteamOrigin, marqueeRef: this.marqueeRef, glossRef: this.glossRef, cupShadow: this.cupShadow, floatRef: this.floatRef,
+      ...this.openStatus(),
+      marquee: Array(2).fill(['Culture & community', 'Together. Rooted. Real.', 'A place for everyone', 'Good people, great vibes']).flat(),
+      strength: s.strength, onStrength: e => this.setState({ strength: +e.target.value }),
+      fillPct: Math.round(level * 100), liquidColor, foamColor, specks, chaiName, strengthLabel, milkLabel,
+      sugarLabel: sugarNames[s.sugar], pouring: s.pouring, streamHeight: 460 - 56 - 300 * level,
+      pourBg: s.pouring ? '#E5A823' : '#FBF7EE', pourLabel: s.milk >= 0.5 ? 'Glass is full' : s.pouring ? 'Pouring…' : 'Hold to pour milk',
+      startPour: this.startPour, stopPour: this.stopPour, cubes: s.cubes,
+      sugarOpts: [0, 1, 2, 3].map(n => ({ label: n === 0 ? 'None' : n + ' ×', pick: () => this.setSugar(n), bg: s.sugar === n ? '#10282A' : '#FBF7EE', fg: s.sugar === n ? '#FBF7EE' : '#10282A' })),
+      spiceOpts: this.SPICES.map(sp => { const on = s.spices.includes(sp.id); return { ...sp, bg: on ? '#10282A' : '#FBF7EE', fg: on ? '#FBF7EE' : '#10282A', toggle: () => this.setState(p => ({ spices: on ? p.spices.filter(x => x !== sp.id) : [...p.spices, sp.id] })) }; }),
+      orderLine: `${chaiName}, ${milkLabel.toLowerCase()} milk, ${sugarNames[s.sugar].toLowerCase()}`,
+      reset: () => { this.stopPour(); this.setState({ strength: 60, milk: 0.2, sugar: 1, spices: ['elaichi'], cubes: [] }); },
+      tabs: Object.entries(this.MENU).map(([id, c]) => ({ label: c.label, pick: () => this.setState({ tab: id, hoverIdx: -1 }), bg: s.tab === id ? '#F6F0E3' : 'transparent', fg: s.tab === id ? '#0E4F55' : '#F6F0E3' })),
+      cat: { label: cat.label, urdu: cat.urdu, blurb: cat.blurb, badge: cat.badge },
+      photoLabel: s.hoverIdx >= 0 ? cat.items[s.hoverIdx][0].toLowerCase() : cat.photo,
+      items: cat.items.map(([name, price], i) => ({ name, price, color: s.hoverIdx === i ? '#E5A823' : '#F6F0E3', hover: () => this.setState({ hoverIdx: i }) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

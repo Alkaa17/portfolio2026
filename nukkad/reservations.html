@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Reserve · Nukkad Café</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/nukkad/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F3ECDD;color:#10282A;font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0E4F55}a:hover{color:#C2412D}
+input,textarea{font:inherit}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#F6F0E3">
+<nav style="position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding:14px clamp(20px,5vw,64px);flex-wrap:wrap;background:rgba(243,236,221,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+  <a href="/nukkad" style="display:flex;align-items:baseline;gap:12px;text-decoration:none">
+    <span style="font-family:'Anton',sans-serif;font-size:clamp(24px,6vw,30px);letter-spacing:.04em;color:#10282A">NUKKAD</span>
+    <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:22px;color:#0E8F99;line-height:1">نکڑ</span>
+  </a>
+  <div style="display:flex;gap:4px;padding:4px;border-radius:999px;font-weight:600;font-size:15px;letter-spacing:.02em">
+    <sc-if value="{{ navWide }}" hint-placeholder-val="{{ true }}">
+    <a href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Bestsellers</a>
+    <a href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="background:rgba(16,40,42,.08);color:#10282A">Order</a>
+    <a href="/nukkad/reservations" aria-current="page" style="color:#10282A;background:#BFE7E8;text-decoration:none;padding:8px 16px;border-radius:999px" style-hover="color:#10282A">Reserve</a>
+    </sc-if>
+    <div ref="{{ moreRef }}" style="position:relative">
+      <button onClick="{{ toggleMore }}" aria-expanded="{{ moreOpen }}" aria-haspopup="true" style="display:flex;align-items:center;gap:6px;color:#10282A;background:{{ moreBg }};border:0;font:inherit;font-weight:600;font-size:15px;letter-spacing:.02em;padding:8px 14px 8px 16px;border-radius:999px;cursor:pointer" style-hover="background:rgba(16,40,42,.08)">{{ moreLabel }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate({{ moreRot }}deg);transition:transform .2s"><path d="M6 9l6 6 6-6"></path></svg></button>
+      <sc-if value="{{ moreOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="menu" style="position:absolute;right:0;top:calc(100% + 10px);min-width:180px;display:flex;flex-direction:column;padding:6px;border-radius:15px;background:#FDFBF6;box-shadow:0 14px 34px rgba(16,40,42,.22);z-index:20">
+          <sc-if value="{{ navNarrow }}" hint-placeholder-val="{{ false }}">
+          <a role="menuitem" href="/nukkad#cups" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Bestsellers</a>
+          <a role="menuitem" href="/nukkad/menu" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Order</a>
+          <a role="menuitem" href="/nukkad/reservations" style="color:#10282A;text-decoration:none;padding:12px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Reserve</a>
+          </sc-if>
+          <a role="menuitem" href="/nukkad#faq" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">FAQ</a>
+          <a role="menuitem" href="#find" style="color:#10282A;text-decoration:none;padding:10px 14px;border-radius:12px" style-hover="background:#F3E2B8;color:#10282A">Find us</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</nav>
+
+<div style="flex:1;max-width:1320px;width:100%;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(20px,5vw,64px) 80px;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px);align-items:flex-start">
+
+  <div style="flex:1 1 300px;max-width:440px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:26px;line-height:1.7;color:#C2412D">آپ کی جگہ</span>
+      <h1 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(44px,6vw,80px);line-height:.95;text-transform:uppercase">Save a seat at the corner</h1>
+      <p style="margin:12px 0 0;font-size:17px;line-height:1.5;text-wrap:pretty">Walk-ins are always welcome. Booking just means your table’s waiting, great for groups, birthdays and chai nights.</p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+      <img src="/nukkad/assets-sa/chai-pour.jpg" alt="Pouring karak chai from height into a steaming pot" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%;display:block;border-radius:15px">
+      <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3A4A49">The terrace, 171 Thornton Rd</figcaption>
+    </figure>
+  </div>
+
+  <main style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px">
+    <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;gap:28px;flex-wrap:wrap">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="2">
+          <button onClick="{{ s.go }}" disabled="{{ s.locked }}" aria-current="{{ s.ariaCur }}" style="display:flex;align-items:baseline;gap:8px;padding:4px 0;border:0;border-bottom:2px solid {{ s.line }};background:none;color:{{ s.fg }};font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:{{ s.cursor }}">{{ s.mark }} {{ s.label }}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isTable }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <fieldset style="border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:12px">
+          <legend style="padding:0;margin-bottom:12px;font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase">How many of you?</legend>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ sizes }}" as="p" hint-placeholder-count="9">
+              <button onClick="{{ p.pick }}" aria-pressed="{{ p.on }}" style="min-width:48px;height:48px;padding:0 14px;border-radius:999px;border:0;background:{{ p.bg }};color:{{ p.fg }};font-family:'JetBrains Mono',monospace;font-size:15px;cursor:pointer">{{ p.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ bigGroup }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;font-size:15px;line-height:1.5">For 9 or more, message us on <a href="https://wa.me/" target="_blank" rel="noopener" style="font-weight:700">WhatsApp</a> and we’ll set up a few tables together.</p>
+          </sc-if>
+        </fieldset>
+
+        <sc-if value="{{ notBig }}" hint-placeholder-val="{{ true }}">
+          <fieldset style="border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <legend style="padding:0;margin-bottom:12px;font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase">Which day?</legend>
+            <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin">
+              <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+                <button onClick="{{ d.pick }}" aria-pressed="{{ d.on }}" style="flex:0 0 auto;width:68px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;border-radius:16px;border:0;background:{{ d.bg }};color:{{ d.fg }};font:inherit;cursor:pointer">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">{{ d.wd }}</span>
+                  <span style="font-family:'Anton',sans-serif;font-size:26px;line-height:1.1">{{ d.num }}</span>
+                  <span style="font-size:12px">{{ d.mon }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </fieldset>
+
+          <fieldset style="border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <legend style="padding:0;margin-bottom:12px;font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase">What time?</legend>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px">
+              <sc-for list="{{ times }}" as="t" hint-placeholder-count="12">
+                <button onClick="{{ t.pick }}" disabled="{{ t.full }}" aria-pressed="{{ t.on }}" style="height:44px;border-radius:12px;border:0;background:{{ t.bg }};color:{{ t.fg }};font-family:'JetBrains Mono',monospace;font-size:14px;text-decoration:{{ t.deco }};cursor:{{ t.cursor }}">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ noTimes }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;font-size:15px;color:#3A4A49">No more slots today. Try tomorrow.</p>
+            </sc-if>
+          </fieldset>
+
+          <fieldset style="border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:12px">
+            <legend style="padding:0;margin-bottom:12px;font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase">Where would you like to sit?</legend>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ seats }}" as="z" hint-placeholder-count="3">
+                <button onClick="{{ z.pick }}" aria-pressed="{{ z.on }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 20px;border-radius:999px;border:0;background:{{ z.bg }};color:{{ z.fg }};font:inherit;text-align:left;cursor:pointer">
+                  <span style="font-weight:700;font-size:15px">{{ z.label }}</span>
+                  <span style="font-size:12px;line-height:1.3;opacity:.8">{{ z.sub }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <label style="display:flex;align-items:center;gap:12px;padding:4px 0;cursor:pointer;font-size:15px">
+              <input type="checkbox" checked="{{ access }}" onChange="{{ toggleAccess }}" style="width:20px;height:20px;accent-color:#0E4F55;margin:0">
+              <span>We need a step-free, wheelchair-friendly table</span>
+            </label>
+          </fieldset>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:20px;border-top:1px dashed rgba(16,40,42,.3)">
+            <span style="font-size:15px;line-height:1.4">{{ summary }}</span>
+            <button onClick="{{ toDetails }}" disabled="{{ cantNext }}" style="height:54px;padding:0 28px;border-radius:999px;border:0;background:{{ nextBg }};color:#F6F0E3;font:inherit;font-weight:700;font-size:16px;cursor:{{ nextCursor }};transition:background .2s" style-hover="background:#C2412D">Continue →</button>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <h2 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,3vw,40px);text-transform:uppercase;line-height:1.05">Who’s the booking for?</h2>
+          <span style="font-size:15px;color:#3A4A49">{{ summary }} <button onClick="{{ toTable }}" style="border:0;background:none;padding:0;color:#0E4F55;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer" style-hover="color:#C2412D">Change</button></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px">Name
+            <input value="{{ f.name }}" onChange="{{ on.name }}" autocomplete="name" style="height:50px;padding:0 2px;border-radius:0;border:0;border-bottom:2px solid {{ err.name }};background:transparent;color:#10282A;font-size:16px;outline:none" style-focus="border-color:#0E8F99">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px">Mobile
+            <input value="{{ f.phone }}" onChange="{{ on.phone }}" type="tel" autocomplete="tel" placeholder="07…" style="height:50px;padding:0 2px;border-radius:0;border:0;border-bottom:2px solid {{ err.phone }};background:transparent;color:#10282A;font-size:16px;outline:none" style-focus="border-color:#0E8F99">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px;grid-column:1/-1">Email
+            <input value="{{ f.email }}" onChange="{{ on.email }}" type="email" autocomplete="email" placeholder="For your confirmation" style="height:50px;padding:0 2px;border-radius:0;border:0;border-bottom:2px solid {{ err.email }};background:transparent;color:#10282A;font-size:16px;outline:none" style-focus="border-color:#0E8F99">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px;grid-column:1/-1">Anything we should know? <span style="font-weight:400;color:#3A4A49;margin-top:-6px">Optional: birthdays, high chair, allergies</span>
+            <textarea value="{{ f.notes }}" onChange="{{ on.notes }}" rows="3" style="padding:10px 2px;border-radius:0;border:0;border-bottom:2px solid rgba(16,40,42,.25);background:transparent;color:#10282A;font-size:16px;resize:vertical;outline:none" style-focus="border-color:#0E8F99"></textarea>
+          </label>
+        </div>
+        <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="margin:0;font-size:14px;font-weight:600;color:#C2412D">Fill in the highlighted fields to confirm.</p>
+        </sc-if>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <button onClick="{{ toTable }}" style="height:52px;padding:0 22px;border-radius:999px;border:0;background:rgba(16,40,42,.06);color:#10282A;font:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#BFE7E8;color:#10282A">← Back</button>
+          <button onClick="{{ confirm }}" style="height:54px;padding:0 28px;border-radius:999px;border:0;background:#C2412D;color:#F6F0E3;font:inherit;font-weight:700;font-size:16px;cursor:pointer;transition:background .2s" style-hover="background:#10282A">Confirm booking</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:clamp(8px,2vw,24px) 0;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+        <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:36px;line-height:1.6;color:#0E8F99">خوش آمدید</span>
+        <h2 style="margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(44px,6vw,72px);line-height:.95;text-transform:uppercase">See you soon, {{ firstName }}</h2>
+        <p style="margin:0;font-size:16px;line-height:1.5;max-width:30em;color:#3A4A49">We’ve sent the details to {{ doneEmail }}. Your table is held for 15 minutes.</p>
+        <div style="width:100%;max-width:440px;margin-top:8px;text-align:left">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:2px solid #10282A">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Booking ref</span>
+            <span style="font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.06em">{{ ref }}</span>
+          </div>
+          <dl style="margin:0;padding:0;display:grid;grid-template-columns:auto 1fr;gap:0 16px;font-size:15px">
+            <sc-for list="{{ ticket }}" as="r" hint-placeholder-count="4">
+              <dt style="padding:10px 0;border-bottom:1px dashed rgba(16,40,42,.25);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#3A4A49">{{ r.k }}</dt>
+              <dd style="margin:0;padding:10px 0;border-bottom:1px dashed rgba(16,40,42,.25);font-weight:600;text-align:right">{{ r.v }}</dd>
+            </sc-for>
+          </dl>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px">
+          <a href="/nukkad/menu" style="display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:999px;background:#10282A;color:#F6F0E3;font-weight:700;font-size:15px;text-decoration:none" style-hover="background:#C2412D;color:#F6F0E3">Browse the menu</a>
+          <button onClick="{{ again }}" style="height:52px;padding:0 24px;border-radius:999px;border:0;background:rgba(16,40,42,.06);color:#10282A;font:inherit;font-weight:700;font-size:15px;cursor:pointer" style-hover="background:#BFE7E8;color:#10282A">Make another booking</button>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+
+<footer id="find" style="margin-top:auto;background:#10282A;color:#F6F0E3;padding:64px clamp(20px,5vw,64px) 32px">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:48px clamp(32px,5vw,72px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:30px;color:#15ADB3;line-height:1.6">خوش آمدید</span>
+      <span style="font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);line-height:1;text-transform:uppercase">171 Thornton Road</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.1em;color:#E5A823">BRADFORD · BD1 2HJ</span>
+      <a href="https://maps.google.com/?q=171+Thornton+Rd,+Bradford+BD1+2JH" target="_blank" rel="noopener" style="margin-top:8px;color:#CFDAD9;font-size:15px;text-decoration:underline;text-underline-offset:3px" style-hover="color:#F6F0E3">Get directions</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823">Opening hours</span>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ weekHours }}" as="d" hint-placeholder-count="7">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid rgba(246,240,227,.12);font-size:15px;color:{{ d.color }};font-weight:{{ d.weight }}"><span>{{ d.day }}</span><span style="font-variant-numeric:tabular-nums">{{ d.hours }}</span></div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823">Offers in your inbox</span>
+      <p style="margin:0;font-size:15px;line-height:1.5;color:#CFDAD9;text-wrap:pretty">New specials, chai nights and the odd free cup. No spam, promise.</p>
+      <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ subscribe }}" style="display:flex;gap:8px;flex-wrap:wrap">
+          <input type="email" required placeholder="you@email.com" aria-label="Email address" style="flex:1 1 180px;min-width:0;height:48px;padding:0 18px;border-radius:999px;border:1px solid rgba(246,240,227,.3);background:rgba(246,240,227,.06);color:#F6F0E3;font:inherit;font-size:15px;outline:none" style-focus="border-color:#E5A823">
+          <button type="submit" style="height:48px;padding:0 22px;border:0;border-radius:999px;background:#E5A823;color:#10282A;font:inherit;font-size:15px;font-weight:700" style-hover="background:#F6F0E3">Sign up</button>
+        </form>
+      </sc-if>
+      <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:15px;font-weight:600;color:#15ADB3">Shukriya! You're on the list.</p>
+      </sc-if>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#E5A823;margin-top:12px">Follow along</span>
+      <div style="display:flex;gap:10px">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"></circle></svg></a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.5 2.6 2.3 4.3 5 4.5"></path></svg></a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h-2a2 2 0 0 0-2 2v11"></path><path d="M8 13h6"></path><circle cx="12" cy="12" r="9"></circle></svg></a>
+        <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,240,227,.3);color:#F6F0E3;transition:background .2s,border-color .2s" style-hover="background:#E5A823;border-color:#E5A823;color:#10282A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"></path><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1 1.5.8"></path></svg></a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1320px;margin:56px auto 0;padding-top:24px;border-top:1px solid rgba(246,240,227,.15);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#CFDAD9">
+    <span>Together. Rooted. Real. A place for everyone. See you at the corner.</span>
+    <span>© 2026 Nukkad</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  footerVals() {
+    const today = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'long' }).format(new Date());
+    return {
+      weekHours: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map(d => ({ day: d === today ? d + ' · today' : d, hours: (d === 'Friday' || d === 'Saturday') ? '10 AM – 12 AM' : '10 AM – 11 PM', color: d === today ? '#E5A823' : '#F6F0E3', weight: d === today ? 700 : 400 })),
+      subscribed: !!this.state.subscribed, notSubscribed: !this.state.subscribed,
+      subscribe: e => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+  state = { step: 'table', size: 2, day: 0, time: null, seat: 'any', access: false, f: { name: '', phone: '', email: '', notes: '' }, tried: false };
+  moreRef = React.createRef();
+  moreVals() { const o = !!this.state.moreOpen; return { navWide: !this.state.navNarrow, navNarrow: !!this.state.navNarrow, moreLabel: this.state.navNarrow ? 'Menu' : 'More', moreRef: this.moreRef, moreOpen: o, moreBg: o ? 'rgba(16,40,42,.08)' : 'transparent', moreRot: o ? 180 : 0, toggleMore: () => this.setState({ moreOpen: !o }) }; }
+  componentDidMount() {
+    this.navResize = () => { const n = window.innerWidth < 720; if (n !== !!this.state.navNarrow) this.setState({ navNarrow: n }); };
+    window.addEventListener('resize', this.navResize); this.navResize();
+    this.moreOut = e => { if (this.state.moreOpen && this.moreRef.current && !this.moreRef.current.contains(e.target)) this.setState({ moreOpen: false }); };
+    document.addEventListener('pointerdown', this.moreOut);
+  }
+  componentWillUnmount() { document.removeEventListener('pointerdown', this.moreOut); }
+  london() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    return { date: new Date(+p.year, +p.month - 1, +p.day), mins: +p.hour * 60 + +p.minute };
+  }
+  hm = m => { const h = Math.floor(m / 60), mm = m % 60; return (h % 12 || 12) + ':' + String(mm).padStart(2, '0') + (h < 12 ? ' am' : ' pm'); };
+  dayList() {
+    const { date } = this.london();
+    return Array.from({ length: 14 }, (_, i) => { const d = new Date(date); d.setDate(d.getDate() + i); return d; });
+  }
+  timeList(i) {
+    const d = this.dayList()[i], wd = d.getDay(), last = (wd === 5 || wd === 6) ? 1350 : 1290, now = this.london().mins, out = [];
+    for (let m = 600; m <= last; m += 30) {
+      if (i === 0 && m < now + 30) continue;
+      const seed = Math.sin(i * 97 + m * 0.37 + this.state.size * 13) * 10000, full = (seed - Math.floor(seed)) < (m >= 1080 ? 0.35 : 0.12);
+      out.push({ m, label: this.hm(m), full });
+    }
+    return out;
+  }
+  missing() { const f = this.state.f, m = []; if (!f.name.trim()) m.push('name'); if (f.phone.replace(/\D/g, '').length < 10) m.push('phone'); if (!/^\S+@\S+\.\S+$/.test(f.email)) m.push('email'); return m; }
+  go = step => { this.setState({ step, tried: false }); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  renderVals() {
+    const s = this.state, days = this.dayList(), D = days[s.day];
+    const times = this.timeList(s.day), time = times.find(t => t.m === s.time && !t.full) ? s.time : null;
+    const seatOpts = [{ id: 'covered', label: 'Covered', sub: 'Under the canopy, limited' }, { id: 'open', label: 'Open air', sub: 'Fairy lights and fresh air' }, { id: 'any', label: 'No preference', sub: 'Whatever’s best on the day' }];
+    const seatLabel = seatOpts.find(z => z.id === s.seat).label;
+    const dayLong = D.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    const summary = time === null ? 'Pick a time to continue.' : s.size + (s.size === 1 ? ' person' : ' people') + ' · ' + dayLong + ' · ' + this.hm(time);
+    const miss = s.tried ? this.missing() : [], on = {}, err = {};
+    Object.keys(s.f).forEach(k => { on[k] = e => { const v = e.target.value; this.setState(p => ({ f: { ...p.f, [k]: v } })); }; err[k] = miss.includes(k) ? '#C2412D' : 'rgba(16,40,42,.25)'; });
+    const idx = ['table', 'details'].indexOf(s.step);
+    const dn = s.done || {};
+    return {
+      ...this.moreVals(), ...this.footerVals(),
+      notDone: s.step !== 'done', isTable: s.step === 'table', isDetails: s.step === 'details', isDone: s.step === 'done',
+      steps: ['Table', 'Details'].map((label, i) => { const cur = i === idx, past = i < idx; return { label, locked: !past, mark: past ? '✓' : '0' + (i + 1), fg: cur ? '#10282A' : past ? '#0E4F55' : '#5E6B6A', line: cur ? '#10282A' : 'transparent', ariaCur: cur ? 'step' : undefined, cursor: past ? 'pointer' : 'default', go: () => past && this.go('table') }; }),
+      sizes: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({ label: n === 9 ? '9+' : String(n), on: s.size === n, bg: s.size === n ? '#BFE7E8' : 'rgba(16,40,42,.06)', fg: s.size === n ? '#10282A' : '#10282A', pick: () => this.setState({ size: n }) })),
+      bigGroup: s.size === 9, notBig: s.size !== 9,
+      days: days.map((d, i) => ({ wd: i === 0 ? 'Today' : d.toLocaleDateString('en-GB', { weekday: 'short' }), num: d.getDate(), mon: d.toLocaleDateString('en-GB', { month: 'short' }), on: i === s.day, bg: i === s.day ? '#BFE7E8' : 'rgba(16,40,42,.06)', fg: i === s.day ? '#10282A' : '#10282A', pick: () => this.setState({ day: i }) })),
+      times: times.map(t => { const on = t.m === time; return { label: t.label, full: t.full, on, bd: t.full ? 'rgba(16,40,42,.15)' : '#10282A', bg: on ? '#BFE7E8' : t.full ? 'rgba(16,40,42,.03)' : 'rgba(16,40,42,.06)', fg: on ? '#10282A' : t.full ? 'rgba(16,40,42,.4)' : '#10282A', deco: t.full ? 'line-through' : 'none', cursor: t.full ? 'not-allowed' : 'pointer', pick: () => this.setState({ time: t.m }) }; }),
+      noTimes: !times.length,
+      seats: seatOpts.map(z => ({ ...z, on: s.seat === z.id, bg: s.seat === z.id ? '#BFE7E8' : 'rgba(16,40,42,.06)', fg: s.seat === z.id ? '#10282A' : '#10282A', pick: () => this.setState({ seat: z.id }) })),
+      access: s.access, toggleAccess: () => this.setState({ access: !s.access }),
+      summary, cantNext: time === null, nextBg: time === null ? 'rgba(16,40,42,.35)' : '#10282A', nextCursor: time === null ? 'not-allowed' : 'pointer',
+      toDetails: () => time !== null && this.go('details'), toTable: () => this.go('table'),
+      f: s.f, on, err, showErr: miss.length > 0,
+      confirm: () => {
+        this.setState({ tried: true }); if (this.missing().length) return;
+        const ref = 'NK-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+        this.setState({ step: 'done', done: { ref, name: s.f.name.trim().split(' ')[0], email: s.f.email, rows: [{ k: 'When', v: dayLong }, { k: 'Time', v: this.hm(time) }, { k: 'Guests', v: String(s.size) }, { k: 'Seating', v: seatLabel + (s.access ? ' · step-free' : '') }] } });
+        window.scrollTo({ top: 0 });
+      },
+      ref: dn.ref, firstName: dn.name || 'friend', doneEmail: dn.email, ticket: dn.rows || [],
+      again: () => this.setState({ step: 'table', time: null, done: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
