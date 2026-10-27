@@ -245,7 +245,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
       </sc-for>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
         <sc-for list="{{ firstProjects }}" as="p" hint-placeholder-count="1">
-          <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
             <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
               <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
@@ -302,7 +302,7 @@ h1,h2,h3,h4{text-wrap-style:balance}
           </a>
         </sc-for>
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="2">
-          <a href="{{ p.href }}" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+          <a href="{{ p.href }}" target="{{ p.target }}" rel="noopener" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
             <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base)" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
               <sc-if value="{{ p.hasMedia }}" hint-placeholder-val="{{ false }}">
@@ -324,8 +324,6 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
           </a>
         </sc-for>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,4vw,48px)">
         <sc-for list="{{ visualWork }}" as="v" hint-placeholder-count="2">
           <a href="{{ v.href }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
             <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
@@ -341,6 +339,22 @@ h1,h2,h3,h4{text-wrap-style:balance}
             </div>
           </a>
         </sc-for>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <a href="https://www.alkamahapatra.space/more-projects" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:24px;text-decoration:none;color:var(--ink-900)" style-hover="color:var(--ink-900)">
+          <div style="position:relative;transition:transform var(--dur-base) var(--ease-bouncy)" style-hover="transform:translateY(-4px)">
+          <div style="position:relative;aspect-ratio:1/1;border-radius:28px;overflow:hidden;background:var(--pink-50);box-shadow:0 0 0 2px var(--pink-200);transition:box-shadow var(--dur-base);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center" style-hover="box-shadow:0 0 0 2px var(--pink-500),4px 4px 0 2px var(--pink-500)">
+            <span style="font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700)">Keep exploring</span>
+            <span style="font:400 clamp(32px,3vw,44px)/1 var(--font-script);color:var(--pink-500)">archive</span>
+            <span aria-hidden="true" style="display:grid;place-items:center;width:52px;height:52px;border-radius:999px;background:var(--pink-500);color:#fff;font:600 22px/1 var(--font-display)">→</span>
+          </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
+            <p style="margin:0;font:500 13px/1.4 var(--font-mono);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--pink-700)">Visual design · Fashion · Styling</p>
+            <h3 style="margin:0;font:600 clamp(20px,1.9vw,24px)/1.25 var(--font-display);text-wrap:pretty">Where it all started: my undergrad years</h3>
+            <p style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.55;color:var(--ink-700);text-wrap:pretty">Projects from 2017–2020 that shaped my eye for visual design.</p>
+          </div>
+        </a>
+        </sc-if>
       </div>
     </div>
   </div>
@@ -522,11 +536,13 @@ const RESEARCH = [
 ];
 const WORK = [
   { first: true, org: 'CRO strategy · CX/UX & visual design · Team lead', orgOneLine: true, year: '2022–24', href: '/ayurveda', badge: 'E-commerce · Beauty & Wellness', badgeMobile: 'E-commerce', url: 'theayurvedaexperience.com', photo: __res('./assets/covers/tae-cover.webp'), logo: './assets/tae-logo.png', coverAlt: 'Hand holding a phone showing a Citrenis skin-buffing gelly launch email from The Ayurveda Experience', title: 'Helping shoppers buy with confidence to grow e-commerce conversion', desc: 'As UX designer, then UX manager of 3 designers, I redesigned landing pages, checkout and the app. Conversion rose 10.6% and WCAG compliance 35%.' },
-  { org: 'Website redesign · Information architecture · Visual design', year: '3 months', href: '/ncci', badge: 'Nonprofit · Conservation', badgeMobile: 'Conservation', url: 'conservingcentralindia.org', photo: __res('./assets/covers/ncci-cover.webp'), coverAlt: 'Desktop monitor showing the redesigned NCCI homepage with a sunset over a central Indian lake and a Latest Updates section', title: 'Making conservation research easy to find and easy to publish', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
+  // Live site, not a case study: opens in a new tab and is hidden on mobile (the site is desktop-only)
+  { first: true, desktopOnly: true, external: true, org: 'Visual design · Micro-interactions · AI prototyping', orgOneLine: true, year: '2026', href: '#', badge: 'New · Café · Live site ↗', photo: __res('./assets/covers/nukkad-cover.jpg'), coverAlt: 'Laptop on a sunlit desk showing the Nukkad café homepage with a teal chai cup and the headline A corner of South Asia, a home in Bradford', title: 'Bringing a brick-and-mortar café online in less than 24 hours', desc: 'As web designer, I turned the café’s existing brand into a live website with Claude, designing the layout, ordering flows and micro-animations.' },
+  { org: 'Website redesign · IA · Visual design', year: '3 months', href: '/ncci', badge: 'Nonprofit · Conservation', badgeMobile: 'Conservation', url: 'conservingcentralindia.org', photo: __res('./assets/covers/ncci-cover.webp'), coverAlt: 'Desktop monitor showing the redesigned NCCI homepage with a sunset over a central Indian lake and a Latest Updates section', title: 'Making conservation research easy to find and easy to publish', desc: 'As end-to-end designer, I rebuilt the navigation, visual system and page templates. Accessibility went from 42 to 94 and mobile speed from 31 to 86 on Lighthouse.' },
 ];
 const VISUAL_WORK = [
-  { org: 'Visual design · Graphic design · Merchandise', year: '2022', href: 'https://canva.link/86hqehcb306thvz', badge: 'Fashion · Streetwear', cover: __res('./assets/covers/trendgully-cover.webp'), coverPos: 'center 70%', coverAlt: 'Black sweatshirt with a FREEDOM streetwear graphic of a winged statue', title: 'Turning streetwear trends into graphics people want to wear', desc: 'As associate graphic designer, I translated fashion forecasts, visual culture and client briefs into apparel graphics and merchandise concepts that balanced aesthetic direction with commercial needs.' },
-  { org: 'Visual systems · Packaging · Retail collateral', year: '2021–22', href: 'https://canva.link/x5mskzh5zufzotv', badge: 'Fashion · Menswear', cover: __res('./assets/covers/blackberrys-cover.webp'), coverAlt: 'Front and back of a brown Blackberrys gift card with a gold ribbon', title: 'One tag system for 1,500 SKUs at a national menswear brand', desc: 'As graphic designer, I built visual systems across packaging, catalogs and retail collateral, and merged 3–8 garment tags per product into one. Annual print cost fell 62%.' }
+  { org: 'Visual design · Graphic design · Merchandise', year: '2022', href: 'https://canva.link/86hqehcb306thvz', badge: 'Fashion · Streetwear', cover: __res('./assets/covers/trendgully-cover.webp'), coverPos: 'center 70%', coverAlt: 'Black sweatshirt with a FREEDOM streetwear graphic of a winged statue', title: 'Turning streetwear trends into graphics people want to wear', desc: 'As associate graphic designer, I turned fashion forecasts and client briefs into apparel graphics that sell.' },
+  { org: 'Visual systems · Packaging · Retail collateral', year: '2021–22', href: 'https://canva.link/x5mskzh5zufzotv', badge: 'Fashion · Menswear', cover: __res('./assets/covers/blackberrys-cover.webp'), coverAlt: 'Front and back of a brown Blackberrys gift card with a gold ribbon', title: 'One tag system for 1,500 SKUs at a national menswear brand', desc: 'As graphic designer, I merged 3–8 garment tags per product into one, cutting annual print cost 62%.' }
 ];
 const NAV_H = 120;
 const EMAIL = 'alkamahapatra99@gmail.com';
@@ -657,7 +673,7 @@ class Component extends DCLogic {
       }, { threshold: 0.5 }).observe(el);
     });
   }
-  mapWork(list, mobile) { return list.map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', tags: [], badge: (mobile && p.badgeMobile) || p.badge, hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif || p.photo), hasLogo: !!p.logo, orgStyle: p.orgOneLine ? `white-space:nowrap;font-size:min(13px,${(100 / (p.org.length * 0.79 + 0.5)).toFixed(2)}cqi)` : '', media: p.photo ? React.createElement('img', { src: p.photo, alt: p.coverAlt || p.title, loading: 'lazy', decoding: 'async', style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'metadata', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif && !p.photo, slot: p.slot || `cover-work-${i}`,
+  mapWork(list, mobile) { return list.filter(p => !(mobile && p.desktopOnly)).map((p, i) => ({ ...p, ratio: '16 / 9', href: p.href || '#', target: p.external ? '_blank' : '_self', tags: [], badge: (mobile && p.badgeMobile) || p.badge, hasBadge: !!p.badge, hasMedia: !!(p.video || p.gif || p.photo), hasLogo: !!p.logo, orgStyle: p.orgOneLine ? `white-space:nowrap;font-size:min(13px,${(100 / (p.org.length * 0.79 + 0.5)).toFixed(2)}cqi)` : '', media: p.photo ? React.createElement('img', { src: p.photo, alt: p.coverAlt || p.title, loading: 'lazy', decoding: 'async', style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : p.video ? React.createElement('video', { src: p.video, muted: true, defaultMuted: true, 'aria-hidden': 'true', ref: v => { if (v) { v.muted = true; v.defaultMuted = true; v.volume = 0; v.setAttribute('muted', ''); if (!v.__scrollVid) { v.__scrollVid = true; const io = new IntersectionObserver(([e]) => { if (e.isIntersecting && !matchMedia('(prefers-reduced-motion: reduce)').matches) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.5 }); io.observe(v); } } }, onVolumeChange: e => { const v = e.currentTarget; if (!v.muted) { v.muted = true; v.volume = 0; } }, loop: true, playsInline: true, preload: 'metadata', style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: p.videoPos || 'center top', display: 'block' } }) : p.gif ? React.createElement('img', { src: p.gif, alt: p.title, style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }) : null, featured: !!p.featured, hasVideo: !!p.video, hasGif: !p.video && !!p.gif, noVideo: !p.video && !p.gif && !p.photo, slot: p.slot || `cover-work-${i}`,
         tagList: (p.tags || []).map((t, j) => ({ label: t, tone: TAG_TONES[(i + j) % TAG_TONES.length] })) })); }
   renderVals() {
     if (!this.walkerEl) {
@@ -760,7 +776,7 @@ class Component extends DCLogic {
       prizeTouchStart: (e) => { const p = e.touches[0]; this.px = p.clientX; this.py = p.clientY; },
       prizeTouchEnd: (e) => { if (this.px == null) return; const p = e.changedTouches[0], dx = p.clientX - this.px, dy = p.clientY - this.py; this.px = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) this.goPrize(s.prizeIdx + (dx < 0 ? 1 : -1)); },
       prevTesti: () => this.goTesti(s.testiIdx - 1), nextTesti: () => this.goTesti(s.testiIdx + 1),
-      isMobile: mobile, bottomArrowDisp: mobile ? 'none' : 'grid', sideArrowTop: (20 + cardH / 2 - 22) + 'px', sideArrowEdge: `calc(50% - ${cardW / 2 + 22}px)`,
+      isMobile: mobile, isDesktop: !mobile, bottomArrowDisp: mobile ? 'none' : 'grid', sideArrowTop: (20 + cardH / 2 - 22) + 'px', sideArrowEdge: `calc(50% - ${cardW / 2 + 22}px)`,
       testiTouchStart: (e) => { const p = e.touches[0]; this.tx = p.clientX; this.ty = p.clientY; },
       testiTouchEnd: (e) => { if (this.tx == null) return; const p = e.changedTouches[0], dx = p.clientX - this.tx, dy = p.clientY - this.ty; this.tx = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) this.goTesti(s.testiIdx + (dx < 0 ? 1 : -1)); },
       pauseTesti: () => this.pauseTesti(), resumeTestiLater: () => this.resumeTestiLater(),
